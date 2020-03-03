@@ -5,9 +5,19 @@
 ** main
 */
 
-int main(int argc, char const *argv[])
+#include <iostream>
+
+void print_usage()
 {
-    (void) argc;
-    (void) argv;
+    std::cout << "Usage" << std::endl;
+}
+
+int main(int ac, char const *av[])
+{
+    if (ac != 2) {
+        print_usage();
+        return (84);
+    }
+    (void) av;
     return 0;
 }
