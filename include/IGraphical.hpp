@@ -56,10 +56,6 @@ namespace arc {
         virtual void setGameStatsFormatString(const std::string &info) = 0;
         virtual void setHowToPlayFormatString(const std::string &info) = 0;
 
-    protected:
-        virtual void init() = 0;
-        virtual void close() = 0;
-
     };
 
 }
