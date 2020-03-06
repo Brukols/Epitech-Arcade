@@ -12,6 +12,7 @@
 #include <iostream>
 #include <filesystem>
 #include <algorithm>
+#include "Utils.hpp"
 
 // PUBLIC
 
@@ -32,6 +33,10 @@ arc::Core::~Core()
 
 void arc::Core::playArcade()
 {
+    while (_graph.get()->getKeyPressed() == Event::ESCAPE) {
+        _graph.get()->clear();
+        _graph.get()->display();
+    }
 }
 
 
