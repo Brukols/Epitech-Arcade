@@ -32,7 +32,6 @@ namespace arc {
         virtual ~IGraphical() = 0;
 
         virtual void display() = 0;
-        virtual void clear(const Color &color = (Color){0, 0, 0, 255}) = 0;
         virtual Event::Type getEventType() const = 0;
         virtual Event::Key getKeyPressed() const = 0;
         virtual size_t getScreenWidth() const = 0;
