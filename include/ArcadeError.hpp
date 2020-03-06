@@ -15,7 +15,7 @@ namespace arc {
     class ArcadeError : public std::exception {
 
         public:
-            ArcadeError(const std::string &component, const std::string &message);
+            ArcadeError(const std::string &message, const std::string &component = "Unknown");
             ~ArcadeError();
 
             const std::string &getComponent() const;

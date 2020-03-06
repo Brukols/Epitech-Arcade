@@ -15,8 +15,14 @@ namespace arc
 
     class DlError : public ArcadeError {
         public:
-            DlError(const std::string &component, const std::string &message);
+            DlError(const std::string &message, const std::string &component);
             ~DlError();
+    };
+
+    class DirectoryError : public ArcadeError {
+        public:
+            DirectoryError(const std::string &message, const std::string &component);
+            ~DirectoryError();
     };
 
 };

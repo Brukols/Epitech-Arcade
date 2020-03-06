@@ -32,10 +32,21 @@ const char *arc::ArcadeError::what() const noexcept
 
 // DLERROR
 
-arc::DlError::DlError(const std::string &component, const std::string &message) : ArcadeError(component, message)
+arc::DlError::DlError(const std::string &message, const std::string &component) : ArcadeError(message, component)
 {
 }
 
 arc::DlError::~DlError()
+{
+}
+
+
+// DIRECTORY ERROR
+
+arc::DirectoryError::DirectoryError(const std::string &message, const std::string &component) : ArcadeError(message, component)
+{
+}
+
+arc::DirectoryError::~DirectoryError()
 {
 }

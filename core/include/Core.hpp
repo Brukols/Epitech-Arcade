@@ -14,6 +14,12 @@
 
 namespace arc {
     class Core {
+        private:
+            enum Direction {
+                NEXT,
+                PREV,
+            };
+
         public:
             Core(const std::string &libname);
             ~Core();
@@ -21,12 +27,13 @@ namespace arc {
             void playArcade();
 
         private:
-            void initGraphs() noexcept;
-            void initGames() noexcept;
+            void initGraphs();
+            void initGames();
 
-            void changeGame(const std::string &name);
-            void changeGraphical(const std::string &name);
-            const std::string &nextGame();
+            void changeGame(Direction direction);
+            void changeGraphical(Direction direction);
+            void setGame(const std::string &libname);
+            void setGraphical(const std::string &libname);
 
         private:
             std::unique_ptr<IGame> _game;
