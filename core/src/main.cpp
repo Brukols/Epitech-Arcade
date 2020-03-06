@@ -13,12 +13,17 @@ void print_usage()
     std::cout << "Usage" << std::endl;
 }
 
-int main(int ac, char const *av[])
+int main(int ac, const char **av)
 {
     if (ac != 2) {
         print_usage();
         return (84);
     }
-    (void) av;
-    return 0;
+    try {
+        arc::Core core(av[1]);
+        core.playArcade();
+    } catch(const std::exception& e) {
+        std::cerr << e.what() << '\n';
+    }
+    return (0);
 }

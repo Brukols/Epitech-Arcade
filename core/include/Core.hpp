@@ -21,10 +21,12 @@ namespace arc {
             void setLib(IGraphical *lib);
             void setGame(IGame *game);
 
+            void playArcade();
+
         protected:
         private:
-            std::unique_ptr<IGame *> _game;
-            std::unique_ptr<IGraphical *> _lib;
+            std::unique_ptr<IGame> _game;
+            std::unique_ptr<IGraphical> _lib;
     };
 }
 

@@ -22,7 +22,7 @@ class DLLoader {
 
     private:
         void *handle;
-        std::unique_ptr<T *> _lib;
+        std::unique_ptr<T> _lib;
         const std::string _libname;
 };
 

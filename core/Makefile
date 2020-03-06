@@ -20,14 +20,14 @@ CC	=		g++
 
 CXXFLAGS	=	-I./include -I../include -W -Wall -Wextra
 
-LDFLAGS		=		\
+LDFLAGS		=	-ldl	\
 
 RM	=	rm -f
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) -o $(NAME) $(OBJS)
+	$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 clean:
 	$(RM) $(OBJS)
