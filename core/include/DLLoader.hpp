@@ -13,7 +13,7 @@
 template<typename T>
 class DLLoader {
     public:
-        DLLoader(T *lib);
+        DLLoader(const std::string &libname);
         ~DLLoader();
 
         T *getInstance() const noexcept;
@@ -21,7 +21,9 @@ class DLLoader {
     protected:
 
     private:
+        void *handle;
         std::unique_ptr<T *> _lib;
+        const std::string _libname;
 };
 
 #endif /* !DLLOADER_HPP */

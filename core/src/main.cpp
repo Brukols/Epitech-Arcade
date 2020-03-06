@@ -6,6 +6,7 @@
 */
 
 #include <iostream>
+#include "Core.hpp"
 
 void print_usage()
 {
