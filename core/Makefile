@@ -18,7 +18,7 @@ OBJS_COV	=	$(SRCS:.cpp=.gcno) $(SRCS:.cpp=.gcda)
 
 CC	=		g++
 
-CXXFLAGS	=	-I./include -I../include -W -Wall -Wextra
+CXXFLAGS	=	-I./include -I../include -W -Wall -Wextra -std=c++17
 
 LDFLAGS		=	-ldl	\
 

@@ -9,6 +9,7 @@
 #include "DLLoader.hpp"
 #include "Errors.hpp"
 #include "IGraphical.hpp"
+#include "IGame.hpp"
 #include <iostream>
 
 template<class T>
@@ -34,3 +35,7 @@ T *DLLoader<T>::getInstance() const noexcept
 template DLLoader<arc::IGraphical>::DLLoader(const std::string &libname);
 template DLLoader<arc::IGraphical>::~DLLoader();
 template arc::IGraphical *DLLoader<arc::IGraphical>::getInstance() const noexcept;
+
+template DLLoader<arc::IGame>::DLLoader(const std::string &libname);
+template DLLoader<arc::IGame>::~DLLoader();
+template arc::IGame *DLLoader<arc::IGame>::getInstance() const noexcept;

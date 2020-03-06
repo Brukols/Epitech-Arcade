@@ -5,16 +5,22 @@
 ## Makefile
 ##
 
-all:
+CORE_NAME	=	arcade
+
+RM	=	rm -f
+
+all: core
 
 core:
 	make -C core/
+	mv core/$(CORE_NAME) .
 
 clean:
 	make clean -C core/
 
 fclean: clean
 	make fclean -C core/
+	$(RM) $(CORE_NAME)
 
 re: fclean all
 
