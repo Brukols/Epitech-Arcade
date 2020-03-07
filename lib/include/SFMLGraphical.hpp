@@ -11,6 +11,7 @@
 #include "IGraphical.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include "Utils.hpp"
 
 namespace arc
 {
@@ -47,13 +48,15 @@ namespace arc
             void setGameStatsFormatString(const std::string &info) override;
             void setHowToPlayFormatString(const std::string &info) override;
         
-        
-        protected:
+        private:
+            arc::Event::Key getKey(sf::Event event) const;
         
         
         private:
             std::unique_ptr<sf::RenderWindow> _window;
             std::string _test; // TO DELETE
+            arc::Event::Type _actualEventType = arc::Event::Type::NO_EVENT;
+            arc::Event::Key _actualKeyPress = arc::Event::Key::NONE;
     };
 
 };

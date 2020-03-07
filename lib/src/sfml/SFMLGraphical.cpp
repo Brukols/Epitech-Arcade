@@ -26,24 +26,6 @@ void arc::SFMLGraphical::display()
     _window.get()->display();
 }
 
-arc::Event::Type arc::SFMLGraphical::getEventType()
-{
-    sf::Event event;
-
-    while (_window.get()->pollEvent(event)) {
-        if (event.type == sf::Event::Closed) {
-            _window.get()->close();
-            return (arc::Event::QUIT);
-        }
-    }
-    return (arc::Event::NO_EVENT);
-}
-
-arc::Event::Key arc::SFMLGraphical::getKeyPressed() const
-{
-    return (arc::Event::UNKNOWN);
-}
-
 size_t arc::SFMLGraphical::getScreenWidth() const
 {
     return (0);

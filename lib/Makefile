@@ -8,6 +8,7 @@
 NAME_SFML	=	lib_arcade_sfml.so
 
 SRCS_SFML	=	src/sfml/SFMLGraphical.cpp	\
+				src/sfml/event/SFMLGraphicalEvent.cpp	\
 
 OBJS	=	$(SRCS_SFML:.cpp=.o)
 
