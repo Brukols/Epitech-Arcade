@@ -33,6 +33,19 @@ arc::Core::~Core()
 
 void arc::Core::playArcade()
 {
+    std::map<std::string, std::function<void()>> map;
+
+    map["Exit"] = [](){
+        return 0;
+    };
+    map["How to play"] = [](){
+        return 0;
+    };
+    map["Play"] = [](){
+        return 0;
+    };
+    _graph->setFont("resources/fonts/Raleway-Bold.ttf");
+    _graph->setMainMenuOptions(map);
     while (_graph->getEventType() != Event::QUIT && _graph->getKeyPressed() != Event::ESCAPE) {
         _graph->display();
     }

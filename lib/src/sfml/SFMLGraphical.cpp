@@ -18,14 +18,6 @@ arc::SFMLGraphical::~SFMLGraphical()
 {
 }
 
-void arc::SFMLGraphical::display()
-{
-    if (!_window.get()->isOpen())
-        return;
-    _window.get()->clear();
-    _window.get()->display();
-}
-
 size_t arc::SFMLGraphical::getScreenWidth() const
 {
     return (0);
@@ -38,22 +30,22 @@ size_t arc::SFMLGraphical::getScreenHeight() const
 
 void arc::SFMLGraphical::setScene(Scene scene)
 {
-    (void)scene;
+    _actualScene = scene;
 }
 
 arc::IGraphical::Scene arc::SFMLGraphical::getScene() const
 {
-    return (arc::IGraphical::END_GAME);
+    return (_actualScene);
 }
 
 void arc::SFMLGraphical::setMainMenuOptions(const std::map<std::string, std::function<void()>> &mainMenu)
 {
-    (void)mainMenu;
+    _mainMenuOptions = mainMenu;
 }
 
 void arc::SFMLGraphical::setPauseMenuOptions(const std::map<std::string, std::function<void()>> &pauseMenu)
 {
-    (void)pauseMenu;
+    _pauseMenuOptions = pauseMenu;
 }
 
 void arc::SFMLGraphical::setList(const std::vector<std::string> &list)
@@ -93,7 +85,8 @@ void arc::SFMLGraphical::setBackgroundColors(const std::map<char, Color> &sprite
 
 void arc::SFMLGraphical::setFont(const std::string &font)
 {
-    (void)font;
+    if (!_font.loadFromFile(font))
+        return; // Throw a exeception
 }
 
 void arc::SFMLGraphical::setGameStatsFormatString(const std::string &info)
