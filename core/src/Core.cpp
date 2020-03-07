@@ -35,13 +35,13 @@ void arc::Core::playArcade()
 {
     std::map<std::string, std::function<void()>> map;
 
-    map["Exit"] = [](){
+    map["       Exit"] = [](){
         return 0;
     };
     map["How to play"] = [](){
         return 0;
     };
-    map["Play"] = [](){
+    map["       Play"] = [](){
         return 0;
     };
     _graph->setFont("resources/fonts/Raleway-Bold.ttf");

@@ -11,7 +11,7 @@
 
 arc::SFMLGraphical::SFMLGraphical()
 {
-    _window = std::unique_ptr<sf::RenderWindow>(new sf::RenderWindow(sf::VideoMode(800, 600), "SFML window"));
+    _window = std::unique_ptr<sf::RenderWindow>(new sf::RenderWindow(sf::VideoMode(1920, 1080, 32), "SFML window", sf::Style::Fullscreen));
 }
 
 arc::SFMLGraphical::~SFMLGraphical()
