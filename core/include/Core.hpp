@@ -11,6 +11,7 @@
 #include <memory>
 #include "IGame.hpp"
 #include "IGraphical.hpp"
+#include "DLLoader.hpp"
 
 namespace arc {
     class Core {
@@ -37,6 +38,7 @@ namespace arc {
 
         private:
             std::unique_ptr<IGame> _game;
+            std::unique_ptr<DLLoader<IGraphical>> _loaderGraph;
             std::unique_ptr<IGraphical> _graph;
             std::map<std::string, bool> _graphs;
             std::map<std::string, bool> _games;

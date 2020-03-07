@@ -30,15 +30,15 @@ namespace arc {
                 GET_INPUT,
             };
 
-            virtual ~IGraphical() = 0;
+            virtual ~IGraphical() = default;
 
             virtual void display() = 0;
-            virtual Event::Type getEventType() const = 0;
+            virtual Event::Type getEventType() = 0; // I remove the const
             virtual Event::Key getKeyPressed() const = 0;
             virtual size_t getScreenWidth() const = 0;
             virtual size_t getScreenHeight() const = 0;
 
-            virtual void setScene(Scene scene) const = 0;
+            virtual void setScene(Scene scene) = 0;
             virtual Scene getScene() const = 0;
 
             virtual void setMainMenuOptions(const std::map<std::string, std::function<void()>> &mainMenu) = 0;
@@ -47,6 +47,7 @@ namespace arc {
             virtual void setGetInputMessage(const std::string &message) = 0;
             virtual void setEndGameMessage(const std::string &message) = 0;
             virtual void updateGameInfo(const std::vector<std::vector<char>> &gameMap) = 0;
+            virtual const std::string &getInput() const = 0;
 
             virtual void setSprites(const std::map<char, std::string> &sprites) = 0;
             virtual void setBackgroundColors(const std::map<char, Color> &sprites) = 0;

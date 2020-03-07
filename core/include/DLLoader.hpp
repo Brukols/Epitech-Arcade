@@ -16,12 +16,12 @@ class DLLoader {
         DLLoader(const std::string &libname);
         ~DLLoader();
 
-        T *getInstance() const noexcept;
+        T *getInstance() const;
 
     protected:
 
     private:
-        void *handle;
+        void *_handle;
         std::unique_ptr<T> _lib;
         const std::string _libname;
 };

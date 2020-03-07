@@ -9,22 +9,28 @@ CORE_NAME	=	arcade
 
 RM	=	rm -f
 
-all: core
+all: core graphicals
 
 core:
 	make -C core/
 	mv core/$(CORE_NAME) .
 
+graphicals:
+	make -C lib/
+
 clean:
 	make clean -C core/
+	make clean -C lib/
 
 fclean: clean
 	make fclean -C core/
+	make fclean -C lib/
 	$(RM) $(CORE_NAME)
 
 re: fclean all
 
-debug: CXXFLAGS	+=	-g
-debug: re
+debug:
+	make debug -C core/
+	make debug -C lib/
 
 .PHONY: all core clean fclean re debug games graphicals

@@ -15,27 +15,34 @@
 template<class T>
 DLLoader<T>::DLLoader(const std::string &libname) : _libname(libname)
 {
-    handle = dlopen(_libname.c_str(), RTLD_LAZY);
-    if (!handle)
+    _handle = dlopen(_libname.c_str(), RTLD_LAZY);
+    if (!_handle) {
         throw arc::DlError(dlerror(), "DLLoader");
+    }
 }
 
 template<class T>
 DLLoader<T>::~DLLoader()
 {
-    dlclose(handle);
+    dlclose(_handle);
 }
 
 template<class T>
-T *DLLoader<T>::getInstance() const noexcept
+T *DLLoader<T>::getInstance() const
 {
-    return (_lib.get());
+    T *(*function)();
+
+    function = reinterpret_cast<T *(*)()>(dlsym(_handle, "instance_ctor"));
+    if (dlerror()) {
+        throw arc::DlError(dlerror(), "getInstance");
+    }
+    return (function());
 }
 
 template DLLoader<arc::IGraphical>::DLLoader(const std::string &libname);
 template DLLoader<arc::IGraphical>::~DLLoader();
-template arc::IGraphical *DLLoader<arc::IGraphical>::getInstance() const noexcept;
+template arc::IGraphical *DLLoader<arc::IGraphical>::getInstance() const;
 
 template DLLoader<arc::IGame>::DLLoader(const std::string &libname);
 template DLLoader<arc::IGame>::~DLLoader();
-template arc::IGame *DLLoader<arc::IGame>::getInstance() const noexcept;
+template arc::IGame *DLLoader<arc::IGame>::getInstance() const;

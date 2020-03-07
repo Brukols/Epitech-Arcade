@@ -33,8 +33,8 @@ arc::Core::~Core()
 
 void arc::Core::playArcade()
 {
-    while (_graph.get()->getKeyPressed() == Event::ESCAPE) {
-        _graph.get()->display();
+    while (_graph->getEventType() != Event::QUIT && _graph->getKeyPressed() != Event::ESCAPE) {
+        _graph->display();
     }
 }
 
@@ -133,12 +133,9 @@ void arc::Core::setGame(const std::string &libname)
 } 
 
 void arc::Core::setGraphical(const std::string &libname)
-{
-    try {
-        DLLoader<IGraphical> loader(libname);
-
-        _graph = std::unique_ptr<IGraphical>(loader.getInstance());
-    } catch(const DlError &e) {
-        throw e;
-    }
+try {
+    _loaderGraph = std::unique_ptr<DLLoader<IGraphical>>(new DLLoader<IGraphical>(libname));
+    _graph = std::unique_ptr<IGraphical>(_loaderGraph.get()->getInstance());
+} catch(const DlError &e) {
+    throw e;
 }
