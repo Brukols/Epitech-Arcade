@@ -5,6 +5,7 @@
 ** SFMLGraphcial
 */
 
+#include <iostream>
 #include "SFMLGraphical.hpp"
 #include "Utils.hpp"
 #include <iostream>
