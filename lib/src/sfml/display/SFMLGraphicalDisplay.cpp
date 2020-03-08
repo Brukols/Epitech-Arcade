@@ -16,9 +16,9 @@ void arc::SFMLGraphical::display()
     displays.push_back(std::pair(arc::IGraphical::Scene::MAIN_MENU, &arc::SFMLGraphical::displayMenu));
 
     // CLEAR THE WINDOW
-    if (!_window.get()->isOpen())
+    if (!_window.isOpen())
         return;
-    _window.get()->clear();
+    _window.clear();
 
     // DISPLAY THE SCENE
     std::for_each(displays.begin(), displays.end(), [this](std::pair<arc::IGraphical::Scene, void (arc::SFMLGraphical::*)(void)> display) {
@@ -26,19 +26,7 @@ void arc::SFMLGraphical::display()
             (this->*display.second)();
     });
 
-    _window.get()->display();
-}
-
-void arc::SFMLGraphical::drawButton(const std::string &name, const sf::Vector2f &size, const sf::Vector2f &pos, const sf::Color &color)
-{
-    sf::RectangleShape rect(size);
-
-    rect.setFillColor(color);
-    rect.setOutlineThickness(1);
-    rect.setOutlineColor(sf::Color(200, 200, 200, 255));
-    rect.setPosition(pos);
-    _window.get()->draw(rect);
-    drawText(name, 30, sf::Vector2f(pos.x + 40, pos.y + 40), sf::Color::Black);
+    _window.display();
 }
 
 void arc::SFMLGraphical::drawText(const std::string &name, size_t size, const sf::Vector2f &pos, const sf::Color &color)
@@ -52,5 +40,5 @@ void arc::SFMLGraphical::drawText(const std::string &name, size_t size, const sf
     text.setOutlineThickness(1);
     text.setOutlineColor(sf::Color(200, 200, 200, 255));
     text.setPosition(pos);
-    _window.get()->draw(text);
+    _window.draw(text);
 }

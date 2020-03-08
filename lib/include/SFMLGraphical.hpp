@@ -12,6 +12,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "Utils.hpp"
+#include "sfml/SFMLButton.hpp"
 
 namespace arc
 {
@@ -61,28 +62,30 @@ namespace arc
             */
 
         private:
+            void initButtons();
+            void initButtonsMenu();
+            void initButtonsGame();
+            void initButtonsEndGame();
+
             arc::Event::Key getKey(sf::Event event) const;
             void displayMenu();
             // void displayPauseMenu();
             // void displayGame();
             // void displayEndGame();
-            // void displayList();
-            // void displayHowToPlay();
-            // void displayGetInput();
-            void drawButton(const std::string &name, const sf::Vector2f &size, const sf::Vector2f &pos, const sf::Color &color);
             void drawText(const std::string &name, size_t size, const sf::Vector2f &pos, const sf::Color &color);
 
         private:
-            std::unique_ptr<sf::RenderWindow> _window;
+            sf::RenderWindow _window;
 
             std::vector<std::string> _listGames;
             std::vector<std::string> _listLibraries;
             std::vector<std::pair<std::string, std::string>> _scores;
-            std::function<void (const std::string &)> _eventChooseGame;
-            std::function<void (const std::string &)> _eventChooseLibrary;
+            std::function<void(const std::string &)> _eventChooseGame;
+            std::function<void(const std::string &)> _eventChooseLibrary;
 
             std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> _controls;
 
+            std::vector<SFMLButton> _buttons; // List of the actual buttons load of the scene
             std::function<void()> _eventPlayButton;
             std::function<void()> _eventRestartButton;
             std::function<void()> _eventMenuButton;
@@ -104,7 +107,6 @@ namespace arc
             std::map<char, std::string> _sprites;
             std::map<char, Color> _backgroundColors;
     };
-
 };
 
 #endif /* !SFMLGRAPHICAL_HPP */

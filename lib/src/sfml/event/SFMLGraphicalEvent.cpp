@@ -13,10 +13,10 @@ arc::Event::Type arc::SFMLGraphical::getEventType()
 {
     sf::Event event;
 
-    while (_window.get()->pollEvent(event)) {
+    while (_window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
             _actualEventType = arc::Event::QUIT;
-            _window.get()->close();
+            _window.close();
             return (arc::Event::QUIT);
         }
         if (event.type == sf::Event::KeyPressed) {

@@ -14,8 +14,6 @@
 #include <algorithm>
 #include "Utils.hpp"
 
-// PUBLIC
-
 arc::Core::Core(const std::string &libname)
 try {
     initGraphs();

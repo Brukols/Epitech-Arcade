@@ -9,9 +9,9 @@
 #include "Utils.hpp"
 #include <iostream>
 
-arc::SFMLGraphical::SFMLGraphical()
+arc::SFMLGraphical::SFMLGraphical() : _window(sf::RenderWindow(sf::VideoMode(1920, 1080, 32), "SFML window", sf::Style::Fullscreen))
 {
-    _window = std::unique_ptr<sf::RenderWindow>(new sf::RenderWindow(sf::VideoMode(1920, 1080, 32), "SFML window", sf::Style::Fullscreen));
+    initButtons();
 }
 
 arc::SFMLGraphical::~SFMLGraphical()

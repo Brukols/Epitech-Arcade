@@ -8,11 +8,14 @@
 NAME_SFML	=	lib_arcade_sfml.so
 
 SRCS_SFML	=	src/sfml/SFMLGraphical.cpp	\
+				src/sfml/init/SFMLGraphicalInitButtons.cpp	\
+				src/sfml/init/SFMLGraphicalInitButtonsMenu.cpp	\
 				src/sfml/event/SFMLGraphicalEvent.cpp	\
 				src/sfml/display/SFMLGraphicalDisplay.cpp	\
 				src/sfml/display/SFMLGraphicalDisplayEndGame.cpp	\
 				src/sfml/display/SFMLGraphicalDisplayGame.cpp	\
 				src/sfml/display/SFMLGraphicalDisplayMenu.cpp	\
+				src/sfml/button/SFMLButton.cpp	\
 				src/sfml/music/SFMLGraphicalMusic.cpp	\
 
 OBJS	=	$(SRCS_SFML:.cpp=.o)
