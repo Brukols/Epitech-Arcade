@@ -91,6 +91,7 @@ void arc::SFMLGraphical::setFont(const std::string &font)
 {
     if (!_font.loadFromFile(font))
         return; // Throw a exeception
+    initText();
 }
 
 void arc::SFMLGraphical::setSprites(const std::map<char, std::string> &sprites)

@@ -13,6 +13,7 @@
 #include <SFML/Graphics.hpp>
 #include "Utils.hpp"
 #include "sfml/SFMLButton.hpp"
+#include "sfml/SFMLText.hpp"
 
 namespace arc
 {
@@ -67,6 +68,11 @@ namespace arc
             void initButtonsGame();
             void initButtonsEndGame();
 
+            void initText();
+            void initTextMenu();
+            // void initTextGame();
+            // void initTextEndGame();
+
             arc::Event::Key getKey(sf::Event event) const;
             void displayMenu();
             // void displayPauseMenu();
@@ -91,6 +97,7 @@ namespace arc
             std::function<void()> _eventMenuButton;
             std::function<void()> _eventTogglePauseButton;
 
+            std::vector<SFMLText> _text;
             std::vector<Entity> _entities;
             std::string _username;
 
