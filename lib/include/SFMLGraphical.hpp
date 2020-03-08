@@ -73,6 +73,8 @@ namespace arc
             // void initTextGame();
             // void initTextEndGame();
 
+            bool clickAButton(const sf::Vector2i &pos);
+
             arc::Event::Key getKey(sf::Event event) const;
             void displayMenu();
             // void displayPauseMenu();

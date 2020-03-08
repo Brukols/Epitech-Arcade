@@ -7,7 +7,7 @@
 
 #include "SFMLGraphical.hpp"
 
-static arc::SFMLButton initButtonPlay(const std::function<void()> &event)
+static arc::SFMLButton initButtonPlay(std::function<void()> &event)
 {
     sf::RectangleShape rect(sf::Vector2f(220, 100));
 
@@ -20,7 +20,7 @@ static arc::SFMLButton initButtonPlay(const std::function<void()> &event)
     return (button);
 }
 
-static arc::SFMLButton initButtonExit(const std::function<void()> &event)
+static arc::SFMLButton initButtonExit(std::function<void()> &event)
 {
     sf::RectangleShape rect(sf::Vector2f(220, 100));
 
@@ -36,16 +36,20 @@ static arc::SFMLButton initButtonExit(const std::function<void()> &event)
 void arc::SFMLGraphical::initButtonsMenu()
 {
     // Variable static in order to not call every time -> optimisation
-    static std::vector<std::pair<arc::SFMLButton (*)(const std::function<void()> &), const std::function<void()> &>> buttons = [this]() -> const std::vector<std::pair<arc::SFMLButton (*)(const std::function<void()> &), const std::function<void()> &>> {
-        std::vector<std::pair<arc::SFMLButton (*)(const std::function<void()> &), const std::function<void()> &>> buttons;
+    static std::vector<std::pair<arc::SFMLButton (*)(std::function<void()> &), std::function<void()>>> buttons = [this]() -> std::vector<std::pair<arc::SFMLButton (*)(std::function<void()> &), std::function<void()>>> {
+        std::vector<std::pair<arc::SFMLButton (*)(std::function<void()> &), std::function<void()>>> buttons;
 
-        buttons.push_back(std::pair<arc::SFMLButton (*)(const std::function<void()> &), const std::function<void()> &>(initButtonPlay, _eventPlayButton));
-        buttons.push_back(std::pair<arc::SFMLButton (*)(const std::function<void()> &), const std::function<void()> &>(initButtonExit, _eventPlayButton));
+        std::function<void()> tmp = [this]() {
+            _actualEventType = arc::Event::Type::QUIT;
+            _actualKeyPress = arc::Event::Key::ESCAPE;
+        };
+        buttons.push_back(std::pair<arc::SFMLButton (*)(std::function<void()> &), std::function<void()>>(initButtonPlay, _eventPlayButton));
+        buttons.push_back(std::pair<arc::SFMLButton (*)(std::function<void()> &), std::function<void()>>(initButtonExit, tmp));
         return (buttons);
     }();
 
 
-    std::for_each(buttons.begin(), buttons.end(), [this](const std::pair<arc::SFMLButton (*)(const std::function<void()> &), const std::function<void()>> &pair) {
+    std::for_each(buttons.begin(), buttons.end(), [this](std::pair<arc::SFMLButton (*)(std::function<void()> &), std::function<void()>> &pair) {
         _buttons.push_back(pair.first(pair.second));
     });
 }

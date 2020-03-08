@@ -9,6 +9,21 @@
 #include "Utils.hpp"
 #include <iostream>
 
+bool arc::SFMLGraphical::clickAButton(const sf::Vector2i &pos)
+{
+    bool click = false;
+
+    std::for_each(_buttons.begin(), _buttons.end(), [this, pos, &click](SFMLButton &button) {
+        if (click == true)
+            return;
+        if (button.isMouseHover(pos)) {
+            button.clickButton();
+            click = true;
+        }
+    });
+    return (click);
+}
+
 arc::Event::Type arc::SFMLGraphical::getEventType()
 {
     sf::Event event;
@@ -29,6 +44,10 @@ arc::Event::Type arc::SFMLGraphical::getEventType()
             _actualEventType = arc::Event::KEY_RELEASED;
             _actualKeyPress = getKey(event);
             if (_actualKeyPress != arc::Event::Key::NONE)
+                return (_actualEventType);
+        }
+        if (event.type == sf::Event::MouseButtonReleased) {
+            if (clickAButton(sf::Mouse::getPosition()))
                 return (_actualEventType);
         }
     }
