@@ -9,9 +9,12 @@
 
 void arc::SFMLGraphical::initButtons()
 {
-    std::vector<std::pair<Scene, void (arc::SFMLGraphical::*)()>> _inits;
+    static std::vector<std::pair<Scene, void (arc::SFMLGraphical::*)()>> _inits = [this]() -> std::vector<std::pair<Scene, void (arc::SFMLGraphical::*)()>> {
+        std::vector<std::pair<Scene, void (arc::SFMLGraphical::*)()>> _inits;
 
-    _inits.push_back(std::pair<Scene, void (arc::SFMLGraphical::*)()>(MAIN_MENU, &arc::SFMLGraphical::initButtonsMenu));
+        _inits.push_back(std::pair<Scene, void (arc::SFMLGraphical::*)()>(MAIN_MENU, &arc::SFMLGraphical::initButtonsMenu));
+        return (_inits);
+    }();
 
     _buttons.clear();
 

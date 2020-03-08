@@ -10,10 +10,12 @@
 
 void arc::SFMLGraphical::display()
 {
-    std::vector<std::pair<arc::IGraphical::Scene, void (arc::SFMLGraphical::*)(void)>> displays;
+    static std::vector<std::pair<arc::IGraphical::Scene, void (arc::SFMLGraphical::*)(void)>> displays = [this]() -> std::vector<std::pair<arc::IGraphical::Scene, void (arc::SFMLGraphical::*)(void)>> {
+        std::vector<std::pair<arc::IGraphical::Scene, void (arc::SFMLGraphical::*)(void)>> displays;
 
-    // COMPLETE WHAT SCENE TO DISPLAY
-    displays.push_back(std::pair(arc::IGraphical::Scene::MAIN_MENU, &arc::SFMLGraphical::displayMenu));
+        displays.push_back(std::pair(arc::IGraphical::Scene::MAIN_MENU, &arc::SFMLGraphical::displayMenu));
+        return (displays);
+    }();
 
     // CLEAR THE WINDOW
     if (!_window.isOpen())
@@ -27,18 +29,4 @@ void arc::SFMLGraphical::display()
     });
 
     _window.display();
-}
-
-void arc::SFMLGraphical::drawText(const std::string &name, size_t size, const sf::Vector2f &pos, const sf::Color &color)
-{
-    sf::Text text;
-
-    text.setFont(_font);
-    text.setString(name);
-    text.setCharacterSize(size);
-    text.setFillColor(color);
-    text.setOutlineThickness(1);
-    text.setOutlineColor(sf::Color(200, 200, 200, 255));
-    text.setPosition(pos);
-    _window.draw(text);
 }

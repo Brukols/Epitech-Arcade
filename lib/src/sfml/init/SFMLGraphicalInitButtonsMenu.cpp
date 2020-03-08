@@ -35,16 +35,15 @@ static arc::SFMLButton initButtonExit(const std::function<void()> &event)
 
 void arc::SFMLGraphical::initButtonsMenu()
 {
-    static std::vector<std::pair<arc::SFMLButton (*)(const std::function<void()> &), const std::function<void()> &>> buttons;
-    //  = [this]() -> const std::vector<std::pair<arc::SFMLButton (*)(const std::function<void()> &), const std::function<void()> &>> & {
-    //     std::vector<std::pair<arc::SFMLButton (*)(const std::function<void()> &), const std::function<void()> &>> buttons;
+    // Variable static in order to not call every time -> optimisation
+    static std::vector<std::pair<arc::SFMLButton (*)(const std::function<void()> &), const std::function<void()> &>> buttons = [this]() -> const std::vector<std::pair<arc::SFMLButton (*)(const std::function<void()> &), const std::function<void()> &>> {
+        std::vector<std::pair<arc::SFMLButton (*)(const std::function<void()> &), const std::function<void()> &>> buttons;
 
-    //     // buttons.push_back(std::pair<arc::SFMLButton (*)(const std::function<void()> &), const std::function<void()> &>(&initButtonPlay, &_eventPlayButton));
-    //     return (buttons);
-    // };
+        buttons.push_back(std::pair<arc::SFMLButton (*)(const std::function<void()> &), const std::function<void()> &>(initButtonPlay, _eventPlayButton));
+        buttons.push_back(std::pair<arc::SFMLButton (*)(const std::function<void()> &), const std::function<void()> &>(initButtonExit, _eventPlayButton));
+        return (buttons);
+    }();
 
-    buttons.push_back(std::pair<arc::SFMLButton (*)(const std::function<void()> &), const std::function<void()> &>(initButtonPlay, _eventPlayButton));
-    buttons.push_back(std::pair<arc::SFMLButton (*)(const std::function<void()> &), const std::function<void()> &>(initButtonExit, _eventPlayButton));
 
     std::for_each(buttons.begin(), buttons.end(), [this](const std::pair<arc::SFMLButton (*)(const std::function<void()> &), const std::function<void()>> &pair) {
         _buttons.push_back(pair.first(pair.second));

@@ -23,9 +23,13 @@ static arc::SFMLText initTextArcade(const sf::Font &font)
 
 void arc::SFMLGraphical::initTextMenu()
 {
-    std::vector<arc::SFMLText (*)(const sf::Font &)> text;
+    static std::vector<arc::SFMLText (*)(const sf::Font &)> text = [this]() -> std::vector<arc::SFMLText (*)(const sf::Font &)> {
+        std::vector<arc::SFMLText (*)(const sf::Font &)> text;
 
-    text.push_back(initTextArcade);
+        text.push_back(initTextArcade);
+        return (text);
+    }();
+
 
     std::for_each(text.begin(), text.end(), [this](arc::SFMLText (*fct)(const sf::Font &)) {
         _text.push_back(fct(_font));

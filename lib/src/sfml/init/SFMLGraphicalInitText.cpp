@@ -9,9 +9,12 @@
 
 void arc::SFMLGraphical::initText()
 {
-    std::vector<std::pair<Scene, void (arc::SFMLGraphical::*)()>> _inits;
+    static std::vector<std::pair<Scene, void (arc::SFMLGraphical::*)()>> _inits = [this]() -> std::vector<std::pair<Scene, void (arc::SFMLGraphical::*)()>> {
+        std::vector<std::pair<Scene, void (arc::SFMLGraphical::*)()>> _inits;
 
-    _inits.push_back(std::pair<Scene, void (arc::SFMLGraphical::*)()>(MAIN_MENU, &arc::SFMLGraphical::initTextMenu));
+        _inits.push_back(std::pair<Scene, void (arc::SFMLGraphical::*)()>(MAIN_MENU, &arc::SFMLGraphical::initTextMenu));
+        return (_inits);
+    }();
 
     _text.clear();
 

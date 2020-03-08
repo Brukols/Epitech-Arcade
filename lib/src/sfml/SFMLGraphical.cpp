@@ -11,6 +11,7 @@
 
 arc::SFMLGraphical::SFMLGraphical() : _window(sf::RenderWindow(sf::VideoMode(1920, 1080, 32), "SFML window", sf::Style::Fullscreen))
 {
+    _window.setFramerateLimit(60);
     initButtons();
 }
 
