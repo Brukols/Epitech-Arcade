@@ -10,6 +10,10 @@ NAME_SFML	=	lib_arcade_sfml.so
 SRCS_SFML	=	src/sfml/SFMLGraphical.cpp	\
 				src/sfml/event/SFMLGraphicalEvent.cpp	\
 				src/sfml/display/SFMLGraphicalDisplay.cpp	\
+				src/sfml/display/SFMLGraphicalDisplayEndGame.cpp	\
+				src/sfml/display/SFMLGraphicalDisplayGame.cpp	\
+				src/sfml/display/SFMLGraphicalDisplayMenu.cpp	\
+				src/sfml/music/SFMLGraphicalMusic.cpp	\
 
 OBJS	=	$(SRCS_SFML:.cpp=.o)
 

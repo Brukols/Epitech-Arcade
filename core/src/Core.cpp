@@ -33,19 +33,7 @@ arc::Core::~Core()
 
 void arc::Core::playArcade()
 {
-    std::map<std::string, std::function<void()>> map;
-
-    map["       Exit"] = [](){
-        return 0;
-    };
-    map["How to play"] = [](){
-        return 0;
-    };
-    map["       Play"] = [](){
-        return 0;
-    };
     _graph->setFont("resources/fonts/Raleway-Bold.ttf");
-    _graph->setMainMenuOptions(map);
     while (_graph->getEventType() != Event::QUIT && _graph->getKeyPressed() != Event::ESCAPE) {
         _graph->display();
     }
@@ -135,15 +123,12 @@ void arc::Core::changeGraphical(Direction direction)
 }
 
 void arc::Core::setGame(const std::string &libname)
-{
-    try {
-        DLLoader<IGame> loader(libname);
-
-        _game = std::unique_ptr<IGame>(loader.getInstance());
-    } catch(const DlError &e) {
-        throw e;
-    }
-} 
+try {
+    _loaderGame = std::unique_ptr<DLLoader<IGame>>(new DLLoader<IGame>(libname));
+    _game = std::unique_ptr<IGame>(_loaderGame.get()->getInstance());
+} catch(const DlError &e) {
+    throw e;
+}
 
 void arc::Core::setGraphical(const std::string &libname)
 try {

@@ -22,35 +22,47 @@ namespace arc
             SFMLGraphical();
             ~SFMLGraphical();
 
-            // OVERRIDE
+
+            /*
+            ** Override methods for IGraphical
+            */
 
             void display() override;
             Event::Type getEventType() override;
             Event::Key getKeyPressed() const override;
-            size_t getScreenWidth() const override;
-            size_t getScreenHeight() const override;
 
-            void setScene(Scene scene) override;
+            void setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen = -1) override;
+            void setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen = -1) override;
+            void setScores(const std::vector<std::pair<std::string, std::string>> &scores) override;
+
+            void setControls(const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &controls) override;
+
+            void setFunctionPlay(const std::function<void()> &function) override;
+            void setFunctionRestart(const std::function<void()> &function) override;
+            void setFunctionMenu(const std::function<void()> &function) override;
+            void setFunctionTogglePause(const std::function<void()> &function) override;
+
+            const std::string &getUsername() const override;
             Scene getScene() const override;
+            void setScene(Scene scene) override;
 
-            void setMainMenuOptions(const std::map<std::string, std::function<void()>> &mainMenu) override;
-            void setPauseMenuOptions(const std::map<std::string, std::function<void()>> &pauseMenu) override;
-            void setList(const std::vector<std::string> &list) override;
-            void setGetInputMessage(const std::string &message) override;
-            void setEndGameMessage(const std::string &message) override;
-            void updateGameInfo(const std::vector<std::vector<char>> &gameMap) override;
-            const std::string &getInput() const override;
-
+            void setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info) override;
+            void setGameStatsFormatString(const std::vector<std::string> &info) override;
+            void setFont(const std::string &font) override;
             void setSprites(const std::map<char, std::string> &sprites) override;
             void setBackgroundColors(const std::map<char, Color> &sprites) override;
-            void setFont(const std::string &font) override;
+            void updateGameInfo(const std::vector<Entity> &entities) override;
 
-            void setGameStatsFormatString(const std::string &info) override;
-            void setHowToPlayFormatString(const std::string &info) override;
-        
+            void setMusic(const std::string &music) override;
+            void playSound(const std::string &sound) override;
+
+            /*
+            ** End of override methods for IGraphical
+            */
+
         private:
             arc::Event::Key getKey(sf::Event event) const;
-            void displayMainMenu();
+            void displayMenu();
             // void displayPauseMenu();
             // void displayGame();
             // void displayEndGame();
@@ -62,13 +74,35 @@ namespace arc
 
         private:
             std::unique_ptr<sf::RenderWindow> _window;
-            std::string _test; // TO DELETE
+
+            std::vector<std::string> _listGames;
+            std::vector<std::string> _listLibraries;
+            std::vector<std::pair<std::string, std::string>> _scores;
+            std::function<void (const std::string &)> _eventChooseGame;
+            std::function<void (const std::string &)> _eventChooseLibrary;
+
+            std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> _controls;
+
+            std::function<void()> _eventPlayButton;
+            std::function<void()> _eventRestartButton;
+            std::function<void()> _eventMenuButton;
+            std::function<void()> _eventTogglePauseButton;
+
+            std::vector<Entity> _entities;
+            std::string _username;
+
             arc::Event::Type _actualEventType = arc::Event::Type::NO_EVENT;
             arc::Event::Key _actualKeyPress = arc::Event::Key::NONE;
+
             arc::IGraphical::Scene _actualScene = arc::IGraphical::Scene::MAIN_MENU;
-            std::map<std::string, std::function<void()>> _mainMenuOptions;
-            std::map<std::string, std::function<void()>> _pauseMenuOptions;
+
             sf::Font _font;
+
+            std::vector<std::pair<std::string, std::string>> _infoHowToPlay;
+            std::vector<std::string> _infoGameStat;
+
+            std::map<char, std::string> _sprites;
+            std::map<char, Color> _backgroundColors;
     };
 
 };

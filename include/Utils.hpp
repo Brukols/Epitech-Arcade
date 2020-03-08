@@ -5,8 +5,10 @@
 ** Utils
 */
 
-#ifndef UTILS_HPP
-#define UTILS_HPP
+#ifndef UTILS_HPP_
+#define UTILS_HPP_
+
+#include <string>
 
 namespace arc {
 
@@ -15,6 +17,21 @@ namespace arc {
         unsigned char g;
         unsigned char b;
         unsigned char a;
+    };
+
+    enum Orientation {
+        UP,
+        RIGHT,
+        DOWN,
+        LEFT,
+    };
+
+    struct Entity {
+        std::string spritePath;
+        Orientation orientation;
+        Color backgroundColor;
+        float x;
+        float y;
     };
 
     namespace Event {
@@ -97,4 +114,4 @@ namespace arc {
     }
 }
 
-#endif
+#endif /* UTILS_HPP_ */

@@ -18,19 +18,53 @@ arc::SFMLGraphical::~SFMLGraphical()
 {
 }
 
-size_t arc::SFMLGraphical::getScreenWidth() const
+void arc::SFMLGraphical::setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen)
 {
-    return (0);
+    _listGames = games;
+    _eventChooseGame = fct;
+    (void)chosen;
 }
 
-size_t arc::SFMLGraphical::getScreenHeight() const
+void arc::SFMLGraphical::setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen)
 {
-    return (0);
+    _listLibraries = libraries;
+    _eventChooseLibrary = fct;
+    (void)chosen;
 }
 
-void arc::SFMLGraphical::setScene(Scene scene)
+void arc::SFMLGraphical::setScores(const std::vector<std::pair<std::string, std::string>> &scores)
 {
-    _actualScene = scene;
+    _scores = scores;
+}
+
+void arc::SFMLGraphical::setControls(const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &controls)
+{
+    _controls = controls;
+}
+
+void arc::SFMLGraphical::setFunctionPlay(const std::function<void()> &function)
+{
+    _eventPlayButton = function;
+}
+
+void arc::SFMLGraphical::setFunctionRestart(const std::function<void()> &function)
+{
+    _eventRestartButton = function;
+}
+
+void arc::SFMLGraphical::setFunctionMenu(const std::function<void()> &function)
+{
+    _eventMenuButton = function;
+}
+
+void arc::SFMLGraphical::setFunctionTogglePause(const std::function<void()> &function)
+{
+    _eventTogglePauseButton = function;
+}
+
+const std::string &arc::SFMLGraphical::getUsername() const
+{
+    return (_username);
 }
 
 arc::IGraphical::Scene arc::SFMLGraphical::getScene() const
@@ -38,49 +72,19 @@ arc::IGraphical::Scene arc::SFMLGraphical::getScene() const
     return (_actualScene);
 }
 
-void arc::SFMLGraphical::setMainMenuOptions(const std::map<std::string, std::function<void()>> &mainMenu)
+void arc::SFMLGraphical::setScene(Scene scene)
 {
-    _mainMenuOptions = mainMenu;
+    _actualScene = scene;
 }
 
-void arc::SFMLGraphical::setPauseMenuOptions(const std::map<std::string, std::function<void()>> &pauseMenu)
+void arc::SFMLGraphical::setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info)
 {
-    _pauseMenuOptions = pauseMenu;
+    _infoHowToPlay = info;
 }
 
-void arc::SFMLGraphical::setList(const std::vector<std::string> &list)
+void arc::SFMLGraphical::setGameStatsFormatString(const std::vector<std::string> &info)
 {
-    (void)list;
-}
-
-void arc::SFMLGraphical::setGetInputMessage(const std::string &message)
-{
-    (void)message;
-}
-
-void arc::SFMLGraphical::setEndGameMessage(const std::string &message)
-{
-    (void)message;
-}
-
-void arc::SFMLGraphical::updateGameInfo(const std::vector<std::vector<char>> &gameMap)
-{
-    (void)gameMap;
-}
-
-const std::string &arc::SFMLGraphical::getInput() const
-{
-    return (_test);
-}
-
-void arc::SFMLGraphical::setSprites(const std::map<char, std::string> &sprites)
-{
-    (void)sprites;
-}
-
-void arc::SFMLGraphical::setBackgroundColors(const std::map<char, Color> &sprites)
-{
-    (void)sprites;
+    _infoGameStat = info;
 }
 
 void arc::SFMLGraphical::setFont(const std::string &font)
@@ -89,14 +93,19 @@ void arc::SFMLGraphical::setFont(const std::string &font)
         return; // Throw a exeception
 }
 
-void arc::SFMLGraphical::setGameStatsFormatString(const std::string &info)
+void arc::SFMLGraphical::setSprites(const std::map<char, std::string> &sprites)
 {
-    (void)info;
+    _sprites = sprites;
 }
 
-void arc::SFMLGraphical::setHowToPlayFormatString(const std::string &info)
+void arc::SFMLGraphical::setBackgroundColors(const std::map<char, Color> &backgroundColors)
 {
-    (void)info;
+    _backgroundColors = backgroundColors;
+}
+
+void arc::SFMLGraphical::updateGameInfo(const std::vector<Entity> &entities)
+{
+    _entities = entities;
 }
 
 extern "C" arc::IGraphical *instance_ctor()

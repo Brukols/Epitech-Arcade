@@ -32,5 +32,6 @@ re: fclean all
 debug:
 	make debug -C core/
 	make debug -C lib/
+	mv core/$(CORE_NAME) .
 
 .PHONY: all core clean fclean re debug games graphicals

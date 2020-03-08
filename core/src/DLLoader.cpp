@@ -24,7 +24,7 @@ DLLoader<T>::DLLoader(const std::string &libname) : _libname(libname)
 template<class T>
 DLLoader<T>::~DLLoader()
 {
-    dlclose(_handle);
+    // dlclose(_handle);
 }
 
 template<class T>
