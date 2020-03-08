@@ -31,8 +31,8 @@ namespace arc
             const std::function<void()> &getEvent() const;
 
         private:
-            std::function<void()> _event;
             sf::RectangleShape _rect;
+            std::function<void()> _event;
 
             sf::Color _hoverColor;
             sf::Color _mainColor;
