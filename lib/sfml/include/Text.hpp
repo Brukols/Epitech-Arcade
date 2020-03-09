@@ -2,20 +2,20 @@
 ** EPITECH PROJECT, 2020
 ** Arcade
 ** File description:
-** SFMLText
+** Text
 */
 
-#ifndef SFMLTEXT_HPP
-#define SFMLTEXT_HPP
+#ifndef TEXT_HPP
+#define TEXT_HPP
 
 #include <SFML/Graphics.hpp>
 
 namespace arc
 {
-    class SFMLText {
+    class Text {
         public:
-            SFMLText(const sf::Font &font, const sf::Text &text);
-            ~SFMLText();
+            Text(const sf::Font &font, const sf::Text &text);
+            ~Text();
 
             void display(sf::RenderWindow &window);
 
@@ -26,4 +26,4 @@ namespace arc
 }
 
 
-#endif /* !SFMLTEXT_HPP */
+#endif /* !TEXT_HPP */

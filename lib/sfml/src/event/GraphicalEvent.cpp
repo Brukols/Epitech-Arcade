@@ -2,18 +2,18 @@
 ** EPITECH PROJECT, 2020
 ** Arcade
 ** File description:
-** SFMLGraphicalEvent
+** GraphicalEvent
 */
 
-#include "SFMLGraphical.hpp"
+#include "Graphical.hpp"
 #include "Utils.hpp"
 #include <iostream>
 
-bool arc::SFMLGraphical::clickAButton(const sf::Vector2i &pos)
+bool arc::Graphical::clickAButton(const sf::Vector2i &pos)
 {
     bool click = false;
 
-    std::for_each(_buttons.begin(), _buttons.end(), [this, pos, &click](SFMLButton &button) {
+    std::for_each(_buttons.begin(), _buttons.end(), [this, pos, &click](Button &button) {
         if (click == true)
             return;
         if (button.isMouseHover(pos)) {
@@ -24,7 +24,7 @@ bool arc::SFMLGraphical::clickAButton(const sf::Vector2i &pos)
     return (click);
 }
 
-arc::Event::Type arc::SFMLGraphical::getEventType()
+arc::Event::Type arc::Graphical::getEventType()
 {
     sf::Event event;
 
@@ -56,13 +56,13 @@ arc::Event::Type arc::SFMLGraphical::getEventType()
     return (arc::Event::NO_EVENT);
 }
 
-arc::Event::Key arc::SFMLGraphical::getKeyPressed() const
+arc::Event::Key arc::Graphical::getKeyPressed() const
 {
     return (_actualKeyPress);
 }
 
 
-const sf::Keyboard::Key sfmlKeys[] = {
+const sf::Keyboard::Key Keys[] = {
     sf::Keyboard::Key::Unknown,
     sf::Keyboard::Key::A,
     sf::Keyboard::Key::B,
@@ -182,10 +182,10 @@ const arc::Event::Key arcKeys[] = {
     arc::Event::Key::F15,
 };
 
-arc::Event::Key arc::SFMLGraphical::getKey(sf::Event event) const
+arc::Event::Key arc::Graphical::getKey(sf::Event event) const
 {
     for (size_t i = 0; i < 57; i++) {
-        if (event.key.code == sfmlKeys[i])
+        if (event.key.code == Keys[i])
             return (arcKeys[i]);
     }
     return (arc::Event::Key::NONE);

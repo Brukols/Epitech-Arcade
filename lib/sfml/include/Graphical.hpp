@@ -2,27 +2,27 @@
 ** EPITECH PROJECT, 2020
 ** Arcade
 ** File description:
-** SFMLGRAPHICLA
+** GRAPHICLA
 */
 
-#ifndef SFMLGRAPHICAL_HPP
-#define SFMLGRAPHICAL_HPP
+#ifndef GRAPHICAL_HPP
+#define GRAPHICAL_HPP
 
 #include "IGraphical.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "Utils.hpp"
-#include "sfml/SFMLButton.hpp"
-#include "sfml/SFMLText.hpp"
+#include "Button.hpp"
+#include "Text.hpp"
 
 namespace arc
 {
  
-    class SFMLGraphical : public IGraphical {
+    class Graphical : public IGraphical {
 
         public:
-            SFMLGraphical();
-            ~SFMLGraphical();
+            Graphical();
+            ~Graphical();
 
 
             /*
@@ -80,7 +80,6 @@ namespace arc
             // void displayPauseMenu();
             // void displayGame();
             // void displayEndGame();
-            void drawText(const std::string &name, size_t size, const sf::Vector2f &pos, const sf::Color &color);
 
         private:
             sf::RenderWindow _window;
@@ -93,13 +92,13 @@ namespace arc
 
             std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> _controls;
 
-            std::vector<SFMLButton> _buttons; // List of the actual buttons load of the scene
+            std::vector<Button> _buttons; // List of the actual buttons load of the scene
             std::function<void()> _eventPlayButton;
             std::function<void()> _eventRestartButton;
             std::function<void()> _eventMenuButton;
             std::function<void()> _eventTogglePauseButton;
 
-            std::vector<SFMLText> _text;
+            std::vector<Text> _text;
             std::vector<Entity> _entities;
             std::string _username;
 
@@ -118,4 +117,4 @@ namespace arc
     };
 };
 
-#endif /* !SFMLGRAPHICAL_HPP */
+#endif /* !GRAPHICAL_HPP */
