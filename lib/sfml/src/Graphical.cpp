@@ -15,6 +15,9 @@ arc::Graphical::Graphical() : _window(sf::RenderWindow(sf::VideoMode(1920, 1080,
 {
     _window.setFramerateLimit(60);
     _scenes[MAIN_MENU] = std::unique_ptr<IScene>(new SceneMenu());
+    dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionExit([this]() {
+        _exit = true;
+    });
 }
 
 arc::Graphical::~Graphical()
@@ -43,6 +46,7 @@ void arc::Graphical::setControls(const std::map<std::pair<Event::Type, Event::Ke
 
 void arc::Graphical::setFunctionPlay(const std::function<void()> &function)
 {
+    dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionPlay(function);
     _eventPlayButton = function;
 }
 

@@ -36,17 +36,15 @@ static arc::Button initButtonExit(std::function<void()> &event)
 
 void arc::SceneMenu::initButtons()
 {
-    // Variable static in order to not call every time -> optimisation
-    static std::vector<std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>> buttons = [this]() -> std::vector<std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>> {
+    std::vector<std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>> buttons = [this]() -> std::vector<std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>> {
         std::vector<std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>> buttons;
 
-        std::function<void()> tmp = [this]() {
-        };
-        buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initButtonPlay, tmp));
-        buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initButtonExit, tmp));
+        buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initButtonPlay, _eventPlay));
+        buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initButtonExit, _eventExit));
         return (buttons);
     }();
 
+    _buttons.clear();
 
     std::for_each(buttons.begin(), buttons.end(), [this](std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>> &pair) {
         _buttons.push_back(pair.first(pair.second));

@@ -100,6 +100,8 @@ namespace arc
 
             std::map<char, std::string> _sprites;
             std::map<char, Color> _backgroundColors;
+
+            bool _exit = false;
     };
 };
 

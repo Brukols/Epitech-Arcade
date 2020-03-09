@@ -25,16 +25,23 @@ namespace arc
             void event(sf::RenderWindow &window, arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress) override;
 
             void setFont(const sf::Font &font);
+            void setFunctionExit(const std::function<void()> &);
+            void setFunctionPlay(const std::function<void()> &);
 
         private:
             void initButtons();
             void initTexts();
+
+            void buttonsEvent(sf::RenderWindow &window, sf::Event &event);
 
         private:
             std::vector<Button> _buttons;
             std::vector<Text> _texts;
             sf::Font _font;
             std::vector<std::pair<std::string, std::string>> _scores;
+
+            std::function<void()> _eventExit;
+            std::function<void()> _eventPlay;
     };
 }
 

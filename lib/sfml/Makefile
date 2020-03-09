@@ -18,6 +18,7 @@ SRCS	=	src/Graphical.cpp	\
 			src/SceneMenu/init/SceneMenuInit.cpp	\
 			src/SceneMenu/init/SceneMenuInitButtons.cpp	\
 			src/SceneMenu/init/SceneMenuInitTexts.cpp	\
+			src/SceneMenu/init/SceneMenuSetter.cpp	\
 			src/SceneMenu/display/SceneMenuDisplay.cpp	\
 			src/SceneMenu/event/SceneMenuEvent.cpp		\
 			src/Utility/Utility.cpp	\

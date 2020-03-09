@@ -9,24 +9,11 @@
 #include "Utils.hpp"
 #include <iostream>
 
-// bool arc::Graphical::clickAButton(const sf::Vector2i &pos)
-// {
-//     bool click = false;
-
-//     std::for_each(_buttons.begin(), _buttons.end(), [this, pos, &click](Button &button) {
-//         if (click == true)
-//             return;
-//         if (button.isMouseHover(pos)) {
-//             button.clickButton();
-//             click = true;
-//         }
-//     });
-//     return (click);
-// }
-
 arc::Event::Type arc::Graphical::getEventType()
 {
     _scenes[_actualScene].get()->event(_window, _actualEventType, _actualKeyPress);
+    if (_exit == true)
+        return (arc::Event::Type::QUIT);
     return (_actualEventType);
 }
 
