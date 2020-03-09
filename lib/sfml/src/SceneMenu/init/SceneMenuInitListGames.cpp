@@ -17,6 +17,7 @@ static arc::Button initButton(const std::function<void (const std::string &)> &f
     rect.setPosition(sf::Vector2f(1360, y));
     arc::Button button(std::function<void()>(), rect);
     button.setHoverColor(sf::Color(150, 50, 50, 255));
+    (void)fct;
     return (button);
 }
 

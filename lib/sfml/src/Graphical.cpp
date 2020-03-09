@@ -28,7 +28,7 @@ void arc::Graphical::setListGames(const std::vector<std::string> &games, const s
 {
     dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListGames(games, fct, chosen);
 }
-#include <iostream>
+
 void arc::Graphical::setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen)
 {
     dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListLibraries(libraries, fct, chosen);
