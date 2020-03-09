@@ -17,6 +17,17 @@ void arc::SceneMenu::buttonsEvent(sf::RenderWindow &window, sf::Event &event)
             button.clickButton();
         }
     });
+
+    std::for_each(_buttonsListGames.begin(), _buttonsListGames.end(), [&window](Button &button) {
+        if (button.isMouseHover(sf::Mouse::getPosition())) {
+            button.toggleSelect();
+        }
+    });
+    std::for_each(_buttonsListLibraries.begin(), _buttonsListLibraries.end(), [&window](Button &button) {
+        if (button.isMouseHover(sf::Mouse::getPosition())) {
+            button.toggleSelect();
+        }
+    });
 }
 
 void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress)

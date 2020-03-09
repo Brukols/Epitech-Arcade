@@ -11,7 +11,8 @@ arc::Button::Button(const std::function<void()> &event, const sf::RectangleShape
     _rect(rect),
     _event(event),
     _hoverColor(sf::Color(0, 0, 0, 0)),
-    _mainColor(rect.getFillColor())
+    _mainColor(rect.getFillColor()),
+    _outlineColor(rect.getOutlineColor())
 {
 }
 
@@ -37,11 +38,24 @@ void arc::Button::clickButton()
 void arc::Button::displayButton(sf::RenderWindow &window)
 {
     if (isMouseHover(sf::Mouse::getPosition(window))) {
-        _rect.setFillColor(_hoverColor);
-        window.draw(_rect);
+        if (_select) {
+            _rect.setFillColor(_selectHoverColor);
+            _rect.setOutlineColor(_selectOutlineColor);
+            window.draw(_rect);
+        } else {
+            _rect.setFillColor(_hoverColor);
+            _rect.setOutlineColor(_outlineColor);
+            window.draw(_rect);
+        }
         return;
     }
-    _rect.setFillColor(_mainColor);
+    if (_select) {
+        _rect.setFillColor(_selectColor);
+        _rect.setOutlineColor(_selectOutlineColor);
+    } else {
+        _rect.setFillColor(_mainColor);
+        _rect.setOutlineColor(_outlineColor);
+    }
     window.draw(_rect);
 }
 
@@ -79,4 +93,16 @@ void arc::Button::setEvent(const std::function<void()> &function)
 void arc::Button::setHoverColor(const sf::Color &color)
 {
     _hoverColor = color;
+}
+
+void arc::Button::toggleSelect()
+{
+    _select = !_select;
+}
+
+void arc::Button::setColorSelect(sf::Color selectColor, sf::Color selectOutlineColor, sf::Color selectHoverColor)
+{
+    _selectColor = selectColor;
+    _selectOutlineColor = selectOutlineColor;
+    _selectHoverColor = selectHoverColor;
 }

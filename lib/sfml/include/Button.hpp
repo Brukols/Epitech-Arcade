@@ -21,6 +21,10 @@ namespace arc
             bool isMouseHover(const sf::Vector2i &pos) const;
             void clickButton();
             void displayButton(sf::RenderWindow &window);
+            
+            // Implement select
+            void toggleSelect();
+            void setColorSelect(sf::Color selectColor, sf::Color selectOutlineColor, sf::Color selectHoverColor);
 
             // GETTER AND SETTER
             void setPosition(const sf::Vector2f &pos);
@@ -38,6 +42,12 @@ namespace arc
 
             sf::Color _hoverColor;
             sf::Color _mainColor;
+            sf::Color _outlineColor;
+
+            bool _select = false;
+            sf::Color _selectColor;
+            sf::Color _selectOutlineColor;
+            sf::Color _selectHoverColor;
     };
 }
 
