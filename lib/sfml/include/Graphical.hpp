@@ -53,9 +53,8 @@ namespace arc
             void setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info) override;
             void setGameStatsFormatString(const std::vector<std::string> &info) override;
             void setFont(const std::string &font) override;
-            void setSprites(const std::map<char, std::string> &sprites) override;
-            void setBackgroundColors(const std::map<char, Color> &sprites) override;
             void updateGameInfo(const std::vector<Entity> &entities) override;
+            void setVisualAssets(const std::map<char, std::pair<std::string, Color>> &sprites);
 
             void setMusic(const std::string &music) override;
             void playSound(const std::string &sound) override;
@@ -63,12 +62,6 @@ namespace arc
             /*
             ** End of override methods for IGraphical
             */
-
-        private:
-
-            // bool clickAButton(const sf::Vector2i &pos);
-
-            // arc::Event::Key getKey(sf::Event event) const;
 
         private:
             sf::RenderWindow _window;

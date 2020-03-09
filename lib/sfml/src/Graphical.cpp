@@ -95,14 +95,9 @@ void arc::Graphical::setFont(const std::string &font)
         return; // Throw a exeception
 }
 
-void arc::Graphical::setSprites(const std::map<char, std::string> &sprites)
+void arc::Graphical::setVisualAssets(const std::map<char, std::pair<std::string, Color>> &sprites)
 {
-    _sprites = sprites;
-}
-
-void arc::Graphical::setBackgroundColors(const std::map<char, Color> &backgroundColors)
-{
-    _backgroundColors = backgroundColors;
+    (void)sprites;
 }
 
 void arc::Graphical::updateGameInfo(const std::vector<Entity> &entities)
