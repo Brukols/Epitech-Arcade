@@ -80,10 +80,9 @@ namespace arc
 
             std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> _controls;
 
-            std::function<void()> _eventPlayButton;
-            std::function<void()> _eventRestartButton;
-            std::function<void()> _eventMenuButton;
-            std::function<void()> _eventTogglePauseButton;
+            std::function<void()> _eventRestartButton; // A suppr
+            std::function<void()> _eventMenuButton; // A suppr
+            std::function<void()> _eventTogglePauseButton; // A suppr
 
             std::vector<Entity> _entities;
             std::string _username;

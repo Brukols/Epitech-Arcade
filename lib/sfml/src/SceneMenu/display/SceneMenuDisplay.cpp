@@ -18,4 +18,20 @@ void arc::SceneMenu::display(sf::RenderWindow &window)
     std::for_each(_texts.begin(), _texts.end(), [this, &window](arc::Text &text) {
         text.display(window);
     });
+
+    // Display list libraries
+    std::for_each(_buttonsListGames.begin(), _buttonsListGames.end(), [this, &window](Button &button) {
+        button.displayButton(window);
+    });
+    std::for_each(_textsListGames.begin(), _textsListGames.end(), [this, &window](Text &text) {
+        text.display(window);
+    });
+
+    // Display List games
+    std::for_each(_buttonsListLibraries.begin(), _buttonsListLibraries.end(), [this, &window](Button &button) {
+        button.displayButton(window);
+    });
+    std::for_each(_textsListLibraries.begin(), _textsListLibraries.end(), [this, &window](Text &text) {
+        text.display(window);
+    });
 }

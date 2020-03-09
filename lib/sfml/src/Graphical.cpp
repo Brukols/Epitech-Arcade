@@ -26,12 +26,12 @@ arc::Graphical::~Graphical()
 
 void arc::Graphical::setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen)
 {
-    (void)chosen;
+    dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListGames(games, fct, chosen);
 }
-
+#include <iostream>
 void arc::Graphical::setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen)
 {
-    (void)chosen;
+    dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListLibraries(libraries, fct, chosen);
 }
 
 void arc::Graphical::setScores(const std::vector<std::pair<std::string, std::string>> &scores)
@@ -47,7 +47,6 @@ void arc::Graphical::setControls(const std::map<std::pair<Event::Type, Event::Ke
 void arc::Graphical::setFunctionPlay(const std::function<void()> &function)
 {
     dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionPlay(function);
-    _eventPlayButton = function;
 }
 
 void arc::Graphical::setFunctionRestart(const std::function<void()> &function)
