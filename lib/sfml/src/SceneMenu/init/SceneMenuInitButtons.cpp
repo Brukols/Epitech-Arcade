@@ -2,10 +2,10 @@
 ** EPITECH PROJECT, 2020
 ** Arcade
 ** File description:
-** GraphicalButtonsMenu
+** Init button
 */
 
-#include "Graphical.hpp"
+#include "SceneMenu.hpp"
 
 static arc::Button initButtonPlay(std::function<void()> &event)
 {
@@ -33,17 +33,16 @@ static arc::Button initButtonExit(std::function<void()> &event)
     return (button);
 }
 
-void arc::Graphical::initButtonsMenu()
+
+void arc::SceneMenu::initButtons()
 {
     // Variable static in order to not call every time -> optimisation
     static std::vector<std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>> buttons = [this]() -> std::vector<std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>> {
         std::vector<std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>> buttons;
 
         std::function<void()> tmp = [this]() {
-            _actualEventType = arc::Event::Type::QUIT;
-            _actualKeyPress = arc::Event::Key::ESCAPE;
         };
-        buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initButtonPlay, _eventPlayButton));
+        buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initButtonPlay, tmp));
         buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initButtonExit, tmp));
         return (buttons);
     }();

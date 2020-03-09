@@ -32,6 +32,12 @@ arc::Core::~Core()
 void arc::Core::playArcade()
 {
     _graph->setFont("resources/fonts/Raleway-Bold.ttf");
+    _graph->setListLibraries(getNamesSharedLib(_graphs), [this](const std::string &name) {
+        (void)name;
+    }, -1);
+    _graph->setListGames(getNamesSharedLib(_games), [this](const std::string &name) {
+        (void)name;
+    }, -1);
     while (_graph->getEventType() != Event::QUIT && _graph->getKeyPressed() != Event::ESCAPE) {
         _graph->display();
     }
@@ -39,6 +45,24 @@ void arc::Core::playArcade()
 
 
 //PRIVATE
+
+const std::vector<std::string> arc::Core::getNamesSharedLib(const std::map<std::string, bool> &map)
+{
+    std::vector<std::string> vector;
+
+    std::for_each(map.begin(), map.end(), [&vector, this](const std::pair<std::string, bool> &pair) {
+        vector.push_back(getLibName(pair.first));
+    });
+    return (vector);
+}
+
+const std::string arc::Core::getLibName(const std::string &path)
+{
+    std::string tmp = path.substr(path.find("lib_arcade_"), path.length());
+
+    tmp = tmp.substr(11, tmp.size() - 14);
+    return (tmp);
+}
 
 void arc::Core::initGraphs()
 {

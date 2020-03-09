@@ -2,10 +2,10 @@
 ** EPITECH PROJECT, 2020
 ** Arcade
 ** File description:
-** Text
+** INitTexts
 */
 
-#include "Graphical.hpp"
+#include "SceneMenu.hpp"
 
 static arc::Text initTextArcade(const sf::Font &font)
 {
@@ -77,7 +77,7 @@ static arc::Text initTextChooseLibrary(const sf::Font &font)
     return (arc::Text(font, text));
 }
 
-void arc::Graphical::initTextMenu()
+void arc::SceneMenu::initTexts()
 {
     static std::vector<arc::Text (*)(const sf::Font &)> text = [this]() -> std::vector<arc::Text (*)(const sf::Font &)> {
         std::vector<arc::Text (*)(const sf::Font &)> text;
@@ -90,8 +90,7 @@ void arc::Graphical::initTextMenu()
         return (text);
     }();
 
-
     std::for_each(text.begin(), text.end(), [this](arc::Text (*fct)(const sf::Font &)) {
-        _text.push_back(fct(_font));
+        _texts.push_back(fct(_font));
     });
 }

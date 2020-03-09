@@ -8,12 +8,15 @@
 #ifndef GRAPHICAL_HPP
 #define GRAPHICAL_HPP
 
-#include "IGraphical.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+
+#include "IGraphical.hpp"
 #include "Utils.hpp"
 #include "Button.hpp"
 #include "Text.hpp"
+#include "ListLibrary.hpp"
+#include "IScene.hpp"
 
 namespace arc
 {
@@ -63,42 +66,25 @@ namespace arc
             */
 
         private:
-            void initButtons();
-            void initButtonsMenu();
-            void initButtonsGame();
-            void initButtonsEndGame();
 
-            void initText();
-            void initTextMenu();
-            // void initTextGame();
-            // void initTextEndGame();
+            // bool clickAButton(const sf::Vector2i &pos);
 
-            bool clickAButton(const sf::Vector2i &pos);
-
-            arc::Event::Key getKey(sf::Event event) const;
-            void displayMenu();
-            // void displayPauseMenu();
-            // void displayGame();
-            // void displayEndGame();
+            // arc::Event::Key getKey(sf::Event event) const;
 
         private:
             sf::RenderWindow _window;
 
-            std::vector<std::string> _listGames;
-            std::vector<std::string> _listLibraries;
+            std::map<Scene, std::unique_ptr<IScene>> _scenes;
+
             std::vector<std::pair<std::string, std::string>> _scores;
-            std::function<void(const std::string &)> _eventChooseGame;
-            std::function<void(const std::string &)> _eventChooseLibrary;
 
             std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> _controls;
 
-            std::vector<Button> _buttons; // List of the actual buttons load of the scene
             std::function<void()> _eventPlayButton;
             std::function<void()> _eventRestartButton;
             std::function<void()> _eventMenuButton;
             std::function<void()> _eventTogglePauseButton;
 
-            std::vector<Text> _text;
             std::vector<Entity> _entities;
             std::string _username;
 

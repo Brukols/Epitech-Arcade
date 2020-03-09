@@ -8,6 +8,8 @@
 #ifndef BUTTON_HPP
 #define BUTTON_HPP
 
+#include <SFML/Graphics.hpp>
+
 namespace arc
 {
     class Button

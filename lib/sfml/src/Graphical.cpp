@@ -9,11 +9,12 @@
 #include "Graphical.hpp"
 #include "Utils.hpp"
 #include <iostream>
+#include "SceneMenu.hpp"
 
 arc::Graphical::Graphical() : _window(sf::RenderWindow(sf::VideoMode(1920, 1080, 32), " window", sf::Style::Fullscreen))
 {
     _window.setFramerateLimit(60);
-    initButtons();
+    _scenes[MAIN_MENU] = std::unique_ptr<IScene>(new SceneMenu());
 }
 
 arc::Graphical::~Graphical()
@@ -22,15 +23,11 @@ arc::Graphical::~Graphical()
 
 void arc::Graphical::setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen)
 {
-    _listGames = games;
-    _eventChooseGame = fct;
     (void)chosen;
 }
 
 void arc::Graphical::setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen)
 {
-    _listLibraries = libraries;
-    _eventChooseLibrary = fct;
     (void)chosen;
 }
 
@@ -93,7 +90,6 @@ void arc::Graphical::setFont(const std::string &font)
 {
     if (!_font.loadFromFile(font))
         return; // Throw a exeception
-    initText();
 }
 
 void arc::Graphical::setSprites(const std::map<char, std::string> &sprites)

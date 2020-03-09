@@ -8,18 +8,19 @@
 NAME	=	lib_arcade_sfml.so
 
 SRCS	=	src/Graphical.cpp	\
-			src/init/GraphicalInitButtons.cpp	\
-			src/init/GraphicalInitButtonsMenu.cpp	\
-			src/init/GraphicalInitText.cpp	\
-			src/init/GraphicalInitTextMenu.cpp	\
 			src/event/GraphicalEvent.cpp	\
 			src/display/GraphicalDisplay.cpp	\
-			src/display/GraphicalDisplayEndGame.cpp	\
-			src/display/GraphicalDisplayGame.cpp	\
-			src/display/GraphicalDisplayMenu.cpp	\
 			src/button/Button.cpp	\
 			src/text/Text.cpp	\
 			src/music/GraphicalMusic.cpp	\
+			src/ListLibrary/ListLibrary.cpp	\
+			src/SceneMenu/SceneMenu.cpp	\
+			src/SceneMenu/init/SceneMenuInit.cpp	\
+			src/SceneMenu/init/SceneMenuInitButtons.cpp	\
+			src/SceneMenu/init/SceneMenuInitTexts.cpp	\
+			src/SceneMenu/display/SceneMenuDisplay.cpp	\
+			src/SceneMenu/event/SceneMenuEvent.cpp		\
+			src/Utility/Utility.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)
 

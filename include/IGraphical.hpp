@@ -26,8 +26,6 @@ namespace arc {
                 END_GAME,
             };
 
-            virtual ~IGraphical() = default;
-
             virtual void display() = 0;
             virtual Event::Type getEventType() = 0;
             virtual Event::Key getKeyPressed() const = 0;
