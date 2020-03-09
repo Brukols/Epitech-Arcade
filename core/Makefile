@@ -20,7 +20,7 @@ CC	=		g++
 
 CXXFLAGS	=	-I./include -I../include -W -Wall -Wextra -std=c++17
 
-LDFLAGS		=	-ldl	\
+LDFLAGS		=	-ldl -lstdc++fs	\
 
 RM	=	rm -f
 

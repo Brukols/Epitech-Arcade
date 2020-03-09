@@ -90,7 +90,7 @@ const sf::Keyboard::Key sfmlKeys[] = {
     sf::Keyboard::Key::X,
     sf::Keyboard::Key::Y,
     sf::Keyboard::Key::Z,
-    sf::Keyboard::Key::Enter,
+    sf::Keyboard::Key::Return,
     sf::Keyboard::Key::Pause,
     sf::Keyboard::Key::BackSpace,
     sf::Keyboard::Key::Tab,
