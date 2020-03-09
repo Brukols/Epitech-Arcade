@@ -5,9 +5,9 @@
 ** Text
 */
 
-#include "SFMLGraphical.hpp"
+#include "Graphical.hpp"
 
-static arc::SFMLText initTextArcade(const sf::Font &font)
+static arc::Text initTextArcade(const sf::Font &font)
 {
     sf::Text text;
 
@@ -18,10 +18,10 @@ static arc::SFMLText initTextArcade(const sf::Font &font)
     text.setOutlineThickness(1);
     text.setOutlineColor(sf::Color(200, 200, 200, 255));
     text.setPosition(sf::Vector2f(750, 100));
-    return (arc::SFMLText(font, text));
+    return (arc::Text(font, text));
 }
 
-static arc::SFMLText initTextButtonPlay(const sf::Font &font)
+static arc::Text initTextButtonPlay(const sf::Font &font)
 {
     sf::Text text;
 
@@ -32,10 +32,10 @@ static arc::SFMLText initTextButtonPlay(const sf::Font &font)
     text.setOutlineThickness(2);
     text.setOutlineColor(sf::Color::Black);
     text.setPosition(sf::Vector2f(910, 530));
-    return (arc::SFMLText(font, text));
+    return (arc::Text(font, text));
 }
 
-static arc::SFMLText initTextButtonExit(const sf::Font &font)
+static arc::Text initTextButtonExit(const sf::Font &font)
 {
     sf::Text text;
 
@@ -46,10 +46,10 @@ static arc::SFMLText initTextButtonExit(const sf::Font &font)
     text.setOutlineThickness(2);
     text.setOutlineColor(sf::Color::Black);
     text.setPosition(sf::Vector2f(910, 730));
-    return (arc::SFMLText(font, text));
+    return (arc::Text(font, text));
 }
 
-static arc::SFMLText initTextChooseGame(const sf::Font &font)
+static arc::Text initTextChooseGame(const sf::Font &font)
 {
     sf::Text text;
 
@@ -60,10 +60,10 @@ static arc::SFMLText initTextChooseGame(const sf::Font &font)
     text.setOutlineThickness(2);
     text.setOutlineColor(sf::Color::Red);
     text.setPosition(sf::Vector2f(1410, 330));
-    return (arc::SFMLText(font, text));
+    return (arc::Text(font, text));
 }
 
-static arc::SFMLText initTextChooseLibrary(const sf::Font &font)
+static arc::Text initTextChooseLibrary(const sf::Font &font)
 {
     sf::Text text;
 
@@ -74,13 +74,13 @@ static arc::SFMLText initTextChooseLibrary(const sf::Font &font)
     text.setOutlineThickness(2);
     text.setOutlineColor(sf::Color::Blue);
     text.setPosition(sf::Vector2f(190, 330));
-    return (arc::SFMLText(font, text));
+    return (arc::Text(font, text));
 }
 
-void arc::SFMLGraphical::initTextMenu()
+void arc::Graphical::initTextMenu()
 {
-    static std::vector<arc::SFMLText (*)(const sf::Font &)> text = [this]() -> std::vector<arc::SFMLText (*)(const sf::Font &)> {
-        std::vector<arc::SFMLText (*)(const sf::Font &)> text;
+    static std::vector<arc::Text (*)(const sf::Font &)> text = [this]() -> std::vector<arc::Text (*)(const sf::Font &)> {
+        std::vector<arc::Text (*)(const sf::Font &)> text;
 
         text.push_back(initTextArcade);
         text.push_back(initTextButtonPlay);
@@ -91,7 +91,7 @@ void arc::SFMLGraphical::initTextMenu()
     }();
 
 
-    std::for_each(text.begin(), text.end(), [this](arc::SFMLText (*fct)(const sf::Font &)) {
+    std::for_each(text.begin(), text.end(), [this](arc::Text (*fct)(const sf::Font &)) {
         _text.push_back(fct(_font));
     });
 }

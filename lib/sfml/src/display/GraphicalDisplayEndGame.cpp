@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** Arcade
 ** File description:
-** SFMLGraphicalDisplayEndGame
+** GraphicalDisplayEndGame
 */
 
-#include "SFMLGraphical.hpp"
+#include "Graphical.hpp"

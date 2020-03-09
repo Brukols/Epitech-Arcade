@@ -1,20 +1,20 @@
 /*
 ** EPITECH PROJECT, 2020
-** SFMLButton
+** Button
 ** File description:
 ** Arcade
 */
 
-#ifndef SFMLBUTTON_HPP
-#define SFMLBUTTON_HPP
+#ifndef BUTTON_HPP
+#define BUTTON_HPP
 
 namespace arc
 {
-    class SFMLButton
+    class Button
     {
         public:
-            SFMLButton(const std::function<void()> &event, const sf::RectangleShape &rect);
-            ~SFMLButton();
+            Button(const std::function<void()> &event, const sf::RectangleShape &rect);
+            ~Button();
 
             bool isMouseHover(const sf::Vector2i &pos) const;
             void clickButton();
@@ -39,4 +39,4 @@ namespace arc
     };
 }
 
-#endif /* !SFMLBUTTON */
+#endif /* !BUTTON */
