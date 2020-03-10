@@ -10,13 +10,18 @@
 #include "Utils.hpp"
 #include <iostream>
 #include "SceneMenu.hpp"
+#include "SceneGame.hpp"
 
 arc::Graphical::Graphical() : _window(sf::RenderWindow(sf::VideoMode(1920, 1080, 32), " window", sf::Style::Fullscreen))
 {
     _window.setFramerateLimit(60);
     _scenes[MAIN_MENU] = std::unique_ptr<IScene>(new SceneMenu());
+    _scenes[GAME] = std::unique_ptr<IScene>(new SceneGame());
     dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionExit([this]() {
         _exit = true;
+    });
+    dynamic_cast<SceneGame *>(_scenes[GAME].get())->eventFunctionBackToMenu([this]() {
+        setScene(MAIN_MENU);
     });
 }
 
@@ -77,6 +82,7 @@ arc::IGraphical::Scene arc::Graphical::getScene() const
 void arc::Graphical::setScene(Scene scene)
 {
     _actualScene = scene;
+    _scenes[_actualScene].get()->init();
 }
 
 void arc::Graphical::setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info)

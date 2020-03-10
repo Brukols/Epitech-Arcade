@@ -38,6 +38,9 @@ void arc::Core::playArcade()
     _graph->setListGames(getNamesSharedLib(_games), [this](const std::string &name) {
         (void)name;
     }, -1);
+    _graph->setFunctionPlay([this]() {
+        _graph->setScene(arc::IGraphical::GAME);
+    });
     while (_graph->getEventType() != Event::QUIT && _graph->getKeyPressed() != Event::ESCAPE) {
         _graph->display();
     }

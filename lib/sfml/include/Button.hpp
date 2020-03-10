@@ -38,6 +38,7 @@ namespace arc
             void setOutlineThickness(int lgt);
             void setEvent(const std::function<void()> &function);
             const std::function<void()> &getEvent() const;
+            void setDisplay(bool display);
 
         private:
             sf::RectangleShape _rect;
@@ -56,6 +57,7 @@ namespace arc
             sf::Text _text;
 
             bool _activate = true;
+            bool _display = true;
     };
 }
 

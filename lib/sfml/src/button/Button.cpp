@@ -45,12 +45,16 @@ void arc::Button::setActivate(bool activate)
 
 void arc::Button::clickButton()
 {
+    if (!_display)
+        return;
     if (_activate)
         _event();
 }
 
 void arc::Button::displayButton(sf::RenderWindow &window)
 {
+    if (!_display)
+        return;
     if (isMouseHover(sf::Mouse::getPosition(window)) && _activate) {
         if (_select) {
             _rect.setFillColor(_selectHoverColor);
@@ -114,6 +118,8 @@ void arc::Button::setHoverColor(const sf::Color &color)
 
 void arc::Button::toggleSelect()
 {
+    if (!_display)
+        return;
     if (_activate)
         _select = !_select;
 }
@@ -133,4 +139,9 @@ void arc::Button::resetSelect()
 bool arc::Button::isSelect() const
 {
     return (_select);
+}
+
+void arc::Button::setDisplay(bool display)
+{
+    _display = display;
 }

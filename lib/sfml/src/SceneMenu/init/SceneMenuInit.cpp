@@ -9,7 +9,7 @@
 
 void arc::SceneMenu::init()
 {
-    initButtons();
-    initTexts();
-    initInput();
+    // initButtons();
+    // initTexts();
+    // initInput();
 }

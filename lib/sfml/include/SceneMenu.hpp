@@ -58,7 +58,6 @@ namespace arc
             void initButtonsListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct);
             void initButtonsListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct);
 
-
             void buttonsEvent(sf::RenderWindow &window, sf::Event &event);
             void inputEvent(sf::RenderWindow &window, sf::Event &event);
 

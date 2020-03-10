@@ -63,6 +63,7 @@ static void enteredText(std::vector<arc::Input> &input, sf::Event &event)
 
 void arc::SceneMenu::inputEvent(sf::RenderWindow &window, sf::Event &event)
 {
+    (void)window;
     if (event.type != sf::Event::TextEntered)
         return;
     if (event.text.unicode == 13) {

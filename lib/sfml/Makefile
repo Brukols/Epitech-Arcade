@@ -28,6 +28,14 @@ SRCS	=	src/Graphical.cpp	\
 			src/SceneMenu/event/SceneMenuEvent.cpp		\
 			src/SceneMenu/event/SceneMenuEventButtonPlay.cpp		\
 			src/SceneMenu/event/SceneMenuEventValidateUsername.cpp		\
+			src/SceneGame/SceneGame.cpp	\
+			src/SceneGame/init/SceneGameInit.cpp	\
+			src/SceneGame/init/SceneGameInitButtons.cpp	\
+			src/SceneGame/init/SceneGameInitRects.cpp	\
+			src/SceneGame/init/SceneGameSetter.cpp	\
+			src/SceneGame/display/SceneGameDisplay.cpp	\
+			src/SceneGame/event/SceneGameEvent.cpp	\
+			src/SceneGame/event/SceneGameEventButtons.cpp	\
 			src/Utility/Utility.cpp	\
 			src/image/Image.cpp	\
 
