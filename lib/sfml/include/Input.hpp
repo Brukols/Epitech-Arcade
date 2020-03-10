@@ -22,6 +22,7 @@ namespace arc
             void setFocus(bool focus);
             bool isFocus() const;
             void setDisplay(bool display);
+            const std::string getInput();
 
             void display(sf::RenderWindow &window);
 

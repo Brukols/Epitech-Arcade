@@ -43,6 +43,12 @@ void arc::Input::setFocus(bool focus)
     }
 }
 
+const std::string arc::Input::getInput()
+{
+    removeLetter();
+    return (_str.toAnsiString());
+}
+
 void arc::Input::removeLetter()
 {
     if (_str.getSize() == 0)

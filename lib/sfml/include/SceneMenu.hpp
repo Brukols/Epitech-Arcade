@@ -86,6 +86,8 @@ namespace arc
 
             std::vector<Text> _textUsername;
             std::vector<Button> _buttonEnterUsername;
+
+            std::string _username;
     };
 }
 
