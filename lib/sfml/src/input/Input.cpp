@@ -24,12 +24,16 @@ void arc::Input::addLetter(const sf::Event &event)
         _text.setString(_str);
         return;
     }
-    if (_str.getSize() > 15)
-        return;
     removeLetter();
     _str += event.text.unicode;
     _str += '|';
     _text.setString(_str);
+    if (_text.getLocalBounds().width + 30 > _rect.getLocalBounds().width) {
+        removeLetter();
+        removeLetter();
+        _str += '|';
+        _text.setString(_str);
+    }
 }
 
 void arc::Input::setFocus(bool focus)
