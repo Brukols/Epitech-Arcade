@@ -91,6 +91,38 @@ static arc::Text initTextErrorMessage(const sf::Font &font)
     return (_text);
 }
 
+static arc::Text initTextEnterUsername(const sf::Font &font)
+{
+    sf::Text text;
+
+    text.setFont(font);
+    text.setString("Enter an username");
+    text.setCharacterSize(60);
+    text.setFillColor(sf::Color::White);
+    text.setPosition(sf::Vector2f(660, 350));
+    text.setOutlineThickness(2);
+    text.setOutlineColor(sf::Color::Black);
+    arc::Text _text(font, text);
+    _text.setDisplay(true);
+    return (_text);
+}
+
+static arc::Text initTextButtonEnterUsername(const sf::Font &font)
+{
+    sf::Text text;
+
+    text.setFont(font);
+    text.setString("Validate");
+    text.setCharacterSize(30);
+    text.setFillColor(sf::Color::White);
+    text.setPosition(sf::Vector2f(880, 720));
+    text.setOutlineThickness(2);
+    text.setOutlineColor(sf::Color::Black);
+    arc::Text _text(font, text);
+    _text.setDisplay(true);
+    return (_text);
+}
+
 void arc::SceneMenu::initTexts()
 {
     static std::vector<arc::Text (*)(const sf::Font &)> text = [this]() -> std::vector<arc::Text (*)(const sf::Font &)> {
@@ -108,4 +140,7 @@ void arc::SceneMenu::initTexts()
     std::for_each(text.begin(), text.end(), [this](arc::Text (*fct)(const sf::Font &)) {
         _texts.push_back(fct(_font));
     });
+
+    _textUsername.push_back(initTextEnterUsername(_font));
+    _textUsername.push_back(initTextButtonEnterUsername(_font));
 }

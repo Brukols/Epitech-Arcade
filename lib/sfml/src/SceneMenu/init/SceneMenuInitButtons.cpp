@@ -33,6 +33,18 @@ static arc::Button initButtonExit(std::function<void()> &event)
     return (button);
 }
 
+static arc::Button initButtonEnterUsername()
+{
+    sf::RectangleShape rect(sf::Vector2f(220, 80));
+
+    rect.setFillColor(sf::Color(100, 100, 100, 255));
+    rect.setOutlineColor(sf::Color::White);
+    rect.setOutlineThickness(1);
+    rect.setPosition(sf::Vector2f(830, 700));
+    arc::Button button(std::function<void()> (), rect);
+    button.setHoverColor(sf::Color(90, 90, 90, 255));
+    return (button);
+}
 
 void arc::SceneMenu::initButtons()
 {
@@ -48,4 +60,5 @@ void arc::SceneMenu::initButtons()
     std::for_each(buttons.begin(), buttons.end(), [this](std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>> &pair) {
         _buttons.push_back(pair.first(pair.second));
     });
+    _buttonEnterUsername.push_back(initButtonEnterUsername());
 }

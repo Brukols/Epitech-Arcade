@@ -17,11 +17,6 @@
 namespace arc
 {
     class SceneMenu : public IScene {
-        public:
-            enum State {
-                GET_USERNAME,
-                
-            };
 
         public:
             SceneMenu();
@@ -43,6 +38,7 @@ namespace arc
             void initButtons();
             void initTexts();
             void initInput();
+            void initRects();
 
             void resetButtonsListGames();
             void resetButtonsListLibraries();
@@ -65,6 +61,8 @@ namespace arc
             std::vector<Button> _buttons;
             std::vector<Text> _texts;
             std::vector<Input> _inputs;
+            std::vector<sf::RectangleShape> _rects;
+
             sf::Font _font;
             std::vector<std::pair<std::string, std::string>> _scores;
 
@@ -78,6 +76,9 @@ namespace arc
             std::vector<Button> _buttonsListLibraries;
             std::vector<Text> _textsListGames;
             std::vector<Text> _textsListLibraries;
+
+            std::vector<Text> _textUsername;
+            std::vector<Button> _buttonEnterUsername;
     };
 }
 

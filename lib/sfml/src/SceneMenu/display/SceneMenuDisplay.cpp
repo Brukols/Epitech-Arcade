@@ -35,8 +35,18 @@ void arc::SceneMenu::display(sf::RenderWindow &window)
         text.display(window);
     });
 
+
+    // Display Rects
+    std::for_each(_rects.begin(), _rects.end(), [this, &window](sf::RectangleShape &rect) {
+        window.draw(rect);
+    });
+
     // Display Input
     std::for_each(_inputs.begin(), _inputs.end(), [this, &window](Input &input) {
         input.display(window);
     });
+
+    _buttonEnterUsername[0].displayButton(window);
+    _textUsername[0].display(window);
+    _textUsername[1].display(window);
 }

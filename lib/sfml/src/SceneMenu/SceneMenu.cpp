@@ -14,6 +14,7 @@ arc::SceneMenu::SceneMenu()
     _font.loadFromFile("resources/fonts/Raleway-Bold.ttf");
     initTexts();
     initInput();
+    initRects();
 }
 
 arc::SceneMenu::~SceneMenu()
