@@ -2,27 +2,29 @@
 ** EPITECH PROJECT, 2020
 ** Arcade
 ** File description:
-** SFMLGRAPHICLA
+** GRAPHICLA
 */
 
-#ifndef SFMLGRAPHICAL_HPP
-#define SFMLGRAPHICAL_HPP
+#ifndef GRAPHICAL_HPP
+#define GRAPHICAL_HPP
 
-#include "IGraphical.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+
+#include "IGraphical.hpp"
 #include "Utils.hpp"
-#include "sfml/SFMLButton.hpp"
-#include "sfml/SFMLText.hpp"
+#include "Button.hpp"
+#include "Text.hpp"
+#include "IScene.hpp"
 
 namespace arc
 {
  
-    class SFMLGraphical : public IGraphical {
+    class Graphical : public IGraphical {
 
         public:
-            SFMLGraphical();
-            ~SFMLGraphical();
+            Graphical();
+            ~Graphical();
 
 
             /*
@@ -51,9 +53,8 @@ namespace arc
             void setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info) override;
             void setGameStatsFormatString(const std::vector<std::string> &info) override;
             void setFont(const std::string &font) override;
-            void setSprites(const std::map<char, std::string> &sprites) override;
-            void setBackgroundColors(const std::map<char, Color> &sprites) override;
             void updateGameInfo(const std::vector<Entity> &entities) override;
+            void setVisualAssets(const std::map<char, std::pair<std::string, Color>> &sprites);
 
             void setMusic(const std::string &music) override;
             void playSound(const std::string &sound) override;
@@ -63,43 +64,18 @@ namespace arc
             */
 
         private:
-            void initButtons();
-            void initButtonsMenu();
-            void initButtonsGame();
-            void initButtonsEndGame();
-
-            void initText();
-            void initTextMenu();
-            // void initTextGame();
-            // void initTextEndGame();
-
-            bool clickAButton(const sf::Vector2i &pos);
-
-            arc::Event::Key getKey(sf::Event event) const;
-            void displayMenu();
-            // void displayPauseMenu();
-            // void displayGame();
-            // void displayEndGame();
-            void drawText(const std::string &name, size_t size, const sf::Vector2f &pos, const sf::Color &color);
-
-        private:
             sf::RenderWindow _window;
 
-            std::vector<std::string> _listGames;
-            std::vector<std::string> _listLibraries;
+            std::map<Scene, std::unique_ptr<IScene>> _scenes;
+
             std::vector<std::pair<std::string, std::string>> _scores;
-            std::function<void(const std::string &)> _eventChooseGame;
-            std::function<void(const std::string &)> _eventChooseLibrary;
 
             std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> _controls;
 
-            std::vector<SFMLButton> _buttons; // List of the actual buttons load of the scene
-            std::function<void()> _eventPlayButton;
-            std::function<void()> _eventRestartButton;
-            std::function<void()> _eventMenuButton;
-            std::function<void()> _eventTogglePauseButton;
+            std::function<void()> _eventRestartButton; // A suppr
+            std::function<void()> _eventMenuButton; // A suppr
+            std::function<void()> _eventTogglePauseButton; // A suppr
 
-            std::vector<SFMLText> _text;
             std::vector<Entity> _entities;
             std::string _username;
 
@@ -115,7 +91,9 @@ namespace arc
 
             std::map<char, std::string> _sprites;
             std::map<char, Color> _backgroundColors;
+
+            bool _exit = false;
     };
 };
 
-#endif /* !SFMLGRAPHICAL_HPP */
+#endif /* !GRAPHICAL_HPP */

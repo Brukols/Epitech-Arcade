@@ -1,24 +1,31 @@
 /*
 ** EPITECH PROJECT, 2020
-** SFMLButton
+** Button
 ** File description:
 ** Arcade
 */
 
-#ifndef SFMLBUTTON_HPP
-#define SFMLBUTTON_HPP
+#ifndef BUTTON_HPP
+#define BUTTON_HPP
+
+#include <SFML/Graphics.hpp>
 
 namespace arc
 {
-    class SFMLButton
+    class Button
     {
         public:
-            SFMLButton(const std::function<void()> &event, const sf::RectangleShape &rect);
-            ~SFMLButton();
+            Button(const std::function<void()> &event, const sf::RectangleShape &rect);
+            ~Button();
 
             bool isMouseHover(const sf::Vector2i &pos) const;
             void clickButton();
             void displayButton(sf::RenderWindow &window);
+            
+            // Implement select
+            void toggleSelect();
+            void setColorSelect(sf::Color selectColor, sf::Color selectOutlineColor, sf::Color selectHoverColor);
+            void resetSelect();
 
             // GETTER AND SETTER
             void setPosition(const sf::Vector2f &pos);
@@ -36,7 +43,13 @@ namespace arc
 
             sf::Color _hoverColor;
             sf::Color _mainColor;
+            sf::Color _outlineColor;
+
+            bool _select = false;
+            sf::Color _selectColor;
+            sf::Color _selectOutlineColor;
+            sf::Color _selectHoverColor;
     };
 }
 
-#endif /* !SFMLBUTTON */
+#endif /* !BUTTON */
