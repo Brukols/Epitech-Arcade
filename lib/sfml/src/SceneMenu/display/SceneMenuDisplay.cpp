@@ -34,4 +34,9 @@ void arc::SceneMenu::display(sf::RenderWindow &window)
     std::for_each(_textsListLibraries.begin(), _textsListLibraries.end(), [this, &window](Text &text) {
         text.display(window);
     });
+
+    // Display Input
+    std::for_each(_inputs.begin(), _inputs.end(), [this, &window](Input &input) {
+        input.display(window);
+    });
 }

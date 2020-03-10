@@ -13,6 +13,7 @@ arc::SceneMenu::SceneMenu()
     initButtons();
     _font.loadFromFile("resources/fonts/Raleway-Bold.ttf");
     initTexts();
+    initInput();
 }
 
 arc::SceneMenu::~SceneMenu()

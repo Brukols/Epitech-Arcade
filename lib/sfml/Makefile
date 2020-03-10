@@ -13,6 +13,7 @@ SRCS	=	src/Graphical.cpp	\
 			src/button/Button.cpp	\
 			src/text/Text.cpp	\
 			src/music/GraphicalMusic.cpp	\
+			src/input/Input.cpp	\
 			src/SceneMenu/SceneMenu.cpp	\
 			src/SceneMenu/init/SceneMenuInit.cpp	\
 			src/SceneMenu/init/SceneMenuInitButtons.cpp	\
@@ -20,6 +21,7 @@ SRCS	=	src/Graphical.cpp	\
 			src/SceneMenu/init/SceneMenuSetter.cpp	\
 			src/SceneMenu/init/SceneMenuInitListGames.cpp	\
 			src/SceneMenu/init/SceneMenuInitListLibraries.cpp	\
+			src/SceneMenu/init/SceneMenuInitInput.cpp	\
 			src/SceneMenu/display/SceneMenuDisplay.cpp	\
 			src/SceneMenu/event/SceneMenuEvent.cpp		\
 			src/SceneMenu/event/SceneMenuEventButtonPlay.cpp		\

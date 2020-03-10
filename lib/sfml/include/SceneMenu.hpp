@@ -12,10 +12,17 @@
 #include <vector>
 #include "Button.hpp"
 #include "Text.hpp"
+#include "Input.hpp"
 
 namespace arc
 {
     class SceneMenu : public IScene {
+        public:
+            enum State {
+                GET_USERNAME,
+                
+            };
+
         public:
             SceneMenu();
             ~SceneMenu();
@@ -35,6 +42,7 @@ namespace arc
         private:
             void initButtons();
             void initTexts();
+            void initInput();
 
             void resetButtonsListGames();
             void resetButtonsListLibraries();
@@ -49,12 +57,14 @@ namespace arc
 
 
             void buttonsEvent(sf::RenderWindow &window, sf::Event &event);
+            void inputEvent(sf::RenderWindow &window, sf::Event &event);
 
             void eventButtonPlay();
 
         private:
             std::vector<Button> _buttons;
             std::vector<Text> _texts;
+            std::vector<Input> _inputs;
             sf::Font _font;
             std::vector<std::pair<std::string, std::string>> _scores;
 

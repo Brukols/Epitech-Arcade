@@ -46,6 +46,34 @@ void arc::SceneMenu::buttonsEvent(sf::RenderWindow &window, sf::Event &event)
     });
 }
 
+static void enteredText(std::vector<arc::Input> &input, sf::Event &event)
+{
+    if (event.type != sf::Event::TextEntered)
+        return;
+    std::for_each(input.begin(), input.end(), [&event](arc::Input &input) {
+        if (input.isFocus()) {
+            input.addLetter(event);
+        }
+    });
+}
+
+static void removeText(std::vector<arc::Input> &input, sf::Event &event)
+{
+    if (event.key.code != sf::Keyboard::Key::BackSpace)
+        return;
+    std::for_each(input.begin(), input.end(), [&event](arc::Input &input) {
+        if (input.isFocus()) {
+            input.removeLetter();
+        }
+    });
+}
+
+void arc::SceneMenu::inputEvent(sf::RenderWindow &window, sf::Event &event)
+{
+    enteredText(_inputs, event);
+    removeText(_inputs, event);
+}
+
 void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress)
 {
     sf::Event event;
@@ -57,6 +85,8 @@ void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
             _actualEventType = arc::Event::QUIT;
             return;
         }
+        buttonsEvent(window, event);
+        inputEvent(window, event);
         if (event.type == sf::Event::KeyPressed) {
             _actualEventType = arc::Event::KEY_PRESSED;
             _actualKeyPress = Utility::getKey(event);
@@ -69,7 +99,6 @@ void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
             if (_actualKeyPress != arc::Event::Key::NONE)
                 return;
         }
-        buttonsEvent(window, event);
     }
     _actualEventType = arc::Event::Type::NO_EVENT;
     _actualKeyPress = arc::Event::Key::NONE;
