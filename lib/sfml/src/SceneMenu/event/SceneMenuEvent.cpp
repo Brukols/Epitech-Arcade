@@ -32,6 +32,12 @@ void arc::SceneMenu::buttonsEvent(sf::RenderWindow &window, sf::Event &event)
         }
     });
 
+    std::for_each(_buttonEnterUsername.begin(), _buttonEnterUsername.end(), [&window](Button &button) {
+        if (button.isMouseHover(sf::Mouse::getPosition())) {
+            button.clickButton();
+        }
+    });
+
     std::for_each(_buttonsListGames.begin(), _buttonsListGames.end(), [this, &window](Button &button) {
         if (button.isMouseHover(sf::Mouse::getPosition())) {
             resetButtonsListGames();

@@ -26,6 +26,7 @@ SRCS	=	src/Graphical.cpp	\
 			src/SceneMenu/display/SceneMenuDisplay.cpp	\
 			src/SceneMenu/event/SceneMenuEvent.cpp		\
 			src/SceneMenu/event/SceneMenuEventButtonPlay.cpp		\
+			src/SceneMenu/event/SceneMenuEventValidateUsername.cpp		\
 			src/Utility/Utility.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)

@@ -30,14 +30,20 @@ bool arc::Button::isMouseHover(const sf::Vector2i &pos) const
     return (false);
 }
 
+void arc::Button::setActivate(bool activate)
+{
+    _activate = activate;
+}
+
 void arc::Button::clickButton()
 {
-    _event();
+    if (_activate)
+        _event();
 }
 
 void arc::Button::displayButton(sf::RenderWindow &window)
 {
-    if (isMouseHover(sf::Mouse::getPosition(window))) {
+    if (isMouseHover(sf::Mouse::getPosition(window)) && _activate) {
         if (_select) {
             _rect.setFillColor(_selectHoverColor);
             _rect.setOutlineColor(_selectOutlineColor);
@@ -97,7 +103,8 @@ void arc::Button::setHoverColor(const sf::Color &color)
 
 void arc::Button::toggleSelect()
 {
-    _select = !_select;
+    if (_activate)
+        _select = !_select;
 }
 
 void arc::Button::setColorSelect(sf::Color selectColor, sf::Color selectOutlineColor, sf::Color selectHoverColor)

@@ -19,6 +19,7 @@ static arc::Button initButton(const std::function<void (const std::string &)> &f
     button.setHoverColor(sf::Color(150, 50, 50, 255));
     button.setColorSelect(sf::Color(150, 50, 50, 255), sf::Color(20, 150, 20, 255), sf::Color(150, 50, 50, 255));
     (void)fct;
+    button.setActivate(false);
     return (button);
 }
 

@@ -19,7 +19,7 @@ static bool oneButtonIsSelect(std::vector<arc::Button> _games)
     });
     return (select);
 }
-#include <iostream>
+
 void arc::SceneMenu::eventButtonPlay()
 {
     if (!oneButtonIsSelect(_buttonsListGames)) {

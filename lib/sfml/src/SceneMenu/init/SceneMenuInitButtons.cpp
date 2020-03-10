@@ -17,6 +17,7 @@ static arc::Button initButtonPlay(std::function<void()> &event)
     rect.setPosition(sf::Vector2f(830, 500));
     arc::Button button(event, rect);
     button.setHoverColor(sf::Color(90, 90, 90, 255));
+    button.setActivate(false);
     return (button);
 }
 
@@ -30,10 +31,11 @@ static arc::Button initButtonExit(std::function<void()> &event)
     rect.setPosition(sf::Vector2f(830, 700));
     arc::Button button(event, rect);
     button.setHoverColor(sf::Color(90, 90, 90, 255));
+    button.setActivate(false);
     return (button);
 }
 
-static arc::Button initButtonEnterUsername()
+static arc::Button initButtonEnterUsername(std::function<void()> &event)
 {
     sf::RectangleShape rect(sf::Vector2f(220, 80));
 
@@ -41,14 +43,19 @@ static arc::Button initButtonEnterUsername()
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(830, 700));
-    arc::Button button(std::function<void()> (), rect);
+    arc::Button button(event, rect);
     button.setHoverColor(sf::Color(90, 90, 90, 255));
     return (button);
 }
-
+#include <iostream>
 void arc::SceneMenu::initButtons()
 {
     std::vector<std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>> buttons;
+    std::vector<std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>> tmp;
+
+    tmp.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initButtonPlay, [this](){
+        this->eventValidateUsername();
+    }));
 
     buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initButtonPlay, [this](){
         eventButtonPlay();
@@ -60,5 +67,5 @@ void arc::SceneMenu::initButtons()
     std::for_each(buttons.begin(), buttons.end(), [this](std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>> &pair) {
         _buttons.push_back(pair.first(pair.second));
     });
-    _buttonEnterUsername.push_back(initButtonEnterUsername());
+    _buttonEnterUsername.push_back(initButtonEnterUsername(tmp[0].second));
 }

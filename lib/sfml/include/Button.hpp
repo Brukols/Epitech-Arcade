@@ -27,6 +27,7 @@ namespace arc
             void setColorSelect(sf::Color selectColor, sf::Color selectOutlineColor, sf::Color selectHoverColor);
             void resetSelect();
             bool isSelect() const;
+            void setActivate(bool activate);
 
             // GETTER AND SETTER
             void setPosition(const sf::Vector2f &pos);
@@ -50,6 +51,8 @@ namespace arc
             sf::Color _selectColor;
             sf::Color _selectOutlineColor;
             sf::Color _selectHoverColor;
+
+            bool _activate = true;
     };
 }
 

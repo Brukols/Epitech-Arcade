@@ -18,6 +18,13 @@ namespace arc
 {
     class SceneMenu : public IScene {
 
+        private:
+            enum SceneState {
+                GET_USERNAME,
+                MENU
+            };
+
+
         public:
             SceneMenu();
             ~SceneMenu();
@@ -55,9 +62,13 @@ namespace arc
             void buttonsEvent(sf::RenderWindow &window, sf::Event &event);
             void inputEvent(sf::RenderWindow &window, sf::Event &event);
 
+            void eventValidateUsername();
+
             void eventButtonPlay();
 
         private:
+            SceneState _state = GET_USERNAME;
+
             std::vector<Button> _buttons;
             std::vector<Text> _texts;
             std::vector<Input> _inputs;
