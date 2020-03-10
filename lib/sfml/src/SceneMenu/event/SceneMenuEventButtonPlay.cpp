@@ -23,15 +23,15 @@ static bool oneButtonIsSelect(std::vector<arc::Button> _games)
 void arc::SceneMenu::eventButtonPlay()
 {
     if (!oneButtonIsSelect(_buttonsListGames)) {
-        _texts[5].setText("Veuillez selectioner un jeu");
-        _texts[5].setDisplay(true);
+        _texts[3].setText("Veuillez selectioner un jeu");
+        _texts[3].setDisplay(true);
         return;
     }
     if (!oneButtonIsSelect(_buttonsListLibraries)) {
-        _texts[5].setText("Veuillez selectioner une librairie");
-        _texts[5].setDisplay(true);
+        _texts[3].setText("Veuillez selectioner une librairie");
+        _texts[3].setDisplay(true);
         return;
     }
-    _texts[5].setDisplay(false);
+    _texts[3].setDisplay(false);
     _eventPlay();
 }

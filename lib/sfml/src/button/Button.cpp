@@ -7,13 +7,21 @@
 
 #include "Graphical.hpp"
 
-arc::Button::Button(const std::function<void()> &event, const sf::RectangleShape &rect) : 
+arc::Button::Button(const std::function<void()> &event, const sf::RectangleShape &rect, const std::string &text, const sf::Font &font) : 
     _rect(rect),
     _event(event),
     _hoverColor(sf::Color(0, 0, 0, 0)),
     _mainColor(rect.getFillColor()),
-    _outlineColor(rect.getOutlineColor())
+    _outlineColor(rect.getOutlineColor()),
+    _str(text)
 {
+    _text.setFont(font);
+    _text.setString(text);
+    _text.setCharacterSize(30);
+    _text.setFillColor(sf::Color::White);
+    _text.setOutlineThickness(2);
+    _text.setOutlineColor(sf::Color::Black);
+    _text.setPosition(sf::Vector2f(rect.getPosition().x + (rect.getLocalBounds().width / 2 - _text.getLocalBounds().width / 2), rect.getPosition().y - 10 + (rect.getLocalBounds().height / 2 - _text.getCharacterSize() / 2)));
 }
 
 arc::Button::~Button()
@@ -48,10 +56,12 @@ void arc::Button::displayButton(sf::RenderWindow &window)
             _rect.setFillColor(_selectHoverColor);
             _rect.setOutlineColor(_selectOutlineColor);
             window.draw(_rect);
+            window.draw(_text);
         } else {
             _rect.setFillColor(_hoverColor);
             _rect.setOutlineColor(_outlineColor);
             window.draw(_rect);
+            window.draw(_text);
         }
         return;
     }
@@ -63,6 +73,7 @@ void arc::Button::displayButton(sf::RenderWindow &window)
         _rect.setOutlineColor(_outlineColor);
     }
     window.draw(_rect);
+    window.draw(_text);
 }
 
 void arc::Button::setPosition(const sf::Vector2f &pos)

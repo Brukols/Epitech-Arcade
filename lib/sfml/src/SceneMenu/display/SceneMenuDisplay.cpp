@@ -7,6 +7,7 @@
 
 #include "SceneMenu.hpp"
 
+#include <iostream>
 void arc::SceneMenu::display(sf::RenderWindow &window)
 {
     // Display buttons
@@ -23,24 +24,18 @@ void arc::SceneMenu::display(sf::RenderWindow &window)
     std::for_each(_buttonsListGames.begin(), _buttonsListGames.end(), [this, &window](Button &button) {
         button.displayButton(window);
     });
-    std::for_each(_textsListGames.begin(), _textsListGames.end(), [this, &window](Text &text) {
-        text.display(window);
-    });
 
     // Display List games
     std::for_each(_buttonsListLibraries.begin(), _buttonsListLibraries.end(), [this, &window](Button &button) {
         button.displayButton(window);
     });
-    std::for_each(_textsListLibraries.begin(), _textsListLibraries.end(), [this, &window](Text &text) {
-        text.display(window);
-    });
+
 
 
     // Display Rects
     std::for_each(_rects.begin(), _rects.end(), [this, &window](sf::RectangleShape &rect) {
         window.draw(rect);
     });
-
     // Display Input
     std::for_each(_inputs.begin(), _inputs.end(), [this, &window](Input &input) {
         input.display(window);
