@@ -54,8 +54,6 @@ void arc::SceneMenu::buttonsEvent(sf::RenderWindow &window, sf::Event &event)
 
 static void enteredText(std::vector<arc::Input> &input, sf::Event &event)
 {
-    if (event.type != sf::Event::TextEntered)
-        return;
     std::for_each(input.begin(), input.end(), [&event](arc::Input &input) {
         if (input.isFocus()) {
             input.addLetter(event);
@@ -65,6 +63,12 @@ static void enteredText(std::vector<arc::Input> &input, sf::Event &event)
 
 void arc::SceneMenu::inputEvent(sf::RenderWindow &window, sf::Event &event)
 {
+    if (event.type != sf::Event::TextEntered)
+        return;
+    if (event.text.unicode == 13) {
+        _buttonEnterUsername[0].clickButton();
+        return;
+    }
     enteredText(_inputs, event);
 }
 

@@ -15,6 +15,7 @@ arc::SceneMenu::SceneMenu()
     initTexts();
     initInput();
     initRects();
+    initImages();
 }
 
 arc::SceneMenu::~SceneMenu()

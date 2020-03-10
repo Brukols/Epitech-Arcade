@@ -10,6 +10,10 @@
 #include <iostream>
 void arc::SceneMenu::display(sf::RenderWindow &window)
 {
+    std::for_each(_images.begin(), _images.end(), [this, &window](Image &image) {
+        image.display(window);
+    });
+
     // Display buttons
     std::for_each(_buttons.begin(), _buttons.end(), [this, &window](arc::Button &button) {
         button.displayButton(window);

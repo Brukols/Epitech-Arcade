@@ -23,11 +23,13 @@ SRCS	=	src/Graphical.cpp	\
 			src/SceneMenu/init/SceneMenuInitListLibraries.cpp	\
 			src/SceneMenu/init/SceneMenuInitInput.cpp	\
 			src/SceneMenu/init/SceneMenuInitRects.cpp	\
+			src/SceneMenu/init/SceneMenuInitImages.cpp	\
 			src/SceneMenu/display/SceneMenuDisplay.cpp	\
 			src/SceneMenu/event/SceneMenuEvent.cpp		\
 			src/SceneMenu/event/SceneMenuEventButtonPlay.cpp		\
 			src/SceneMenu/event/SceneMenuEventValidateUsername.cpp		\
 			src/Utility/Utility.cpp	\
+			src/image/Image.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)
 

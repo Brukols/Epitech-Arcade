@@ -13,6 +13,7 @@
 #include "Button.hpp"
 #include "Text.hpp"
 #include "Input.hpp"
+#include "Image.hpp"
 
 namespace arc
 {
@@ -46,6 +47,7 @@ namespace arc
             void initTexts();
             void initInput();
             void initRects();
+            void initImages();
 
             void resetButtonsListGames();
             void resetButtonsListLibraries();
@@ -71,6 +73,8 @@ namespace arc
             std::vector<Text> _texts;
             std::vector<Input> _inputs;
             std::vector<sf::RectangleShape> _rects;
+
+            std::vector<Image> _images;
 
             sf::Font _font;
             std::vector<std::pair<std::string, std::string>> _scores;
