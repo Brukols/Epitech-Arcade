@@ -17,6 +17,13 @@ arc::Input::~Input()
 
 void arc::Input::addLetter(const sf::Event &event)
 {
+    if (event.text.unicode == '\b') {
+        removeLetter();
+        removeLetter();
+        _str += '|';
+        _text.setString(_str);
+        return;
+    }
     if (_str.getSize() > 15)
         return;
     removeLetter();

@@ -5,8 +5,8 @@
 ** Text
 */
 
-#ifndef TEXT_HPP
-#define TEXT_HPP
+#ifndef TEXT_HPP_
+#define TEXT_HPP_
 
 #include <SFML/Graphics.hpp>
 #include <string>
@@ -29,5 +29,4 @@ namespace arc
     };
 }
 
-
-#endif /* !TEXT_HPP */
+#endif /* !TEXT_HPP_ */

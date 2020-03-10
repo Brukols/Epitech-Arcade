@@ -63,21 +63,9 @@ static void enteredText(std::vector<arc::Input> &input, sf::Event &event)
     });
 }
 
-static void removeText(std::vector<arc::Input> &input, sf::Event &event)
-{
-    if (event.key.code != sf::Keyboard::Key::BackSpace)
-        return;
-    std::for_each(input.begin(), input.end(), [&event](arc::Input &input) {
-        if (input.isFocus()) {
-            input.removeLetter();
-        }
-    });
-}
-
 void arc::SceneMenu::inputEvent(sf::RenderWindow &window, sf::Event &event)
 {
     enteredText(_inputs, event);
-    removeText(_inputs, event);
 }
 
 void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress)

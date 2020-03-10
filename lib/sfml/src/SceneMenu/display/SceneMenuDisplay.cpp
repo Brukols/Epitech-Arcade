@@ -46,7 +46,12 @@ void arc::SceneMenu::display(sf::RenderWindow &window)
         input.display(window);
     });
 
-    _buttonEnterUsername[0].displayButton(window);
-    _textUsername[0].display(window);
-    _textUsername[1].display(window);
+    // Display Input
+    std::for_each(_buttonEnterUsername.begin(), _buttonEnterUsername.end(), [this, &window](Button &input) {
+        input.displayButton(window);
+    });
+
+    std::for_each(_textUsername.begin(), _textUsername.end(), [this, &window](Text &text) {
+        text.display(window);
+    });
 }

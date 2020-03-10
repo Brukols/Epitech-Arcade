@@ -35,7 +35,7 @@ static arc::Button initButtonExit(std::function<void()> &event)
     return (button);
 }
 
-static arc::Button initButtonEnterUsername(std::function<void()> &event)
+static arc::Button initButtonEnterUsername(std::function<void()> event)
 {
     sf::RectangleShape rect(sf::Vector2f(220, 80));
 
@@ -47,15 +47,10 @@ static arc::Button initButtonEnterUsername(std::function<void()> &event)
     button.setHoverColor(sf::Color(90, 90, 90, 255));
     return (button);
 }
-#include <iostream>
+
 void arc::SceneMenu::initButtons()
 {
     std::vector<std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>> buttons;
-    std::vector<std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>> tmp;
-
-    tmp.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initButtonPlay, [this](){
-        this->eventValidateUsername();
-    }));
 
     buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initButtonPlay, [this](){
         eventButtonPlay();
@@ -67,5 +62,8 @@ void arc::SceneMenu::initButtons()
     std::for_each(buttons.begin(), buttons.end(), [this](std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>> &pair) {
         _buttons.push_back(pair.first(pair.second));
     });
-    _buttonEnterUsername.push_back(initButtonEnterUsername(tmp[0].second));
+
+    _buttonEnterUsername.push_back(initButtonEnterUsername([this]() {
+        eventValidateUsername();
+    }));
 }
