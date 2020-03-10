@@ -53,7 +53,7 @@ void arc::Core::initGraphs()
             _graphs[path] = false;
         }
     } catch(const std::exception& e) {
-        throw DirectoryError("Direcory lib does not exist", "initGraphs");
+        throw DirectoryError("Directory lib does not exist", "initGraphs");
     }
 }
 
@@ -70,7 +70,7 @@ void arc::Core::initGames()
             _games[path] = false;
         }
     } catch(const std::exception& e) {
-        throw DirectoryError("Direcory games does not exist", "initGames");
+        throw DirectoryError("Directory games does not exist", "initGames");
     }
 }
 
