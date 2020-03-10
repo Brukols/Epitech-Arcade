@@ -8,6 +8,20 @@
 #include "SceneMenu.hpp"
 #include "Utility.hpp"
 
+void arc::SceneMenu::resetButtonsListGames()
+{
+    std::for_each(_buttonsListGames.begin(), _buttonsListGames.end(), [](Button &button) {
+        button.resetSelect();
+    });
+}
+
+void arc::SceneMenu::resetButtonsListLibraries()
+{
+    std::for_each(_buttonsListLibraries.begin(), _buttonsListLibraries.end(), [](Button &button) {
+        button.resetSelect();
+    });
+}
+
 void arc::SceneMenu::buttonsEvent(sf::RenderWindow &window, sf::Event &event)
 {
     if (event.type != sf::Event::MouseButtonReleased)
@@ -18,13 +32,15 @@ void arc::SceneMenu::buttonsEvent(sf::RenderWindow &window, sf::Event &event)
         }
     });
 
-    std::for_each(_buttonsListGames.begin(), _buttonsListGames.end(), [&window](Button &button) {
+    std::for_each(_buttonsListGames.begin(), _buttonsListGames.end(), [this, &window](Button &button) {
         if (button.isMouseHover(sf::Mouse::getPosition())) {
+            resetButtonsListGames();
             button.toggleSelect();
         }
     });
-    std::for_each(_buttonsListLibraries.begin(), _buttonsListLibraries.end(), [&window](Button &button) {
+    std::for_each(_buttonsListLibraries.begin(), _buttonsListLibraries.end(), [this, &window](Button &button) {
         if (button.isMouseHover(sf::Mouse::getPosition())) {
+            resetButtonsListLibraries();
             button.toggleSelect();
         }
     });

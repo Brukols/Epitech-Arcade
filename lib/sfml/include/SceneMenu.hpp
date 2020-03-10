@@ -36,6 +36,9 @@ namespace arc
             void initButtons();
             void initTexts();
 
+            void resetButtonsListGames();
+            void resetButtonsListLibraries();
+
             /*
             ** List games and libraries management
             */

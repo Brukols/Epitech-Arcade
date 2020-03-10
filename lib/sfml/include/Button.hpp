@@ -25,6 +25,7 @@ namespace arc
             // Implement select
             void toggleSelect();
             void setColorSelect(sf::Color selectColor, sf::Color selectOutlineColor, sf::Color selectHoverColor);
+            void resetSelect();
 
             // GETTER AND SETTER
             void setPosition(const sf::Vector2f &pos);

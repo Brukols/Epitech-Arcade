@@ -106,3 +106,8 @@ void arc::Button::setColorSelect(sf::Color selectColor, sf::Color selectOutlineC
     _selectOutlineColor = selectOutlineColor;
     _selectHoverColor = selectHoverColor;
 }
+
+void arc::Button::resetSelect()
+{
+    _select = false;
+}
