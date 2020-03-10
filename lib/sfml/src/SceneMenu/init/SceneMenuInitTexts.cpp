@@ -77,6 +77,20 @@ static arc::Text initTextChooseLibrary(const sf::Font &font)
     return (arc::Text(font, text));
 }
 
+static arc::Text initTextErrorMessage(const sf::Font &font)
+{
+    sf::Text text;
+
+    text.setFont(font);
+    text.setString("Veuillez selectioner un jeu");
+    text.setCharacterSize(30);
+    text.setFillColor(sf::Color::Red);
+    text.setPosition(sf::Vector2f(720, 900));
+    arc::Text _text(font, text);
+    _text.setDisplay(false);
+    return (_text);
+}
+
 void arc::SceneMenu::initTexts()
 {
     static std::vector<arc::Text (*)(const sf::Font &)> text = [this]() -> std::vector<arc::Text (*)(const sf::Font &)> {
@@ -87,6 +101,7 @@ void arc::SceneMenu::initTexts()
         text.push_back(initTextButtonExit);
         text.push_back(initTextChooseGame);
         text.push_back(initTextChooseLibrary);
+        text.push_back(initTextErrorMessage);
         return (text);
     }();
 

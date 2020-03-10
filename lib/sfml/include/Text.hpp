@@ -9,6 +9,7 @@
 #define TEXT_HPP
 
 #include <SFML/Graphics.hpp>
+#include <string>
 
 namespace arc
 {
@@ -18,10 +19,13 @@ namespace arc
             ~Text();
 
             void display(sf::RenderWindow &window);
+            void setText(const std::string &text);
+            void setDisplay(bool display);
 
         private:
             sf::Font _font;
             sf::Text _text;
+            bool _display = true;
     };
 }
 

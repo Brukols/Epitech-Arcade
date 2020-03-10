@@ -111,3 +111,8 @@ void arc::Button::resetSelect()
 {
     _select = false;
 }
+
+bool arc::Button::isSelect() const
+{
+    return (_select);
+}

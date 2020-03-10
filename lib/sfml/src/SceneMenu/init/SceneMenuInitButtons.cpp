@@ -38,7 +38,9 @@ void arc::SceneMenu::initButtons()
 {
     std::vector<std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>> buttons;
 
-    buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initButtonPlay, _eventPlay));
+    buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initButtonPlay, [this](){
+        eventButtonPlay();
+    }));
     buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initButtonExit, _eventExit));
 
     _buttons.clear();

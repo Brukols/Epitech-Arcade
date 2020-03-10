@@ -50,6 +50,8 @@ namespace arc
 
             void buttonsEvent(sf::RenderWindow &window, sf::Event &event);
 
+            void eventButtonPlay();
+
         private:
             std::vector<Button> _buttons;
             std::vector<Text> _texts;

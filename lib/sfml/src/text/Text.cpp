@@ -19,5 +19,16 @@ arc::Text::~Text()
 
 void arc::Text::display(sf::RenderWindow &window)
 {
-    window.draw(_text);
+    if (_display)
+        window.draw(_text);
+}
+
+void arc::Text::setText(const std::string &text)
+{
+    _text.setString(text);
+}
+
+void arc::Text::setDisplay(bool display)
+{
+    _display = display;
 }
