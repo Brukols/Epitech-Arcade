@@ -100,7 +100,7 @@ void arc::Graphical::setVisualAssets(const std::map<char, std::pair<std::string,
     (void)sprites;
 }
 
-void arc::Graphical::updateGameInfo(const std::vector<Entity> &entities)
+void arc::Graphical::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &entities)
 {
     _entities = entities;
 }

@@ -19,7 +19,7 @@
 
 namespace arc
 {
- 
+
     class Graphical : public IGraphical {
 
         public:
@@ -53,7 +53,7 @@ namespace arc
             void setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info) override;
             void setGameStatsFormatString(const std::vector<std::string> &info) override;
             void setFont(const std::string &font) override;
-            void updateGameInfo(const std::vector<Entity> &entities) override;
+            void updateGameInfo(const std::vector<std::shared_ptr<Entity>> &entities) override;
             void setVisualAssets(const std::map<char, std::pair<std::string, Color>> &sprites);
 
             void setMusic(const std::string &music) override;
@@ -76,7 +76,7 @@ namespace arc
             std::function<void()> _eventMenuButton; // A suppr
             std::function<void()> _eventTogglePauseButton; // A suppr
 
-            std::vector<Entity> _entities;
+            std::vector<std::shared_ptr<Entity>> _entities;
             std::string _username;
 
             arc::Event::Type _actualEventType = arc::Event::Type::NO_EVENT;

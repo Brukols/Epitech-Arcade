@@ -9,11 +9,9 @@
 
 Nibbler::Nibbler()
 {
-    _height = 10;
-    _width = 10;
-    initControls();
-    initEntities();
+    initNibbler();
 }
+
 Nibbler::~Nibbler()
 {
 }
@@ -59,7 +57,7 @@ const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &Nibb
     return _controls;
 }
 
-const std::vector<Entity> &Nibbler::getEntities() const
+const std::vector<std::shared_ptr<Entity>> &Nibbler::getEntities() const
 {
     return _entities;
 }
@@ -76,15 +74,54 @@ const std::vector<std::string> &Nibbler::getGameStatsFormatString() const
 
 void Nibbler::restart()
 {
-    initControls();
-    initEntities();
+    initNibbler();
 }
 
 void Nibbler::updateGame()
 {
+    std::shared_ptr<Entity> bodySnake(new Entity);
+    if (doYouEat() == true) {
+        _score += 1;
+        std::shared_ptr<Entity> tmp = _snake.back();
+        bodySnake->spritePath = "";
+        bodySnake->orientation = tmp->orientation;
+        bodySnake->backgroundColor = tmp->backgroundColor;
+        if (bodySnake->orientation == Orientation::UP) {
+            bodySnake->x = tmp->x;
+            bodySnake->y = tmp->y - 1;
+        } else if (bodySnake->orientation == Orientation::RIGHT) {
+            bodySnake->x = tmp->x -1;
+            bodySnake->y = tmp->y;
+        } else if (bodySnake->orientation == Orientation::LEFT) {
+            bodySnake->x = tmp->x + 1;
+            bodySnake->y = tmp->y;
+        } else if (bodySnake->orientation == Orientation::DOWN) {
+            bodySnake->x = tmp->x;
+            bodySnake->y = tmp->y + 1;
+        }
+    }
+    //manger
+    //agrandir le snake
+
     //initialisation de sound si le serpent mange quelque chose.
+    //mise à jour orientation snake
+}
+
+bool Nibbler::doYouEat()
+{
+    auto const &ptr = std::find_if(_apple.begin(), _apple.end(), [this] (std::shared_ptr<Entity> &p) {
+        if ((p->x == _snake.front()->x) && (p->y == _snake.front()->y)) {
+            return true;
+        }
+        return false;
+    });
+    if (ptr == _snake.end())
+        return false;
+    _apple.erase(ptr);
+    return true;
 }
 
 bool Nibbler::isGameOver() const
 {
+    //Une partie du serpent touche un bord
 }
