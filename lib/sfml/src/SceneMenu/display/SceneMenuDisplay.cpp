@@ -7,7 +7,6 @@
 
 #include "SceneMenu.hpp"
 
-#include <iostream>
 void arc::SceneMenu::display(sf::RenderWindow &window)
 {
     std::for_each(_images.begin(), _images.end(), [this, &window](Image &image) {

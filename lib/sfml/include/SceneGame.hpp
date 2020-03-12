@@ -12,6 +12,7 @@
 #include <vector>
 #include "Button.hpp"
 #include "Text.hpp"
+#include <memory>
 
 namespace arc
 {
@@ -33,6 +34,7 @@ namespace arc
             void eventFunctionBackToMenu(std::function<void()> event);
 
             void setMapSize(size_t height, size_t width);
+            void updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap);
 
         private:
             void eventButtons(sf::RenderWindow &window, sf::Event &event);
@@ -51,6 +53,10 @@ namespace arc
 
             size_t _mapWidth;
             size_t _mapHeight;
+
+            sf::RectangleShape _cell;
+            std::map<std::string, sf::Texture> _textureMap;
+            std::vector<std::shared_ptr<Entity>> _gameMap;
     };
 }
 
