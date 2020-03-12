@@ -7,6 +7,12 @@
 
 #include "SceneGame.hpp"
 
+void arc::SceneGame::displayGame(sf::RenderWindow &window)
+{
+    displayMap(window);
+    displayEntities(window);
+}
+
 void arc::SceneGame::display(sf::RenderWindow &window)
 {
     std::for_each(_rects.begin(), _rects.end(), [this, &window](sf::RectangleShape &rect) {
@@ -16,4 +22,6 @@ void arc::SceneGame::display(sf::RenderWindow &window)
     std::for_each(_buttons.begin(), _buttons.end(), [this, &window](Button &button) {
         button.displayButton(window);
     });
+
+    displayGame(window);
 }

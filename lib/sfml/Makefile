@@ -34,6 +34,8 @@ SRCS	=	src/Graphical.cpp	\
 			src/SceneGame/init/SceneGameInitRects.cpp	\
 			src/SceneGame/init/SceneGameSetter.cpp	\
 			src/SceneGame/display/SceneGameDisplay.cpp	\
+			src/SceneGame/display/SceneGameDisplayEntities.cpp	\
+			src/SceneGame/display/SceneGameDisplayMap.cpp	\
 			src/SceneGame/event/SceneGameEvent.cpp	\
 			src/SceneGame/event/SceneGameEventButtons.cpp	\
 			src/Utility/Utility.cpp	\

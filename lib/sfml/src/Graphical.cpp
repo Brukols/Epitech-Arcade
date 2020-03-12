@@ -113,8 +113,7 @@ void arc::Graphical::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &
 
 void arc::Graphical::setMapSize(size_t height, size_t width)
 {
-    (void)height;
-    (void)width;
+    dynamic_cast<SceneGame *>(_scenes[GAME].get())->setMapSize(height, width);
 }
 
 void arc::Graphical::setGameTitle(const std::string &game)

@@ -11,3 +11,9 @@ void arc::SceneGame::eventFunctionBackToMenu(std::function<void()> event)
 {
     _eventFunctionBackToMenu = event;
 }
+
+void arc::SceneGame::setMapSize(size_t height, size_t width)
+{
+    _mapHeight = height;
+    _mapWidth = width;
+}

@@ -29,9 +29,24 @@ arc::Core::~Core()
 {
 }
 
+void arc::Core::functionPlay()
+{
+    // _graph->setControls(_game->getControls());
+    // _graph->setFont(_game->getFont());
+    // _graph->setMusic(_game->getMusic());
+    // _graph->setVisualAssets(_game->getVisualAssets());
+    _graph->setScene(arc::IGraphical::GAME);
+    _graph->setFunctionMenu([this]() {
+        playArcade();
+    });
+    while (_graph->getEventType() != Event::QUIT) {
+        // _graph->updateGameInfo(_game->getEntities());
+        _graph->display();
+    }
+}
+
 void arc::Core::playArcade()
 {
-    _graph->setFont("resources/fonts/Raleway-Bold.ttf");
     _graph->setListLibraries(getNamesSharedLib(_graphs), [this](const std::string &name) {
         (void)name;
     }, -1);
@@ -39,9 +54,10 @@ void arc::Core::playArcade()
         (void)name;
     }, -1);
     _graph->setFunctionPlay([this]() {
-        _graph->setScene(arc::IGraphical::GAME);
+        functionPlay();
     });
-    while (_graph->getEventType() != Event::QUIT && _graph->getKeyPressed() != Event::ESCAPE) {
+
+    while (_graph->getEventType() != Event::QUIT) {
         _graph->display();
     }
 }

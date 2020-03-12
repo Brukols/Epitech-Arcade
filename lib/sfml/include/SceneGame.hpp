@@ -32,9 +32,14 @@ namespace arc
 
             void eventFunctionBackToMenu(std::function<void()> event);
 
+            void setMapSize(size_t height, size_t width);
+
         private:
             void eventButtons(sf::RenderWindow &window, sf::Event &event);
 
+            void displayGame(sf::RenderWindow &window);
+            void displayMap(sf::RenderWindow &window);
+            void displayEntities(sf::RenderWindow &window);
 
         private:
             std::vector<Button> _buttons;
@@ -43,6 +48,9 @@ namespace arc
             sf::Font _font;
 
             std::function<void()> _eventFunctionBackToMenu;
+
+            size_t _mapWidth;
+            size_t _mapHeight;
     };
 }
 
