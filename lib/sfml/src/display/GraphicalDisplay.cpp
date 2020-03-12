@@ -18,4 +18,8 @@ void arc::Graphical::display()
     // DISPLAY THE SCENE
     _scenes[_actualScene].get()->display(_window);
     _window.display();
+    _scenes[_actualScene].get()->event(_window, _actualEventType, _actualKeyPress);
+    if (_exit == true) {
+        _actualEventType = arc::Event::Type::QUIT;
+    }
 }

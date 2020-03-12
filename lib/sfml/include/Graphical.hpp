@@ -32,7 +32,7 @@ namespace arc
             */
 
             void display() override;
-            Event::Type getEventType() override;
+            Event::Type getEventType() const override;
             Event::Key getKeyPressed() const override;
 
             void setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen = -1) override;
@@ -53,11 +53,14 @@ namespace arc
             void setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info) override;
             void setGameStatsFormatString(const std::vector<std::string> &info) override;
             void setFont(const std::string &font) override;
-            void updateGameInfo(const std::vector<Entity> &entities) override;
+            void updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap) override;
             void setVisualAssets(const std::map<char, std::pair<std::string, Color>> &sprites);
 
             void setMusic(const std::string &music) override;
             void playSound(const std::string &sound) override;
+
+            void setMapSize(size_t height, size_t width);
+            void setGameTitle(const std::string &game);
 
             /*
             ** End of override methods for IGraphical
@@ -76,7 +79,7 @@ namespace arc
             std::function<void()> _eventMenuButton; // A suppr
             std::function<void()> _eventTogglePauseButton; // A suppr
 
-            std::vector<Entity> _entities;
+            std::vector<std::shared_ptr<Entity>> _entities;
             std::string _username;
 
             arc::Event::Type _actualEventType = arc::Event::Type::NO_EVENT;

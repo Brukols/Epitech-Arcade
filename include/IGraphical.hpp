@@ -29,7 +29,7 @@ namespace arc {
             virtual ~IGraphical() = default;
 
             virtual void display() = 0;
-            virtual Event::Type getEventType() = 0;
+            virtual Event::Type getEventType() const = 0;
             virtual Event::Key getKeyPressed() const = 0;
 
             virtual void setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen = -1) = 0;
@@ -51,9 +51,12 @@ namespace arc {
             virtual void setGameStatsFormatString(const std::vector<std::string> &info) = 0;
             virtual void setFont(const std::string &font) = 0;
             virtual void setVisualAssets(const std::map<char, std::pair<std::string, Color>> &sprites) = 0;
-            virtual void updateGameInfo(const std::vector<Entity> &entities) = 0;
+            virtual void updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap) = 0;
             virtual void setMusic(const std::string &music) = 0;
             virtual void playSound(const std::string &sound) = 0;
+
+            virtual void setMapSize(size_t height, size_t width) = 0;
+            virtual void setGameTitle(const std::string &game) = 0;
     };
 }
 

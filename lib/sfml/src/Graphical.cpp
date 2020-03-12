@@ -106,9 +106,20 @@ void arc::Graphical::setVisualAssets(const std::map<char, std::pair<std::string,
     (void)sprites;
 }
 
-void arc::Graphical::updateGameInfo(const std::vector<Entity> &entities)
+void arc::Graphical::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap)
 {
-    _entities = entities;
+    _entities = gameMap;
+}
+
+void arc::Graphical::setMapSize(size_t height, size_t width)
+{
+    (void)height;
+    (void)width;
+}
+
+void arc::Graphical::setGameTitle(const std::string &game)
+{
+    (void)game;
 }
 
 extern "C" arc::IGraphical *instance_ctor()
