@@ -21,12 +21,14 @@ void arc::SceneMenu::setFunctionPlay(const std::function<void()> &eventPlay)
 
 void arc::SceneMenu::setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen)
 {
+    _eventListGames = fct;
     initButtonsListGames(games, fct);
     (void)chosen;
 }
 
 void arc::SceneMenu::setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen)
 {
+    _eventListLibs = fct;
     initButtonsListLibraries(libraries, fct);
     (void)chosen;
 }

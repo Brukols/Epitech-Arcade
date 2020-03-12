@@ -42,6 +42,9 @@ void arc::SceneMenu::buttonsEvent(sf::RenderWindow &window, sf::Event &event)
         if (button.isMouseHover(sf::Mouse::getPosition())) {
             resetButtonsListGames();
             button.toggleSelect();
+            if (button.isSelect()) {
+                button.clickButton();
+            }
         }
     });
     std::for_each(_buttonsListLibraries.begin(), _buttonsListLibraries.end(), [this, &window](Button &button) {

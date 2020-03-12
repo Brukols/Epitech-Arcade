@@ -31,10 +31,10 @@ arc::Core::~Core()
 
 void arc::Core::functionPlay()
 {
-    // _graph->setControls(_game->getControls());
+    _graph->setControls(_game->getControls());
     // _graph->setFont(_game->getFont());
     // _graph->setMusic(_game->getMusic());
-    // _graph->setVisualAssets(_game->getVisualAssets());
+    _graph->setVisualAssets(_game->getVisualAssets());
     _graph->setScene(arc::IGraphical::GAME);
     _graph->setFunctionMenu([this]() {
         playArcade();
@@ -51,7 +51,7 @@ void arc::Core::playArcade()
         (void)name;
     }, -1);
     _graph->setListGames(getNamesSharedLib(_games), [this](const std::string &name) {
-        (void)name;
+        setGame(name);
     }, -1);
     _graph->setFunctionPlay([this]() {
         functionPlay();
@@ -70,7 +70,7 @@ const std::vector<std::string> arc::Core::getNamesSharedLib(const std::map<std::
     std::vector<std::string> vector;
 
     std::for_each(map.begin(), map.end(), [&vector, this](const std::pair<std::string, bool> &pair) {
-        vector.push_back(getLibName(pair.first));
+        vector.push_back(pair.first);
     });
     return (vector);
 }

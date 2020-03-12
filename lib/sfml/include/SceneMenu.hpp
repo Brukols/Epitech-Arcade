@@ -80,6 +80,8 @@ namespace arc
 
             std::function<void()> _eventExit;
             std::function<void()> _eventPlay;
+            std::function<void(const std::string &)> _eventListGames;
+            std::function<void(const std::string &)> _eventListLibs;
 
             /*
             ** List games and libraries management
