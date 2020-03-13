@@ -41,6 +41,7 @@ void arc::Core::functionPlay()
         playArcade();
     });
     while (_graph->getEventType() != Event::QUIT) {
+        _game->updateGame();
         _graph->updateGameInfo(_game->getEntities());
         _graph->display();
     }
