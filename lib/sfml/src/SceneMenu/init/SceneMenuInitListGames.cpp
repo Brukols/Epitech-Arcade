@@ -30,14 +30,14 @@ static const std::string getLibName(const std::string &path)
     tmp = tmp.substr(11, tmp.size() - 14);
     return (tmp);
 }
-#include <iostream>
+
 void arc::SceneMenu::initButtonsListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct)
 {
     int y = 440;
     _buttonsListGames.clear();
 
     std::for_each(games.begin(), games.end(), [this, &y, fct](const std::string &name) {
-        _buttonsListGames.push_back(initButton(getLibName(name), [this, &fct, &name]() {
+        _buttonsListGames.push_back(initButton(getLibName(name), [this, &fct, name]() {
             _eventListGames(name);
         }, y, _font));
         y += 150;

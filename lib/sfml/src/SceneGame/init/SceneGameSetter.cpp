@@ -16,7 +16,7 @@ void arc::SceneGame::setMapSize(size_t height, size_t width)
 {
     _mapHeight = height;
     _mapWidth = width;
-    sf::RectangleShape rect(sf::Vector2f(1200 / width, 1200 / height));
+    sf::RectangleShape rect(sf::Vector2f(1200 / width, 900 / height));
     _cell = rect;
 }
 

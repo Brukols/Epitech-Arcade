@@ -108,7 +108,7 @@ void arc::Graphical::setVisualAssets(const std::map<char, std::pair<std::string,
 
 void arc::Graphical::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap)
 {
-    _entities = gameMap;
+    dynamic_cast<SceneGame *>(_scenes[GAME].get())->updateGameInfo(gameMap);
 }
 
 void arc::Graphical::setMapSize(size_t height, size_t width)

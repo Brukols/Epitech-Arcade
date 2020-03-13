@@ -35,12 +35,13 @@ void arc::Core::functionPlay()
     // _graph->setFont(_game->getFont());
     // _graph->setMusic(_game->getMusic());
     _graph->setVisualAssets(_game->getVisualAssets());
+    _graph->setMapSize(_game->getMapHeight(), _game->getMapWidth());
     _graph->setScene(arc::IGraphical::GAME);
     _graph->setFunctionMenu([this]() {
         playArcade();
     });
     while (_graph->getEventType() != Event::QUIT) {
-        // _graph->updateGameInfo(_game->getEntities());
+        _graph->updateGameInfo(_game->getEntities());
         _graph->display();
     }
 }
