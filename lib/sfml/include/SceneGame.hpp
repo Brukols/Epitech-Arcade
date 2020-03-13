@@ -36,6 +36,8 @@ namespace arc
             void setMapSize(size_t height, size_t width);
             void updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap);
 
+            void setControls(const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &controls);
+
         private:
             void eventButtons(sf::RenderWindow &window, sf::Event &event);
 
@@ -57,6 +59,8 @@ namespace arc
             sf::RectangleShape _cell;
             std::map<std::string, sf::Texture> _textureMap;
             std::vector<std::shared_ptr<Entity>> _gameMap;
+
+            std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> _controls;
     };
 }
 

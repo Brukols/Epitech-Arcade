@@ -10,7 +10,7 @@
 void arc::SceneGame::displayGame(sf::RenderWindow &window)
 {
     std::for_each(_gameMap.begin(), _gameMap.end(), [this, &window](std::shared_ptr<Entity> entity) {
-        if (!entity.get()->spritePath.empty()) {
+        if (entity.get()->spritePath.empty()) {
             sf::Sprite sprite;
             if (!_textureMap.count(entity.get()->spritePath)) {
                 _textureMap[entity.get()->spritePath].loadFromFile(entity.get()->spritePath);

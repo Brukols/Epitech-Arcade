@@ -24,3 +24,8 @@ void arc::SceneGame::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &
 {
     _gameMap = gameMap;
 }
+
+void arc::SceneGame::setControls(const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &controls)
+{
+    _controls = controls;
+}
