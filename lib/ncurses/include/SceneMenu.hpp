@@ -25,6 +25,9 @@ namespace arc
 
             void setFunctionExit(std::function<void()> fct);
 
+            void initButtonsListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct);
+            void initButtonsListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct);
+
         private:
             std::function<void()> _eventFunctionExit;
     };
