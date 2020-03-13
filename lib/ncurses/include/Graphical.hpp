@@ -19,7 +19,7 @@ namespace arc
             Graphical();
             ~Graphical();
 
-                    /*
+            /*
             ** Override methods for IGraphical
             */
 
@@ -59,7 +59,7 @@ namespace arc
             */
 
         private:
-            WINDOW *win;
+            std::shared_ptr<WINDOW> _win;
 
             std::map<Scene, std::unique_ptr<IScene>> _scenes;
 
@@ -78,8 +78,6 @@ namespace arc
             arc::Event::Key _actualKeyPress = arc::Event::Key::NONE;
 
             arc::IGraphical::Scene _actualScene = arc::IGraphical::Scene::MAIN_MENU;
-
-            sf::Font _font;
 
             std::vector<std::pair<std::string, std::string>> _infoHowToPlay;
             std::vector<std::string> _infoGameStat;

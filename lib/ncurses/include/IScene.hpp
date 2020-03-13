@@ -8,6 +8,9 @@
 #ifndef ISCENE_HPP
 #define ISCENE_HPP
 
+#include <ncurses.h>
+#include "Utils.hpp"
+
 namespace arc
 {
     class IScene {
@@ -15,7 +18,7 @@ namespace arc
 
             virtual void init() = 0;
             virtual void display(WINDOW *win) = 0;
-            virtual void event(WINDOW *win, char _actualEventType, char _actualKeyPress) = 0;
+            virtual void event(WINDOW *win, arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress) = 0;
 
         protected:
         private:
