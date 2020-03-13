@@ -29,6 +29,8 @@ void arc::Rectangle::setOutlineColor(int r, int g, int b)
     _outlineColor.b = b;
 }
 
+
+
 void arc::Rectangle::display()
 {
     for (size_t h = 0; h < _height; h++) {

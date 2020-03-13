@@ -29,6 +29,8 @@ namespace arc
         private:
             Rect _rect;
             std::function<void()> _event;
+
+            
     };
 } // namespace arc
 
