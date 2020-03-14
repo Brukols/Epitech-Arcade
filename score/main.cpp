@@ -89,19 +89,53 @@ void print_score(myVector score_vector)
     }
 }
 
+std::vector<std::pair<std::string, std::string>> getScores()
+{
+    /*
+    ** 1 - Ouvre le fichier
+    ** 2 - Si tu n'y arrives pas -> on va throw une exception mais pour l'instant return juste un vector avec rien de dedans
+    ** 3 - Si il n'existe pas, tu le créé
+    ** 4 - Tu lis tout le fichier et tu mets dans un vector (on s'en fout pour le moment de l'ordre)
+    ** 5 - Tu trie le vector que tu as lu avec la fonction sort (Recherche comment elle se fait, tu vas surement devoir faire un overload d'opérateur mais je ne suis pas sûr)
+    ** 6 - Tu le renvoie... logique ^^
+    */
+}
+
+void insertScore(const std::string &name, const std::string &score)
+{
+    /*
+    ** 1 - Appelle la fonction getScores pour récupérer les scores
+    ** 2 - Une fois les scores récupérer (ils sont triés), tu insert le nouveau score
+    **     1 - Si le vector est plus grand que 10 tu supprimes le dernier et tu rajoutes le score au vector (on s'en fout de l'ordre)
+    **     2 - Si le vecotr est moins grand que 10, tu rajoutes juste le score au dernier
+    ** 3 - Tu écris le vector dans ton fichier en écrasant la données qui sont déjà insérées
+    */
+}
+
+/*
+** Pour le fichier la convention est simple: "nom":"score" (n'oublies pas de rajouter les quotes)
+** Si le fichier est mauvais, n'oublies pas de faire une gestion d'erreur en gros si tu lis: "nom":"score ce n'est pas bon
+*/
+
+/*
+** Pour le nommage des variables et des fonctions, tout en camelCase ! Pas de snake_case et la PascalCase est pour le nom des classes
+*/
+
+/*
+** Autres choses, force toi à utilisez les fonctions de la librairies <alogrithm>, pour l'opti est c'est mieux
+** Par exemple, pour parcourir un vector tu vas faire un :
+** std::for_each(myVector.begin(), myVector.end(), [](std::pair<std::string, std::string) &pair) {
+** 
+** });
+*/
+
 //sauvgarde vector dans le fichier.
 int main(int ac, char **av)
 {
     myVector score_vector;
     int cpt = 0;
 
-    std::string surname = "Luke";
-    std::string score = "700";
     score_vector = load_score();
-    print_score(score_vector);
-
-    score_vector = save_score(surname, score, score_vector);
-
     print_score(score_vector);
     return (0);
 }
