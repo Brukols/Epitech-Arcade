@@ -20,13 +20,21 @@ static arc::Button initButton(const std::string &name, const std::function<void(
     return (button);
 }
 
+static const std::string getLibName(const std::string &path)
+{
+    std::string tmp = path.substr(path.find("lib_arcade_"), path.length());
+
+    tmp = tmp.substr(11, tmp.size() - 14);
+    return (tmp);
+}
+
 void arc::SceneMenu::initButtonsListLibraries(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct)
 {
     int y = 27;
     _buttonsListLibraries.clear();
 
     std::for_each(games.begin(), games.end(), [this, &y, fct](const std::string &name) {
-        _buttonsListLibraries.push_back(initButton(name, [this]() {}, y));
+        _buttonsListLibraries.push_back(initButton(getLibName(name), [this]() {}, y));
         y += 10;
     });
 }
