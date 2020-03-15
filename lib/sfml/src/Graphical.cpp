@@ -106,9 +106,6 @@ void arc::Graphical::setVisualAssets(const std::map<char, std::pair<std::string,
     (void)sprites;
 }
 
-<<<<<<< HEAD
-void arc::Graphical::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &entities)
-=======
 void arc::Graphical::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap)
 {
     static_cast<SceneGame *>(_scenes[GAME].get())->updateGameInfo(gameMap);
@@ -120,7 +117,6 @@ void arc::Graphical::setMapSize(size_t height, size_t width)
 }
 
 void arc::Graphical::setGameTitle(const std::string &game)
->>>>>>> master
 {
     (void)game;
 }
