@@ -14,7 +14,7 @@ static arc::Button initButton(const std::string &name, const std::function<void 
     rect.setFillColor(sf::Color(120, 20, 20, 255));
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(6);
-    rect.setPosition(sf::Vector2f(1360, y));
+    rect.setPosition(sf::Vector2f(150, y));
     arc::Button button(fct, rect, name, font);
     button.setHoverColor(sf::Color(150, 50, 50, 255));
     button.setColorSelect(sf::Color(150, 50, 50, 255), sf::Color(20, 150, 20, 255), sf::Color(150, 50, 50, 255));

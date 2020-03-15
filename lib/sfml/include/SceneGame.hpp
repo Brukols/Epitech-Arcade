@@ -42,8 +42,6 @@ namespace arc
             void eventButtons(sf::RenderWindow &window, sf::Event &event);
 
             void displayGame(sf::RenderWindow &window);
-            void displayMap(sf::RenderWindow &window);
-            void displayEntities(sf::RenderWindow &window);
 
         private:
             std::vector<Button> _buttons;

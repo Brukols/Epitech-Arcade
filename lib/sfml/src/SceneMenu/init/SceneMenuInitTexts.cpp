@@ -31,7 +31,7 @@ static arc::Text initTextChooseGame(const sf::Font &font)
     text.setFillColor(sf::Color::White);
     text.setOutlineThickness(2);
     text.setOutlineColor(sf::Color::Red);
-    text.setPosition(sf::Vector2f(1410, 330));
+    text.setPosition(sf::Vector2f(190, 330));
     return (arc::Text(font, text));
 }
 
@@ -45,7 +45,7 @@ static arc::Text initTextChooseLibrary(const sf::Font &font)
     text.setFillColor(sf::Color::White);
     text.setOutlineThickness(2);
     text.setOutlineColor(sf::Color::Blue);
-    text.setPosition(sf::Vector2f(190, 330));
+    text.setPosition(sf::Vector2f(1410, 330));
     return (arc::Text(font, text));
 }
 
