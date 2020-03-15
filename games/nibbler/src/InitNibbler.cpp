@@ -7,8 +7,13 @@
 
 #include "Nibbler.hpp"
 
+#include <iostream>
+
 void Nibbler::initNibbler()
 {
+    _start = std::chrono::system_clock::now();
+    _end = std::chrono::system_clock::now();
+    _title = "Nibbler";
     _height = 75;
     _width = 100;
     _font = "./resources/fonts/Raleway-Light.ttf";
@@ -35,11 +40,12 @@ void Nibbler::initSnake()
         snakeEntity->spritePath = "";
         snakeEntity->backgroundColor = Color{85, 107, 47, 255};
         snakeEntity->orientation = Orientation::LEFT;
-        float x = ((80/2) - 4 ) + i;
-        float y = (80/2) + i;
+        snakeEntity->x = ((_width/2) - 4 ) + i;
+        snakeEntity->y = (_height/2);
         _entities.push_back(snakeEntity);
         _snake.push_back(snakeEntity);
     }
+    _snake.front()->backgroundColor = Color {127, 191, 63, 255};
 }
 
 void Nibbler::initApple()
@@ -80,41 +86,80 @@ void Nibbler::initVisualAssets()
 void Nibbler::initControls()
 {
     _controls[std::pair<Event::Type, Event::Key>(Event::KEY_PRESSED, Event::LEFT)] = [this]() -> void {
-        if (_snake.front()->orientation == Orientation::UP)
+        if (_snake.front()->orientation == Orientation::UP) {
             _snake.front()->orientation = Orientation::LEFT;
-        if (_snake.front()->orientation == Orientation::RIGHT)
+            moveSnake();
+        } else if (_snake.front()->orientation == Orientation::RIGHT) {
             _snake.front()->orientation = Orientation::UP;
-        if (_snake.front()->orientation == Orientation::DOWN)
+            moveSnake();
+        } else if (_snake.front()->orientation == Orientation::DOWN) {
             _snake.front()->orientation = Orientation::RIGHT;
-        if (_snake.front()->orientation == Orientation::LEFT)
+            moveSnake();
+        } else if (_snake.front()->orientation == Orientation::LEFT) {
             _snake.front()->orientation = Orientation::DOWN;
-        moveSnake();
+            moveSnake();
+        }
     };
     _controls[std::pair<Event::Type, Event::Key>(Event::KEY_PRESSED, Event::RIGHT)] = [this]() -> void {
-        if (_snake.front()->orientation == Orientation::UP)
+        if (_snake.front()->orientation == Orientation::UP) {
             _snake.front()->orientation = Orientation::RIGHT;
-        if (_snake.front()->orientation == Orientation::RIGHT)
+            moveSnake();
+        } else if (_snake.front()->orientation == Orientation::RIGHT) {
             _snake.front()->orientation = Orientation::DOWN;
-        if (_snake.front()->orientation == Orientation::DOWN)
+            moveSnake();
+        } else if (_snake.front()->orientation == Orientation::DOWN) {
             _snake.front()->orientation = Orientation::LEFT;
-        if (_snake.front()->orientation == Orientation::LEFT)
+            moveSnake();
+        } else if (_snake.front()->orientation == Orientation::LEFT) {
             _snake.front()->orientation = Orientation::UP;
-        moveSnake();
+            moveSnake();
+        }
     };
 }
 
 void Nibbler::moveSnake()
 {
-    std::for_each(_snake.begin(), _snake.end(), [](std::shared_ptr<Entity> &s) {
-        if (s->orientation == Orientation::UP)
+    std::for_each(_snake.begin(), _snake.end(), [this](std::shared_ptr<Entity> &s) {
+        if (s->orientation == Orientation::UP) {
             s->y -= 1;
-        if (s->orientation == Orientation::RIGHT)
+        }
+        if (s->orientation == Orientation::RIGHT) {
             s->x += 1;
-        if (s->orientation == Orientation::DOWN)
+        }
+        if (s->orientation == Orientation::DOWN) {
             s->y += 1;
-        if (s->orientation == Orientation::LEFT)
+        }
+        if (s->orientation == Orientation::LEFT) {
             s->x -= 1;
+        }
     });
+    updateOrientationSnake();
+    if (doYouEat() == true) {
+        initApple();
+        std::shared_ptr<Entity> bodySnake(new Entity);
+        _score += 1;
+        //agrandir le snake
+        std::shared_ptr<Entity> tmp = _snake.back();
+        bodySnake->spritePath = "";
+        bodySnake->orientation = tmp->orientation;
+        bodySnake->backgroundColor = tmp->backgroundColor;
+        if (bodySnake->orientation == Orientation::UP) {
+            bodySnake->x = tmp->x;
+            bodySnake->y = tmp->y - 1;
+        } else if (bodySnake->orientation == Orientation::RIGHT) {
+            bodySnake->x = tmp->x -1;
+            bodySnake->y = tmp->y;
+        } else if (bodySnake->orientation == Orientation::LEFT) {
+            bodySnake->x = tmp->x + 1;
+            bodySnake->y = tmp->y;
+        } else if (bodySnake->orientation == Orientation::DOWN) {
+            bodySnake->x = tmp->x;
+            bodySnake->y = tmp->y + 1;
+        }
+        _snake.push_back(bodySnake);
+        _entities.push_back(bodySnake);
+        //initialisation de sound si le serpent mange quelque chose
+    }
 }
 
 void Nibbler::initGameControls()

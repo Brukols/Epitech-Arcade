@@ -10,6 +10,9 @@
 
 #include "IGame.hpp"
 
+#include <ctime>
+#include <chrono>
+
 using namespace arc;
 
 namespace arc {
@@ -37,7 +40,11 @@ namespace arc {
             void updateGame();
 
             bool isGameOver() const;
+            const std::string & getTitle() const;
         protected:
+            std::chrono::time_point<std::chrono::system_clock> _start;
+            std::chrono::time_point<std::chrono::system_clock> _end;
+            int _elapsedMilliseconds;
 
             size_t _height;
             size_t _width;
@@ -45,6 +52,7 @@ namespace arc {
             std::string _music;
             std::string _sound;
             std::string _strScore;
+            std::string _title;
             int _score;
 
             std::map<char, std::pair<std::string, Color>> _visualAssets;
@@ -70,6 +78,7 @@ namespace arc {
 
             bool doYouEat();
             void moveSnake();
+            void updateOrientationSnake();
     };
 
 }

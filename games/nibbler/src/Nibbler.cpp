@@ -72,6 +72,11 @@ const std::vector<std::string> &Nibbler::getGameStatsFormatString() const
     return _gameStats;
 }
 
+const std::string &Nibbler::getTitle() const
+{
+    return _title;
+}
+
 void Nibbler::restart()
 {
     initNibbler();
@@ -79,49 +84,50 @@ void Nibbler::restart()
 
 void Nibbler::updateGame()
 {
-    std::shared_ptr<Entity> bodySnake(new Entity);
-    if (doYouEat() == true) {
-        _score += 1;
-        std::shared_ptr<Entity> tmp = _snake.back();
-        bodySnake->spritePath = "";
-        bodySnake->orientation = tmp->orientation;
-        bodySnake->backgroundColor = tmp->backgroundColor;
-        if (bodySnake->orientation == Orientation::UP) {
-            bodySnake->x = tmp->x;
-            bodySnake->y = tmp->y - 1;
-        } else if (bodySnake->orientation == Orientation::RIGHT) {
-            bodySnake->x = tmp->x -1;
-            bodySnake->y = tmp->y;
-        } else if (bodySnake->orientation == Orientation::LEFT) {
-            bodySnake->x = tmp->x + 1;
-            bodySnake->y = tmp->y;
-        } else if (bodySnake->orientation == Orientation::DOWN) {
-            bodySnake->x = tmp->x;
-            bodySnake->y = tmp->y + 1;
-        }
+    _end = std::chrono::system_clock::now();
+    // manageClock();
+    if (std::chrono::duration_cast<std::chrono::milliseconds>(_end - _start).count() > 200) {
+        _start = std::chrono::system_clock::now();
+        // updateOrientationSnake();
+        moveSnake();
     }
-    //manger
-    //agrandir le snake
-
-    //initialisation de sound si le serpent mange quelque chose.
-    //mise à jour orientation snake
+    //mise à jour orientation snake   //clock
 }
 
 bool Nibbler::doYouEat()
 {
-    auto const &ptr = std::find_if(_apple.begin(), _apple.end(), [this] (std::shared_ptr<Entity> &p) {
-        if ((p->x == _snake.front()->x) && (p->y == _snake.front()->y)) {
-            return true;
+    auto const &ptr = std::find_if(_entities.begin(), _entities.end(), [this] (std::shared_ptr<Entity> &p) {
+        for (size_t i = 0; i < _apple.size(); i++) {
+            if (p == _apple[i]) {
+                if ((p->x == _snake.front()->x) && (p->y == _snake.front()->y)) {
+                    return true;
+                }
+            }
         }
         return false;
     });
-    if (ptr == _snake.end())
+    if (ptr == _entities.end())
         return false;
-    _apple.erase(ptr);
+    _entities.erase(ptr);
+    _apple.clear();
     return true;
+}
+
+void Nibbler::updateOrientationSnake()
+{
+    int i = 0;
+
+    for (i = _snake.size() - 1; i > 0; i--) {
+        _snake[i]->orientation = _snake[i - 1]->orientation;
+    }
 }
 
 bool Nibbler::isGameOver() const
 {
     //Une partie du serpent touche un bord
+}
+
+extern "C" arc::IGame *instance_ctor()
+{
+    return (new arc::Nibbler());
 }
