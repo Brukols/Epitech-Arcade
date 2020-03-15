@@ -33,6 +33,7 @@ arc::Graphical::Graphical()
     dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionExit([this]() {
         _exit = true;
     });
+    _scenes[MAIN_MENU].get()->init();
     // dynamic_cast<SceneGame *>(_scenes[GAME].get())->eventFunctionBackToMenu([this]() {
     //     setScene(MAIN_MENU);
     // });
@@ -138,7 +139,7 @@ void arc::Graphical::setGameTitle(const std::string &game)
 
 arc::Event::Type arc::Graphical::getEventType() const
 {
-    return (_actualEventType);
+    return (_exit == true ? arc::Event::Type::QUIT : _actualEventType);
 }
 
 arc::Event::Key arc::Graphical::getKeyPressed() const

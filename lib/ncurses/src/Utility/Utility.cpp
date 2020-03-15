@@ -12,6 +12,7 @@
 void arc::Utility::display(const std::string &text, int x, int y, int noPair)
 {
     attron(COLOR_PAIR(noPair));
+    attron(A_BOLD);
     for (size_t i = 0; i < text.size(); y++, i++) {
         size_t tmp_x = x;
         for (; text[i] != '\n' && i < text.size(); i++, tmp_x++) {

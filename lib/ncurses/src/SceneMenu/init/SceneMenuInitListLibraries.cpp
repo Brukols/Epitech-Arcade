@@ -9,11 +9,14 @@
 
 static arc::Button initButton(const std::string &name, const std::function<void()> &fct, int y)
 {
-    arc::Rectangle rect(5, 20, COLOR_BLUE, COLOR_BLUE);
+    arc::Rectangle rect(5, 20, COLOR_BLUE, COLOR_BLACK);
 
     rect.setPosition(168, y);
+    rect.setOutlineColors(COLOR_WHITE, COLOR_BLUE);
+    rect.setColorsSelect(COLOR_BLUE, COLOR_BLUE);
     arc::Button button(name, rect, fct);
     button.setColors(COLOR_WHITE, COLOR_BLACK);
+    button.setColorsTextSelect(COLOR_WHITE, COLOR_BLUE);
     return (button);
 }
 

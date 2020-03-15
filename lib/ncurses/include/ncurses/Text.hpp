@@ -22,6 +22,10 @@ namespace arc
             void setPosition(int x, int y);
             void display();
 
+            void setColorsTextSelect(int textColor, int bgColor);
+
+            void setSelect(bool select);
+
         private:
             std::string _text;
 
@@ -29,6 +33,9 @@ namespace arc
 
             int _x;
             int _y;
+
+            int _noPairTextSelect = -1;
+            bool _select = false;
     };
 };
 

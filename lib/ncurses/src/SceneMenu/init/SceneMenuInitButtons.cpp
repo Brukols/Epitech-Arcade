@@ -9,9 +9,10 @@
 
 arc::Button initPlayButton(std::function<void()> &event)
 {
-    arc::Rectangle rect(5, 20, COLOR_BLUE, COLOR_BLUE);
+    arc::Rectangle rect(5, 20, COLOR_BLUE, COLOR_BLACK);
 
     rect.setPosition(100, 25);
+    rect.setOutlineColors(COLOR_WHITE, COLOR_WHITE);
     arc::Button button("Play", rect, event);
     button.setColors(COLOR_WHITE, COLOR_BLACK);
     return (button);
@@ -19,9 +20,10 @@ arc::Button initPlayButton(std::function<void()> &event)
 
 arc::Button initExitButton(std::function<void()> &event)
 {
-    arc::Rectangle rect(5, 20, COLOR_BLUE, COLOR_BLUE);
+    arc::Rectangle rect(5, 20, COLOR_BLUE, COLOR_BLACK);
 
     rect.setPosition(100, 35);
+    rect.setOutlineColors(COLOR_WHITE, COLOR_WHITE);
     arc::Button button("Exit", rect, event);
     button.setColors(COLOR_WHITE, COLOR_BLACK);
     return (button);
@@ -33,7 +35,7 @@ void arc::SceneMenu::initButtons()
         std::vector<std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>> buttons;
 
         buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initPlayButton, [this]() {}));
-        buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initExitButton, [this]() {}));
+        buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initExitButton, _eventFunctionExit));
         return (buttons);
     }();
 

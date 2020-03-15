@@ -25,6 +25,15 @@ namespace arc
             void display();
             // void setHoverColors(int textColor, int bgColor);
 
+            void toggleSelect();
+            void resetSelect();
+            bool isSelect() const;
+            void click();
+            bool isMouseHover(size_t x, size_t y) const;
+
+            void setColorsSelect(int textColor, int bgColor);
+            void setColorsTextSelect(int textColor, int bgColor);
+
         private:
             std::string _name;
             Rectangle _rect;
@@ -32,6 +41,10 @@ namespace arc
 
             Text _text = Text("", COLOR_WHITE, COLOR_BLACK);
             int _noPair;
+
+            int _noPairSelect = -1;
+
+            bool _select;
     };
 } // namespace arc
 

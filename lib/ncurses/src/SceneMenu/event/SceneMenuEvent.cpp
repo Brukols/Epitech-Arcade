@@ -18,7 +18,7 @@ void arc::SceneMenu::event(arc::Event::Type &_actualEventType, arc::Event::Key &
     if (c == KEY_MOUSE) {
         MEVENT event;
         getmouse(&event);
-        mvprintw(50, 0, "%d %d\n", event.x, event.y);
+        eventButtons(event);
     }
     (void)_actualKeyPress;
 }

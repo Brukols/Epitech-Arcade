@@ -26,7 +26,7 @@ namespace arc
             void display();
             void event(arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress);
 
-            void setFunctionExit(std::function<void()> fct);
+            void setFunctionExit(const std::function<void()> fct);
 
             void setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen);
             void setListLibraries(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen);
@@ -37,6 +37,10 @@ namespace arc
             void initRects();
             void initTexts();
             void initButtons();
+
+            void eventButtons(MEVENT event);
+            void resetListGames();
+            void resetListLibraries();
 
         private:
             std::function<void()> _eventFunctionExit;

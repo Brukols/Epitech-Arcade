@@ -21,6 +21,9 @@ namespace arc
             ~Rectangle();
 
             void setPosition(size_t x, size_t y);
+            void setOutlineColors(int textColor, int bgColor);
+            void setColorsSelect(int textColor, int bgColor);
+            void setSelect(bool select);
 
             void display();
 
@@ -29,7 +32,6 @@ namespace arc
             const size_t &getPosX() const;
             const size_t &getPosY() const;
 
-        protected:
         private:
             size_t _height;
             size_t _width;
@@ -38,6 +40,10 @@ namespace arc
             size_t _y;
 
             int _noPair;
+            int _noPairOutline = -1;
+            int _noPairSelect = -1;
+
+            bool _select = false;
     };
 };
 

@@ -9,7 +9,6 @@
 
 arc::SceneMenu::SceneMenu()
 {
-    init();
 }
 
 arc::SceneMenu::~SceneMenu()

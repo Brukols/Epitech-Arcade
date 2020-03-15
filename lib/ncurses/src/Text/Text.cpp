@@ -24,5 +24,15 @@ void arc::Text::setPosition(int x, int y)
 
 void arc::Text::display()
 {
-    Utility::display(_text, _x, _y, _noPair);
+    Utility::display(_text, _x, _y, (_select == true && _noPairTextSelect != -1 ? _noPairTextSelect : _noPair));
+}
+
+void arc::Text::setSelect(bool select)
+{
+    _select = select;
+}
+
+void arc::Text::setColorsTextSelect(int textColor, int bgColor)
+{
+    _noPairTextSelect = Utility::generatePairColor(textColor, bgColor);
 }
