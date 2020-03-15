@@ -10,7 +10,7 @@
 #include "Utils.hpp"
 #include <iostream>
 #include "ncurses/SceneMenu.hpp"
-
+#include <stdio.h>
 arc::Graphical::Graphical()
 {
     initscr();
@@ -27,6 +27,7 @@ arc::Graphical::Graphical()
     nodelay(stdscr, TRUE);
     keypad(stdscr, TRUE);
     curs_set(0);
+    mousemask(ALL_MOUSE_EVENTS, NULL);
     _scenes[MAIN_MENU] = std::unique_ptr<IScene>(new SceneMenu());
     // _scenes[GAME] = std::unique_ptr<IScene>(new SceneGame());
     dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionExit([this]() {
@@ -44,12 +45,12 @@ arc::Graphical::~Graphical()
 
 void arc::Graphical::setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen)
 {
-    // dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListGames(games, fct, chosen);
+    dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListGames(games, fct, chosen);
 }
 
 void arc::Graphical::setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen)
 {
-    // dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListLibraries(libraries, fct, chosen);
+    dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListLibraries(libraries, fct, chosen);
 }
 
 void arc::Graphical::setScores(const std::vector<std::pair<std::string, std::string>> &scores)

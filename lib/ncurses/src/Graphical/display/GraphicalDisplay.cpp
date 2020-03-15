@@ -9,6 +9,7 @@
 
 void arc::Graphical::display()
 {
-    _scenes[_actualScene]->display(_win.get());
-    _scenes[_actualScene]->event(_win.get(), _actualEventType, _actualKeyPress);
+    _scenes[_actualScene]->display();
+    _scenes[_actualScene]->event(_actualEventType, _actualKeyPress);
+    refresh();
 }

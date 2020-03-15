@@ -17,8 +17,8 @@ namespace arc
         public:
 
             virtual void init() = 0;
-            virtual void display(WINDOW *win) = 0;
-            virtual void event(WINDOW *win, arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress) = 0;
+            virtual void display() = 0;
+            virtual void event(arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress) = 0;
 
         protected:
         private:

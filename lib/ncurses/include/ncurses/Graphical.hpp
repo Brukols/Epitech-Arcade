@@ -59,7 +59,6 @@ namespace arc
             */
 
         private:
-            std::shared_ptr<WINDOW> _win;
 
             std::map<Scene, std::unique_ptr<IScene>> _scenes;
 
