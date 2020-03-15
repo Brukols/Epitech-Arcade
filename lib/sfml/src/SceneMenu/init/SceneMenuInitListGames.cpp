@@ -7,19 +7,28 @@
 
 #include "SceneMenu.hpp"
 
-static arc::Button initButton(const std::function<void (const std::string &)> &fct, int y)
+static arc::Button initButton(const std::string &name, const std::function<void ()> &fct, int y, sf::Font &font)
 {
     sf::RectangleShape rect(sf::Vector2f(320, 70));
 
     rect.setFillColor(sf::Color(120, 20, 20, 255));
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(6);
-    rect.setPosition(sf::Vector2f(1360, y));
-    arc::Button button(std::function<void()>(), rect);
+    rect.setPosition(sf::Vector2f(150, y));
+    arc::Button button(fct, rect, name, font);
     button.setHoverColor(sf::Color(150, 50, 50, 255));
     button.setColorSelect(sf::Color(150, 50, 50, 255), sf::Color(20, 150, 20, 255), sf::Color(150, 50, 50, 255));
     (void)fct;
+    button.setActivate(false);
     return (button);
+}
+
+static const std::string getLibName(const std::string &path)
+{
+    std::string tmp = path.substr(path.find("lib_arcade_"), path.length());
+
+    tmp = tmp.substr(11, tmp.size() - 14);
+    return (tmp);
 }
 
 void arc::SceneMenu::initButtonsListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct)
@@ -28,33 +37,9 @@ void arc::SceneMenu::initButtonsListGames(const std::vector<std::string> &games,
     _buttonsListGames.clear();
 
     std::for_each(games.begin(), games.end(), [this, &y, fct](const std::string &name) {
-        (void)name;
-        _buttonsListGames.push_back(initButton(fct, y));
-        y += 150;
-    });
-}
-
-static arc::Text initText(const std::string name, sf::Font &font, int y)
-{
-    sf::Text text;
-
-    text.setFont(font);
-    text.setString(name);
-    text.setCharacterSize(30);
-    text.setFillColor(sf::Color::White);
-    text.setOutlineThickness(2);
-    text.setOutlineColor(sf::Color::Black);
-    text.setPosition(sf::Vector2f(1480, y));
-    return (arc::Text(font, text));
-}
-
-void arc::SceneMenu::initTextsListGames(const std::vector<std::string> &games)
-{
-    int y = 450;
-    _textsListGames.clear();
-
-    std::for_each(games.begin(), games.end(), [this, &y](const std::string &name) {
-        _textsListGames.push_back(initText(name, _font, y));
+        _buttonsListGames.push_back(initButton(getLibName(name), [this, &fct, name]() {
+            _eventListGames(name);
+        }, y, _font));
         y += 150;
     });
 }

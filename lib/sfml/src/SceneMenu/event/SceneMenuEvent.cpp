@@ -32,10 +32,19 @@ void arc::SceneMenu::buttonsEvent(sf::RenderWindow &window, sf::Event &event)
         }
     });
 
+    std::for_each(_buttonEnterUsername.begin(), _buttonEnterUsername.end(), [&window](Button &button) {
+        if (button.isMouseHover(sf::Mouse::getPosition())) {
+            button.clickButton();
+        }
+    });
+
     std::for_each(_buttonsListGames.begin(), _buttonsListGames.end(), [this, &window](Button &button) {
         if (button.isMouseHover(sf::Mouse::getPosition())) {
             resetButtonsListGames();
             button.toggleSelect();
+            if (button.isSelect()) {
+                button.clickButton();
+            }
         }
     });
     std::for_each(_buttonsListLibraries.begin(), _buttonsListLibraries.end(), [this, &window](Button &button) {
@@ -44,6 +53,27 @@ void arc::SceneMenu::buttonsEvent(sf::RenderWindow &window, sf::Event &event)
             button.toggleSelect();
         }
     });
+}
+
+static void enteredText(std::vector<arc::Input> &input, sf::Event &event)
+{
+    std::for_each(input.begin(), input.end(), [&event](arc::Input &input) {
+        if (input.isFocus()) {
+            input.addLetter(event);
+        }
+    });
+}
+
+void arc::SceneMenu::inputEvent(sf::RenderWindow &window, sf::Event &event)
+{
+    (void)window;
+    if (event.type != sf::Event::TextEntered)
+        return;
+    if (event.text.unicode == 13) {
+        _buttonEnterUsername[0].clickButton();
+        return;
+    }
+    enteredText(_inputs, event);
 }
 
 void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress)
@@ -57,6 +87,8 @@ void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
             _actualEventType = arc::Event::QUIT;
             return;
         }
+        buttonsEvent(window, event);
+        inputEvent(window, event);
         if (event.type == sf::Event::KeyPressed) {
             _actualEventType = arc::Event::KEY_PRESSED;
             _actualKeyPress = Utility::getKey(event);
@@ -69,7 +101,6 @@ void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
             if (_actualKeyPress != arc::Event::Key::NONE)
                 return;
         }
-        buttonsEvent(window, event);
     }
     _actualEventType = arc::Event::Type::NO_EVENT;
     _actualKeyPress = arc::Event::Key::NONE;

@@ -13,6 +13,7 @@ SRCS	=	src/Graphical.cpp	\
 			src/button/Button.cpp	\
 			src/text/Text.cpp	\
 			src/music/GraphicalMusic.cpp	\
+			src/input/Input.cpp	\
 			src/SceneMenu/SceneMenu.cpp	\
 			src/SceneMenu/init/SceneMenuInit.cpp	\
 			src/SceneMenu/init/SceneMenuInitButtons.cpp	\
@@ -20,9 +21,23 @@ SRCS	=	src/Graphical.cpp	\
 			src/SceneMenu/init/SceneMenuSetter.cpp	\
 			src/SceneMenu/init/SceneMenuInitListGames.cpp	\
 			src/SceneMenu/init/SceneMenuInitListLibraries.cpp	\
+			src/SceneMenu/init/SceneMenuInitInput.cpp	\
+			src/SceneMenu/init/SceneMenuInitRects.cpp	\
+			src/SceneMenu/init/SceneMenuInitImages.cpp	\
 			src/SceneMenu/display/SceneMenuDisplay.cpp	\
 			src/SceneMenu/event/SceneMenuEvent.cpp		\
+			src/SceneMenu/event/SceneMenuEventButtonPlay.cpp		\
+			src/SceneMenu/event/SceneMenuEventValidateUsername.cpp		\
+			src/SceneGame/SceneGame.cpp	\
+			src/SceneGame/init/SceneGameInit.cpp	\
+			src/SceneGame/init/SceneGameInitButtons.cpp	\
+			src/SceneGame/init/SceneGameInitRects.cpp	\
+			src/SceneGame/init/SceneGameSetter.cpp	\
+			src/SceneGame/display/SceneGameDisplay.cpp	\
+			src/SceneGame/event/SceneGameEvent.cpp	\
+			src/SceneGame/event/SceneGameEventButtons.cpp	\
 			src/Utility/Utility.cpp	\
+			src/image/Image.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)
 

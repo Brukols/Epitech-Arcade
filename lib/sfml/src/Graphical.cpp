@@ -10,13 +10,18 @@
 #include "Utils.hpp"
 #include <iostream>
 #include "SceneMenu.hpp"
+#include "SceneGame.hpp"
 
 arc::Graphical::Graphical() : _window(sf::RenderWindow(sf::VideoMode(1920, 1080, 32), " window", sf::Style::Fullscreen))
 {
     _window.setFramerateLimit(60);
     _scenes[MAIN_MENU] = std::unique_ptr<IScene>(new SceneMenu());
-    dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionExit([this]() {
+    _scenes[GAME] = std::unique_ptr<IScene>(new SceneGame());
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionExit([this]() {
         _exit = true;
+    });
+    static_cast<SceneGame *>(_scenes[GAME].get())->eventFunctionBackToMenu([this]() {
+        setScene(MAIN_MENU);
     });
 }
 
@@ -26,12 +31,12 @@ arc::Graphical::~Graphical()
 
 void arc::Graphical::setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen)
 {
-    dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListGames(games, fct, chosen);
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListGames(games, fct, chosen);
 }
 
 void arc::Graphical::setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen)
 {
-    dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListLibraries(libraries, fct, chosen);
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListLibraries(libraries, fct, chosen);
 }
 
 void arc::Graphical::setScores(const std::vector<std::pair<std::string, std::string>> &scores)
@@ -41,12 +46,12 @@ void arc::Graphical::setScores(const std::vector<std::pair<std::string, std::str
 
 void arc::Graphical::setControls(const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &controls)
 {
-    _controls = controls;
+    static_cast<SceneGame *>(_scenes[GAME].get())->setControls(controls);
 }
 
 void arc::Graphical::setFunctionPlay(const std::function<void()> &function)
 {
-    dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionPlay(function);
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionPlay(function);
 }
 
 void arc::Graphical::setFunctionRestart(const std::function<void()> &function)
@@ -77,6 +82,7 @@ arc::IGraphical::Scene arc::Graphical::getScene() const
 void arc::Graphical::setScene(Scene scene)
 {
     _actualScene = scene;
+    _scenes[_actualScene].get()->init();
 }
 
 void arc::Graphical::setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info)
@@ -100,9 +106,23 @@ void arc::Graphical::setVisualAssets(const std::map<char, std::pair<std::string,
     (void)sprites;
 }
 
+<<<<<<< HEAD
 void arc::Graphical::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &entities)
+=======
+void arc::Graphical::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap)
 {
-    _entities = entities;
+    static_cast<SceneGame *>(_scenes[GAME].get())->updateGameInfo(gameMap);
+}
+
+void arc::Graphical::setMapSize(size_t height, size_t width)
+{
+    static_cast<SceneGame *>(_scenes[GAME].get())->setMapSize(height, width);
+}
+
+void arc::Graphical::setGameTitle(const std::string &game)
+>>>>>>> master
+{
+    (void)game;
 }
 
 extern "C" arc::IGraphical *instance_ctor()

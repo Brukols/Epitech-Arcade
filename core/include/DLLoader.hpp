@@ -37,7 +37,7 @@ class DLLoader {
             T *(*function)();
 
             function = reinterpret_cast<T *(*)()>(dlsym(_handle, "instance_ctor"));
-            if (dlerror()) {
+            if (function == nullptr) {
                 throw arc::DlError(dlerror(), "getInstance");
             }
             return (function());

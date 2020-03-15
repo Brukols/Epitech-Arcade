@@ -15,7 +15,7 @@ namespace arc
     class Button
     {
         public:
-            Button(const std::function<void()> &event, const sf::RectangleShape &rect);
+            Button(const std::function<void()> &event, const sf::RectangleShape &rect, const std::string &text, const sf::Font &font);
             ~Button();
 
             bool isMouseHover(const sf::Vector2i &pos) const;
@@ -26,6 +26,8 @@ namespace arc
             void toggleSelect();
             void setColorSelect(sf::Color selectColor, sf::Color selectOutlineColor, sf::Color selectHoverColor);
             void resetSelect();
+            bool isSelect() const;
+            void setActivate(bool activate);
 
             // GETTER AND SETTER
             void setPosition(const sf::Vector2f &pos);
@@ -36,6 +38,7 @@ namespace arc
             void setOutlineThickness(int lgt);
             void setEvent(const std::function<void()> &function);
             const std::function<void()> &getEvent() const;
+            void setDisplay(bool display);
 
         private:
             sf::RectangleShape _rect;
@@ -49,6 +52,12 @@ namespace arc
             sf::Color _selectColor;
             sf::Color _selectOutlineColor;
             sf::Color _selectHoverColor;
+            std::string _str;
+
+            sf::Text _text;
+
+            bool _activate = true;
+            bool _display = true;
     };
 }
 

@@ -9,11 +9,8 @@
 #include "Utils.hpp"
 #include <iostream>
 
-arc::Event::Type arc::Graphical::getEventType()
+arc::Event::Type arc::Graphical::getEventType() const
 {
-    _scenes[_actualScene].get()->event(_window, _actualEventType, _actualKeyPress);
-    if (_exit == true)
-        return (arc::Event::Type::QUIT);
     return (_actualEventType);
 }
 

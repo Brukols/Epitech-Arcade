@@ -39,6 +39,8 @@ namespace arc {
             const std::vector<std::string> getNamesSharedLib(const std::map<std::string, bool> &map);
             const std::string getLibName(const std::string &path);
 
+            void functionPlay();
+
         private:
             std::unique_ptr<IGame> _game;
             std::unique_ptr<DLLoader<IGraphical>> _loaderGraph;

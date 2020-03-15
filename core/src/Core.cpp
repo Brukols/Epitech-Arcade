@@ -29,16 +29,37 @@ arc::Core::~Core()
 {
 }
 
+void arc::Core::functionPlay()
+{
+    _graph->setControls(_game->getControls());
+    // _graph->setFont(_game->getFont());
+    // _graph->setMusic(_game->getMusic());
+    _graph->setVisualAssets(_game->getVisualAssets());
+    _graph->setMapSize(_game->getMapHeight(), _game->getMapWidth());
+    _graph->setScene(arc::IGraphical::GAME);
+    _graph->setFunctionMenu([this]() {
+        playArcade();
+    });
+    while (_graph->getEventType() != Event::QUIT) {
+        _game->updateGame();
+        _graph->updateGameInfo(_game->getEntities());
+        _graph->display();
+    }
+}
+
 void arc::Core::playArcade()
 {
-    _graph->setFont("resources/fonts/Raleway-Bold.ttf");
     _graph->setListLibraries(getNamesSharedLib(_graphs), [this](const std::string &name) {
         (void)name;
     }, -1);
     _graph->setListGames(getNamesSharedLib(_games), [this](const std::string &name) {
-        (void)name;
+        setGame(name);
     }, -1);
-    while (_graph->getEventType() != Event::QUIT && _graph->getKeyPressed() != Event::ESCAPE) {
+    _graph->setFunctionPlay([this]() {
+        functionPlay();
+    });
+
+    while (_graph->getEventType() != Event::QUIT) {
         _graph->display();
     }
 }
@@ -51,7 +72,7 @@ const std::vector<std::string> arc::Core::getNamesSharedLib(const std::map<std::
     std::vector<std::string> vector;
 
     std::for_each(map.begin(), map.end(), [&vector, this](const std::pair<std::string, bool> &pair) {
-        vector.push_back(getLibName(pair.first));
+        vector.push_back(pair.first);
     });
     return (vector);
 }

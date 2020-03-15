@@ -7,13 +7,21 @@
 
 #include "Graphical.hpp"
 
-arc::Button::Button(const std::function<void()> &event, const sf::RectangleShape &rect) : 
+arc::Button::Button(const std::function<void()> &event, const sf::RectangleShape &rect, const std::string &text, const sf::Font &font) : 
     _rect(rect),
     _event(event),
     _hoverColor(sf::Color(0, 0, 0, 0)),
     _mainColor(rect.getFillColor()),
-    _outlineColor(rect.getOutlineColor())
+    _outlineColor(rect.getOutlineColor()),
+    _str(text)
 {
+    _text.setFont(font);
+    _text.setString(text);
+    _text.setCharacterSize(30);
+    _text.setFillColor(sf::Color::White);
+    _text.setOutlineThickness(2);
+    _text.setOutlineColor(sf::Color::Black);
+    _text.setPosition(sf::Vector2f(rect.getPosition().x + (rect.getLocalBounds().width / 2 - _text.getLocalBounds().width / 2), rect.getPosition().y - 10 + (rect.getLocalBounds().height / 2 - _text.getCharacterSize() / 2)));
 }
 
 arc::Button::~Button()
@@ -30,22 +38,34 @@ bool arc::Button::isMouseHover(const sf::Vector2i &pos) const
     return (false);
 }
 
+void arc::Button::setActivate(bool activate)
+{
+    _activate = activate;
+}
+
 void arc::Button::clickButton()
 {
-    _event();
+    if (!_display)
+        return;
+    if (_activate)
+        _event();
 }
 
 void arc::Button::displayButton(sf::RenderWindow &window)
 {
-    if (isMouseHover(sf::Mouse::getPosition(window))) {
+    if (!_display)
+        return;
+    if (isMouseHover(sf::Mouse::getPosition(window)) && _activate) {
         if (_select) {
             _rect.setFillColor(_selectHoverColor);
             _rect.setOutlineColor(_selectOutlineColor);
             window.draw(_rect);
+            window.draw(_text);
         } else {
             _rect.setFillColor(_hoverColor);
             _rect.setOutlineColor(_outlineColor);
             window.draw(_rect);
+            window.draw(_text);
         }
         return;
     }
@@ -57,6 +77,7 @@ void arc::Button::displayButton(sf::RenderWindow &window)
         _rect.setOutlineColor(_outlineColor);
     }
     window.draw(_rect);
+    window.draw(_text);
 }
 
 void arc::Button::setPosition(const sf::Vector2f &pos)
@@ -97,7 +118,10 @@ void arc::Button::setHoverColor(const sf::Color &color)
 
 void arc::Button::toggleSelect()
 {
-    _select = !_select;
+    if (!_display)
+        return;
+    if (_activate)
+        _select = !_select;
 }
 
 void arc::Button::setColorSelect(sf::Color selectColor, sf::Color selectOutlineColor, sf::Color selectHoverColor)
@@ -110,4 +134,14 @@ void arc::Button::setColorSelect(sf::Color selectColor, sf::Color selectOutlineC
 void arc::Button::resetSelect()
 {
     _select = false;
+}
+
+bool arc::Button::isSelect() const
+{
+    return (_select);
+}
+
+void arc::Button::setDisplay(bool display)
+{
+    _display = display;
 }
