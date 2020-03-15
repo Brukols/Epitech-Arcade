@@ -13,6 +13,7 @@
 #include <ncurses.h>
 #include "ncurses/Rectangle.hpp"
 #include "ncurses/Text.hpp"
+#include "ncurses/Button.hpp"
 
 namespace arc
 {
@@ -33,12 +34,14 @@ namespace arc
         private:
             void initRects();
             void initTexts();
+            void initButtons();
 
         private:
             std::function<void()> _eventFunctionExit;
 
             std::vector<Rectangle> _rects;
             std::vector<Text> _texts;
+            std::vector<Button> _buttons;
     };
 };
 

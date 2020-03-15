@@ -16,4 +16,8 @@ void arc::SceneMenu::display(WINDOW *win)
     std::for_each(_texts.begin(), _texts.end(), [this](Text &text) {
         text.display();
     });
+
+    std::for_each(_buttons.begin(), _buttons.end(), [this](Button &button) {
+        button.display();
+    });
 }

@@ -10,27 +10,28 @@
 
 #include <string>
 #include <functional>
+#include "Text.hpp"
+#include <ncurses.h>
+#include "Rectangle.hpp"
 
 namespace arc
 {
-    typedef struct Rect
-    {
-        size_t top;
-        size_t left;
-        size_t bottom;
-        size_t right;
-    } Rect;
-    
     class Button {
         public:
-            Button(const std::string &name, const Rect &rect, const std::function<void()> &event);
+            Button(const std::string &name, const Rectangle &rect, const std::function<void()> &event);
             ~Button();
 
+            void setColors(int textColor, int bgColor);
+            void display();
+            // void setHoverColors(int textColor, int bgColor);
+
         private:
-            Rect _rect;
+            std::string _name;
+            Rectangle _rect;
             std::function<void()> _event;
 
-            
+            Text _text = Text("", COLOR_WHITE, COLOR_BLACK);
+            int _noPair;
     };
 } // namespace arc
 
