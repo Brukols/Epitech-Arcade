@@ -12,8 +12,11 @@ SRCS	=	src/Graphical/Graphical.cpp	\
 			src/SceneMenu/SceneMenu.cpp	\
 			src/SceneMenu/init/SceneMenuInit.cpp	\
 			src/SceneMenu/init/SceneMenuSetter.cpp	\
+			src/SceneMenu/init/SceneMenuInitRects.cpp	\
 			src/SceneMenu/display/SceneMenuDisplay.cpp	\
 			src/SceneMenu/event/SceneMenuEvent.cpp		\
+			src/Rectangle/Rectangle.cpp		\
+			src/Utility/Utility.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)
 

@@ -5,7 +5,7 @@
 ** Display
 */
 
-#include "Graphical.hpp"
+#include "ncurses/Graphical.hpp"
 
 void arc::Graphical::display()
 {

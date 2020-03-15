@@ -5,10 +5,11 @@
 ** ScneeMneu
 */
 
-#include "SceneMenu.hpp"
+#include "ncurses/SceneMenu.hpp"
 
 arc::SceneMenu::SceneMenu()
 {
+    init();
 }
 
 arc::SceneMenu::~SceneMenu()

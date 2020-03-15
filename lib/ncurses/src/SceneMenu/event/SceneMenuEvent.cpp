@@ -5,7 +5,7 @@
 ** SceneMenu
 */
 
-#include "SceneMenu.hpp"
+#include "ncurses/SceneMenu.hpp"
 #include "Utils.hpp"
 
 void arc::SceneMenu::event(WINDOW *win, arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress)

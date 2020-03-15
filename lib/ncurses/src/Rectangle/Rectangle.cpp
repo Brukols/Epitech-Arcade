@@ -5,7 +5,7 @@
 ** Rectangle
 */
 
-#include "Rectangle.hpp"
+#include "ncurses/Rectangle.hpp"
 
 arc::Rectangle::Rectangle(int height, int width) : _height(height), _width(width)
 {
@@ -28,8 +28,6 @@ void arc::Rectangle::setOutlineColor(int r, int g, int b)
     _outlineColor.g = g;
     _outlineColor.b = b;
 }
-
-
 
 void arc::Rectangle::display()
 {

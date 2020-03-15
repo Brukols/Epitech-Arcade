@@ -5,9 +5,9 @@
 ** Init
 */
 
-#include "SceneMenu.hpp"
+#include "ncurses/SceneMenu.hpp"
 
 void arc::SceneMenu::init()
 {
-    
+    initRects();
 }

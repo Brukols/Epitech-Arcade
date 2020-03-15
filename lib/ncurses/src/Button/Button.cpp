@@ -5,7 +5,7 @@
 ** Buton
 */
 
-#include "Button.hpp"
+#include "ncurses/Button.hpp"
 
 arc::Button::Button()
 {

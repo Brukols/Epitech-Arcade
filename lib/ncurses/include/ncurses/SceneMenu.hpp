@@ -11,6 +11,7 @@
 #include "IScene.hpp"
 #include <functional>
 #include <ncurses.h>
+#include "ncurses/Rectangle.hpp"
 
 namespace arc
 {
@@ -29,7 +30,12 @@ namespace arc
             void initButtonsListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct);
 
         private:
+            void initRects();
+
+        private:
             std::function<void()> _eventFunctionExit;
+
+            std::vector<Rectangle> _rects;
     };
 };
 

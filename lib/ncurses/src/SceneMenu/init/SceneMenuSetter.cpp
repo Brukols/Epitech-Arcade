@@ -5,7 +5,7 @@
 ** SceneMenuSetter
 */
 
-#include "SceneMenu.hpp"
+#include "ncurses/SceneMenu.hpp"
 
 void arc::SceneMenu::setFunctionExit(std::function<void()> fct)
 {
