@@ -6,12 +6,34 @@
 */
 
 #include "ncurses/Utility.hpp"
+#include <streambuf>
+#include <fstream>
 
-void arc::Utility::display(const std::string &text, Color &textColor, Color &bgColor, int x, int y)
+void arc::Utility::display(const std::string &text, int x, int y, int noPair)
 {
-    init_color(1, textColor.r, textColor.g, textColor.b);
-    init_color(2, bgColor.r, bgColor.g, bgColor.b);
-    init_pair(1, 1, 2);
-    attron(COLOR_PAIR(1));
-    mvprintw(x, y, text.c_str());
+    attron(COLOR_PAIR(noPair));
+    for (size_t i = 0; i < text.size(); y++, i++) {
+        size_t tmp_x = x;
+        for (; text[i] != '\n' && i < text.size(); i++, tmp_x++) {
+            mvprintw(y, tmp_x, "%c", text[i]);
+        }
+    }
+    attroff(COLOR_PAIR(noPair));
+}
+
+std::string arc::Utility::getText(const std::string &path)
+{
+    std::ifstream file(path);
+    std::string str((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    file.close();
+    return (str);
+}
+
+int arc::Utility::generatePairColor(int textColor, int bgColor)
+{
+    static int noPair = 0;
+
+    noPair++;
+    init_pair(noPair, textColor, bgColor);
+    return (noPair);
 }

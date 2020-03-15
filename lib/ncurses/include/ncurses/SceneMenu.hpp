@@ -12,6 +12,7 @@
 #include <functional>
 #include <ncurses.h>
 #include "ncurses/Rectangle.hpp"
+#include "ncurses/Text.hpp"
 
 namespace arc
 {
@@ -31,11 +32,13 @@ namespace arc
 
         private:
             void initRects();
+            void initTexts();
 
         private:
             std::function<void()> _eventFunctionExit;
 
             std::vector<Rectangle> _rects;
+            std::vector<Text> _texts;
     };
 };
 

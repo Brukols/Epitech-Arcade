@@ -15,6 +15,13 @@ arc::Graphical::Graphical()
 {
     initscr();
     start_color();
+    init_color(COLOR_WHITE, 1000, 1000, 1000);
+    init_color(COLOR_RED, 1000, 0, 0);
+    init_color(COLOR_BLUE, 0, 0, 1000);
+    init_color(COLOR_YELLOW, 1000, 1000, 0);
+    init_color(COLOR_GREEN, 0, 1000, 0);
+    init_color(COLOR_CYAN, 0, 1000, 1000);
+    init_color(COLOR_MAGENTA, 1000, 0, 1000);
     noecho();
     cbreak();
     nodelay(stdscr, TRUE);

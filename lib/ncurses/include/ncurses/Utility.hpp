@@ -16,7 +16,9 @@ namespace arc
     class Utility {
         public:
 
-            static void display(const std::string &text, Color &textColor, Color &bgColor, int x, int y);
+            static void display(const std::string &text, int x, int y, int noPair);
+            static std::string getText(const std::string &path);
+            static int generatePairColor(int textColor, int bgColor);
 
         protected:
         private:

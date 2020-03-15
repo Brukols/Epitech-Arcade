@@ -17,11 +17,9 @@ namespace arc
 {
     class Rectangle {
         public:
-            Rectangle(int height, int width);
+            Rectangle(int height, int width, int textColor, int bgColor);
             ~Rectangle();
 
-            void setBackgroundColor(int r, int g, int b);
-            void setOutlineColor(int r, int g, int b);
             void setPosition(size_t x, size_t y);
 
             void display();
@@ -34,8 +32,7 @@ namespace arc
             size_t _x;
             size_t _y;
 
-            Color _color;
-            Color _outlineColor;
+            int _noPair;
     };
 };
 

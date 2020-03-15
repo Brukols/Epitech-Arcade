@@ -7,33 +7,20 @@
 
 #include "ncurses/Rectangle.hpp"
 
-arc::Rectangle::Rectangle(int height, int width) : _height(height), _width(width)
+arc::Rectangle::Rectangle(int height, int width, int textColor, int bgColor) : _height(height), _width(width)
 {
+    _noPair = arc::Utility::generatePairColor(textColor, bgColor);
 }
 
 arc::Rectangle::~Rectangle()
 {
 }
 
-void arc::Rectangle::setBackgroundColor(int r, int g, int b)
-{
-    _color.r = r;
-    _color.g = g;
-    _color.b = b;
-}
-
-void arc::Rectangle::setOutlineColor(int r, int g, int b)
-{
-    _outlineColor.r = r;
-    _outlineColor.g = g;
-    _outlineColor.b = b;
-}
-
 void arc::Rectangle::display()
 {
     for (size_t h = 0; h < _height; h++) {
         for (size_t w = 0; w < _width; w++) {
-            Utility::display(" ", _color, _color, h, w);
+            Utility::display(" ", h, w, _noPair);
         }
     }
 }

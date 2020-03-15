@@ -9,9 +9,8 @@
 
 static arc::Rectangle initRect()
 {
-    arc::Rectangle rect(10, 10);
+    arc::Rectangle rect(10, 10, COLOR_RED, COLOR_RED);
 
-    rect.setBackgroundColor(255, 0, 0);
     return (rect);
 }
 

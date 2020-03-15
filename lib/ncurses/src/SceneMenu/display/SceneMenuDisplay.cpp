@@ -12,4 +12,8 @@ void arc::SceneMenu::display(WINDOW *win)
     std::for_each(_rects.begin(), _rects.end(), [this](Rectangle &rect) {
         rect.display();
     });
+
+    std::for_each(_texts.begin(), _texts.end(), [this](Text &text) {
+        text.display();
+    });
 }
