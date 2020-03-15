@@ -20,4 +20,5 @@ void arc::SceneMenu::event(arc::Event::Type &_actualEventType, arc::Event::Key &
         getmouse(&event);
         mvprintw(50, 0, "%d %d\n", event.x, event.y);
     }
+    (void)_actualKeyPress;
 }

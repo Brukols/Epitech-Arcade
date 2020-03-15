@@ -65,6 +65,7 @@ void arc::Graphical::setControls(const std::map<std::pair<Event::Type, Event::Ke
 
 void arc::Graphical::setFunctionPlay(const std::function<void()> &function)
 {
+    (void)function;
     // dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionPlay(function);
 }
 
@@ -111,8 +112,7 @@ void arc::Graphical::setGameStatsFormatString(const std::vector<std::string> &in
 
 void arc::Graphical::setFont(const std::string &font)
 {
-    // if (!_font.loadFromFile(font))
-    //     return; // Throw a exeception
+    (void)font;
 }
 
 void arc::Graphical::setVisualAssets(const std::map<char, std::pair<std::string, Color>> &sprites)
