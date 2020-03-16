@@ -5,7 +5,7 @@
 ** SceneGame
 */
 
-#include "SceneGame.hpp"
+#include "sfml/SceneGame.hpp"
 
 void arc::SceneGame::eventFunctionBackToMenu(std::function<void()> event)
 {

@@ -5,7 +5,7 @@
 ** InitInput
 */
 
-#include "SceneMenu.hpp"
+#include "sfml/SceneMenu.hpp"
 
 arc::Input initInputUsername(const sf::Font &font)
 {

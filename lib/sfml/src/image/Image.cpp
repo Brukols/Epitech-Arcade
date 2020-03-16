@@ -5,7 +5,7 @@
 ** Image
 */
 
-#include "Image.hpp"
+#include "sfml/Image.hpp"
 
 arc::Image::Image(const std::string &path) : _path(path)
 {

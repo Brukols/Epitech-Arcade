@@ -5,7 +5,7 @@
 ** InitImages
 */
 
-#include "SceneMenu.hpp"
+#include "sfml/SceneMenu.hpp"
 
 arc::Image initBackground()
 {

@@ -5,7 +5,7 @@
 ** SceneGame
 */
 
-#include "SceneGame.hpp"
+#include "sfml/SceneGame.hpp"
 
 arc::SceneGame::SceneGame()
 {

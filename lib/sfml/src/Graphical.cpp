@@ -6,11 +6,11 @@
 */
 
 #include <iostream>
-#include "Graphical.hpp"
+#include "sfml/Graphical.hpp"
 #include "Utils.hpp"
 #include <iostream>
-#include "SceneMenu.hpp"
-#include "SceneGame.hpp"
+#include "sfml/SceneMenu.hpp"
+#include "sfml/SceneGame.hpp"
 
 arc::Graphical::Graphical() : _window(sf::RenderWindow(sf::VideoMode(1920, 1080, 32), " window", sf::Style::Fullscreen))
 {

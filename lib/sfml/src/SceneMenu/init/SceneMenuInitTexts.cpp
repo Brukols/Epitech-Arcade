@@ -5,7 +5,7 @@
 ** INitTexts
 */
 
-#include "SceneMenu.hpp"
+#include "sfml/SceneMenu.hpp"
 
 static arc::Text initTextArcade(const sf::Font &font)
 {

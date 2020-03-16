@@ -5,7 +5,7 @@
 ** GraphicalEvent
 */
 
-#include "Graphical.hpp"
+#include "sfml/Graphical.hpp"
 #include "Utils.hpp"
 #include <iostream>
 

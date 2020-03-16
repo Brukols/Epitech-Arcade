@@ -13,9 +13,9 @@
 
 #include "IGraphical.hpp"
 #include "Utils.hpp"
-#include "Button.hpp"
-#include "Text.hpp"
-#include "IScene.hpp"
+#include "sfml/Button.hpp"
+#include "sfml/Text.hpp"
+#include "sfml/IScene.hpp"
 
 namespace arc
 {

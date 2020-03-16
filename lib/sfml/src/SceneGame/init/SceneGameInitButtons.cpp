@@ -5,7 +5,7 @@
 ** ScenGameinitbuttons
 */
 
-#include "SceneGame.hpp"
+#include "sfml/SceneGame.hpp"
 
 static arc::Button initButtonBackToMenu(const sf::Font &font, std::function<void()> &event)
 {

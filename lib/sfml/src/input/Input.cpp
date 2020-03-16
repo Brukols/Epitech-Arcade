@@ -5,7 +5,7 @@
 ** Input
 */
 
-#include "Input.hpp"
+#include "sfml/Input.hpp"
 
 arc::Input::Input(const sf::RectangleShape &rect, const sf::Text &text) : _rect(rect), _text(text)
 {

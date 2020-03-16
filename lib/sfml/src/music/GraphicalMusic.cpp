@@ -5,7 +5,7 @@
 ** GraphicalMusic
 */
 
-#include "Graphical.hpp"
+#include "sfml/Graphical.hpp"
 
 void arc::Graphical::setMusic(const std::string &music)
 {

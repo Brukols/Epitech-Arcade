@@ -5,7 +5,7 @@
 ** GraphicalDisplay
 */
 
-#include "Graphical.hpp"
+#include "sfml/Graphical.hpp"
 #include <vector>
 
 void arc::Graphical::display()

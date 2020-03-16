@@ -5,7 +5,7 @@
 ** Init button
 */
 
-#include "SceneMenu.hpp"
+#include "sfml/SceneMenu.hpp"
 
 static arc::Button initButtonPlay(std::function<void()> &event, sf::Font &font)
 {

@@ -5,7 +5,7 @@
 ** ListGames
 */
 
-#include "SceneMenu.hpp"
+#include "sfml/SceneMenu.hpp"
 
 static arc::Button initButton(const std::string &name, const std::function<void ()> &fct, int y, sf::Font &font)
 {

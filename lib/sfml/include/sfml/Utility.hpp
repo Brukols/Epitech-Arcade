@@ -8,7 +8,7 @@
 #ifndef UTILITY_HPP
 #define UTILITY_HPP
 
-#include "Graphical.hpp"
+#include "sfml/Graphical.hpp"
 
 namespace arc
 {

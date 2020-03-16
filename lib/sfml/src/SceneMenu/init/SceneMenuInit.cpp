@@ -5,7 +5,7 @@
 ** Ini
 */
 
-#include "SceneMenu.hpp"
+#include "sfml/SceneMenu.hpp"
 
 void arc::SceneMenu::init()
 {

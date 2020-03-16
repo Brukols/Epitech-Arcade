@@ -8,12 +8,12 @@
 #ifndef MENUSCENE_HPP
 #define MENUSCENE_HPP
 
-#include "IScene.hpp"
+#include "sfml/IScene.hpp"
 #include <vector>
-#include "Button.hpp"
-#include "Text.hpp"
-#include "Input.hpp"
-#include "Image.hpp"
+#include "sfml/Button.hpp"
+#include "sfml/Text.hpp"
+#include "sfml/Input.hpp"
+#include "sfml/Image.hpp"
 #include <functional>
 
 namespace arc
