@@ -16,13 +16,13 @@ arc::Graphical::Graphical()
 {
     initscr();
     start_color();
-    init_color(COLOR_WHITE, 1000, 1000, 1000);
-    init_color(COLOR_RED, 1000, 0, 0);
-    init_color(COLOR_BLUE, 0, 0, 1000);
-    init_color(COLOR_YELLOW, 1000, 1000, 0);
-    init_color(COLOR_GREEN, 0, 1000, 0);
-    init_color(COLOR_CYAN, 0, 1000, 1000);
-    init_color(COLOR_MAGENTA, 1000, 0, 1000);
+    init_color(MAIN_COLOR_1, 544, 560, 180);
+    init_color(MAIN_COLOR_2, 968, 936, 948);
+    init_color(MAIN_COLOR_3, 168, 208, 348);
+    init_color(MAIN_COLOR_4, 656, 656, 764);
+    init_color(MAIN_COLOR_5, 652, 352, 436);
+    init_color(MAIN_COLOR_6, 656, 604, 568);
+    init_color(MAIN_COLOR_7, 684, 664, 764);
     noecho();
     cbreak();
     nodelay(stdscr, TRUE);
@@ -125,13 +125,12 @@ void arc::Graphical::setVisualAssets(const std::map<char, std::pair<std::string,
 
 void arc::Graphical::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap)
 {
-    _entities = gameMap;
+    static_cast<SceneGame *>(_scenes[GAME].get())->updateGameInfo(gameMap);
 }
 
 void arc::Graphical::setMapSize(size_t height, size_t width)
 {
-    (void)height;
-    (void)width;
+    static_cast<SceneGame *>(_scenes[GAME].get())->setMapSize(height, width);
 }
 
 void arc::Graphical::setGameTitle(const std::string &game)

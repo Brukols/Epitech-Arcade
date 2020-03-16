@@ -11,7 +11,10 @@
 void arc::SceneMenu::event(arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress)
 {
     int c = wgetch(stdscr);
-    if (c == 'q') {
+
+    _actualEventType = Utility::getEventType(c);
+    _actualKeyPress = Utility::getEventKey(c);
+    if (_actualKeyPress == arc::Event::Key::Q) {
         _eventFunctionExit();
         _actualEventType = arc::Event::QUIT;
     }
@@ -20,5 +23,4 @@ void arc::SceneMenu::event(arc::Event::Type &_actualEventType, arc::Event::Key &
         getmouse(&event);
         eventButtons(event);
     }
-    (void)_actualKeyPress;
 }

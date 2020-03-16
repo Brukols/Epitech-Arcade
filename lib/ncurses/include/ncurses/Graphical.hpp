@@ -11,6 +11,7 @@
 #include "IGraphical.hpp"
 #include "IScene.hpp"
 #include <ncurses.h>
+#include "defines.hpp"
 
 namespace arc
 {
