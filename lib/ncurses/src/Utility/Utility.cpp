@@ -38,3 +38,16 @@ int arc::Utility::generatePairColor(int textColor, int bgColor)
     init_pair(noPair, textColor, bgColor);
     return (noPair);
 }
+
+arc::Event::Type arc::Utility::getEventType(int c)
+{
+    // static arc::Event::Type lastType = -1;
+    if (c == KEY_MOUSE) {
+        return (arc::Event::Type::MOUSE_PRESSED);
+    }
+}
+
+arc::Event::Key arc::Utility::getEventKey(int c)
+{
+
+}

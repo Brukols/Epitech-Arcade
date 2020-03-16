@@ -12,6 +12,7 @@
 #include "Button.hpp"
 #include "Text.hpp"
 #include "Rectangle.hpp"
+#include <map>
 
 #include <functional>
 
@@ -27,6 +28,7 @@ namespace arc
             void event(arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress) override;
 
             void setFunctionBackToMenu(const std::function<void()> &fct);
+            void setControls(const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &controls);
 
         private:
             void initButtons();
@@ -38,6 +40,7 @@ namespace arc
         private:
 
             std::function<void()> _eventBackToMenu;
+            std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> _controls;
 
             std::vector<Button> _buttons;
             std::vector<Text> _texts;
