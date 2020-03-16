@@ -18,7 +18,6 @@ namespace arc {
 
     class IGame {
     public:
-        virtual ~IGame() = default;
 
         virtual size_t getMapHeight() const = 0;
         virtual size_t getMapWidth() const = 0;

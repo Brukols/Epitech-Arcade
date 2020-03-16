@@ -19,7 +19,6 @@ namespace arc {
     class Nibbler : public IGame {
         public:
             Nibbler();
-            ~Nibbler();
 
             size_t getMapHeight() const;
             size_t getMapWidth() const;

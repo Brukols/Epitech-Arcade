@@ -139,22 +139,21 @@ void Nibbler::moveSnake()
         std::shared_ptr<Entity> bodySnake(new Entity);
         _score += 1;
         //agrandir le snake
-        std::shared_ptr<Entity> tmp = _snake.back();
         bodySnake->spritePath = "";
-        bodySnake->orientation = tmp->orientation;
-        bodySnake->backgroundColor = tmp->backgroundColor;
+        bodySnake->orientation = _snake.back()->orientation;
+        bodySnake->backgroundColor = _snake.back()->backgroundColor;
         if (bodySnake->orientation == Orientation::UP) {
-            bodySnake->x = tmp->x;
-            bodySnake->y = tmp->y - 1;
+            bodySnake->x = _snake.back()->x;
+            bodySnake->y = _snake.back()->y + 1;
         } else if (bodySnake->orientation == Orientation::RIGHT) {
-            bodySnake->x = tmp->x -1;
-            bodySnake->y = tmp->y;
+            bodySnake->x = _snake.back()->x - 1;
+            bodySnake->y = _snake.back()->y;
         } else if (bodySnake->orientation == Orientation::LEFT) {
-            bodySnake->x = tmp->x + 1;
-            bodySnake->y = tmp->y;
+            bodySnake->x = _snake.back()->x + 1;
+            bodySnake->y = _snake.back()->y;
         } else if (bodySnake->orientation == Orientation::DOWN) {
-            bodySnake->x = tmp->x;
-            bodySnake->y = tmp->y + 1;
+            bodySnake->x = _snake.back()->x;
+            bodySnake->y = _snake.back()->y - 1;
         }
         _snake.push_back(bodySnake);
         _entities.push_back(bodySnake);
