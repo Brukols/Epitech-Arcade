@@ -10,6 +10,7 @@
 #include "Utils.hpp"
 #include <iostream>
 #include "ncurses/SceneMenu.hpp"
+#include "ncurses/SceneGame.hpp"
 
 arc::Graphical::Graphical()
 {
@@ -29,14 +30,14 @@ arc::Graphical::Graphical()
     curs_set(0);
     mousemask(ALL_MOUSE_EVENTS, NULL);
     _scenes[MAIN_MENU] = std::unique_ptr<IScene>(new SceneMenu());
-    // _scenes[GAME] = std::unique_ptr<IScene>(new SceneGame());
-    dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionExit([this]() {
+    _scenes[GAME] = std::unique_ptr<IScene>(new SceneGame());
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionExit([this]() {
         _exit = true;
     });
     _scenes[MAIN_MENU].get()->init();
-    // dynamic_cast<SceneGame *>(_scenes[GAME].get())->eventFunctionBackToMenu([this]() {
-    //     setScene(MAIN_MENU);
-    // });
+    static_cast<SceneGame *>(_scenes[GAME].get())->setFunctionBackToMenu([this]() {
+        setScene(MAIN_MENU);
+    });
 }
 
 arc::Graphical::~Graphical()
@@ -46,12 +47,12 @@ arc::Graphical::~Graphical()
 
 void arc::Graphical::setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen)
 {
-    dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListGames(games, fct, chosen);
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListGames(games, fct, chosen);
 }
 
 void arc::Graphical::setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen)
 {
-    dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListLibraries(libraries, fct, chosen);
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListLibraries(libraries, fct, chosen);
 }
 
 void arc::Graphical::setScores(const std::vector<std::pair<std::string, std::string>> &scores)
@@ -61,13 +62,13 @@ void arc::Graphical::setScores(const std::vector<std::pair<std::string, std::str
 
 void arc::Graphical::setControls(const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &controls)
 {
+    static_cast<SceneGame *>(_scenes[GAME].get())->setControls(controls);
     _controls = controls;
 }
 
 void arc::Graphical::setFunctionPlay(const std::function<void()> &function)
 {
-    (void)function;
-    // dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionPlay(function);
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionPlay(function);
 }
 
 void arc::Graphical::setFunctionRestart(const std::function<void()> &function)
@@ -99,6 +100,7 @@ void arc::Graphical::setScene(Scene scene)
 {
     _actualScene = scene;
     _scenes[_actualScene].get()->init();
+    clear();
 }
 
 void arc::Graphical::setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info)

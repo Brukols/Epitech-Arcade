@@ -30,8 +30,10 @@ void arc::SceneMenu::eventButtons(MEVENT event)
 
     std::for_each(_buttonsListGames.begin(), _buttonsListGames.end(), [this, &event](Button &button) {
         if (button.isMouseHover(event.x, event.y)) {
-            if (!button.isSelect())
+            if (!button.isSelect()) {
                 resetListGames();
+                button.click();
+            }
             button.toggleSelect();
         }
     });

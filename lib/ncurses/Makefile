@@ -20,6 +20,15 @@ SRCS	=	src/Graphical/Graphical.cpp	\
 			src/SceneMenu/display/SceneMenuDisplay.cpp	\
 			src/SceneMenu/event/SceneMenuEvent.cpp		\
 			src/SceneMenu/event/SceneMenuEventButtons.cpp		\
+			src/SceneGame/SceneGame.cpp	\
+			src/SceneGame/init/SceneGameInit.cpp	\
+			src/SceneGame/init/SceneGameSetters.cpp	\
+			src/SceneGame/init/SceneGameInitButtons.cpp	\
+			src/SceneGame/init/SceneGameInitRects.cpp	\
+			src/SceneGame/init/SceneGameInitTexts.cpp	\
+			src/SceneGame/display/SceneGameDisplay.cpp	\
+			src/SceneGame/event/SceneGameEvent.cpp	\
+			src/SceneGame/event/SceneGameEventButtons.cpp	\
 			src/Rectangle/Rectangle.cpp		\
 			src/Utility/Utility.cpp	\
 			src/Text/Text.cpp		\
