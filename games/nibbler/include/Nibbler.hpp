@@ -19,27 +19,28 @@ namespace arc {
     class Nibbler : public IGame {
         public:
             Nibbler();
+            ~Nibbler();
 
-            size_t getMapHeight() const;
-            size_t getMapWidth() const;
-            const std::string &getFont() const;
-            const std::string &getMusic() const;
-            const std::string &getSound() const;
-            const std::string &getScore();
+            size_t getMapHeight() const override;
+            size_t getMapWidth() const override;
+            const std::string &getFont() const override;
+            const std::string &getMusic() const override;
+            const std::string &getSound() const override;
+            const std::string &getScore() override;
 
-            const std::map<char, std::pair<std::string, Color>> &getVisualAssets() const;
-            const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &getControls() const;
+            const std::map<char, std::pair<std::string, Color>> &getVisualAssets() const override;
+            const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &getControls() const override;
 
-            const std::vector<std::shared_ptr<Entity>> &getEntities() const;
+            const std::vector<std::shared_ptr<Entity>> &getEntities() const override;
 
-            const std::vector<std::pair<std::string, std::string>> &getGameControlsFormatString() const;
-            const std::vector<std::string> &getGameStatsFormatString() const;
+            const std::vector<std::pair<std::string, std::string>> &getGameControlsFormatString() const override;
+            const std::vector<std::string> &getGameStatsFormatString() const override;
 
-            void restart();
-            void updateGame();
+            void restart() override;
+            void updateGame() override;
 
-            bool isGameOver() const;
-            const std::string & getTitle() const;
+            bool isGameOver() const override;
+            const std::string &getTitle() const override;
         protected:
             std::chrono::time_point<std::chrono::system_clock> _start;
             std::chrono::time_point<std::chrono::system_clock> _end;

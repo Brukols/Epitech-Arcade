@@ -12,6 +12,10 @@ Nibbler::Nibbler()
     initNibbler();
 }
 
+Nibbler::~Nibbler()
+{
+}
+
 size_t Nibbler::getMapHeight() const
 {
     return _height;

@@ -51,8 +51,8 @@ namespace arc
             void setMusic(const std::string &music) override;
             void playSound(const std::string &sound) override;
 
-            void setMapSize(size_t height, size_t width);
-            void setGameTitle(const std::string &game);
+            void setMapSize(size_t height, size_t width) override;
+            void setGameTitle(const std::string &game) override;
 
             /*
             ** End of override methods for IGraphical
