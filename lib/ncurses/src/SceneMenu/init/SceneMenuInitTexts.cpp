@@ -7,10 +7,11 @@
 
 #include "ncurses/SceneMenu.hpp"
 #include "ncurses/Utility.hpp"
+#include "ncurses/defines.hpp"
 
 arc::Text initTitle()
 {
-    arc::Text text(arc::Utility::getText("resources/ncurses/texts/title.txt"), COLOR_WHITE, COLOR_BLACK);
+    arc::Text text(arc::Utility::getText("resources/ncurses/texts/title.txt"), MAIN_COLOR_1, MAIN_COLOR_3);
 
     text.setPosition(85, 5);
     return (text);
@@ -18,7 +19,7 @@ arc::Text initTitle()
 
 arc::Text initTextChooseGame()
 {
-    arc::Text text("Choose a game", COLOR_RED, COLOR_BLACK);
+    arc::Text text("Choose a game", MAIN_COLOR_6, BACKGROUND_COLOR);
 
     text.setPosition(30, 20);
     return (text);
@@ -26,7 +27,7 @@ arc::Text initTextChooseGame()
 
 arc::Text initTextChooseGraph()
 {
-    arc::Text text("Choose a library", COLOR_BLUE, COLOR_BLACK);
+    arc::Text text("Choose a library", MAIN_COLOR_5, BACKGROUND_COLOR);
 
     text.setPosition(170, 20);
     return (text);

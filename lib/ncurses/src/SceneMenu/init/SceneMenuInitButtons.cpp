@@ -6,26 +6,27 @@
 */
 
 #include "ncurses/SceneMenu.hpp"
+#include "ncurses/defines.hpp"
 
 arc::Button initPlayButton(std::function<void()> &event)
 {
-    arc::Rectangle rect(5, 20, COLOR_BLUE, COLOR_BLACK);
+    arc::Rectangle rect(5, 20, MAIN_COLOR_1, BACKGROUND_COLOR);
 
     rect.setPosition(100, 25);
-    rect.setOutlineColors(COLOR_WHITE, COLOR_WHITE);
+    rect.setOutlineColors(MAIN_COLOR_1, MAIN_COLOR_1);
     arc::Button button("Play", rect, event);
-    button.setColors(COLOR_WHITE, COLOR_BLACK);
+    button.setColors(MAIN_COLOR_1, BACKGROUND_COLOR);
     return (button);
 }
 
 arc::Button initExitButton(std::function<void()> &event)
 {
-    arc::Rectangle rect(5, 20, COLOR_BLUE, COLOR_BLACK);
+    arc::Rectangle rect(5, 20, MAIN_COLOR_2, BACKGROUND_COLOR);
 
     rect.setPosition(100, 35);
-    rect.setOutlineColors(COLOR_WHITE, COLOR_WHITE);
+    rect.setOutlineColors(MAIN_COLOR_2, MAIN_COLOR_2);
     arc::Button button("Exit", rect, event);
-    button.setColors(COLOR_WHITE, COLOR_BLACK);
+    button.setColors(MAIN_COLOR_2, BACKGROUND_COLOR);
     return (button);
 }
 

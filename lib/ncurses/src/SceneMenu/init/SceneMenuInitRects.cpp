@@ -20,7 +20,6 @@ void arc::SceneMenu::initRects()
     static std::vector<Rectangle (*)()> rects = [this]() -> std::vector<Rectangle (*)()> {
         std::vector<Rectangle (*)()> rects;
 
-        rects.push_back(initRect);
         return (rects);
     }();
 
