@@ -120,9 +120,10 @@ void Nibbler::updateOrientationSnake()
 
 bool Nibbler::isGameOver() const
 {
-    // if (_snake.front()->x == -1 || _snake.front()->x == _width || _snake.front()->y == -1 || _snake.front()->y == _height)
-    //     return false;
+    if (_snake.front()->x == -1 || _snake.front()->x == _width || _snake.front()->y == -1 || _snake.front()->y == _height)
+        return true;
     //Une partie du serpent touche un bord
+    return false;
 }
 
 extern "C" arc::IGame *instance_ctor()
