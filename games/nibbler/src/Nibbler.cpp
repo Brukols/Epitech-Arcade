@@ -120,6 +120,8 @@ void Nibbler::updateOrientationSnake()
 
 bool Nibbler::isGameOver() const
 {
+    // if (_snake.front()->x == -1 || _snake.front()->x == _width || _snake.front()->y == -1 || _snake.front()->y == _height)
+    //     return false;
     //Une partie du serpent touche un bord
 }
 
