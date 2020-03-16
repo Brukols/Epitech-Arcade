@@ -6,6 +6,7 @@
 */
 
 #include "ncurses/SceneGame.hpp"
+#include "ncurses/defines.hpp"
 
 void arc::SceneGame::display()
 {
@@ -15,5 +16,10 @@ void arc::SceneGame::display()
 
     std::for_each(_buttons.begin(), _buttons.end(), [this](Button &button) {
         button.display();
+    });
+
+    std::for_each(_gameMap.begin(), _gameMap.end(), [this](std::shared_ptr<Entity> entity) {
+        _rect.setPosition(entity.get()->x * 2 + 6, entity.get()->y + 3);
+        _rect.display();
     });
 }

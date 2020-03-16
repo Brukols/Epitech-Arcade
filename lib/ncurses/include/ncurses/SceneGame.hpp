@@ -13,8 +13,11 @@
 #include "Text.hpp"
 #include "Rectangle.hpp"
 #include <map>
+#include <memory>
+#include "Utils.hpp"
 
 #include <functional>
+#include "defines.hpp"
 
 namespace arc
 {
@@ -30,10 +33,14 @@ namespace arc
             void setFunctionBackToMenu(const std::function<void()> &fct);
             void setControls(const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &controls);
 
+            void setMapSize(size_t height, size_t width);
+            void updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap);
+
         private:
             void initButtons();
             void initTexts();
             void initRects();
+            void initMap();
 
             void eventButtons(MEVENT event);
 
@@ -45,6 +52,12 @@ namespace arc
             std::vector<Button> _buttons;
             std::vector<Text> _texts;
             std::vector<Rectangle> _rects;
+
+            std::vector<std::shared_ptr<Entity>> _gameMap;
+            arc::Rectangle _rect = arc::Rectangle(1, 1, MAIN_COLOR_1, MAIN_COLOR_1);
+    
+            size_t _height;
+            size_t _width;
     };
 };
 

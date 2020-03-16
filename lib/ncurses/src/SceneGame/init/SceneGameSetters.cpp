@@ -16,3 +16,16 @@ void arc::SceneGame::setControls(const std::map<std::pair<Event::Type, Event::Ke
 {
     _controls = controls;
 }
+
+void arc::SceneGame::setMapSize(size_t height, size_t width)
+{
+    _height = height;
+    _width = width;
+    _rect = Rectangle(1, 2, MAIN_COLOR_1, MAIN_COLOR_1);
+    initMap();
+}
+
+void arc::SceneGame::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap)
+{
+    _gameMap = gameMap;
+}
