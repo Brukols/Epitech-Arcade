@@ -56,7 +56,8 @@ void arc::Core::playArcade()
         setGame(name);
     }, -1);
     _graph->setFunctionPlay([this]() {
-        functionPlay();
+        if (_game)
+            functionPlay();
     });
 
     while (_graph->getEventType() != Event::QUIT) {

@@ -34,7 +34,9 @@ void arc::SceneMenu::initButtonsListGames(const std::vector<std::string> &games,
     _buttonsListGames.clear();
 
     std::for_each(games.begin(), games.end(), [this, &y, fct](const std::string &name) {
-        _buttonsListGames.push_back(initButton(getLibName(name), [this]() {}, y));
+        _buttonsListGames.push_back(initButton(getLibName(name), [this, &fct, name]() {
+            _eventListGames(name);
+        }, y));
         y += 10;
     });
 }

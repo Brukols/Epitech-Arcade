@@ -22,6 +22,7 @@ SRCS	=	src/Graphical/Graphical.cpp	\
 			src/SceneMenu/event/SceneMenuEventButtons.cpp		\
 			src/SceneGame/SceneGame.cpp	\
 			src/SceneGame/init/SceneGameInit.cpp	\
+			src/SceneGame/init/SceneGameSetters.cpp	\
 			src/SceneGame/init/SceneGameInitButtons.cpp	\
 			src/SceneGame/init/SceneGameInitRects.cpp	\
 			src/SceneGame/init/SceneGameInitTexts.cpp	\
