@@ -99,6 +99,7 @@ void arc::Graphical::setScene(Scene scene)
 {
     _actualScene = scene;
     _scenes[_actualScene].get()->init();
+    clear();
 }
 
 void arc::Graphical::setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info)

@@ -33,6 +33,8 @@ namespace arc
             void initTexts();
             void initRects();
 
+            void eventButtons(MEVENT event);
+
         private:
 
             std::function<void()> _eventBackToMenu;

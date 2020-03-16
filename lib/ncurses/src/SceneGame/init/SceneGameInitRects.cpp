@@ -7,7 +7,26 @@
 
 #include "ncurses/SceneGame.hpp"
 
+arc::Rectangle initGameRect()
+{
+    arc::Rectangle rect(51, 68, COLOR_BLACK, COLOR_BLACK);
+
+    rect.setPosition(5, 2);
+    rect.setOutlineColors(COLOR_WHITE, COLOR_WHITE);
+    return (rect);
+}
+
 void arc::SceneGame::initRects()
 {
-    
+    static std::vector<Rectangle (*)()> rects = [this]() -> std::vector<Rectangle (*)()> {
+        std::vector<Rectangle (*)()> rects;
+
+        rects.push_back(initGameRect);
+        return (rects);
+    }();
+
+    _rects.clear();
+    std::for_each(rects.begin(), rects.end(), [this](Rectangle (*fct)()) {
+        _rects.push_back(fct());
+    });
 }
