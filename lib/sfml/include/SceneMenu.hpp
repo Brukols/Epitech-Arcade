@@ -14,6 +14,7 @@
 #include "Text.hpp"
 #include "Input.hpp"
 #include "Image.hpp"
+#include <functional>
 
 namespace arc
 {
