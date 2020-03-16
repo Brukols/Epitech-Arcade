@@ -1,0 +1,13 @@
+/*
+** EPITECH PROJECT, 2020
+** OOP_arcade_2019
+** File description:
+** SceneGameEvent
+*/
+
+#include "ncurses/SceneGame.hpp"
+
+void arc::SceneGame::event(arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress)
+{
+    
+}

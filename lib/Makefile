@@ -23,7 +23,7 @@ clean:
 	make clean -C sfml/
 	make clean -C ncurses/
 
-fclean: clean
+fclean:
 	make fclean -C sfml/
 	make fclean -C ncurses/
 	$(RM) $(NAME_SFML)
