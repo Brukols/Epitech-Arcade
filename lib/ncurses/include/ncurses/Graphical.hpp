@@ -12,6 +12,7 @@
 #include "IScene.hpp"
 #include <ncurses.h>
 #include "defines.hpp"
+#include "SceneError.hpp"
 
 namespace arc
 {
@@ -84,6 +85,9 @@ namespace arc
             std::map<char, Color> _backgroundColors;
 
             bool _exit = false;
+
+            SceneError _sceneError;
+            bool _error = false;
 
     };
 };

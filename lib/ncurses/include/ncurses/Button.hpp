@@ -44,7 +44,7 @@ namespace arc
 
             int _noPairSelect = -1;
 
-            bool _select;
+            bool _select = false;
     };
 } // namespace arc
 

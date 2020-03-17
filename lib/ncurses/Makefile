@@ -38,6 +38,7 @@ SRCS	=	src/Graphical/Graphical.cpp	\
 			src/Utility/Utility.cpp	\
 			src/Text/Text.cpp		\
 			src/Button/Button.cpp		\
+			src/NcursesError/NcursesError.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)
 

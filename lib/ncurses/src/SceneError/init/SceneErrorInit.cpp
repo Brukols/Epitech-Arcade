@@ -10,7 +10,7 @@
 
 void arc::SceneError::initRects()
 {
-    Rectangle rect(100, 100, MAIN_COLOR_1, MAIN_COLOR_1);
+    Rectangle rect(LINES, COLS, MAIN_COLOR_3, MAIN_COLOR_3);
 
     rect.setPosition(0, 0);
     _rects.clear();
@@ -19,9 +19,9 @@ void arc::SceneError::initRects()
 
 void arc::SceneError::initButtons()
 {
-    Rectangle rect(5, 20, MAIN_COLOR_1, BACKGROUND_COLOR);
+    Rectangle rect(5, 25, MAIN_COLOR_1, BACKGROUND_COLOR);
 
-    rect.setPosition(110, 25);
+    rect.setPosition(105, 30);
     rect.setOutlineColors(MAIN_COLOR_1, MAIN_COLOR_1);
     Button button("Ok", rect, _eventBack);
     button.setColors(MAIN_COLOR_1, BACKGROUND_COLOR);
@@ -33,7 +33,7 @@ void arc::SceneError::initTexts()
 {
     arc::Text text(_errorMsg, MAIN_COLOR_1, MAIN_COLOR_3);
 
-    text.setPosition(85, 5);
+    text.setPosition(COLS / 2 - _errorMsg.size() / 2, 25);
     _texts.clear();
     _texts.push_back(text);
 }
