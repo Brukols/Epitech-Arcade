@@ -30,6 +30,10 @@ SRCS	=	src/Graphical/Graphical.cpp	\
 			src/SceneGame/display/SceneGameDisplay.cpp	\
 			src/SceneGame/event/SceneGameEvent.cpp	\
 			src/SceneGame/event/SceneGameEventButtons.cpp	\
+			src/SceneError/SceneError.cpp	\
+			src/SceneError/display/SceneErrorDisplay.cpp	\
+			src/SceneError/init/SceneErrorInit.cpp	\
+			src/SceneError/event/SceneErrorEvent.cpp	\
 			src/Rectangle/Rectangle.cpp		\
 			src/Utility/Utility.cpp	\
 			src/Text/Text.cpp		\

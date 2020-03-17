@@ -63,7 +63,6 @@ void arc::Graphical::setScores(const std::vector<std::pair<std::string, std::str
 void arc::Graphical::setControls(const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &controls)
 {
     static_cast<SceneGame *>(_scenes[GAME].get())->setControls(controls);
-    _controls = controls;
 }
 
 void arc::Graphical::setFunctionPlay(const std::function<void()> &function)

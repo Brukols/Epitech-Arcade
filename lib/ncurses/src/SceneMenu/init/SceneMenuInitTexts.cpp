@@ -21,7 +21,7 @@ arc::Text initTextChooseGame()
 {
     arc::Text text("Choose a game", MAIN_COLOR_6, BACKGROUND_COLOR);
 
-    text.setPosition(30, 20);
+    text.setPosition(40, 20);
     return (text);
 }
 
@@ -29,7 +29,7 @@ arc::Text initTextChooseGraph()
 {
     arc::Text text("Choose a library", MAIN_COLOR_5, BACKGROUND_COLOR);
 
-    text.setPosition(170, 20);
+    text.setPosition(180, 20);
     return (text);
 }
 

@@ -65,8 +65,6 @@ namespace arc
 
             std::vector<std::pair<std::string, std::string>> _scores;
 
-            std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> _controls;
-
             std::function<void()> _eventRestartButton; // A suppr
             std::function<void()> _eventMenuButton; // A suppr
             std::function<void()> _eventTogglePauseButton; // A suppr
@@ -86,6 +84,7 @@ namespace arc
             std::map<char, Color> _backgroundColors;
 
             bool _exit = false;
+
     };
 };
 

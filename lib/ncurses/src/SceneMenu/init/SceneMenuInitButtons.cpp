@@ -12,7 +12,7 @@ arc::Button initPlayButton(std::function<void()> &event)
 {
     arc::Rectangle rect(5, 20, MAIN_COLOR_1, BACKGROUND_COLOR);
 
-    rect.setPosition(100, 25);
+    rect.setPosition(110, 25);
     rect.setOutlineColors(MAIN_COLOR_1, MAIN_COLOR_1);
     arc::Button button("Play", rect, event);
     button.setColors(MAIN_COLOR_1, BACKGROUND_COLOR);
@@ -23,7 +23,7 @@ arc::Button initExitButton(std::function<void()> &event)
 {
     arc::Rectangle rect(5, 20, MAIN_COLOR_2, BACKGROUND_COLOR);
 
-    rect.setPosition(100, 35);
+    rect.setPosition(110, 35);
     rect.setOutlineColors(MAIN_COLOR_2, MAIN_COLOR_2);
     arc::Button button("Exit", rect, event);
     button.setColors(MAIN_COLOR_2, BACKGROUND_COLOR);
