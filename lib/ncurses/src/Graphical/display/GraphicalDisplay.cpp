@@ -11,7 +11,7 @@ void arc::Graphical::display()
 {
     static bool resize = false;
 
-    if (LINES < 60 || COLS < 238) {
+    if (LINES < 57 || COLS < 230) {
         _sceneError.clear();
         _sceneError.setErrorMessage("Please resize your window");
         _sceneError.display();
