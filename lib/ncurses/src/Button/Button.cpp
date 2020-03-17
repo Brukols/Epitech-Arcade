@@ -34,6 +34,8 @@ void arc::Button::setColorsTextSelect(int textColor, int bgColor)
 
 void arc::Button::display()
 {
+    if (!_display)
+        return;
     _rect.display();
     _text.display();
 }
@@ -59,6 +61,8 @@ bool arc::Button::isSelect() const
 
 void arc::Button::click()
 {
+    if (!_display)
+        return;
     _event();
 }
 
@@ -67,4 +71,14 @@ bool arc::Button::isMouseHover(size_t x, size_t y) const
     if (x > _rect.getPosX() && x < _rect.getPosX() + _rect.getWidth() && y > _rect.getPosY() && y < _rect.getPosY() + _rect.getHeight())
         return (true);
     return (false);
+}
+
+void arc::Button::setDisplay(bool display)
+{
+    _display = display;
+}
+
+void arc::Button::setEvent(const std::function<void()> &event)
+{
+    _event = event;
 }

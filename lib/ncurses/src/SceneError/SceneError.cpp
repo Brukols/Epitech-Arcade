@@ -17,18 +17,21 @@ arc::SceneError::~SceneError()
 
 void arc::SceneError::clear()
 {
-    _buttons.clear();
-    _texts.clear();
+    _buttons[0].setDisplay(false);
+    _texts[0].setDisplay(false);
 }
 
 void arc::SceneError::setFunctionBack(const std::function<void()> &eventBack)
 {
     _eventBack = eventBack;
-    initButtons();
+    _buttons[0].setEvent(eventBack);
+    _buttons[0].setDisplay(true);
 }
 
 void arc::SceneError::setErrorMessage(const std::string &msg)
 {
     _errorMsg = msg;
-    initTexts();
+    _texts[0].setText(_errorMsg);
+    _texts[0].setDisplay(true);
+    _texts[0].setPosition(COLS / 2 - _errorMsg.size() / 2, 25);
 }

@@ -26,6 +26,9 @@ namespace arc
 
             void setSelect(bool select);
 
+            void setText(const std::string &newText);
+            void setDisplay(bool display);
+
         private:
             std::string _text;
 
@@ -36,6 +39,7 @@ namespace arc
 
             int _noPairTextSelect = -1;
             bool _select = false;
+            bool _display = true;
     };
 };
 
