@@ -5,8 +5,8 @@
 ** Event
 */
 
-#include "SceneGame.hpp"
-#include "Utility.hpp"
+#include "sfml/SceneGame.hpp"
+#include "sfml/Utility.hpp"
 
 #include <iostream>
 void arc::SceneGame::event(sf::RenderWindow &window, arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress)

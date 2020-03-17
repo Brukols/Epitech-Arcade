@@ -5,7 +5,7 @@
 ** MenuSetter
 */
 
-#include "SceneMenu.hpp"
+#include "sfml/SceneMenu.hpp"
 
 void arc::SceneMenu::setFunctionExit(const std::function<void()> &eventExit)
 {

@@ -5,7 +5,7 @@
 ** rect
 */
 
-#include "SceneGame.hpp"
+#include "sfml/SceneGame.hpp"
 
 sf::RectangleShape initMenuSideRect()
 {

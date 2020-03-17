@@ -5,7 +5,7 @@
 ** Utility
 */
 
-#include "Utility.hpp"
+#include "sfml/Utility.hpp"
 
 arc::Event::Key arc::Utility::getKey(sf::Event event)
 {

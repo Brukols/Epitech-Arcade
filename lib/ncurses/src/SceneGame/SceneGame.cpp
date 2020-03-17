@@ -1,11 +1,11 @@
 /*
 ** EPITECH PROJECT, 2020
-** Arcade
+** OOP_arcade_2019
 ** File description:
 ** SceneGame
 */
 
-#include "sfml/SceneGame.hpp"
+#include "ncurses/SceneGame.hpp"
 
 arc::SceneGame::SceneGame()
 {

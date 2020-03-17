@@ -6,17 +6,18 @@
 */
 
 #include "ncurses/SceneMenu.hpp"
+#include "ncurses/defines.hpp"
 
 static arc::Button initButton(const std::string &name, const std::function<void()> &fct, int y)
 {
-    arc::Rectangle rect(5, 20, COLOR_BLUE, COLOR_BLACK);
+    arc::Rectangle rect(5, 20, MAIN_COLOR_5, BACKGROUND_COLOR);
 
     rect.setPosition(168, y);
-    rect.setOutlineColors(COLOR_WHITE, COLOR_BLUE);
-    rect.setColorsSelect(COLOR_BLUE, COLOR_BLUE);
+    rect.setOutlineColors(MAIN_COLOR_5, MAIN_COLOR_5);
+    rect.setColorsSelect(MAIN_COLOR_5, MAIN_COLOR_5);
     arc::Button button(name, rect, fct);
-    button.setColors(COLOR_WHITE, COLOR_BLACK);
-    button.setColorsTextSelect(COLOR_WHITE, COLOR_BLUE);
+    button.setColors(COLOR_WHITE, BACKGROUND_COLOR);
+    button.setColorsTextSelect(MAIN_COLOR_3, MAIN_COLOR_5);
     return (button);
 }
 
@@ -35,6 +36,6 @@ void arc::SceneMenu::initButtonsListLibraries(const std::vector<std::string> &ga
 
     std::for_each(games.begin(), games.end(), [this, &y, fct](const std::string &name) {
         _buttonsListLibraries.push_back(initButton(getLibName(name), [this]() {}, y));
-        y += 10;
+        y += 7;
     });
 }

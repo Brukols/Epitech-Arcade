@@ -5,7 +5,7 @@
 ** text
 */
 
-#include "Text.hpp"
+#include "sfml/Text.hpp"
 
 arc::Text::Text(const sf::Font &font, const sf::Text &text) : _font(font), _text(text)
 {

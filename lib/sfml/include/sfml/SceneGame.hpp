@@ -8,10 +8,10 @@
 #ifndef SCENEGAME_HPP
 #define SCENEGAME_HPP
 
-#include "IScene.hpp"
+#include "sfml/IScene.hpp"
 #include <vector>
-#include "Button.hpp"
-#include "Text.hpp"
+#include "sfml/Button.hpp"
+#include "sfml/Text.hpp"
 #include <memory>
 
 namespace arc

@@ -5,7 +5,7 @@
 ** InitRects
 */
 
-#include "SceneMenu.hpp"
+#include "sfml/SceneMenu.hpp"
 
 sf::RectangleShape initBackgroundGetInput()
 {

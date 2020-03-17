@@ -5,7 +5,7 @@
 ** display
 */
 
-#include "SceneGame.hpp"
+#include "sfml/SceneGame.hpp"
 
 void arc::SceneGame::displayGame(sf::RenderWindow &window)
 {

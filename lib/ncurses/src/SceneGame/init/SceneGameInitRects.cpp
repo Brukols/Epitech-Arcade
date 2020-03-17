@@ -2,24 +2,27 @@
 ** EPITECH PROJECT, 2020
 ** OOP_arcade_2019
 ** File description:
-** SceneMenuInitRects
+** SceneGameInitRects
 */
 
-#include "ncurses/SceneMenu.hpp"
+#include "ncurses/SceneGame.hpp"
+#include "ncurses/defines.hpp"
 
-static arc::Rectangle initRect()
+arc::Rectangle initGameRect()
 {
-    arc::Rectangle rect(10, 10, COLOR_RED, COLOR_RED);
+    arc::Rectangle rect(51, 136, BACKGROUND_COLOR, BACKGROUND_COLOR);
 
-    rect.setPosition(0, 0);
+    rect.setPosition(5, 2);
+    rect.setOutlineColors(MAIN_COLOR_2, MAIN_COLOR_2);
     return (rect);
 }
 
-void arc::SceneMenu::initRects()
+void arc::SceneGame::initRects()
 {
     static std::vector<Rectangle (*)()> rects = [this]() -> std::vector<Rectangle (*)()> {
         std::vector<Rectangle (*)()> rects;
 
+        // rects.push_back(initGameRect);
         return (rects);
     }();
 

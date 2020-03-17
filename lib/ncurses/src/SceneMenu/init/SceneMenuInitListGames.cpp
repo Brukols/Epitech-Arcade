@@ -6,17 +6,18 @@
 */
 
 #include "ncurses/SceneMenu.hpp"
+#include "ncurses/defines.hpp"
 
 static arc::Button initButton(const std::string &name, const std::function<void()> &fct, int y)
 {
-    arc::Rectangle rect(5, 20, COLOR_RED, COLOR_BLACK);
+    arc::Rectangle rect(5, 20, MAIN_COLOR_6, BACKGROUND_COLOR);
 
     rect.setPosition(28, y);
-    rect.setOutlineColors(COLOR_WHITE, COLOR_RED);
-    rect.setColorsSelect(COLOR_RED, COLOR_RED);
+    rect.setOutlineColors(MAIN_COLOR_6, MAIN_COLOR_6);
+    rect.setColorsSelect(MAIN_COLOR_6, MAIN_COLOR_6);
     arc::Button button(name, rect, fct);
-    button.setColors(COLOR_WHITE, COLOR_BLACK);
-    button.setColorsTextSelect(COLOR_WHITE, COLOR_RED);
+    button.setColors(MAIN_COLOR_2, BACKGROUND_COLOR);
+    button.setColorsTextSelect(MAIN_COLOR_2, MAIN_COLOR_6);
     return (button);
 }
 
@@ -34,7 +35,9 @@ void arc::SceneMenu::initButtonsListGames(const std::vector<std::string> &games,
     _buttonsListGames.clear();
 
     std::for_each(games.begin(), games.end(), [this, &y, fct](const std::string &name) {
-        _buttonsListGames.push_back(initButton(getLibName(name), [this]() {}, y));
-        y += 10;
+        _buttonsListGames.push_back(initButton(getLibName(name), [this, &fct, name]() {
+            _eventListGames(name);
+        }, y));
+        y += 7;
     });
 }

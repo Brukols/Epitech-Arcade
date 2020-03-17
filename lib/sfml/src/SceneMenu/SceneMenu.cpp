@@ -5,7 +5,7 @@
 ** SceneMenu
 */
 
-#include "SceneMenu.hpp"
+#include "sfml/SceneMenu.hpp"
 #include <SFML/Graphics.hpp>
 
 arc::SceneMenu::SceneMenu()

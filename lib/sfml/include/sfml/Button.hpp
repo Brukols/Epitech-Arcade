@@ -9,6 +9,7 @@
 #define BUTTON_HPP
 
 #include <SFML/Graphics.hpp>
+#include <functional>
 
 namespace arc
 {

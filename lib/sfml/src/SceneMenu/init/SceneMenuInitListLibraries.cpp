@@ -5,7 +5,7 @@
 ** ListLibraries
 */
 
-#include "SceneMenu.hpp"
+#include "sfml/SceneMenu.hpp"
 
 static arc::Button initButton(const std::string &name, std::function<void (const std::string &)> fct, int y, sf::Font &font)
 {

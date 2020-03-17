@@ -5,8 +5,8 @@
 ** Event
 */
 
-#include "SceneMenu.hpp"
-#include "Utility.hpp"
+#include "sfml/SceneMenu.hpp"
+#include "sfml/Utility.hpp"
 
 void arc::SceneMenu::resetButtonsListGames()
 {

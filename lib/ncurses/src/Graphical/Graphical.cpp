@@ -10,18 +10,19 @@
 #include "Utils.hpp"
 #include <iostream>
 #include "ncurses/SceneMenu.hpp"
+#include "ncurses/SceneGame.hpp"
 
 arc::Graphical::Graphical()
 {
     initscr();
     start_color();
-    init_color(COLOR_WHITE, 1000, 1000, 1000);
-    init_color(COLOR_RED, 1000, 0, 0);
-    init_color(COLOR_BLUE, 0, 0, 1000);
-    init_color(COLOR_YELLOW, 1000, 1000, 0);
-    init_color(COLOR_GREEN, 0, 1000, 0);
-    init_color(COLOR_CYAN, 0, 1000, 1000);
-    init_color(COLOR_MAGENTA, 1000, 0, 1000);
+    init_color(MAIN_COLOR_1, 544, 560, 180);
+    init_color(MAIN_COLOR_2, 968, 936, 948);
+    init_color(MAIN_COLOR_3, 168, 208, 348);
+    init_color(MAIN_COLOR_4, 656, 656, 764);
+    init_color(MAIN_COLOR_5, 652, 352, 436);
+    init_color(MAIN_COLOR_6, 656, 604, 568);
+    init_color(MAIN_COLOR_7, 684, 664, 764);
     noecho();
     cbreak();
     nodelay(stdscr, TRUE);
@@ -29,14 +30,14 @@ arc::Graphical::Graphical()
     curs_set(0);
     mousemask(ALL_MOUSE_EVENTS, NULL);
     _scenes[MAIN_MENU] = std::unique_ptr<IScene>(new SceneMenu());
-    // _scenes[GAME] = std::unique_ptr<IScene>(new SceneGame());
-    dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionExit([this]() {
+    _scenes[GAME] = std::unique_ptr<IScene>(new SceneGame());
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionExit([this]() {
         _exit = true;
     });
     _scenes[MAIN_MENU].get()->init();
-    // dynamic_cast<SceneGame *>(_scenes[GAME].get())->eventFunctionBackToMenu([this]() {
-    //     setScene(MAIN_MENU);
-    // });
+    static_cast<SceneGame *>(_scenes[GAME].get())->setFunctionBackToMenu([this]() {
+        setScene(MAIN_MENU);
+    });
 }
 
 arc::Graphical::~Graphical()
@@ -46,12 +47,12 @@ arc::Graphical::~Graphical()
 
 void arc::Graphical::setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen)
 {
-    dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListGames(games, fct, chosen);
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListGames(games, fct, chosen);
 }
 
 void arc::Graphical::setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen)
 {
-    dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListLibraries(libraries, fct, chosen);
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListLibraries(libraries, fct, chosen);
 }
 
 void arc::Graphical::setScores(const std::vector<std::pair<std::string, std::string>> &scores)
@@ -61,13 +62,13 @@ void arc::Graphical::setScores(const std::vector<std::pair<std::string, std::str
 
 void arc::Graphical::setControls(const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &controls)
 {
+    static_cast<SceneGame *>(_scenes[GAME].get())->setControls(controls);
     _controls = controls;
 }
 
 void arc::Graphical::setFunctionPlay(const std::function<void()> &function)
 {
-    (void)function;
-    // dynamic_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionPlay(function);
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionPlay(function);
 }
 
 void arc::Graphical::setFunctionRestart(const std::function<void()> &function)
@@ -99,6 +100,7 @@ void arc::Graphical::setScene(Scene scene)
 {
     _actualScene = scene;
     _scenes[_actualScene].get()->init();
+    clear();
 }
 
 void arc::Graphical::setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info)
@@ -123,13 +125,12 @@ void arc::Graphical::setVisualAssets(const std::map<char, std::pair<std::string,
 
 void arc::Graphical::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap)
 {
-    _entities = gameMap;
+    static_cast<SceneGame *>(_scenes[GAME].get())->updateGameInfo(gameMap);
 }
 
 void arc::Graphical::setMapSize(size_t height, size_t width)
 {
-    (void)height;
-    (void)width;
+    static_cast<SceneGame *>(_scenes[GAME].get())->setMapSize(height, width);
 }
 
 void arc::Graphical::setGameTitle(const std::string &game)

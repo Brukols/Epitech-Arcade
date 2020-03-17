@@ -5,7 +5,7 @@
 ** Button
 */
 
-#include "Graphical.hpp"
+#include "sfml/Graphical.hpp"
 
 arc::Button::Button(const std::function<void()> &event, const sf::RectangleShape &rect, const std::string &text, const sf::Font &font) : 
     _rect(rect),

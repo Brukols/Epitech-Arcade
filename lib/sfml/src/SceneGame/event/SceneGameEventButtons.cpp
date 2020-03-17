@@ -5,7 +5,7 @@
 ** EventButton
 */
 
-#include "SceneGame.hpp"
+#include "sfml/SceneGame.hpp"
 
 void arc::SceneGame::eventButtons(sf::RenderWindow &window, sf::Event &event)
 {

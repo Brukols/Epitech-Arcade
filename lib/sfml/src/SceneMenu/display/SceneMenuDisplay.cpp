@@ -5,7 +5,7 @@
 ** SceneMEnudisplay
 */
 
-#include "SceneMenu.hpp"
+#include "sfml/SceneMenu.hpp"
 
 void arc::SceneMenu::display(sf::RenderWindow &window)
 {

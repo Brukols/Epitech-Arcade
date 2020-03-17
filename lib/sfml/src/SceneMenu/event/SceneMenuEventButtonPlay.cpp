@@ -5,7 +5,7 @@
 ** EventButtonPlay
 */
 
-#include "SceneMenu.hpp"
+#include "sfml/SceneMenu.hpp"
 
 static bool oneButtonIsSelect(std::vector<arc::Button> _games)
 {
