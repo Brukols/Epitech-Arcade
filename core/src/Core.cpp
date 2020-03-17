@@ -43,10 +43,10 @@ void arc::Core::functionPlay()
 
 void arc::Core::playArcade()
 {
-    _graph->setListLibraries(getNamesSharedLib(_graphs), [this](const std::string &name) {
+    _graph->setListLibraries(getNamesSharedGraphs(), [this](const std::string &name) {
         (void)name;
     }, -1);
-    _graph->setListGames(getNamesSharedLib(_games), [this](const std::string &name) {
+    _graph->setListGames(getNamesSharedGames(), [this](const std::string &name) {
         setGame(name);
     }, -1);
     _graph->setFunctionPlay([this]() {
@@ -55,7 +55,15 @@ void arc::Core::playArcade()
     });
 
     while (_graph->getEventType() != Event::QUIT) {
+        if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::E)
+            setNextGraphical();
+        if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::R)
+            setPrevGraphical();
         if (_graph->getScene() == arc::IGraphical::GAME) {
+            if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::A)
+                setNextGame();
+            if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::Z)
+                setNextGame();
             _game->updateGame();
             _graph->updateGameInfo(_game->getEntities());
         }
@@ -63,14 +71,104 @@ void arc::Core::playArcade()
     }
 }
 
+void arc::Core::setNextGame()
+{
+    _indexGame++;
+    if (_indexGame == static_cast<int>(_games.size()))
+        _indexGame = 0;
+    _game = std::unique_ptr<IGame>(_games[_indexGame].second.get()->getInstance());
+    _graph->setControls(_game->getControls());
+    // _graph->setFont(_game->getFont());
+    // _graph->setMusic(_game->getMusic());
+    _graph->setVisualAssets(_game->getVisualAssets());
+    _graph->setMapSize(_game->getMapHeight(), _game->getMapWidth());
+    _graph->setFunctionMenu([this]() {});
+    _graph->setScene(arc::IGraphical::GAME);
+}
+
+void arc::Core::setPrevGame()
+{
+    _indexGame--;
+    if (_indexGame == -1)
+        _indexGame = _games.size() - 1;
+    _game = std::unique_ptr<IGame>(_games[_indexGame].second.get()->getInstance());
+    _graph->setControls(_game->getControls());
+    // _graph->setFont(_game->getFont());
+    // _graph->setMusic(_game->getMusic());
+    _graph->setVisualAssets(_game->getVisualAssets());
+    _graph->setMapSize(_game->getMapHeight(), _game->getMapWidth());
+    _graph->setFunctionMenu([this]() {});
+    _graph->setScene(arc::IGraphical::GAME);
+}
+
+void arc::Core::setNextGraphical()
+{
+    IGraphical::Scene scene = _graph.get()->getScene();
+
+    _indexGraph++;
+    if (_indexGraph == static_cast<int>(_graphs.size())) {
+        _indexGraph = 0;
+    }
+    _graph = std::unique_ptr<IGraphical>(_graphs[_indexGraph].second.get()->getInstance());
+    _graph->setListLibraries(getNamesSharedGraphs(), [this](const std::string &name) {
+        (void)name;
+    }, -1);
+    _graph->setListGames(getNamesSharedGames(), [this](const std::string &name) {
+        setGame(name);
+    }, -1);
+    _graph->setFunctionPlay([this]() {
+        if (_game)
+            functionPlay();
+    });
+    if (scene == IGraphical::GAME) {
+        functionPlay();
+    }
+    _graph.get()->setScene(scene);
+}
+
+void arc::Core::setPrevGraphical()
+{
+    IGraphical::Scene scene = _graph.get()->getScene();
+
+    _indexGraph--;
+    if (_indexGraph == -1) {
+        _indexGraph = _graphs.size() - 1;
+    }
+    _graph = std::unique_ptr<IGraphical>(_graphs[_indexGraph].second.get()->getInstance());
+    _graph->setListLibraries(getNamesSharedGraphs(), [this](const std::string &name) {
+        (void)name;
+    }, -1);
+    _graph->setListGames(getNamesSharedGames(), [this](const std::string &name) {
+        setGame(name);
+    }, -1);
+    _graph->setFunctionPlay([this]() {
+        if (_game)
+            functionPlay();
+    });
+    if (scene == IGraphical::GAME) {
+        functionPlay();
+    }
+    _graph.get()->setScene(scene);
+}
+
 
 //PRIVATE
 
-const std::vector<std::string> arc::Core::getNamesSharedLib(const std::map<std::string, bool> &map)
+const std::vector<std::string> arc::Core::getNamesSharedGraphs()
 {
     std::vector<std::string> vector;
 
-    std::for_each(map.begin(), map.end(), [&vector, this](const std::pair<std::string, bool> &pair) {
+    std::for_each(_graphs.begin(), _graphs.end(), [this, &vector](const std::pair<std::string, std::unique_ptr<DLLoader<IGraphical>>> &pair) {
+        vector.push_back(pair.first);
+    });
+    return (vector);
+}
+
+const std::vector<std::string> arc::Core::getNamesSharedGames()
+{
+    std::vector<std::string> vector;
+
+    std::for_each(_games.begin(), _games.end(), [this, &vector](const std::pair<std::string, std::unique_ptr<DLLoader<IGame>>> &pair) {
         vector.push_back(pair.first);
     });
     return (vector);
@@ -94,7 +192,9 @@ void arc::Core::initGraphs()
                 continue;
             if (path.substr(path.find_last_of(".") + 1) != "so")
                 continue;
-            _graphs[path] = false;
+            try {
+                _graphs.push_back(std::pair<std::string, std::unique_ptr<DLLoader<IGraphical>>>(path, new DLLoader<IGraphical>(path)));
+            } catch(...) {}
         }
     } catch(const std::exception& e) {
         throw DirectoryError("Directory lib does not exist", "initGraphs");
@@ -111,71 +211,43 @@ void arc::Core::initGames()
                 continue;
             if (path.substr(path.find_last_of(".") + 1) != "so")
                 continue;
-            _games[path] = false;
+            try {
+                _games.push_back(std::pair<std::string, std::unique_ptr<DLLoader<IGame>>>(path, new DLLoader<IGame>(path)));
+            } catch(...) {}
         }
     } catch(const std::exception& e) {
         throw DirectoryError("Directory games does not exist", "initGames");
     }
 }
 
-void arc::Core::changeGame(Direction direction)
-{
-    std::string prev;
-    bool changeNext = false;
-
-    for (auto const &[key, val] : _games) {
-        if (val == false && changeNext != true) {
-            prev = key;
-            continue;
-        }
-        if (changeNext == true)
-            prev = key;
-        changeNext = false;
-        if (direction == NEXT) {
-            changeNext = true;
-            _games[key] = false;
-            continue;
-        }
-        _games[prev] = true;
-        setGame(prev);
-    }
-}
-
-void arc::Core::changeGraphical(Direction direction)
-{
-    std::string prev;
-    bool changeNext = false;
-
-    for (auto const &[key, val] : _games) {
-        if (val == false && changeNext != true) {
-            prev = key;
-            continue;
-        }
-        if (changeNext == true)
-            prev = key;
-        changeNext = false;
-        if (direction == NEXT) {
-            changeNext = true;
-            _games[key] = false;
-            continue;
-        }
-        _graphs[prev] = true;
-        setGraphical(prev);
-    }
-}
-
 void arc::Core::setGame(const std::string &libname)
-try {
-    _loaderGame = std::unique_ptr<DLLoader<IGame>>(new DLLoader<IGame>(libname));
-    _game = std::unique_ptr<IGame>(_loaderGame.get()->getInstance());
-} catch(const DlError &e) {
-    throw e;
+{
+    int i = 0;
+
+    _indexGame = -1;
+    std::for_each(_games.begin(), _games.end(), [this, &libname, &i](const std::pair<std::string, std::unique_ptr<DLLoader<IGame>>> &pair) {
+        if (getLibName(pair.first) == getLibName(libname)) {
+            _game = std::unique_ptr<IGame>(pair.second.get()->getInstance());
+            _indexGame = i;
+        }
+        i++;
+    });
+    if (_indexGame == -1)
+        throw ArcadeError("Unable to found the game", "setGame");
 }
 
 void arc::Core::setGraphical(const std::string &libname)
-try {
-    _loaderGraph = std::unique_ptr<DLLoader<IGraphical>>(new DLLoader<IGraphical>(libname));
-    _graph = std::unique_ptr<IGraphical>(_loaderGraph.get()->getInstance());
-} catch(const DlError &e) {
-    throw e;
+{
+    int i = 0;
+
+    _indexGraph = -1;
+    std::for_each(_graphs.begin(), _graphs.end(), [this, &libname, &i](const std::pair<std::string, std::unique_ptr<DLLoader<IGraphical>>> &pair) {
+        if (getLibName(pair.first) == getLibName(libname)) {
+            _graph = std::unique_ptr<IGraphical>(pair.second.get()->getInstance());
+            _indexGraph = i;
+        }
+        i++;
+    });
+    if (_indexGraph == -1)
+        throw ArcadeError("Unable to found the lib", "setGraphical");
 }

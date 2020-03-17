@@ -13,6 +13,8 @@ void arc::SceneGame::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
 {
     sf::Event event;
 
+    _actualEventType = arc::Event::Type::NO_EVENT;
+    _actualKeyPress = arc::Event::Key::NONE;
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
             _actualEventType = arc::Event::QUIT;
@@ -38,6 +40,4 @@ void arc::SceneGame::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
             return;
         }
     }
-    // _actualEventType = arc::Event::Type::NO_EVENT;
-    // _actualKeyPress = arc::Event::Key::NONE;
 }
