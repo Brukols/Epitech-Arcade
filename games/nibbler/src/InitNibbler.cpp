@@ -14,8 +14,8 @@ void Nibbler::initNibbler()
     _start = std::chrono::system_clock::now();
     _end = std::chrono::system_clock::now();
     _title = "Nibbler";
-    _height = 75;
-    _width = 100;
+    _height = 51;
+    _width = 68;
     _font = "./resources/fonts/Raleway-Light.ttf";
     _music = "";
     _sound = "";
