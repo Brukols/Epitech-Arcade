@@ -38,13 +38,7 @@ void arc::Core::functionPlay()
     _graph->setMapSize(_game->getMapHeight(), _game->getMapWidth());
     _graph->setScene(arc::IGraphical::GAME);
     _graph->setFunctionMenu([this]() {
-        playArcade();
     });
-    while (_graph->getEventType() != Event::QUIT) {
-        _game->updateGame();
-        _graph->updateGameInfo(_game->getEntities());
-        _graph->display();
-    }
 }
 
 void arc::Core::playArcade()
@@ -61,6 +55,10 @@ void arc::Core::playArcade()
     });
 
     while (_graph->getEventType() != Event::QUIT) {
+        if (_graph->getScene() == arc::IGraphical::GAME) {
+            _game->updateGame();
+            _graph->updateGameInfo(_game->getEntities());
+        }
         _graph->display();
     }
 }

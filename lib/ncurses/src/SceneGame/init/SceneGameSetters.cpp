@@ -6,6 +6,7 @@
 */
 
 #include "ncurses/SceneGame.hpp"
+#include "ncurses/NcursesError.hpp"
 
 void arc::SceneGame::setFunctionBackToMenu(const std::function<void()> &fct)
 {
@@ -19,6 +20,8 @@ void arc::SceneGame::setControls(const std::map<std::pair<Event::Type, Event::Ke
 
 void arc::SceneGame::setMapSize(size_t height, size_t width)
 {
+    if (height > 51 || width > 68)
+        throw MapSizeError("Map size too big");
     _height = height;
     _width = width;
     _rect = Rectangle(1, 2, MAIN_COLOR_1, MAIN_COLOR_1);

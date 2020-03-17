@@ -11,6 +11,7 @@
 #include <iostream>
 #include "ncurses/SceneMenu.hpp"
 #include "ncurses/SceneGame.hpp"
+#include "ncurses/NcursesError.hpp"
 
 arc::Graphical::Graphical()
 {
@@ -38,6 +39,7 @@ arc::Graphical::Graphical()
     static_cast<SceneGame *>(_scenes[GAME].get())->setFunctionBackToMenu([this]() {
         setScene(MAIN_MENU);
     });
+    _sceneError.init();
 }
 
 arc::Graphical::~Graphical()
@@ -63,7 +65,6 @@ void arc::Graphical::setScores(const std::vector<std::pair<std::string, std::str
 void arc::Graphical::setControls(const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &controls)
 {
     static_cast<SceneGame *>(_scenes[GAME].get())->setControls(controls);
-    _controls = controls;
 }
 
 void arc::Graphical::setFunctionPlay(const std::function<void()> &function)
@@ -130,7 +131,17 @@ void arc::Graphical::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &
 
 void arc::Graphical::setMapSize(size_t height, size_t width)
 {
-    static_cast<SceneGame *>(_scenes[GAME].get())->setMapSize(height, width);
+    try {
+        static_cast<SceneGame *>(_scenes[GAME].get())->setMapSize(height, width);
+    } catch (const arc::MapSizeError &e) {
+        _error = true;
+        setScene(MAIN_MENU);
+        _sceneError.setFunctionBack([this]() {
+            _error = false;
+            setScene(MAIN_MENU);
+        });
+        _sceneError.setErrorMessage("Sorry, you can t play to this game : the map is too big :(");
+    }
 }
 
 void arc::Graphical::setGameTitle(const std::string &game)

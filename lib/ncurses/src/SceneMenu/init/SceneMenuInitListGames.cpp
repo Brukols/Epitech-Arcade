@@ -12,7 +12,7 @@ static arc::Button initButton(const std::string &name, const std::function<void(
 {
     arc::Rectangle rect(5, 20, MAIN_COLOR_6, BACKGROUND_COLOR);
 
-    rect.setPosition(28, y);
+    rect.setPosition(38, y);
     rect.setOutlineColors(MAIN_COLOR_6, MAIN_COLOR_6);
     rect.setColorsSelect(MAIN_COLOR_6, MAIN_COLOR_6);
     arc::Button button(name, rect, fct);

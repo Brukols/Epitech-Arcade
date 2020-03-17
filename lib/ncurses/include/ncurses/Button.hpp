@@ -34,6 +34,9 @@ namespace arc
             void setColorsSelect(int textColor, int bgColor);
             void setColorsTextSelect(int textColor, int bgColor);
 
+            void setDisplay(bool display);
+            void setEvent(const std::function<void()> &event);
+
         private:
             std::string _name;
             Rectangle _rect;
@@ -44,7 +47,9 @@ namespace arc
 
             int _noPairSelect = -1;
 
-            bool _select;
+            bool _select = false;
+
+            bool _display = true;
     };
 } // namespace arc
 
