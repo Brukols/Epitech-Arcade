@@ -128,7 +128,7 @@ myVector getScores()
         // throw une exception
         std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
     }
-    sortScoreVector(scoreVector);
+    scoreVector = sortScoreVector(scoreVector);
     return (scoreVector);
     
 }
@@ -173,10 +173,10 @@ void insertScore(const std::string name, const std::string score)
 //sauvgarde vector dans le fichier.
 int main(int ac, char **av)
 {
-    myVector score_vector;
+    myVector score_vector = getScores();
     std::string name = "UUUo";
-    std::string score = "4000";
+    std::string score = "1";
 
-    insertScore(name, score);
+    print_score(score_vector);
     return (0);
 }
