@@ -139,7 +139,6 @@ void writeFile(myVector score_vector)
     std::string line;
     myVector::iterator it = score_vector.begin();
 
-    std::cout << "insert_score_file\n" << std::endl;
     if(file){
          while(it != score_vector.end())
         {
@@ -165,33 +164,18 @@ void insertScore(const std::string name, const std::string score)
 
     scoreVector = getScores();
     scoreVector.push_back(std::make_pair(name, score));
-
-    print_score(scoreVector);
-
-    std::cout << "is3" << std::endl;
-
     scoreVector = sortScoreVector(scoreVector);
-
-    print_score(scoreVector);
-
-    std::cout << "is4" << std::endl;
     scoreVector.resize(NB_SCORE);
-    std::cout << "is5" << std::endl;
-
-    print_score(scoreVector);
-
     scoreVector.shrink_to_fit();
-    std::cout << "is6" << std::endl;
     writeFile(scoreVector);
-    print_score(scoreVector);
 }
 
 //sauvgarde vector dans le fichier.
 int main(int ac, char **av)
 {
     myVector score_vector;
-    std::string name = "ooo";
-    std::string score = "999";
+    std::string name = "UUUo";
+    std::string score = "4000";
 
     insertScore(name, score);
     return (0);
