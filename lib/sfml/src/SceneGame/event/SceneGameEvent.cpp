@@ -16,7 +16,7 @@ void arc::SceneGame::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
     _actualEventType = arc::Event::Type::NO_EVENT;
     _actualKeyPress = arc::Event::Key::NONE;
     while (window.pollEvent(event)) {
-        if (event.type == sf::Event::Closed) {
+        if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
             _actualEventType = arc::Event::QUIT;
             window.close();
             return;

@@ -76,19 +76,32 @@ void arc::SceneMenu::inputEvent(sf::RenderWindow &window, sf::Event &event)
     enteredText(_inputs, event);
 }
 
+bool arc::SceneMenu::inputIsFocus() const
+{
+    return (_inputs.end() == std::find_if(_inputs.begin(), _inputs.end(), [this](const Input &input) -> bool {
+        if (input.isFocus())
+            return (true);
+        return (false);
+    }) ? false : true);
+}
+
 void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress)
 {
     sf::Event event;
 
+    _actualEventType = arc::Event::Type::NO_EVENT;
+    _actualKeyPress = arc::Event::Key::NONE;
     while (window.pollEvent(event)) {
-        if (event.type == sf::Event::Closed) {
+        if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
             _actualEventType = arc::Event::QUIT;
             window.close();
-            _actualEventType = arc::Event::QUIT;
             return;
         }
         buttonsEvent(window, event);
-        inputEvent(window, event);
+        if (inputIsFocus()) {
+            inputEvent(window, event);
+            return;
+        }
         if (event.type == sf::Event::KeyPressed) {
             _actualEventType = arc::Event::KEY_PRESSED;
             _actualKeyPress = Utility::getKey(event);
@@ -102,6 +115,4 @@ void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
                 return;
         }
     }
-    _actualEventType = arc::Event::Type::NO_EVENT;
-    _actualKeyPress = arc::Event::Key::NONE;
 }

@@ -53,6 +53,8 @@ namespace arc
             void resetButtonsListGames();
             void resetButtonsListLibraries();
 
+            bool inputIsFocus() const;
+
             /*
             ** List games and libraries management
             */
