@@ -12,7 +12,6 @@ SRCS	=	src/Graphical.cpp	\
 			src/display/GraphicalDisplay.cpp	\
 			src/button/Button.cpp	\
 			src/text/Text.cpp	\
-			src/music/GraphicalMusic.cpp	\
 			src/input/Input.cpp	\
 			src/SceneMenu/SceneMenu.cpp	\
 			src/SceneMenu/init/SceneMenuInit.cpp	\

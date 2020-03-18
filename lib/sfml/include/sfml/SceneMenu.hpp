@@ -40,6 +40,9 @@ namespace arc
             void setFunctionExit(const std::function<void()> &);
             void setFunctionPlay(const std::function<void()> &);
 
+            const std::string &getUsername();
+            void setUsername(const std::string &name);
+
             void setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen);
             void setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen);
 

@@ -69,9 +69,14 @@ void arc::Graphical::setFunctionTogglePause(const std::function<void()> &functio
     _eventTogglePauseButton = function;
 }
 
-const std::string &arc::Graphical::getUsername() const
+const std::string &arc::Graphical::getUsername()
 {
-    return (_username);
+    return (static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->getUsername());
+}
+
+void arc::Graphical::setUsername(const std::string &name)
+{
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setUsername(name);
 }
 
 arc::IGraphical::Scene arc::Graphical::getScene() const

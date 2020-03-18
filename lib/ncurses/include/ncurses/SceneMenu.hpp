@@ -31,6 +31,9 @@ namespace arc
             void setFunctionExit(const std::function<void()> fct);
             void setFunctionPlay(const std::function<void()> &fct);
 
+            const std::string &getUsername();
+            void setUsername(const std::string &name);
+
             void setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen);
             void setListLibraries(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen);
             void initButtonsListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen);
@@ -60,6 +63,8 @@ namespace arc
 
             std::vector<Button> _buttonsListGames;
             std::vector<Button> _buttonsListLibraries;
+
+            std::string _username = "";
     };
 };
 

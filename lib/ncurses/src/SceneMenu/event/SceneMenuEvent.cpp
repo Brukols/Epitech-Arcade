@@ -28,6 +28,7 @@ void arc::SceneMenu::event(arc::Event::Type &_actualEventType, arc::Event::Key &
         }
         if (c == '\n') {
             _inputs[0].setActivate(false);
+            _username = _inputs[0].getText();
             return;
         }
         _inputs[0].addLetter(c);

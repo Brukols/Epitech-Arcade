@@ -71,3 +71,14 @@ void arc::Input::removeLetter()
     _text.setText(text);
     _text.setPosition(_rect.getWidth() / 2 - _text.getText().size() / 2 + _rect.getPosX(), _rect.getPosY() + _rect.getHeight() / 2);
 }
+
+const std::string &arc::Input::getText() const
+{
+    return (_text.getText());
+}
+
+void arc::Input::setText(const std::string &text)
+{
+    _text.setText(text);
+    _text.setPosition(_rect.getWidth() / 2 - _text.getText().size() / 2 + _rect.getPosX(), _rect.getPosY() + _rect.getHeight() / 2);
+}

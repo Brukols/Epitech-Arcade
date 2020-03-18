@@ -13,4 +13,5 @@ void arc::SceneMenu::init()
     initTexts();
     initButtons();
     initInputs();
+    setUsername(_username);
 }

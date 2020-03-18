@@ -28,3 +28,9 @@ void arc::SceneMenu::setListLibraries(const std::vector<std::string> &games, con
     _eventListLibs = fct;
     initButtonsListLibraries(games, fct, chosen);
 }
+
+void arc::SceneMenu::setUsername(const std::string &name)
+{
+    _inputs[0].setText(name);
+    _username = name;
+}

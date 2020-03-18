@@ -30,3 +30,12 @@ void arc::SceneMenu::setListLibraries(const std::vector<std::string> &libraries,
     _eventListLibs = fct;
     initButtonsListLibraries(libraries, fct, chosen);
 }
+
+void arc::SceneMenu::setUsername(const std::string &name)
+{
+    if (name.size() == 0)
+        return;
+    eventValidateUsername();
+    _username = name;
+    _texts[_texts.size() - 1].setText("Username : " + _username);
+}

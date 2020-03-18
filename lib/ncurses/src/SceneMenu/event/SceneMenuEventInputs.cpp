@@ -14,6 +14,9 @@ void arc::SceneMenu::eventInputs(MEVENT event)
             input.setActivate(true);
             return;
         }
+        if (input.isActivate()) {
+            _username = input.getText();
+        }
         input.setActivate(false);
     });
 }

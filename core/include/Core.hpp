@@ -46,12 +46,14 @@ namespace arc {
             std::vector<std::pair<std::string, std::unique_ptr<DLLoader<IGame>>>> _games;
 
             std::unique_ptr<IGame> _game;
-            std::unique_ptr<IGraphical> _graph;
-            
+            std::unique_ptr<IGraphical> _graph = nullptr;
+
             int _indexGame = -1;
             int _indexGraph = -1;
     
             std::string _nextGraphPath = "";
+
+            std::unique_ptr<DLLoader<IGraphical>> _initialGraph;
     };
 }
 
