@@ -43,18 +43,11 @@ void arc::Core::functionPlay()
 
 void arc::Core::playArcade()
 {
-    _graph->setListLibraries(getNamesSharedGraphs(), [this](const std::string &name) {
-        (void)name;
-    }, -1);
-    _graph->setListGames(getNamesSharedGames(), [this](const std::string &name) {
-        setGame(name);
-    }, -1);
-    _graph->setFunctionPlay([this]() {
-        if (_game)
-            functionPlay();
-    });
-
     while (_graph->getEventType() != Event::QUIT) {
+        if (!_nextGraphPath.empty()) {
+            setGraphical(_nextGraphPath);
+            _nextGraphPath = "";
+        }
         if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::E)
             setNextGraphical();
         if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::R)
@@ -111,8 +104,8 @@ void arc::Core::setNextGraphical()
     }
     _graph = std::unique_ptr<IGraphical>(_graphs[_indexGraph].second.get()->getInstance());
     _graph->setListLibraries(getNamesSharedGraphs(), [this](const std::string &name) {
-        (void)name;
-    }, -1);
+        _nextGraphPath = name;
+    }, _indexGraph);
     _graph->setListGames(getNamesSharedGames(), [this](const std::string &name) {
         setGame(name);
     }, -1);
@@ -136,8 +129,8 @@ void arc::Core::setPrevGraphical()
     }
     _graph = std::unique_ptr<IGraphical>(_graphs[_indexGraph].second.get()->getInstance());
     _graph->setListLibraries(getNamesSharedGraphs(), [this](const std::string &name) {
-        (void)name;
-    }, -1);
+        _nextGraphPath = name;
+    }, _indexGraph);
     _graph->setListGames(getNamesSharedGames(), [this](const std::string &name) {
         setGame(name);
     }, -1);
@@ -244,6 +237,16 @@ void arc::Core::setGraphical(const std::string &libname)
     std::for_each(_graphs.begin(), _graphs.end(), [this, &libname, &i](const std::pair<std::string, std::unique_ptr<DLLoader<IGraphical>>> &pair) {
         if (getLibName(pair.first) == getLibName(libname)) {
             _graph = std::unique_ptr<IGraphical>(pair.second.get()->getInstance());
+            _graph->setListLibraries(getNamesSharedGraphs(), [this](const std::string &name) {
+                _nextGraphPath = name;
+            }, i);
+            _graph->setListGames(getNamesSharedGames(), [this](const std::string &name) {
+                setGame(name);
+            }, -1);
+            _graph->setFunctionPlay([this]() {
+                if (_game)
+                    functionPlay();
+            });
             _indexGraph = i;
         }
         i++;

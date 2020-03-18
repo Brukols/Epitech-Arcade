@@ -33,8 +33,8 @@ namespace arc
 
             void setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen);
             void setListLibraries(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen);
-            void initButtonsListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct);
-            void initButtonsListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct);
+            void initButtonsListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen);
+            void initButtonsListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen);
 
         private:
             void initRects();
@@ -51,6 +51,7 @@ namespace arc
             std::function<void()> _eventFunctionExit;
             std::function<void()> _eventFunctionPlay;
             std::function<void(const std::string &)> _eventListGames;
+            std::function<void(const std::string &)> _eventListLibs;
 
             std::vector<Rectangle> _rects;
             std::vector<Text> _texts;

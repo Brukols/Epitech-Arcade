@@ -50,6 +50,8 @@ namespace arc {
             
             int _indexGame = -1;
             int _indexGraph = -1;
+    
+            std::string _nextGraphPath = "";
     };
 }
 

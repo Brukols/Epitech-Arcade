@@ -120,8 +120,9 @@ void arc::Button::toggleSelect()
 {
     if (!_display)
         return;
-    if (_activate)
+    if (_activate) {
         _select = !_select;
+    }
 }
 
 void arc::Button::setColorSelect(sf::Color selectColor, sf::Color selectOutlineColor, sf::Color selectHoverColor)

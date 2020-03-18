@@ -51,6 +51,9 @@ void arc::SceneMenu::buttonsEvent(sf::RenderWindow &window, sf::Event &event)
         if (button.isMouseHover(sf::Mouse::getPosition())) {
             resetButtonsListLibraries();
             button.toggleSelect();
+            if (button.isSelect()) {
+                button.clickButton();
+            }
         }
     });
 }
