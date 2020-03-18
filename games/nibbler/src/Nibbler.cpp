@@ -77,62 +77,6 @@ const std::string &Nibbler::getTitle() const
     return _title;
 }
 
-void Nibbler::restart()
-{
-    initNibbler();
-}
-
-void Nibbler::updateGame()
-{
-    _end = std::chrono::system_clock::now();
-    // manageClock();
-    if (std::chrono::duration_cast<std::chrono::milliseconds>(_end - _start).count() > 200) {
-        _start = std::chrono::system_clock::now();
-        // updateOrientationSnake();
-        moveSnake();
-    }
-    // if (isGameOver() == true)
-    //     restart();
-    //mise à jour orientation snake   //clock
-}
-
-bool Nibbler::doYouEat()
-{
-    auto const &ptr = std::find_if(_entities.begin(), _entities.end(), [this] (std::shared_ptr<Entity> &p) {
-        for (size_t i = 0; i < _apple.size(); i++) {
-            if (p == _apple[i]) {
-                if ((p->x == _snake.front()->x) && (p->y == _snake.front()->y)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    });
-    if (ptr == _entities.end())
-        return false;
-    _entities.erase(ptr);
-    _apple.clear();
-    return true;
-}
-
-void Nibbler::updateOrientationSnake()
-{
-    int i = 0;
-
-    for (i = _snake.size() - 1; i > 0; i--) {
-        _snake[i]->orientation = _snake[i - 1]->orientation;
-    }
-}
-
-bool Nibbler::isGameOver() const
-{
-    if (_snake.front()->x == -1 || _snake.front()->x == _width || _snake.front()->y == -1 || _snake.front()->y == _height) {
-        return true;
-    }
-    //Une partie du serpent touche un bord
-    return false;
-}
-
 extern "C" arc::IGame *instance_ctor()
 {
     return (new arc::Nibbler());

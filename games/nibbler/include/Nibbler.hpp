@@ -62,6 +62,8 @@ namespace arc {
             std::vector<std::shared_ptr<Entity>> _snake;
             std::vector<std::shared_ptr<Entity>> _apple;
 
+            int _nbApple;
+
             std::vector <std::pair<std::string, std::string>> _gameControls;
             std::vector<std::string> _gameStats;
         private:
@@ -71,14 +73,18 @@ namespace arc {
             void initControls();
             void initEntities();
             void initApple();
-            bool isOnSnake(float x, float y);
             void initSnake();
             void initGameControls();
             void initGameStats();
 
             bool doYouEat();
+            void addBodySnake();
             void moveSnake();
             void updateOrientationSnake();
+            bool isCollision() const;
+            bool isOnSnake(float x, float y);
+            bool isPossibleAdd(float x, float y);
+            void addBodySnakeFirstPlace(std::shared_ptr<Entity> &o);
     };
 
 }
