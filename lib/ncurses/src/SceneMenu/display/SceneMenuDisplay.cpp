@@ -28,4 +28,8 @@ void arc::SceneMenu::display()
     std::for_each(_buttonsListLibraries.begin(), _buttonsListLibraries.end(), [this](Button &button) {
         button.display();
     });
+
+    std::for_each(_inputs.begin(), _inputs.end(), [this](Input &input) {
+        input.display();
+    });
 }

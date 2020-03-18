@@ -28,6 +28,7 @@ namespace arc
 
             void setText(const std::string &newText);
             void setDisplay(bool display);
+            const std::string &getText() const;
 
         private:
             std::string _text;

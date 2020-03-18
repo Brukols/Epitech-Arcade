@@ -10,6 +10,7 @@
 void arc::Graphical::display()
 {
     static bool resize = false;
+    box(stdscr, 0, 0);
 
     if (LINES < 57 || COLS < 230) {
         _sceneError.clear();
