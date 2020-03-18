@@ -99,6 +99,8 @@ namespace arc
             std::string _username;
 
             std::vector<ErrorMessage> _errorMessages;
+
+            bool _exit = false;
     };
 }
 

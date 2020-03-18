@@ -26,7 +26,6 @@ namespace arc
             Graphical();
             ~Graphical();
 
-
             /*
             ** Override methods for IGraphical
             */
@@ -87,8 +86,6 @@ namespace arc
 
             arc::IGraphical::Scene _actualScene = arc::IGraphical::Scene::MAIN_MENU;
 
-            sf::Font _font;
-
             std::vector<std::pair<std::string, std::string>> _infoHowToPlay;
             std::vector<std::string> _infoGameStat;
 
@@ -96,6 +93,9 @@ namespace arc
             std::map<char, Color> _backgroundColors;
 
             bool _exit = false;
+
+            sf::Font _defaultFont;
+            sf::Font _font;
     };
 };
 

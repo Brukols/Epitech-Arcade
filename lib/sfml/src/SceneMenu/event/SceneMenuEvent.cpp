@@ -97,6 +97,10 @@ void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
 {
     sf::Event event;
 
+    if (_exit == true) {
+        _actualEventType = arc::Event::Type::QUIT;
+        return;
+    }
     _actualEventType = arc::Event::Type::NO_EVENT;
     _actualKeyPress = arc::Event::Key::NONE;
     while (window.pollEvent(event)) {

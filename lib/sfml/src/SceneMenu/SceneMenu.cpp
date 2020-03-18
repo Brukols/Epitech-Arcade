@@ -10,7 +10,10 @@
 
 arc::SceneMenu::SceneMenu()
 {
-    _font.loadFromFile("resources/fonts/Raleway-Bold.ttf");
+    if (!_font.loadFromFile("resources/fonts/Raleway-Bold.ttf")) {
+        _exit = true;
+        return;
+    }
     initButtons();
     initTexts();
     initInput();

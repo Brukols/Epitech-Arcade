@@ -9,6 +9,8 @@
 
 void arc::SceneMenu::display(sf::RenderWindow &window)
 {
+    if (_exit == true)
+        return;
     std::for_each(_images.begin(), _images.end(), [this, &window](Image &image) {
         image.display(window);
     });
