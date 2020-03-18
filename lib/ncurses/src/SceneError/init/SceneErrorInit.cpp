@@ -21,7 +21,7 @@ void arc::SceneError::initButtons()
 {
     Rectangle rect(5, 25, arc::MAIN_COLOR_1, arc::BACKGROUND_COLOR);
 
-    rect.setPosition(COLS / 2 - 25 / 2, 30);
+    rect.setPosition(COLS / 2 - 25 / 2, LINES / 2 - 5);
     rect.setOutlineColors(arc::MAIN_COLOR_1, arc::MAIN_COLOR_1);
     Button button("Ok", rect, _eventBack);
     button.setColors(arc::MAIN_COLOR_1, arc::BACKGROUND_COLOR);
