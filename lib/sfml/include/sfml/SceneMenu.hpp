@@ -15,6 +15,7 @@
 #include "sfml/Input.hpp"
 #include "sfml/Image.hpp"
 #include <functional>
+#include "ErrorMessage.hpp"
 
 namespace arc
 {
@@ -25,7 +26,6 @@ namespace arc
                 GET_USERNAME,
                 MENU
             };
-
 
         public:
             SceneMenu();
@@ -67,6 +67,7 @@ namespace arc
             void eventValidateUsername();
 
             void eventButtonPlay();
+            void eventErrorMessage(sf::Event &event);
 
         private:
             SceneState _state = GET_USERNAME;
@@ -96,6 +97,8 @@ namespace arc
             std::vector<Button> _buttonEnterUsername;
 
             std::string _username;
+
+            std::vector<ErrorMessage> _errorMessages;
     };
 }
 

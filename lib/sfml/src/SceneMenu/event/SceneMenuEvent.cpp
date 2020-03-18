@@ -85,6 +85,14 @@ bool arc::SceneMenu::inputIsFocus() const
     }) ? false : true);
 }
 
+void arc::SceneMenu::eventErrorMessage(sf::Event &event)
+{
+    if (event.type != sf::Event::MouseButtonReleased)
+        return;
+    if (_errorMessages[0].isHoverButton(sf::Mouse::getPosition()))
+        _errorMessages[0].clickButton();
+}
+
 void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress)
 {
     sf::Event event;
@@ -95,6 +103,10 @@ void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
         if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
             _actualEventType = arc::Event::QUIT;
             window.close();
+            return;
+        }
+        if (_errorMessages.size() != 0) {
+            eventErrorMessage(event);
             return;
         }
         buttonsEvent(window, event);

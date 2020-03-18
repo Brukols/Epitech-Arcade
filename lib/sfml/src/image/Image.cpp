@@ -6,12 +6,13 @@
 */
 
 #include "sfml/Image.hpp"
+#include "sfml/SFMLErrors.hpp"
 
 arc::Image::Image(const std::string &path) : _path(path)
 {
     _texture = std::shared_ptr<sf::Texture>(new sf::Texture());
     if (!_texture.get()->loadFromFile(path))
-        return;
+        throw SpriteError("Cannot load this image : " + path, "Image");
     _sprite.setTexture(*_texture.get(), true);
 }
 

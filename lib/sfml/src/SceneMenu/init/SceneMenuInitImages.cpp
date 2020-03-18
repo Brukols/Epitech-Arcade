@@ -27,6 +27,12 @@ void arc::SceneMenu::initImages()
     _images.clear();
 
     std::for_each(images.begin(), images.end(), [this](arc::Image (*image)()) {
-        _images.push_back(image());
+        try {
+            _images.push_back(image());
+        } catch(const std::exception& e) {
+            _errorMessages.push_back(ErrorMessage(e.what(), [this](){
+                _errorMessages.erase(_errorMessages.begin());
+            }, _font));
+        }
     });
 }

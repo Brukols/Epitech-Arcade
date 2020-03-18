@@ -12,7 +12,7 @@
 #include "sfml/SceneMenu.hpp"
 #include "sfml/SceneGame.hpp"
 
-arc::Graphical::Graphical() : _window(sf::RenderWindow(sf::VideoMode(1920, 1080, 32), " window", sf::Style::Fullscreen))
+arc::Graphical::Graphical() : _window(sf::RenderWindow(sf::VideoMode(1920, 1080, 32), "Arcade", sf::Style::Fullscreen))
 {
     _window.setFramerateLimit(60);
     _scenes[MAIN_MENU] = std::unique_ptr<IScene>(new SceneMenu());

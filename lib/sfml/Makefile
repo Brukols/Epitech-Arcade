@@ -38,6 +38,8 @@ SRCS	=	src/Graphical.cpp	\
 			src/SceneGame/event/SceneGameEventButtons.cpp	\
 			src/Utility/Utility.cpp	\
 			src/image/Image.cpp	\
+			src/SFMLErrors/SFMLErrors.cpp	\
+			src/ErrorMessage/ErrorMessage.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)
 
