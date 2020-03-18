@@ -14,6 +14,7 @@
 #include "ncurses/Rectangle.hpp"
 #include "ncurses/Text.hpp"
 #include "ncurses/Button.hpp"
+#include "ColorsMode.hpp"
 
 namespace arc
 {

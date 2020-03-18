@@ -6,11 +6,11 @@
 */
 
 #include "ncurses/SceneError.hpp"
-#include "ncurses/defines.hpp"
+
 
 void arc::SceneError::initRects()
 {
-    Rectangle rect(LINES, COLS, MAIN_COLOR_3, MAIN_COLOR_3);
+    Rectangle rect(LINES, COLS, arc::MAIN_COLOR_3, arc::MAIN_COLOR_3);
 
     rect.setPosition(0, 0);
     _rects.clear();
@@ -19,12 +19,12 @@ void arc::SceneError::initRects()
 
 void arc::SceneError::initButtons()
 {
-    Rectangle rect(5, 25, MAIN_COLOR_1, BACKGROUND_COLOR);
+    Rectangle rect(5, 25, arc::MAIN_COLOR_1, arc::BACKGROUND_COLOR);
 
     rect.setPosition(COLS / 2 - 25 / 2, 30);
-    rect.setOutlineColors(MAIN_COLOR_1, MAIN_COLOR_1);
+    rect.setOutlineColors(arc::MAIN_COLOR_1, arc::MAIN_COLOR_1);
     Button button("Ok", rect, _eventBack);
-    button.setColors(MAIN_COLOR_1, BACKGROUND_COLOR);
+    button.setColors(arc::MAIN_COLOR_1, arc::BACKGROUND_COLOR);
     button.setDisplay(false);
     _buttons.clear();
     _buttons.push_back(button);
@@ -32,7 +32,7 @@ void arc::SceneError::initButtons()
 
 void arc::SceneError::initTexts()
 {
-    arc::Text text(_errorMsg, MAIN_COLOR_1, MAIN_COLOR_3);
+    arc::Text text(_errorMsg, arc::MAIN_COLOR_1, arc::MAIN_COLOR_3);
 
     text.setPosition(COLS / 2 - _errorMsg.size() / 2, 25);
     text.setDisplay(false);

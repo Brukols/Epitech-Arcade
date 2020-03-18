@@ -11,12 +11,14 @@
 #include "IGraphical.hpp"
 #include "IScene.hpp"
 #include <ncurses.h>
-#include "defines.hpp"
 #include "SceneError.hpp"
+#include "ColorsMode.hpp"
 
 namespace arc
 {
+
     class Graphical : public IGraphical {
+
         public:
             Graphical();
             ~Graphical();

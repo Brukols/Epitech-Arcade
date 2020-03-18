@@ -6,14 +6,14 @@
 */
 
 #include "ncurses/SceneGame.hpp"
-#include "ncurses/defines.hpp"
+
 
 arc::Rectangle initGameRect()
 {
-    arc::Rectangle rect(51, 136, BACKGROUND_COLOR, BACKGROUND_COLOR);
+    arc::Rectangle rect(51, 136, arc::BACKGROUND_COLOR, arc::BACKGROUND_COLOR);
 
     rect.setPosition(5, 2);
-    rect.setOutlineColors(MAIN_COLOR_2, MAIN_COLOR_2);
+    rect.setOutlineColors(arc::MAIN_COLOR_2, arc::MAIN_COLOR_2);
     return (rect);
 }
 

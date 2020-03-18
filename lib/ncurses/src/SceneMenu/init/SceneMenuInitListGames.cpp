@@ -6,18 +6,18 @@
 */
 
 #include "ncurses/SceneMenu.hpp"
-#include "ncurses/defines.hpp"
+
 
 static arc::Button initButton(const std::string &name, const std::function<void()> &fct, int y)
 {
-    arc::Rectangle rect(5, 20, MAIN_COLOR_6, BACKGROUND_COLOR);
+    arc::Rectangle rect(5, 20, arc::MAIN_COLOR_6, arc::BACKGROUND_COLOR);
 
     rect.setPosition(38, y);
-    rect.setOutlineColors(MAIN_COLOR_6, MAIN_COLOR_6);
-    rect.setColorsSelect(MAIN_COLOR_6, MAIN_COLOR_6);
+    rect.setOutlineColors(arc::MAIN_COLOR_6, arc::MAIN_COLOR_6);
+    rect.setColorsSelect(arc::MAIN_COLOR_6, arc::MAIN_COLOR_6);
     arc::Button button(name, rect, fct);
-    button.setColors(MAIN_COLOR_2, BACKGROUND_COLOR);
-    button.setColorsTextSelect(MAIN_COLOR_2, MAIN_COLOR_6);
+    button.setColors(arc::MAIN_COLOR_2, arc::BACKGROUND_COLOR);
+    button.setColorsTextSelect(arc::MAIN_COLOR_2, arc::MAIN_COLOR_6);
     return (button);
 }
 

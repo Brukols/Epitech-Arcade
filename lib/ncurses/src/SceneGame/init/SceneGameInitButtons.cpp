@@ -6,16 +6,16 @@
 */
 
 #include "ncurses/SceneGame.hpp"
-#include "ncurses/defines.hpp"
+
 
 arc::Button initBackToMenuButton(std::function<void()> &event)
 {
-    arc::Rectangle rect(5, 20, MAIN_COLOR_5, BACKGROUND_COLOR);
+    arc::Rectangle rect(5, 20, arc::MAIN_COLOR_5, arc::BACKGROUND_COLOR);
 
     rect.setPosition(180, 45);
-    rect.setOutlineColors(MAIN_COLOR_5, MAIN_COLOR_5);
+    rect.setOutlineColors(arc::MAIN_COLOR_5, arc::MAIN_COLOR_5);
     arc::Button button("Back to menu", rect, event);
-    button.setColors(MAIN_COLOR_2, BACKGROUND_COLOR);
+    button.setColors(arc::MAIN_COLOR_2, arc::BACKGROUND_COLOR);
     return (button);
 }
 

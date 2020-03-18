@@ -6,7 +6,7 @@
 */
 
 #include "ncurses/SceneGame.hpp"
-#include "ncurses/defines.hpp"
+
 
 void arc::SceneGame::display()
 {
