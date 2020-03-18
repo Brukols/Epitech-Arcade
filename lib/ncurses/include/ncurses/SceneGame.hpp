@@ -15,9 +15,10 @@
 #include <map>
 #include <memory>
 #include "Utils.hpp"
+#include "ColorsMode.hpp"
 
 #include <functional>
-#include "defines.hpp"
+
 
 namespace arc
 {

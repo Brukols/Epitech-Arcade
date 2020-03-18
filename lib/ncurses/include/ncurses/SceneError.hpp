@@ -10,6 +10,7 @@
 
 #include "Button.hpp"
 #include "IScene.hpp"
+#include "ColorsMode.hpp"
 
 namespace arc
 {

@@ -24,6 +24,8 @@ arc::Graphical::Graphical()
     init_color(MAIN_COLOR_5, 652, 352, 436);
     init_color(MAIN_COLOR_6, 656, 604, 568);
     init_color(MAIN_COLOR_7, 684, 664, 764);
+    init_color(MAIN_COLOR_8, 188, 228, 368);
+    init_color(MAIN_COLOR_9, 200, 200, 200);
     noecho();
     cbreak();
     nodelay(stdscr, TRUE);

@@ -9,10 +9,10 @@
 
 void arc::SceneGame::initMap()
 {
-    arc::Rectangle rect(_height + 2, _width * 2 + 2, BACKGROUND_COLOR, BACKGROUND_COLOR);
+    arc::Rectangle rect(_height + 2, _width * 2 + 2, arc::BACKGROUND_COLOR, arc::BACKGROUND_COLOR);
 
     rect.setPosition(5, 2);
-    rect.setOutlineColors(MAIN_COLOR_2, MAIN_COLOR_2);
+    rect.setOutlineColors(arc::MAIN_COLOR_2, arc::MAIN_COLOR_2);
     _rects.clear();
     _rects.push_back(rect);
 }

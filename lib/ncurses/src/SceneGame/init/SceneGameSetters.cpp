@@ -24,7 +24,7 @@ void arc::SceneGame::setMapSize(size_t height, size_t width)
         throw MapSizeError("Map size too big");
     _height = height;
     _width = width;
-    _rect = Rectangle(1, 2, MAIN_COLOR_1, MAIN_COLOR_1);
+    _rect = Rectangle(1, 2, arc::MAIN_COLOR_1, arc::MAIN_COLOR_1);
     initMap();
 }
 

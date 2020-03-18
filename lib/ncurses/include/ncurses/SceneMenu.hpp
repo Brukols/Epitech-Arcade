@@ -14,6 +14,8 @@
 #include "ncurses/Rectangle.hpp"
 #include "ncurses/Text.hpp"
 #include "ncurses/Button.hpp"
+#include "ColorsMode.hpp"
+#include "Input.hpp"
 
 namespace arc
 {
@@ -38,8 +40,10 @@ namespace arc
             void initRects();
             void initTexts();
             void initButtons();
+            void initInputs();
 
             void eventButtons(MEVENT event);
+            void eventInputs(MEVENT event);
             void resetListGames();
             void resetListLibraries();
 
@@ -51,6 +55,7 @@ namespace arc
             std::vector<Rectangle> _rects;
             std::vector<Text> _texts;
             std::vector<Button> _buttons;
+            std::vector<Input> _inputs;
 
             std::vector<Button> _buttonsListGames;
             std::vector<Button> _buttonsListLibraries;
