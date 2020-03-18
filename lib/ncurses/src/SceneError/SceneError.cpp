@@ -33,5 +33,5 @@ void arc::SceneError::setErrorMessage(const std::string &msg)
     _errorMsg = msg;
     _texts[0].setText(_errorMsg);
     _texts[0].setDisplay(true);
-    _texts[0].setPosition(COLS / 2 - _errorMsg.size() / 2, 25);
+    _texts[0].setPosition(COLS / 2 - _errorMsg.size() / 2, LINES / 2 - 3);
 }

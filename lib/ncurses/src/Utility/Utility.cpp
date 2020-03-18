@@ -21,6 +21,7 @@ void arc::Utility::display(const std::string &text, int x, int y, int noPair)
         }
     }
     attroff(COLOR_PAIR(noPair));
+    attroff(A_BOLD);
 }
 
 std::string arc::Utility::getText(const std::string &path)

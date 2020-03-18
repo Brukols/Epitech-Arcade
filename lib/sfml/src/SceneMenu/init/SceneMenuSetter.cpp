@@ -22,13 +22,20 @@ void arc::SceneMenu::setFunctionPlay(const std::function<void()> &eventPlay)
 void arc::SceneMenu::setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen)
 {
     _eventListGames = fct;
-    initButtonsListGames(games, fct);
-    (void)chosen;
+    initButtonsListGames(games, fct, chosen);
 }
 
 void arc::SceneMenu::setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen)
 {
     _eventListLibs = fct;
-    initButtonsListLibraries(libraries, fct);
-    (void)chosen;
+    initButtonsListLibraries(libraries, fct, chosen);
+}
+
+void arc::SceneMenu::setUsername(const std::string &name)
+{
+    if (name.size() == 0)
+        return;
+    eventValidateUsername();
+    _username = name;
+    _texts[_texts.size() - 1].setText("Username : " + _username);
 }

@@ -12,7 +12,6 @@ SRCS	=	src/Graphical.cpp	\
 			src/display/GraphicalDisplay.cpp	\
 			src/button/Button.cpp	\
 			src/text/Text.cpp	\
-			src/music/GraphicalMusic.cpp	\
 			src/input/Input.cpp	\
 			src/SceneMenu/SceneMenu.cpp	\
 			src/SceneMenu/init/SceneMenuInit.cpp	\
@@ -38,6 +37,8 @@ SRCS	=	src/Graphical.cpp	\
 			src/SceneGame/event/SceneGameEventButtons.cpp	\
 			src/Utility/Utility.cpp	\
 			src/image/Image.cpp	\
+			src/SFMLErrors/SFMLErrors.cpp	\
+			src/ErrorMessage/ErrorMessage.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)
 

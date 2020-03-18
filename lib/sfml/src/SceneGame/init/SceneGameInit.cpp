@@ -9,7 +9,12 @@
 
 void arc::SceneGame::init()
 {
-    _font.loadFromFile("resources/fonts/Raleway-Bold.ttf");
+    _errorMessages.clear();
+    _textureMap.clear();
+    if (!_font.loadFromFile("resources/fonts/Raleway-Bold.ttf")) {
+        _exit = true;
+        return;
+    }
     initButtons();
     // initTexts();
     initRects();

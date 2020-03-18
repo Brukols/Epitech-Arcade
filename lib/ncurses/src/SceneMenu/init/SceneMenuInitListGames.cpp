@@ -29,15 +29,28 @@ static const std::string getLibName(const std::string &path)
     return (tmp);
 }
 
-void arc::SceneMenu::initButtonsListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct)
+void arc::SceneMenu::initButtonsListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen)
 {
     int y = 27;
     _buttonsListGames.clear();
 
-    std::for_each(games.begin(), games.end(), [this, &y, fct](const std::string &name) {
-        _buttonsListGames.push_back(initButton(getLibName(name), [this, &fct, name]() {
-            _eventListGames(name);
-        }, y));
+    int i = 0;
+    std::for_each(games.begin(), games.end(), [this, &y, fct, &i, &chosen](const std::string &name) {
+        if (i == chosen) {
+            _buttonsListGames.push_back(initButton(getLibName(name), [this]() {}, y));
+        } else {
+            _buttonsListGames.push_back(initButton(getLibName(name), [this, &fct, name]() {
+                _eventListGames(name);
+            }, y));
+        }
         y += 7;
+        i++;
+    });
+
+    i = 0;
+    std::for_each(_buttonsListGames.begin(), _buttonsListGames.end(), [this, &i, &chosen](Button &button) {
+        if (i == chosen)
+            button.toggleSelect();
+        i++;
     });
 }

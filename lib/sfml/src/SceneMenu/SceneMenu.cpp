@@ -10,8 +10,11 @@
 
 arc::SceneMenu::SceneMenu()
 {
+    if (!_font.loadFromFile("resources/fonts/Raleway-Bold.ttf")) {
+        _exit = true;
+        return;
+    }
     initButtons();
-    _font.loadFromFile("resources/fonts/Raleway-Bold.ttf");
     initTexts();
     initInput();
     initRects();
@@ -20,4 +23,9 @@ arc::SceneMenu::SceneMenu()
 
 arc::SceneMenu::~SceneMenu()
 {
+}
+
+const std::string &arc::SceneMenu::getUsername()
+{
+    return (_username);
 }

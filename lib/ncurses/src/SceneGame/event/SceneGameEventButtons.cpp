@@ -10,7 +10,8 @@
 void arc::SceneGame::eventButtons(MEVENT event)
 {
     std::for_each(_buttons.begin(), _buttons.end(), [this, &event](Button &button) {
-        if (button.isMouseHover(event.x, event.y))
+        if (button.isMouseHover(event.x, event.y)) {
             button.click();
+        }
     });
 }

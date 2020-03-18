@@ -24,8 +24,8 @@ arc::Graphical::Graphical()
     init_color(MAIN_COLOR_5, 652, 352, 436);
     init_color(MAIN_COLOR_6, 656, 604, 568);
     init_color(MAIN_COLOR_7, 684, 664, 764);
-    init_color(MAIN_COLOR_8, 100, 100, 100);
-    init_color(MAIN_COLOR_8, 200, 200, 200);
+    init_color(MAIN_COLOR_8, 188, 228, 368);
+    init_color(MAIN_COLOR_9, 200, 200, 200);
     noecho();
     cbreak();
     nodelay(stdscr, TRUE);
@@ -89,9 +89,14 @@ void arc::Graphical::setFunctionTogglePause(const std::function<void()> &functio
     _eventTogglePauseButton = function;
 }
 
-const std::string &arc::Graphical::getUsername() const
+const std::string &arc::Graphical::getUsername()
 {
-    return (_username);
+    return (static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->getUsername());
+}
+
+void arc::Graphical::setUsername(const std::string &username)
+{
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setUsername(username);
 }
 
 arc::IGraphical::Scene arc::Graphical::getScene() const
@@ -159,16 +164,6 @@ arc::Event::Type arc::Graphical::getEventType() const
 arc::Event::Key arc::Graphical::getKeyPressed() const
 {
     return (_actualKeyPress);
-}
-
-void arc::Graphical::setMusic(const std::string &music)
-{
-    (void)music;
-}
-
-void arc::Graphical::playSound(const std::string &sound)
-{
-    (void)sound;
 }
 
 extern "C" arc::IGraphical *instance_ctor()

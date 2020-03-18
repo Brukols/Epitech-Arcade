@@ -50,3 +50,8 @@ void arc::Text::setDisplay(bool display)
 {
     _display = display;
 }
+
+const std::string &arc::Text::getText() const
+{
+    return (_text);
+}

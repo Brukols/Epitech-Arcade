@@ -9,6 +9,7 @@ NAME_NIBBLER	=	lib_arcade_nibbler.so
 
 SRCS_NIBBLER	=	src/Nibbler.cpp	\
 					src/InitNibbler.cpp	\
+					src/Gameplay.cpp	\
 
 OBJS	=	$(SRCS_NIBBLER:.cpp=.o)
 

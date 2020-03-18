@@ -33,6 +33,14 @@ arc::Text initTextChooseGraph()
     return (text);
 }
 
+arc::Text initTextInputUsername()
+{
+    arc::Text text("Enter your username", arc::MAIN_COLOR_5, arc::BACKGROUND_COLOR);
+
+    text.setPosition(110, 45);
+    return (text);
+}
+
 void arc::SceneMenu::initTexts()
 {
     static std::vector<Text (*)()> texts = [this]() -> std::vector<Text (*)()> {
@@ -41,6 +49,7 @@ void arc::SceneMenu::initTexts()
         texts.push_back(initTitle);
         texts.push_back(initTextChooseGame);
         texts.push_back(initTextChooseGraph);
+        // texts.push_back(initTextInputUsername);
         return (texts);
     }();
 

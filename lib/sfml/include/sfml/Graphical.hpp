@@ -26,7 +26,6 @@ namespace arc
             Graphical();
             ~Graphical();
 
-
             /*
             ** Override methods for IGraphical
             */
@@ -46,7 +45,9 @@ namespace arc
             void setFunctionMenu(const std::function<void()> &function) override;
             void setFunctionTogglePause(const std::function<void()> &function) override;
 
-            const std::string &getUsername() const override;
+            const std::string &getUsername() override;
+            void setUsername(const std::string &username);
+
             Scene getScene() const override;
             void setScene(Scene scene) override;
 
@@ -55,9 +56,6 @@ namespace arc
             void setFont(const std::string &font) override;
             void updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap) override;
             void setVisualAssets(const std::map<char, std::pair<std::string, Color>> &sprites);
-
-            void setMusic(const std::string &music) override;
-            void playSound(const std::string &sound) override;
 
             void setMapSize(size_t height, size_t width);
             void setGameTitle(const std::string &game);
@@ -87,8 +85,6 @@ namespace arc
 
             arc::IGraphical::Scene _actualScene = arc::IGraphical::Scene::MAIN_MENU;
 
-            sf::Font _font;
-
             std::vector<std::pair<std::string, std::string>> _infoHowToPlay;
             std::vector<std::string> _infoGameStat;
 
@@ -96,6 +92,9 @@ namespace arc
             std::map<char, Color> _backgroundColors;
 
             bool _exit = false;
+
+            sf::Font _defaultFont;
+            sf::Font _font;
     };
 };
 

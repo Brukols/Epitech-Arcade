@@ -17,9 +17,11 @@ SRCS	=	src/Graphical/Graphical.cpp	\
 			src/SceneMenu/init/SceneMenuInitButtons.cpp	\
 			src/SceneMenu/init/SceneMenuInitListGames.cpp	\
 			src/SceneMenu/init/SceneMenuInitListLibraries.cpp	\
+			src/SceneMenu/init/SceneMenuInitInputs.cpp	\
 			src/SceneMenu/display/SceneMenuDisplay.cpp	\
 			src/SceneMenu/event/SceneMenuEvent.cpp		\
 			src/SceneMenu/event/SceneMenuEventButtons.cpp		\
+			src/SceneMenu/event/SceneMenuEventInputs.cpp	\
 			src/SceneGame/SceneGame.cpp	\
 			src/SceneGame/init/SceneGameInit.cpp	\
 			src/SceneGame/init/SceneGameSetters.cpp	\
@@ -39,6 +41,7 @@ SRCS	=	src/Graphical/Graphical.cpp	\
 			src/Text/Text.cpp		\
 			src/Button/Button.cpp		\
 			src/NcursesError/NcursesError.cpp	\
+			src/Input/Input.cpp		\
 
 OBJS	=	$(SRCS:.cpp=.o)
 
