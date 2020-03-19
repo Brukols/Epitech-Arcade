@@ -24,7 +24,7 @@ arc::List::List(const std::vector<std::string> &list, int chosen, const std::str
     _title.setFont(font);
     _title.setString(nameList);
     _title.setFillColor(sf::Color::White);
-    _title.setPosition(sf::Vector2f(160, 10));
+    _title.setPosition(sf::Vector2f(_bgRect.getPosition().x + (_bgRect.getLocalBounds().width / 2 - _title.getLocalBounds().width / 2), 10));
     _title.setCharacterSize(25);
 
     initButtons(font);
@@ -60,10 +60,17 @@ void arc::List::display(sf::RenderWindow &window)
     window.draw(_title);
 }
 
+bool arc::List::hasASelectButton() const
+{
+    return (!(_buttonsList.end() == std::find_if(_buttonsList.begin(), _buttonsList.end(), [this](const Button &button) -> bool {
+        return (button.isSelect());
+    })));
+}
+
 void arc::List::setPosition(const sf::Vector2f &pos)
 {
     _bgRect.setPosition(pos);
-    _title.setPosition(sf::Vector2f(_title.getPosition().x + pos.x, _title.getPosition().y + pos.y));
+    _title.setPosition(sf::Vector2f(_bgRect.getPosition().x + (_bgRect.getLocalBounds().width / 2 - _title.getLocalBounds().width / 2), 10 + pos.y));
 
     std::for_each(_buttons.begin(), _buttons.end(), [this, &pos](Button &button) {
         button.setPosition(sf::Vector2f(button.getPosition().x + pos.x, button.getPosition().y + pos.y));
@@ -116,9 +123,8 @@ void arc::List::eventMouseButtonReleased(sf::Event &event)
         }
         i++;
     });
+    (void)event;
 }
-
-#include <iostream>
 
 void arc::List::eventMouseWheelScrolled(sf::Event &event)
 {
@@ -136,10 +142,36 @@ void arc::List::eventMouseWheelScrolled(sf::Event &event)
 
 void arc::List::event(sf::Event &event)
 {
+    if (_activate == false)
+        return;
     if (event.type == sf::Event::MouseWheelScrolled) {
         eventMouseWheelScrolled(event);
     }
     if (event.type == sf::Event::MouseButtonReleased) {
         eventMouseButtonReleased(event);
     }
+}
+
+void arc::List::desactivate()
+{
+    _activate = false;
+    std::for_each(_buttons.begin(), _buttons.end(), [this](Button &button) {
+        button.setActivate(false);
+    });
+
+    std::for_each(_buttonsList.begin(), _buttonsList.end(), [this](Button &button) {
+        button.setActivate(false);
+    });
+}
+
+void arc::List::activate()
+{
+    _activate = true;
+    std::for_each(_buttons.begin(), _buttons.end(), [this](Button &button) {
+        button.setActivate(true);
+    });
+
+    std::for_each(_buttonsList.begin(), _buttonsList.end(), [this](Button &button) {
+        button.setActivate(true);
+    });
 }

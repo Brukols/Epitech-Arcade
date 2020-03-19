@@ -25,16 +25,9 @@ void arc::SceneMenu::display(sf::RenderWindow &window)
         text.display(window);
     });
 
-    // Display list libraries
-    std::for_each(_buttonsListGames.begin(), _buttonsListGames.end(), [this, &window](Button &button) {
-        button.displayButton(window);
+    std::for_each(_lists.begin(), _lists.end(), [this, &window](List &list) {
+        list.display(window);
     });
-
-    // Display List games
-    std::for_each(_buttonsListLibraries.begin(), _buttonsListLibraries.end(), [this, &window](Button &button) {
-        button.displayButton(window);
-    });
-
 
 
     // Display Rects
@@ -53,10 +46,6 @@ void arc::SceneMenu::display(sf::RenderWindow &window)
 
     std::for_each(_textUsername.begin(), _textUsername.end(), [this, &window](Text &text) {
         text.display(window);
-    });
-
-    std::for_each(_lists.begin(), _lists.end(), [this, &window](List &list) {
-        list.display(window);
     });
 
     if (_errorMessages.size() > 0)

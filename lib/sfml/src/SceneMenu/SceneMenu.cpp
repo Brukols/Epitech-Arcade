@@ -19,6 +19,7 @@ arc::SceneMenu::SceneMenu()
     initInput();
     initRects();
     initImages();
+    _lists.clear();
 }
 
 arc::SceneMenu::~SceneMenu()

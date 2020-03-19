@@ -54,16 +54,7 @@ namespace arc
             void initRects();
             void initImages();
 
-            void resetButtonsListGames();
-            void resetButtonsListLibraries();
-
             bool inputIsFocus() const;
-
-            /*
-            ** List games and libraries management
-            */
-            void initButtonsListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int choosen);
-            void initButtonsListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int choosen);
 
             void buttonsEvent(sf::RenderWindow &window, sf::Event &event);
             void inputEvent(sf::RenderWindow &window, sf::Event &event);
@@ -88,14 +79,6 @@ namespace arc
 
             std::function<void()> _eventExit;
             std::function<void()> _eventPlay;
-            std::function<void(const std::string &)> _eventListGames;
-            std::function<void(const std::string &)> _eventListLibs;
-
-            /*
-            ** List games and libraries management
-            */
-            std::vector<Button> _buttonsListGames;
-            std::vector<Button> _buttonsListLibraries;
 
             std::vector<Text> _textUsername;
             std::vector<Button> _buttonEnterUsername;

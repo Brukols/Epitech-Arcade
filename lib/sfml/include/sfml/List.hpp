@@ -26,6 +26,11 @@ namespace arc
             void setPosition(const sf::Vector2f &pos);
             void event(sf::Event &event);
 
+            void desactivate();
+            void activate();
+
+            bool hasASelectButton() const;
+
         private:
 
             void initButtonsList(const std::vector<std::string> &list, int chosen,
@@ -50,6 +55,8 @@ namespace arc
             int _begin;
 
             std::function<void()> _event;
+
+            bool _activate = true;
     };
 } // namespace arc
 

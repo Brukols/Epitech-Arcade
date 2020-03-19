@@ -21,43 +21,15 @@ static arc::Text initTextArcade(const sf::Font &font)
     return (arc::Text(font, text));
 }
 
-static arc::Text initTextChooseGame(const sf::Font &font)
-{
-    sf::Text text;
-
-    text.setFont(font);
-    text.setString("Choose a game");
-    text.setCharacterSize(30);
-    text.setFillColor(sf::Color::White);
-    text.setOutlineThickness(2);
-    text.setOutlineColor(sf::Color::Red);
-    text.setPosition(sf::Vector2f(190, 330));
-    return (arc::Text(font, text));
-}
-
-static arc::Text initTextChooseLibrary(const sf::Font &font)
-{
-    sf::Text text;
-
-    text.setFont(font);
-    text.setString("Choose a library");
-    text.setCharacterSize(30);
-    text.setFillColor(sf::Color::White);
-    text.setOutlineThickness(2);
-    text.setOutlineColor(sf::Color::Blue);
-    text.setPosition(sf::Vector2f(1410, 330));
-    return (arc::Text(font, text));
-}
-
 static arc::Text initTextErrorMessage(const sf::Font &font)
 {
     sf::Text text;
 
     text.setFont(font);
-    text.setString("Veuillez selectioner un jeu");
+    text.setString("");
     text.setCharacterSize(30);
     text.setFillColor(sf::Color::Red);
-    text.setPosition(sf::Vector2f(720, 900));
+    text.setPosition(sf::Vector2f(780, 900));
     arc::Text _text(font, text);
     _text.setDisplay(false);
     return (_text);
@@ -85,8 +57,6 @@ void arc::SceneMenu::initTexts()
         std::vector<arc::Text (*)(const sf::Font &)> text;
 
         text.push_back(initTextArcade);
-        text.push_back(initTextChooseGame);
-        text.push_back(initTextChooseLibrary);
         text.push_back(initTextErrorMessage);
         return (text);
     }();

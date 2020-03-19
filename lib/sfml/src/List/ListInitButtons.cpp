@@ -37,7 +37,9 @@ static arc::Button initButtonArrowUp(const sf::Font &font, std::function<void()>
 
 void arc::List::functionKeyDown()
 {
-    if (_begin + 1 == _buttonsList.size() - 6)
+    if (_buttonsList.size() <= 6)
+        return;
+    if (static_cast<long unsigned int>(_begin + 1) == _buttonsList.size() - 6)
         return;
     _begin++;
     std::for_each(_buttonsList.begin(), _buttonsList.end(), [this](Button &button) {

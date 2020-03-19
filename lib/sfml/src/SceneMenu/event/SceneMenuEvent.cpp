@@ -8,20 +8,6 @@
 #include "sfml/SceneMenu.hpp"
 #include "sfml/Utility.hpp"
 
-void arc::SceneMenu::resetButtonsListGames()
-{
-    std::for_each(_buttonsListGames.begin(), _buttonsListGames.end(), [](Button &button) {
-        button.resetSelect();
-    });
-}
-
-void arc::SceneMenu::resetButtonsListLibraries()
-{
-    std::for_each(_buttonsListLibraries.begin(), _buttonsListLibraries.end(), [](Button &button) {
-        button.resetSelect();
-    });
-}
-
 void arc::SceneMenu::buttonsEvent(sf::RenderWindow &window, sf::Event &event)
 {
     std::for_each(_lists.begin(), _lists.end(), [this, &event](List &list) {
@@ -39,25 +25,6 @@ void arc::SceneMenu::buttonsEvent(sf::RenderWindow &window, sf::Event &event)
     std::for_each(_buttonEnterUsername.begin(), _buttonEnterUsername.end(), [&window](Button &button) {
         if (button.isMouseHover(sf::Mouse::getPosition())) {
             button.clickButton();
-        }
-    });
-
-    std::for_each(_buttonsListGames.begin(), _buttonsListGames.end(), [this, &window](Button &button) {
-        if (button.isMouseHover(sf::Mouse::getPosition())) {
-            resetButtonsListGames();
-            button.toggleSelect();
-            if (button.isSelect()) {
-                button.clickButton();
-            }
-        }
-    });
-    std::for_each(_buttonsListLibraries.begin(), _buttonsListLibraries.end(), [this, &window](Button &button) {
-        if (button.isMouseHover(sf::Mouse::getPosition())) {
-            resetButtonsListLibraries();
-            button.toggleSelect();
-            if (button.isSelect()) {
-                button.clickButton();
-            }
         }
     });
 }
@@ -123,7 +90,7 @@ void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
         buttonsEvent(window, event);
         if (inputIsFocus()) {
             inputEvent(window, event);
-            return;
+            continue;
         }
         if (event.type == sf::Event::KeyPressed) {
             _actualEventType = arc::Event::KEY_PRESSED;

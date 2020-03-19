@@ -17,12 +17,6 @@ void arc::SceneMenu::eventValidateUsername()
     std::for_each(_buttons.begin(), _buttons.end(), [this](Button &button) {
         button.setActivate(true);
     });
-    std::for_each(_buttonsListGames.begin(), _buttonsListGames.end(), [this](Button &button) {
-        button.setActivate(true);
-    });
-    std::for_each(_buttonsListLibraries.begin(), _buttonsListLibraries.end(), [this](Button &button) {
-        button.setActivate(true);
-    });
     _texts.push_back([this]() -> Text {
         sf::Text text;
 
@@ -37,4 +31,8 @@ void arc::SceneMenu::eventValidateUsername()
         _text.setDisplay(true);
         return (_text);
     }());
+
+    std::for_each(_lists.begin(), _lists.end(), [this](List &list) {
+        list.activate();
+    });
 }
