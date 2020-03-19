@@ -23,6 +23,9 @@ void arc::SceneMenu::setListGames(const std::vector<std::string> &games, const s
 {
     _eventListGames = fct;
     initButtonsListGames(games, fct, chosen);
+    _lists.clear();
+    _lists.push_back(List(games, chosen, "Games", fct, _font));
+    _lists[0].setPosition(sf::Vector2f(100, 300));
 }
 
 void arc::SceneMenu::setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen)

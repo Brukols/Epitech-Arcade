@@ -22,10 +22,16 @@ arc::Image::~Image()
 
 void arc::Image::setPosition(const sf::Vector2f &pos)
 {
+    _pos = pos;
     _sprite.setPosition(pos);
 }
 
 void arc::Image::display(sf::RenderWindow &window)
 {
     window.draw(_sprite);
+}
+
+const sf::Vector2f &arc::Image::getPosition() const
+{
+    return (_pos);
 }

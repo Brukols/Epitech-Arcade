@@ -14,6 +14,7 @@
 #include "sfml/Text.hpp"
 #include "sfml/Input.hpp"
 #include "sfml/Image.hpp"
+#include "List.hpp"
 #include <functional>
 #include "ErrorMessage.hpp"
 
@@ -104,6 +105,8 @@ namespace arc
             std::vector<ErrorMessage> _errorMessages;
 
             bool _exit = false;
+
+            std::vector<List> _lists;
     };
 }
 

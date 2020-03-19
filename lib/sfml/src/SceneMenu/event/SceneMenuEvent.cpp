@@ -24,6 +24,10 @@ void arc::SceneMenu::resetButtonsListLibraries()
 
 void arc::SceneMenu::buttonsEvent(sf::RenderWindow &window, sf::Event &event)
 {
+    std::for_each(_lists.begin(), _lists.end(), [this, &event](List &list) {
+        list.event(event);
+    });
+
     if (event.type != sf::Event::MouseButtonReleased)
         return;
     std::for_each(_buttons.begin(), _buttons.end(), [&window](Button &button) {
@@ -124,14 +128,10 @@ void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
         if (event.type == sf::Event::KeyPressed) {
             _actualEventType = arc::Event::KEY_PRESSED;
             _actualKeyPress = Utility::getKey(event);
-            if (_actualKeyPress != arc::Event::Key::NONE)
-                return;
         }
         if (event.type == sf::Event::KeyReleased) {
             _actualEventType = arc::Event::KEY_RELEASED;
             _actualKeyPress = Utility::getKey(event);
-            if (_actualKeyPress != arc::Event::Key::NONE)
-                return;
         }
     }
 }

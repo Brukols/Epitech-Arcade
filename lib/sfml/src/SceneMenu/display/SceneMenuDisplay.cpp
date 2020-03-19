@@ -55,6 +55,10 @@ void arc::SceneMenu::display(sf::RenderWindow &window)
         text.display(window);
     });
 
+    std::for_each(_lists.begin(), _lists.end(), [this, &window](List &list) {
+        list.display(window);
+    });
+
     if (_errorMessages.size() > 0)
         _errorMessages[0].display(window);
 }

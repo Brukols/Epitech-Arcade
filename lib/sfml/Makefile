@@ -39,6 +39,8 @@ SRCS	=	src/Graphical.cpp	\
 			src/image/Image.cpp	\
 			src/SFMLErrors/SFMLErrors.cpp	\
 			src/ErrorMessage/ErrorMessage.cpp	\
+			src/List/List.cpp	\
+			src/List/ListInitButtons.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)
 

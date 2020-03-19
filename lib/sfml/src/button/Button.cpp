@@ -82,7 +82,9 @@ void arc::Button::displayButton(sf::RenderWindow &window)
 
 void arc::Button::setPosition(const sf::Vector2f &pos)
 {
+    _pos = pos;
     _rect.setPosition(pos);
+    _text.setPosition(sf::Vector2f(_rect.getPosition().x + (_rect.getLocalBounds().width / 2 - _text.getLocalBounds().width / 2), _rect.getPosition().y - 10 + (_rect.getLocalBounds().height / 2 - _text.getCharacterSize() / 2)));
 }
 
 void arc::Button::setSize(const sf::Vector2f &size)
@@ -141,4 +143,15 @@ bool arc::Button::isSelect() const
 void arc::Button::setDisplay(bool display)
 {
     _display = display;
+}
+
+const sf::Vector2f &arc::Button::getPosition() const
+{
+    return (_rect.getPosition());
+}
+
+void arc::Button::setCharacterSize(size_t size)
+{
+    _text.setCharacterSize(size);
+    _text.setPosition(sf::Vector2f(_rect.getPosition().x + (_rect.getLocalBounds().width / 2 - _text.getLocalBounds().width / 2), _rect.getPosition().y - 10 + (_rect.getLocalBounds().height / 2 - _text.getCharacterSize() / 2)));
 }
