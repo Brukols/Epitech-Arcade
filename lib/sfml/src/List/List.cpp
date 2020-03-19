@@ -175,3 +175,17 @@ void arc::List::activate()
         button.setActivate(true);
     });
 }
+
+void arc::List::setColor(const sf::Color &firstButtonsListColor, const sf::Color &secondButtonsListColor, const sf::Color &buttonsListHover)
+{
+    int i = 0;
+    std::for_each(_buttonsList.begin(), _buttonsList.end(), [this, &firstButtonsListColor, &buttonsListHover, &secondButtonsListColor, &i](Button &button) {
+        if (i % 2)
+            button.setColor(firstButtonsListColor);
+        else
+            button.setColor(secondButtonsListColor);
+        button.setColorSelect(buttonsListHover, sf::Color::White, buttonsListHover);
+        button.setHoverColor(buttonsListHover);
+        i++;
+    });
+}

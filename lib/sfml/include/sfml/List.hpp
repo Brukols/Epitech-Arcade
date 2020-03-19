@@ -31,6 +31,8 @@ namespace arc
 
             bool hasASelectButton() const;
 
+            void setColor(const sf::Color &firstButtonsListColor, const sf::Color &secondButtonsListColor, const sf::Color &buttonsListHover);
+
         private:
 
             void initButtonsList(const std::vector<std::string> &list, int chosen,
