@@ -116,19 +116,14 @@ void arc::Graphical::setHowToPlay(const std::vector<std::pair<std::string, std::
     _infoHowToPlay = info;
 }
 
-void arc::Graphical::setGameStatsFormatString(const std::vector<std::string> &info)
+void arc::Graphical::setGameStats(const std::vector<std::pair<std::string, std::string>> &info)
 {
-    _infoGameStat = info;
+    (void)info;
 }
 
 void arc::Graphical::setFont(const std::string &font)
 {
     (void)font;
-}
-
-void arc::Graphical::setVisualAssets(const std::map<char, std::pair<std::string, Color>> &sprites)
-{
-    (void)sprites;
 }
 
 void arc::Graphical::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap)

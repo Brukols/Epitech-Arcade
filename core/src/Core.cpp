@@ -33,7 +33,6 @@ void arc::Core::functionPlay()
 {
     _graph->setControls(_game->getControls());
     // _graph->setFont(_game->getFont());
-    _graph->setVisualAssets(_game->getVisualAssets());
     _graph->setMapSize(_game->getMapHeight(), _game->getMapWidth());
     _graph->setScene(arc::IGraphical::GAME);
     _graph->setFunctionMenu([this]() {});
@@ -68,12 +67,7 @@ void arc::Core::setNextGame()
     if (_indexGame == static_cast<int>(_games.size()))
         _indexGame = 0;
     _game = std::unique_ptr<IGame>(_games[_indexGame].second.get()->getInstance());
-    _graph->setControls(_game->getControls());
-    // _graph->setFont(_game->getFont());
-    _graph->setVisualAssets(_game->getVisualAssets());
-    _graph->setMapSize(_game->getMapHeight(), _game->getMapWidth());
-    _graph->setFunctionMenu([this]() {});
-    _graph->setScene(arc::IGraphical::GAME);
+    functionPlay();
 }
 
 void arc::Core::setPrevGame()
@@ -82,12 +76,7 @@ void arc::Core::setPrevGame()
     if (_indexGame == -1)
         _indexGame = _games.size() - 1;
     _game = std::unique_ptr<IGame>(_games[_indexGame].second.get()->getInstance());
-    _graph->setControls(_game->getControls());
-    // _graph->setFont(_game->getFont());
-    _graph->setVisualAssets(_game->getVisualAssets());
-    _graph->setMapSize(_game->getMapHeight(), _game->getMapWidth());
-    _graph->setFunctionMenu([this]() {});
-    _graph->setScene(arc::IGraphical::GAME);
+    functionPlay();
 }
 
 void arc::Core::setNextGraphical()
