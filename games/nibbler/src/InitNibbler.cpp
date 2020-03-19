@@ -14,8 +14,8 @@ void Nibbler::initNibbler()
     _start = std::chrono::system_clock::now();
     _end = std::chrono::system_clock::now();
     _title = "Nibbler";
-    _height = 36;
-    _width = 27;
+    _height = 27;
+    _width = 36;
     _music = "";
     _sound = "";
     _score = 0;
