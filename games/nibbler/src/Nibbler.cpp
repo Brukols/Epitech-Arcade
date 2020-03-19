@@ -26,11 +26,6 @@ size_t arc::Nibbler::getMapWidth() const
     return _width;
 }
 
-const std::string &Nibbler::getFont() const
-{
-    return _font;
-}
-
 const std::string &Nibbler::getMusic() const
 {
     return _music;
