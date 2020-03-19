@@ -17,8 +17,9 @@ void arc::SceneMenu::event(arc::Event::Type &_actualEventType, arc::Event::Key &
     if (c == KEY_MOUSE) {
         MEVENT event;
         getmouse(&event);
-        eventButtons(event);
         eventInputs(event);
+        eventButtons(event);
+        return;
     }
     if (_inputs[0].isActivate()) {
         if (c == KEY_BACKSPACE) {
@@ -27,6 +28,7 @@ void arc::SceneMenu::event(arc::Event::Type &_actualEventType, arc::Event::Key &
         }
         if (c == '\n') {
             _inputs[0].setActivate(false);
+            _username = _inputs[0].getText();
             return;
         }
         _inputs[0].addLetter(c);

@@ -12,6 +12,7 @@
 #include <vector>
 #include "sfml/Button.hpp"
 #include "sfml/Text.hpp"
+#include "ErrorMessage.hpp"
 #include <memory>
 
 namespace arc
@@ -42,6 +43,7 @@ namespace arc
             void eventButtons(sf::RenderWindow &window, sf::Event &event);
 
             void displayGame(sf::RenderWindow &window);
+            void eventErrorMessage(sf::Event &event);
 
         private:
             std::vector<Button> _buttons;
@@ -59,6 +61,10 @@ namespace arc
             std::vector<std::shared_ptr<Entity>> _gameMap;
 
             std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> _controls;
+
+            std::vector<ErrorMessage> _errorMessages;
+
+            bool _exit = false;
     };
 }
 

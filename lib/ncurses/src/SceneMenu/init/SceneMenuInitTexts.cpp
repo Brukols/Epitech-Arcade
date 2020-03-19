@@ -49,7 +49,7 @@ void arc::SceneMenu::initTexts()
         texts.push_back(initTitle);
         texts.push_back(initTextChooseGame);
         texts.push_back(initTextChooseGraph);
-        texts.push_back(initTextInputUsername);
+        // texts.push_back(initTextInputUsername);
         return (texts);
     }();
 

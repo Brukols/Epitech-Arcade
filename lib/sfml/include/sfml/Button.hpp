@@ -40,6 +40,8 @@ namespace arc
             void setEvent(const std::function<void()> &function);
             const std::function<void()> &getEvent() const;
             void setDisplay(bool display);
+            const sf::Vector2f &getPosition() const;
+            void setCharacterSize(size_t size);
 
         private:
             sf::RectangleShape _rect;
@@ -59,6 +61,8 @@ namespace arc
 
             bool _activate = true;
             bool _display = true;
+
+            sf::Vector2f _pos;
     };
 }
 

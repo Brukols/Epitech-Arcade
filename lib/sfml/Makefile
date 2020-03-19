@@ -12,15 +12,12 @@ SRCS	=	src/Graphical.cpp	\
 			src/display/GraphicalDisplay.cpp	\
 			src/button/Button.cpp	\
 			src/text/Text.cpp	\
-			src/music/GraphicalMusic.cpp	\
 			src/input/Input.cpp	\
 			src/SceneMenu/SceneMenu.cpp	\
 			src/SceneMenu/init/SceneMenuInit.cpp	\
 			src/SceneMenu/init/SceneMenuInitButtons.cpp	\
 			src/SceneMenu/init/SceneMenuInitTexts.cpp	\
 			src/SceneMenu/init/SceneMenuSetter.cpp	\
-			src/SceneMenu/init/SceneMenuInitListGames.cpp	\
-			src/SceneMenu/init/SceneMenuInitListLibraries.cpp	\
 			src/SceneMenu/init/SceneMenuInitInput.cpp	\
 			src/SceneMenu/init/SceneMenuInitRects.cpp	\
 			src/SceneMenu/init/SceneMenuInitImages.cpp	\
@@ -38,6 +35,10 @@ SRCS	=	src/Graphical.cpp	\
 			src/SceneGame/event/SceneGameEventButtons.cpp	\
 			src/Utility/Utility.cpp	\
 			src/image/Image.cpp	\
+			src/SFMLErrors/SFMLErrors.cpp	\
+			src/ErrorMessage/ErrorMessage.cpp	\
+			src/List/List.cpp	\
+			src/List/ListInitButtons.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)
 

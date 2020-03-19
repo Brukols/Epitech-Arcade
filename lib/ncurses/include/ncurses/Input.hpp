@@ -29,6 +29,9 @@ namespace arc
             void addLetter(int c);
             void removeLetter();
 
+            const std::string &getText() const;
+            void setText(const std::string &text);
+
         private:
             Rectangle _rect;
             Text _textIndication;

@@ -14,7 +14,9 @@
 #include "sfml/Text.hpp"
 #include "sfml/Input.hpp"
 #include "sfml/Image.hpp"
+#include "List.hpp"
 #include <functional>
+#include "ErrorMessage.hpp"
 
 namespace arc
 {
@@ -25,7 +27,6 @@ namespace arc
                 GET_USERNAME,
                 MENU
             };
-
 
         public:
             SceneMenu();
@@ -40,8 +41,11 @@ namespace arc
             void setFunctionExit(const std::function<void()> &);
             void setFunctionPlay(const std::function<void()> &);
 
-            void setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen = -1);
-            void setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen = -1);
+            const std::string &getUsername();
+            void setUsername(const std::string &name);
+
+            void setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen);
+            void setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen);
 
         private:
             void initButtons();
@@ -50,14 +54,7 @@ namespace arc
             void initRects();
             void initImages();
 
-            void resetButtonsListGames();
-            void resetButtonsListLibraries();
-
-            /*
-            ** List games and libraries management
-            */
-            void initButtonsListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct);
-            void initButtonsListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct);
+            bool inputIsFocus() const;
 
             void buttonsEvent(sf::RenderWindow &window, sf::Event &event);
             void inputEvent(sf::RenderWindow &window, sf::Event &event);
@@ -65,6 +62,7 @@ namespace arc
             void eventValidateUsername();
 
             void eventButtonPlay();
+            void eventErrorMessage(sf::Event &event);
 
         private:
             SceneState _state = GET_USERNAME;
@@ -81,19 +79,17 @@ namespace arc
 
             std::function<void()> _eventExit;
             std::function<void()> _eventPlay;
-            std::function<void(const std::string &)> _eventListGames;
-            std::function<void(const std::string &)> _eventListLibs;
-
-            /*
-            ** List games and libraries management
-            */
-            std::vector<Button> _buttonsListGames;
-            std::vector<Button> _buttonsListLibraries;
 
             std::vector<Text> _textUsername;
             std::vector<Button> _buttonEnterUsername;
 
             std::string _username;
+
+            std::vector<ErrorMessage> _errorMessages;
+
+            bool _exit = false;
+
+            std::vector<List> _lists;
     };
 }
 
