@@ -45,7 +45,7 @@ void Nibbler::moveSnake()
         initApple();
         addBodySnake();
         _nbApple++;
-        _gameStats.push_back("%a" + std::to_string(_nbApple));
+        initGameStats();
         //initialisation de sound si le serpent mange quelque chose
     }
 }
