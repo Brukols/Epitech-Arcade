@@ -111,9 +111,15 @@ void Nibbler::initControls()
 
 void Nibbler::initGameControls()
 {
+    _gameControls.push_back(std::pair<std::string, std::string> ("UP ARROW", "Go up"));
+    _gameControls.push_back(std::pair<std::string, std::string> ("RIGHT ARROW", "Go right"));
+    _gameControls.push_back(std::pair<std::string, std::string> ("DOWN ARROW", "Go down"));
+    _gameControls.push_back(std::pair<std::string, std::string> ("LEFT ARROW", "Go left"));
 }
 
 void Nibbler::initGameStats()
 {
-    _gameStats.push_back("%a " + std::to_string(_nbApple));
+    _gameStats.clear();
+    _gameStats.push_back("Score: " + std::to_string(_score));
+    _gameStats.push_back("Apple: " + std::to_string(_nbApple));
 }
