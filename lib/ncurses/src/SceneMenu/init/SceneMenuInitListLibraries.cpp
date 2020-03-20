@@ -43,7 +43,7 @@ void arc::SceneMenu::initButtonsListLibraries(const std::vector<std::string> &ga
                 _eventListLibs(name);
             }, y));
         }
-        y += 7;
+        y += 6;
         i++;
     });
 

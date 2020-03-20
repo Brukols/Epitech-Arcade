@@ -16,6 +16,7 @@
 #include "ncurses/Button.hpp"
 #include "ColorsMode.hpp"
 #include "Input.hpp"
+#include "List.hpp"
 
 namespace arc
 {
@@ -65,6 +66,8 @@ namespace arc
             std::vector<Button> _buttonsListLibraries;
 
             std::string _username = "";
+
+            std::vector<List> _lists;
     };
 };
 

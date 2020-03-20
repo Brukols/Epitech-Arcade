@@ -42,6 +42,9 @@ SRCS	=	src/Graphical/Graphical.cpp	\
 			src/Button/Button.cpp		\
 			src/NcursesError/NcursesError.cpp	\
 			src/Input/Input.cpp		\
+			src/List/List.cpp	\
+			src/List/ListEvent.cpp	\
+			src/List/ListInitButtons.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)
 

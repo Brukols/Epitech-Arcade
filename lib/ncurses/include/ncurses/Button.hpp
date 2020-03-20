@@ -37,6 +37,10 @@ namespace arc
             void setDisplay(bool display);
             void setEvent(const std::function<void()> &event);
 
+            void setPosition(size_t x, size_t y);
+            size_t getPosX() const;
+            size_t getPosY() const;
+
         private:
             std::string _name;
             Rectangle _rect;

@@ -43,7 +43,7 @@ void arc::SceneMenu::initButtonsListGames(const std::vector<std::string> &games,
                 _eventListGames(name);
             }, y));
         }
-        y += 7;
+        y += 6;
         i++;
     });
 

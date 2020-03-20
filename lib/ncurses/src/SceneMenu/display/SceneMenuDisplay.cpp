@@ -32,4 +32,8 @@ void arc::SceneMenu::display()
     std::for_each(_inputs.begin(), _inputs.end(), [this](Input &input) {
         input.display();
     });
+
+    std::for_each(_lists.begin(), _lists.end(), [](List &list) {
+        list.display();
+    });
 }

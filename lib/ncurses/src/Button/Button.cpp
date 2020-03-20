@@ -68,7 +68,7 @@ void arc::Button::click()
 
 bool arc::Button::isMouseHover(size_t x, size_t y) const
 {
-    if (x > _rect.getPosX() && x < _rect.getPosX() + _rect.getWidth() && y > _rect.getPosY() && y < _rect.getPosY() + _rect.getHeight())
+    if (x >= _rect.getPosX() && x <= _rect.getPosX() + _rect.getWidth() && y >= _rect.getPosY() && y <= _rect.getPosY() + _rect.getHeight())
         return (true);
     return (false);
 }
@@ -81,4 +81,20 @@ void arc::Button::setDisplay(bool display)
 void arc::Button::setEvent(const std::function<void()> &event)
 {
     _event = event;
+}
+
+size_t arc::Button::getPosX() const
+{
+    return (_rect.getPosX());
+}
+
+size_t arc::Button::getPosY() const
+{
+    return (_rect.getPosY());
+}
+
+void arc::Button::setPosition(size_t x, size_t y)
+{
+    _rect.setPosition(x, y);
+    _text.setPosition(_rect.getPosX() + _rect.getWidth() / 2 - _name.size() / 2, _rect.getPosY() + _rect.getHeight() / 2);
 }

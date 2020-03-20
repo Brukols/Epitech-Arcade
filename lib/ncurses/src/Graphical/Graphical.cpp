@@ -32,6 +32,7 @@ arc::Graphical::Graphical()
     keypad(stdscr, TRUE);
     curs_set(0);
     mousemask(ALL_MOUSE_EVENTS, NULL);
+    mouseinterval(0);
     _scenes[MAIN_MENU] = std::unique_ptr<IScene>(new SceneMenu());
     _scenes[GAME] = std::unique_ptr<IScene>(new SceneGame());
     static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionExit([this]() {
