@@ -18,7 +18,7 @@ namespace arc
 
             static void display(const std::string &text, int x, int y, int noPair);
             static std::string getText(const std::string &path);
-            static int generatePairColor(int textColor, int bgColor);
+            static int generatePairColor(int textColor, int bgColor, bool reset = false);
             static arc::Event::Type getEventType(int c);
             static arc::Event::Key getEventKey(int c);
 

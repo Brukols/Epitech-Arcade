@@ -32,10 +32,14 @@ std::string arc::Utility::getText(const std::string &path)
     return (str);
 }
 
-int arc::Utility::generatePairColor(int textColor, int bgColor)
+int arc::Utility::generatePairColor(int textColor, int bgColor, bool reset)
 {
     static int noPair = 0;
 
+    if (reset == true) {
+        noPair = 0;
+        return (0);
+    }
     noPair++;
     init_pair(noPair, textColor, bgColor);
     return (noPair);
