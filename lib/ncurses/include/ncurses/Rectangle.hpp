@@ -24,6 +24,7 @@ namespace arc
             void setOutlineColors(int textColor, int bgColor);
             void setColorsSelect(int textColor, int bgColor);
             void setSelect(bool select);
+            void setColors(int textColor, int bgColor);
 
             void display();
 

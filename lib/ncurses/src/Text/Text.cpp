@@ -31,8 +31,6 @@ void arc::Text::display()
 
 void arc::Text::setSelect(bool select)
 {
-    if (!_display)
-        return;
     _select = select;
 }
 
@@ -54,4 +52,9 @@ void arc::Text::setDisplay(bool display)
 const std::string &arc::Text::getText() const
 {
     return (_text);
+}
+
+void arc::Text::setColors(int textColor, int bgColor)
+{
+    _noPair = Utility::generatePairColor(textColor, bgColor);
 }

@@ -12,7 +12,7 @@ static arc::Button initButtonKeyDown(std::function<void()> &event)
 {
     arc::Rectangle rect(3, 38, arc::MAIN_COLOR_2, arc::MAIN_COLOR_2);
 
-    rect.setPosition(31, 46);
+    rect.setPosition(1, 26);
     rect.setOutlineColors(arc::MAIN_COLOR_2, arc::MAIN_COLOR_2);
     arc::Button button("Down", rect, event);
     button.setColors(arc::MAIN_COLOR_3, arc::MAIN_COLOR_2);
@@ -23,7 +23,7 @@ static arc::Button initButtonKeyUp(std::function<void()> &event)
 {
     arc::Rectangle rect(3, 38, arc::MAIN_COLOR_2, arc::MAIN_COLOR_2);
 
-    rect.setPosition(31, 25);
+    rect.setPosition(1, 5);
     rect.setOutlineColors(arc::MAIN_COLOR_2, arc::MAIN_COLOR_2);
     arc::Button button("Up", rect, event);
     button.setColors(arc::MAIN_COLOR_3, arc::MAIN_COLOR_2);
@@ -50,10 +50,10 @@ static arc::Button initButton(const std::string &name, const std::function<void(
 {
     arc::Rectangle rect(3, 38, arc::MAIN_COLOR_6, arc::MAIN_COLOR_3);
 
-    rect.setPosition(31, y);
+    rect.setPosition(1, y);
     rect.setColorsSelect(arc::MAIN_COLOR_5, arc::MAIN_COLOR_6);
     arc::Button button(name, rect, fct);
-    button.setColors(COLOR_WHITE, arc::BACKGROUND_COLOR);
+    button.setColors(COLOR_WHITE, arc::MAIN_COLOR_3);
     button.setColorsTextSelect(arc::MAIN_COLOR_3, arc::MAIN_COLOR_6);
     return (button);
 }
@@ -68,7 +68,7 @@ static const std::string getLibName(const std::string &path)
 
 void arc::List::initButtonsList(const std::vector<std::string> &list, int chosen, const std::function<void(const std::string &)> &fct)
 {
-    int y = 28;
+    int y = 8;
     _buttonsList.clear();
 
     int i = 0;

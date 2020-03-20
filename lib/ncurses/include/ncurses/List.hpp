@@ -24,6 +24,8 @@ namespace arc
             void setPosition(size_t x, size_t y);
             void event(const MEVENT &event);
 
+            void setColors(int outlineColorRect, int bgColorList, int textColorList, int bgColorHoverList, int textColorHoverList);
+
         private:
             void initButtons();
             void initButtonsList(const std::vector<std::string> &list, int chosen, const std::function<void(const std::string &)> &fct);

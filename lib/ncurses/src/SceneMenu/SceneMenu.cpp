@@ -9,6 +9,7 @@
 
 arc::SceneMenu::SceneMenu()
 {
+    _lists.clear();
 }
 
 arc::SceneMenu::~SceneMenu()

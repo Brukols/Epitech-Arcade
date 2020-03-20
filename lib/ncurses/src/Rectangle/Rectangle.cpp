@@ -44,6 +44,11 @@ void arc::Rectangle::setColorsSelect(int textColor, int bgColor)
     _noPairSelect = Utility::generatePairColor(textColor, bgColor);
 }
 
+void arc::Rectangle::setColors(int textColor, int bgColor)
+{
+    _noPair = Utility::generatePairColor(textColor, bgColor);
+}
+
 void arc::Rectangle::setSelect(bool select)
 {
     _select = select;

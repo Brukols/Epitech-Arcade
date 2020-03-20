@@ -19,16 +19,17 @@ void arc::SceneMenu::setFunctionPlay(const std::function<void()> &fct)
 
 void arc::SceneMenu::setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen)
 {
-    _eventListGames = fct;
-    // initButtonsListGames(games, fct, chosen);
-    _lists.clear();
-    _lists.push_back(List(games, chosen, "Games", fct));
+    List list(games, chosen, "Games", fct);
+    list.setPosition(30, 20);
+    _lists.push_back(list);
 }
 
 void arc::SceneMenu::setListLibraries(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen)
 {
-    _eventListLibs = fct;
-    initButtonsListLibraries(games, fct, chosen);
+    List list(games, chosen, "Libraries", fct);
+    list.setPosition(170, 20);
+    list.setColors(MAIN_COLOR_5, MAIN_COLOR_8, MAIN_COLOR_2, MAIN_COLOR_5, MAIN_COLOR_9);
+    _lists.push_back(list);
 }
 
 void arc::SceneMenu::setUsername(const std::string &name)

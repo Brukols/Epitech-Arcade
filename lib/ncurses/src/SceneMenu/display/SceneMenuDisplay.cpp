@@ -21,14 +21,6 @@ void arc::SceneMenu::display()
         button.display();
     });
 
-    std::for_each(_buttonsListGames.begin(), _buttonsListGames.end(), [this](Button &button) {
-        button.display();
-    });
-
-    std::for_each(_buttonsListLibraries.begin(), _buttonsListLibraries.end(), [this](Button &button) {
-        button.display();
-    });
-
     std::for_each(_inputs.begin(), _inputs.end(), [this](Input &input) {
         input.display();
     });

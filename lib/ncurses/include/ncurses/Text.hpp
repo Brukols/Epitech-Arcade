@@ -25,6 +25,7 @@ namespace arc
             void setColorsTextSelect(int textColor, int bgColor);
 
             void setSelect(bool select);
+            void setColors(int textColor, int bgColor);
 
             void setText(const std::string &newText);
             void setDisplay(bool display);

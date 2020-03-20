@@ -6,9 +6,11 @@
 */
 
 #include "ncurses/Button.hpp"
+#include "ncurses/ColorsMode.hpp"
 
 arc::Button::Button(const std::string &name, const Rectangle &rect, const std::function<void()> &event) : _name(name), _rect(rect), _event(event)
 {
+    _text = Text(name, BACKGROUND_COLOR, BACKGROUND_COLOR);
 }
 
 arc::Button::~Button()
@@ -18,7 +20,8 @@ arc::Button::~Button()
 void arc::Button::setColors(int textColor, int bgColor)
 {
     _noPair = Utility::generatePairColor(textColor, bgColor);
-    _text = Text(_name, textColor, bgColor);
+    _rect.setColors(textColor, bgColor);
+    _text.setColors(textColor, bgColor);
     _text.setPosition(_rect.getPosX() + _rect.getWidth() / 2 - _name.size() / 2, _rect.getPosY() + _rect.getHeight() / 2);
 }
 
