@@ -11,10 +11,16 @@
 void arc::SceneMenu::event(arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress)
 {
     int c = wgetch(stdscr);
+    static int tmp = -1;
 
     _actualEventType = Utility::getEventType(c);
     _actualKeyPress = Utility::getEventKey(c);
     if (c == KEY_MOUSE) {
+        if (tmp != -1) {
+            tmp = -1;
+            return;
+        }
+        tmp = c;
         MEVENT event;
         getmouse(&event);
         eventInputs(event);
