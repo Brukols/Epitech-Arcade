@@ -33,6 +33,7 @@ arc::Graphical::Graphical()
     curs_set(0);
     mousemask(ALL_MOUSE_EVENTS, NULL);
     mouseinterval(0);
+    clear();
     _scenes[MAIN_MENU] = std::unique_ptr<IScene>(new SceneMenu());
     _scenes[GAME] = std::unique_ptr<IScene>(new SceneGame());
     static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionExit([this]() {
@@ -43,6 +44,7 @@ arc::Graphical::Graphical()
         setScene(MAIN_MENU);
     });
     _sceneError.init();
+    _scenes[GAME].get()->init();
 }
 
 arc::Graphical::~Graphical()
@@ -108,7 +110,7 @@ arc::IGraphical::Scene arc::Graphical::getScene() const
 void arc::Graphical::setScene(Scene scene)
 {
     _actualScene = scene;
-    _scenes[_actualScene].get()->init();
+    // _scenes[_actualScene].get()->init();
     clear();
 }
 
