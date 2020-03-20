@@ -11,16 +11,21 @@
 #include <iostream>
 #include "sfml/SceneMenu.hpp"
 #include "sfml/SceneGame.hpp"
+#include "sfml/SceneEndGame.hpp"
 
 arc::Graphical::Graphical() : _window(sf::RenderWindow(sf::VideoMode(1920, 1080, 32), "Arcade", sf::Style::Fullscreen))
 {
     _window.setFramerateLimit(60);
     _scenes[MAIN_MENU] = std::unique_ptr<IScene>(new SceneMenu());
     _scenes[GAME] = std::unique_ptr<IScene>(new SceneGame());
+    _scenes[END_GAME] = std::unique_ptr<IScene>(new SceneEndGame());
     static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionExit([this]() {
         _exit = true;
     });
     static_cast<SceneGame *>(_scenes[GAME].get())->eventFunctionBackToMenu([this]() {
+        setScene(MAIN_MENU);
+    });
+    static_cast<SceneEndGame *>(_scenes[END_GAME].get())->setFunctionMenu([this]() {
         setScene(MAIN_MENU);
     });
 }
@@ -56,7 +61,7 @@ void arc::Graphical::setFunctionPlay(const std::function<void()> &function)
 
 void arc::Graphical::setFunctionRestart(const std::function<void()> &function)
 {
-    _eventRestartButton = function;
+    static_cast<SceneEndGame *>(_scenes[END_GAME].get())->setFunctionRestart(function);
 }
 
 void arc::Graphical::setFunctionMenu(const std::function<void()> &function)

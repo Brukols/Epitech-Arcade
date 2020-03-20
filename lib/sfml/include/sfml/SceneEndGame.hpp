@@ -29,6 +29,8 @@ namespace arc
         private:
             void initButtons();
 
+            void eventButtons(const sf::Event &event);
+
         private:
             sf::Font _font;
 
@@ -36,6 +38,7 @@ namespace arc
 
             std::function<void()> _eventMenu;
             std::function<void()> _eventRestart;
+            std::vector<std::pair<std::string, std::string>> _scores;
 
             bool _exit = false;
     };

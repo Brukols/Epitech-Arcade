@@ -31,10 +31,13 @@ arc::Core::~Core()
 void arc::Core::functionPlay()
 {
     _graph->setControls(_game->getControls());
-    // _graph->setFont(_game->getFont());
     _graph->setMapSize(_game->getMapHeight(), _game->getMapWidth());
     _graph->setScene(arc::IGraphical::GAME);
     _graph->setFunctionMenu([this]() {});
+    _graph->setFunctionRestart([this]() {
+        _graph->setScene(arc::IGraphical::GAME);
+        _game->restart();
+    });
 }
 
 void arc::Core::playArcade()
@@ -54,12 +57,15 @@ void arc::Core::playArcade()
             if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM2)
                 setNextGame();
             if (_game->isGameOver()) {
-                std::cout << "hello" << std::endl;
-                insertScore(_graph->getUsername(), _game->getScore());
-                _game->restart();
+                _pathScoreFile = "." + _game->getTitle();
+                if (!_graph->getUsername().empty())
+                    insertScore(_graph->getUsername(), _game->getScore());
+                _graph->setScores(getScores());
+                _graph->setScene(arc::IGraphical::END_GAME);
+            } else {
+                _game->updateGame();
+                _graph->updateGameInfo(_game->getEntities());
             }
-            _game->updateGame();
-            _graph->updateGameInfo(_game->getEntities());
         }
         _graph->display();
     }

@@ -59,6 +59,8 @@ namespace arc {
             std::string _nextGraphPath = "";
 
             std::unique_ptr<DLLoader<IGraphical>> _initialGraph;
+
+            std::string _pathScoreFile = "";
     };
 }
 

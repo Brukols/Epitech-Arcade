@@ -20,17 +20,19 @@ static void sortScoreVector(myVector &scoreVector)
 
 const myVector arc::Core::getScores() const
 {
-    std::ifstream file(SCORE_FILENAME, std::ios::in | std::ios::out);
+    std::ifstream file(_pathScoreFile, std::ios::in | std::ios::out);
     myVector scoreVector;
-    std::size_t pos;
     std::string readUsername = "";
     std::string readScore = "";
     std::string readLine;
     int cpt = 0;
 
     scoreVector.clear();
-    if (!file)
-        throw arc::FileError("Cannot open the file, your register will not be register", "getScores");
+    if (!file) {
+        std::ofstream newFile(_pathScoreFile);
+        newFile.close();
+        return (scoreVector);
+    }
     while (getline(file, readLine)) {
         size_t i = 0;
 
@@ -70,9 +72,9 @@ const myVector arc::Core::getScores() const
     return (scoreVector);
 }
 
-static void writeFile(myVector &score_vector)
+static void writeFile(const std::string &path, myVector &score_vector)
 {
-    std::ofstream file(SCORE_FILENAME, std::ios::out);
+    std::ofstream file(path, std::ios::out);
     std::string line;
     myVector::iterator it = score_vector.begin();
 
@@ -105,5 +107,5 @@ void arc::Core::insertScore(const std::string &name, const std::string &score)
     if (!exist)
         scoreVector.push_back(std::make_pair(name, score));
     sortScoreVector(scoreVector);
-    writeFile(scoreVector);
+    writeFile(_pathScoreFile, scoreVector);
 }
