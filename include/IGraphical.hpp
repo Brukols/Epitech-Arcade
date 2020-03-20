@@ -51,7 +51,6 @@ namespace arc {
 
             virtual void setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info) = 0;
             virtual void setGameStats(const std::vector<std::pair<std::string, std::string>> &info) = 0;
-            virtual void setFont(const std::string &font) = 0;
             virtual void updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap) = 0;
 
             virtual void setMapSize(size_t height, size_t width) = 0;

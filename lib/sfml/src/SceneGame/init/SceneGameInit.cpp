@@ -11,7 +11,7 @@ void arc::SceneGame::init()
 {
     _errorMessages.clear();
     _textureMap.clear();
-    if (!_font.loadFromFile("resources/fonts/Raleway-Bold.ttf")) {
+    if (!_font.loadFromFile("resources/sfml/fonts/Raleway-Bold.ttf")) {
         _exit = true;
         return;
     }

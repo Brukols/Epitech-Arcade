@@ -100,12 +100,6 @@ void arc::Graphical::setGameStats(const std::vector<std::pair<std::string, std::
     (void)info;
 }
 
-void arc::Graphical::setFont(const std::string &font)
-{
-    if (!_font.loadFromFile(font))
-        return; // Throw a exeception
-}
-
 void arc::Graphical::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap)
 {
     static_cast<SceneGame *>(_scenes[GAME].get())->updateGameInfo(gameMap);

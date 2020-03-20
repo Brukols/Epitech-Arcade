@@ -10,7 +10,7 @@
 
 arc::SceneMenu::SceneMenu()
 {
-    if (!_font.loadFromFile("resources/fonts/Raleway-Bold.ttf")) {
+    if (!_font.loadFromFile("resources/sfml/fonts/Raleway-Bold.ttf")) {
         _exit = true;
         return;
     }
