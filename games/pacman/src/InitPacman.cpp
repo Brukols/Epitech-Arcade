@@ -33,48 +33,55 @@ void Pacman::initEntities()
 {
     initPacpac();
     initApple();
-    // initMap();
+    initMap();
     // initFruits();
     // initGhosts();
 }
 
+void Pacman::initMap()
+{
+    std::string readLine;
+    int x = 0;
+    int y = 0;
+    std::ifstream mapFile("./games/pacman/map.txt");  //On essaye d'ouvrir le fichier
 
-/*
-// void Pacman::initMap()
-// {
-    
-    // 1 -> afficher blocks bleu
-    // rien afficher
-    //les 1 deviennent des colisions
-
-    // std::shared_ptr<Entity> mapEntity(new Entity);
-    // mapEntity->type = CONSUMABLE;
-
-//lire fichier
-
-    // std::ifstream my_map("../map.txt");  //On essaye d'ouvrir le fichier
-
-    // if(my_map)
-    // {
-    //     while (getline)
-    //     {
-    //     }
-        
-    // }
-    // else
-    // {
-    //     std::cout << "ERREUR: Impossible d'ouvrir le fichier." << std::endl;
-    // }
-
-
-    // mapEntity->spritePath = "";
-    // mapEntity->backgroundColor = Color{25, 25, 166, 255};
-    // mapEntity->orientation = Orientation::LEFT;
-    // mapEntity->x = _width / 2;
-    // mapEntity->y = _height / 2;
-    // _entities.push_back(mapEntity);
-    // _pacman.push_back(mapEntity);
-*/
+    if(mapFile)
+    {
+         while(getline(mapFile, readLine)) //not end of file
+        {
+            x = 0;
+            std::cout << "x" << x << "y" << y << "readLine" << readLine << std::endl;
+            // while (readLine[x] != '\0') {
+            for (std::string::iterator it = readLine.begin(); it!=readLine.end(); ++it) {
+                std::cout << "texte" << std::endl;
+                std::cout << x << "  readLine[x]" << readLine[x] << std::endl;
+                if (readLine[x] == '1') {
+                    std::shared_ptr<Entity> mapEntity(new Entity);
+                    mapEntity->type = OBSTACLE;
+                    mapEntity->spritePath = "";
+                    mapEntity->backgroundColor = Color{25, 25, 166, 255};
+                    mapEntity->orientation = Orientation::LEFT;
+                    mapEntity->x = x;
+                    mapEntity->y = y;
+                    std::cout << "x" << x << std::endl;
+                    _entities.push_back(mapEntity);
+                    std::cout << "y" << y << std::endl;
+                    _myMap.push_back(mapEntity);
+                    std::cout << "push" << readLine << std::endl;
+                }
+                std::cout << "x++" << std::endl;
+                x++;
+            }
+            std::cout << "y++" << std::endl;
+            y++;
+        }
+        std::cout << "mapFile" << std::endl;
+        mapFile.close();
+        std::cout << "close" << std::endl;
+    } else {
+        std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
+    }
+}
 
 void Pacman::initPacpac()
 {

@@ -15,6 +15,13 @@
 #include <iostream>
 #include <fstream>
 
+
+#include <vector>
+#include <string>
+#include <cstring>
+#include <ios>
+#include <algorithm>
+
 using namespace arc;
 
 namespace arc {
@@ -59,10 +66,9 @@ namespace arc {
             std::map<std::pair<Event::Type, Event::Key>, std::function<void()>> _controls;
 
             std::vector<std::shared_ptr<Entity>> _entities;
-            // std::vector<std::shared_ptr<Entity>> _snake;
             std::vector<std::shared_ptr<Entity>> _pacman;
             std::vector<std::shared_ptr<Entity>> _apple;
-            // std::vector<std::shared_ptr<Entity>> _map;
+            std::vector<std::shared_ptr<Entity>> _myMap;
 
             int _nbApple;
 
@@ -76,7 +82,7 @@ namespace arc {
             void initEntities();
             void initPacpac();
             void initApple();
-            // void initMap();
+            void initMap();
             void initGameControls();
             void initGameStats();
 
