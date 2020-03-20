@@ -43,7 +43,7 @@ void arc::SceneMenu::event(arc::Event::Type &_actualEventType, arc::Event::Key &
         _actualKeyPress = arc::Event::Key::NONE;
         return;
     }
-    if (_actualKeyPress == arc::Event::Key::Q) {
+    if (_actualKeyPress == arc::Event::Key::ESCAPE) {
         _eventFunctionExit();
         _actualEventType = arc::Event::QUIT;
     }

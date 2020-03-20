@@ -58,6 +58,7 @@ arc::Event::Key arc::Utility::getEventKey(int c)
     static std::map<int, arc::Event::Key> keys = []() -> std::map<int, arc::Event::Key> {
         std::map<int, arc::Event::Key> keys;
 
+        keys[27] = arc::Event::Key::ESCAPE;
         keys['a'] = arc::Event::Key::A;
         keys['A'] = arc::Event::Key::A;
         keys['b'] = arc::Event::Key::B;
