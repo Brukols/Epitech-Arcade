@@ -49,7 +49,6 @@ arc::Graphical::Graphical()
 
 arc::Graphical::~Graphical()
 {
-    Utility::generatePairColor(MAIN_COLOR_1, MAIN_COLOR_1, true);
     endwin();
 }
 

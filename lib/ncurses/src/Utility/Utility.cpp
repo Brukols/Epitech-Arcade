@@ -32,16 +32,17 @@ std::string arc::Utility::getText(const std::string &path)
     return (str);
 }
 
-int arc::Utility::generatePairColor(int textColor, int bgColor, bool reset)
+int arc::Utility::generatePairColor(int textColor, int bgColor)
 {
     static int noPair = 0;
+    static std::map<std::pair<int, int>, int> colors;
 
-    if (reset == true) {
-        noPair = 0;
-        return (0);
+    if (colors.count(std::pair<int, int>(textColor, bgColor))) {
+        return (colors[std::pair<int, int>(textColor, bgColor)]);
     }
     noPair++;
     init_pair(noPair, textColor, bgColor);
+    colors[std::pair<int, int>(textColor, bgColor)] = noPair;
     return (noPair);
 }
 
@@ -111,6 +112,16 @@ arc::Event::Key arc::Utility::getEventKey(int c)
         keys['Y'] = arc::Event::Key::Y;
         keys['z'] = arc::Event::Key::Z;
         keys['Z'] = arc::Event::Key::Z;
+        keys['0'] = arc::Event::Key::NUM0;
+        keys['1'] = arc::Event::Key::NUM1;
+        keys['2'] = arc::Event::Key::NUM2;
+        keys['3'] = arc::Event::Key::NUM3;
+        keys['4'] = arc::Event::Key::NUM4;
+        keys['5'] = arc::Event::Key::NUM5;
+        keys['6'] = arc::Event::Key::NUM6;
+        keys['7'] = arc::Event::Key::NUM7;
+        keys['8'] = arc::Event::Key::NUM8;
+        keys['9'] = arc::Event::Key::NUM9;
         keys[KEY_BACKSPACE] = arc::Event::Key::BACKSPACE;
         keys[KEY_ENTER] = arc::Event::Key::RETURN;
         keys[KEY_CTAB] = arc::Event::Key::TAB;

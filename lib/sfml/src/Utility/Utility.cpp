@@ -69,6 +69,16 @@ arc::Event::Key arc::Utility::getKey(sf::Event event)
         map[sf::Keyboard::Key::F13] = arc::Event::Key::F13;
         map[sf::Keyboard::Key::F14] = arc::Event::Key::F14;
         map[sf::Keyboard::Key::F15] = arc::Event::Key::F15;
+        map[sf::Keyboard::Key::Num0] = arc::Event::Key::NUM0;
+        map[sf::Keyboard::Key::Num1] = arc::Event::Key::NUM1;
+        map[sf::Keyboard::Key::Num2] = arc::Event::Key::NUM2;
+        map[sf::Keyboard::Key::Num3] = arc::Event::Key::NUM3;
+        map[sf::Keyboard::Key::Num4] = arc::Event::Key::NUM4;
+        map[sf::Keyboard::Key::Num5] = arc::Event::Key::NUM5;
+        map[sf::Keyboard::Key::Num6] = arc::Event::Key::NUM6;
+        map[sf::Keyboard::Key::Num7] = arc::Event::Key::NUM7;
+        map[sf::Keyboard::Key::Num8] = arc::Event::Key::NUM8;
+        map[sf::Keyboard::Key::Num9] = arc::Event::Key::NUM9;
         return (map);
     }();
 

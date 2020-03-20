@@ -45,14 +45,14 @@ void arc::Core::playArcade()
             setGraphical(_nextGraphPath);
             _nextGraphPath = "";
         }
-        if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::E)
+        if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM0)
             setNextGraphical();
-        if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::R)
+        if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM1)
             setPrevGraphical();
         if (_graph->getScene() == arc::IGraphical::GAME) {
-            if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::A)
+            if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM9)
                 setNextGame();
-            if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::Z)
+            if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM2)
                 setNextGame();
             _game->updateGame();
             _graph->updateGameInfo(_game->getEntities());
