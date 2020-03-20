@@ -13,6 +13,7 @@ arc::SceneEndGame::SceneEndGame()
         _exit = true;
         return;
     }
+    _listScores.setFont(_font);
 }
 
 arc::SceneEndGame::~SceneEndGame()

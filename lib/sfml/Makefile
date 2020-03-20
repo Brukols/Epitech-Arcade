@@ -41,6 +41,7 @@ SRCS	=	src/Graphical.cpp	\
 			src/SceneEndGame/init/SceneEndGameInitButtons.cpp	\
 			src/ListScores/ListScores.cpp	\
 			src/ListScores/ListScoresInit.cpp	\
+			src/ListScores/ListScoresDisplay.cpp	\
 			src/Utility/Utility.cpp	\
 			src/image/Image.cpp	\
 			src/SFMLErrors/SFMLErrors.cpp	\

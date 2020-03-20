@@ -9,6 +9,7 @@
 #define SCENEENDGAME_HPP_
 
 #include "IScene.hpp"
+#include "ListScores.hpp"
 #include "Button.hpp"
 
 namespace arc
@@ -25,6 +26,7 @@ namespace arc
             void setFunctionMenu(const std::function<void()> &function);
             void setFunctionRestart(const std::function<void()> &function);
             void setScores(const std::vector<std::pair<std::string, std::string>> &scores);
+            void setUsername(const std::string &username);
 
         private:
             void initButtons();
@@ -39,6 +41,8 @@ namespace arc
             std::function<void()> _eventMenu;
             std::function<void()> _eventRestart;
             std::vector<std::pair<std::string, std::string>> _scores;
+
+            ListScores _listScores;
 
             bool _exit = false;
     };

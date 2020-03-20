@@ -22,21 +22,21 @@ namespace arc
             ListScores(const sf::Font &font, const std::vector<std::pair<std::string, std::string>> &scores, const std::string &username);
             ~ListScores();
 
+            void init();
             void setFont(const sf::Font &font);
             void setUsername(const std::string &username);
             void setScores(const std::vector<std::pair<std::string, std::string>> &scores);
             void display(sf::RenderWindow &window);
 
         private:
-            void initTextsUsernames(const std::vector<std::pair<std::string, std::string>> &scores);
-            void initTextsScores(const std::vector<std::pair<std::string, std::string>> &scores);
+            void initTextsScores();
 
         private:
             sf::Font _font;
             std::string _username;
+            std::vector<std::pair<std::string, std::string>> _scores;
 
-            std::vector<Text> _usernames;
-            std::vector<Text> _scores;
+            std::vector<std::pair<Text, Text>> _textScores;
     };
 } // namespace arc
 
