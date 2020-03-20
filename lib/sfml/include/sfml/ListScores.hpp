@@ -27,9 +27,16 @@ namespace arc
             void setUsername(const std::string &username);
             void setScores(const std::vector<std::pair<std::string, std::string>> &scores);
             void display(sf::RenderWindow &window);
+            void event(const sf::Event &event);
 
         private:
             void initTextsScores();
+
+            void initRects();
+            void initTexts();
+
+            void scrollDown();
+            void scrollUp();
 
         private:
             sf::Font _font;
@@ -37,6 +44,11 @@ namespace arc
             std::vector<std::pair<std::string, std::string>> _scores;
 
             std::vector<std::pair<Text, Text>> _textScores;
+
+            std::vector<sf::RectangleShape> _rects;
+            std::vector<Text> _texts;
+
+            int _begin = 0;
     };
 } // namespace arc
 

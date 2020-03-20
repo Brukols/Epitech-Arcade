@@ -29,7 +29,7 @@ static arc::Button initButtonMenu(const std::function<void()> &event, const sf::
     rect.setFillColor(sf::Color(100, 100, 100, 255));
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
-    rect.setPosition(sf::Vector2f(430, 800));
+    rect.setPosition(sf::Vector2f(450, 800));
     arc::Button button(event, rect, "Menu", font);
     button.setHoverColor(sf::Color(90, 90, 90, 255));
     return (button);

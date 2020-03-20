@@ -35,6 +35,7 @@ void arc::SceneEndGame::event(sf::RenderWindow &window, arc::Event::Type &_actua
             return;
         }
         eventButtons(event);
+        _listScores.event(event);
         if (event.type == sf::Event::KeyPressed) {
             _actualEventType = arc::Event::KEY_PRESSED;
             _actualKeyPress = Utility::getKey(event);

@@ -29,7 +29,7 @@ class DLLoader {
 
         ~DLLoader()
         {
-            // dlclose(_handle);
+            dlclose(_handle);
         }
 
         T *getInstance() const
