@@ -5,16 +5,17 @@
 ** Header Pacman
 */
 
-#ifndef PACMAN_HPP
-#define PACMAN_HPP
+#ifndef PACMAN_HPP_
+#define PACMAN_HPP_
 
 #include "IGame.hpp"
 
 #include <ctime>
 #include <chrono>
+#include <iostream>
+#include <fstream>
 
 using namespace arc;
-
 
 namespace arc {
     class Pacman : public IGame {
@@ -24,7 +25,6 @@ namespace arc {
 
             size_t getMapHeight() const override;
             size_t getMapWidth() const override;
-            const std::string &getFont() const override;
             const std::string &getMusic() const override;
             const std::string &getSound() const override;
             const std::string &getScore() override;
@@ -45,11 +45,10 @@ namespace arc {
         protected:
             std::chrono::time_point<std::chrono::system_clock> _start;
             std::chrono::time_point<std::chrono::system_clock> _end;
-            // int _elapsedMilliseconds;
+            int _elapsedMilliseconds;
 
             size_t _height;
             size_t _width;
-            std::string _font;
             std::string _music;
             std::string _sound;
             std::string _strScore;
@@ -60,28 +59,33 @@ namespace arc {
             std::map<std::pair<Event::Type, Event::Key>, std::function<void()>> _controls;
 
             std::vector<std::shared_ptr<Entity>> _entities;
-            std::vector<std::shared_ptr<Entity>> _pacman;
             // std::vector<std::shared_ptr<Entity>> _snake;
-            // std::vector<std::shared_ptr<Entity>> _apple;
+            std::vector<std::shared_ptr<Entity>> _pacman;
+            std::vector<std::shared_ptr<Entity>> _apple;
+            // std::vector<std::shared_ptr<Entity>> _map;
+
+            int _nbApple;
 
             std::vector <std::pair<std::string, std::string>> _gameControls;
             std::vector<std::string> _gameStats;
         private:
-            // InitPacman
-            void initPacmanGame();
+            // //InitPacman
+            void initPacman();
             void initVisualAssets();
             void initControls();
             void initEntities();
-            // void initFruits();
-            // bool isOnSnake(float x, float y);
-            void initPacman();
+            void initPacpac();
+            void initApple();
+            // void initMap();
             void initGameControls();
             void initGameStats();
 
             bool doYouEat();
             void movePacman();
-            //void updateOrientationSnake();
+            // void updateOrientationPacman();
+            bool isCollision() const;
+            bool isOnSnake(float x, float y);
     };
 }
 
-#endif // NIBBLER_HPP_
+#endif // PACMAN_HPP_
