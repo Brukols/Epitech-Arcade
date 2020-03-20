@@ -13,6 +13,8 @@
 #include "IGraphical.hpp"
 #include "DLLoader.hpp"
 
+#define SCORE_FILENAME "scores.txt"
+
 namespace arc {
 
     class Core {
@@ -40,6 +42,9 @@ namespace arc {
             void setPrevGame();
 
             void functionPlay();
+
+            void insertScore(const std::string &name, const std::string &username);
+            const std::vector<std::pair<std::string, std::string>> getScores() const;
 
         private:
             std::vector<std::pair<std::string, std::unique_ptr<DLLoader<IGraphical>>>> _graphs;

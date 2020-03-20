@@ -169,14 +169,3 @@ void insertScore(const std::string name, const std::string score)
     scoreVector.shrink_to_fit();
     writeFile(scoreVector);
 }
-
-//sauvgarde vector dans le fichier.
-int main(int ac, char **av)
-{
-    myVector score_vector = getScores();
-    std::string name = "UUUo";
-    std::string score = "1";
-
-    print_score(score_vector);
-    return (0);
-}
