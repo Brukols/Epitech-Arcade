@@ -33,7 +33,10 @@ void arc::Core::functionPlay()
     _graph->setControls(_game->getControls());
     _graph->setMapSize(_game->getMapHeight(), _game->getMapWidth());
     _graph->setScene(arc::IGraphical::GAME);
-    _graph->setFunctionMenu([this]() {});
+    _graph->setFunctionMenu([this]() {
+        _graph->setScene(arc::IGraphical::MAIN_MENU);
+        _game->restart();
+    });
     _graph->setFunctionRestart([this]() {
         _graph->setScene(arc::IGraphical::GAME);
         _game->restart();

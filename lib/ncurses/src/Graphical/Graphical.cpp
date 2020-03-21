@@ -11,6 +11,7 @@
 #include <iostream>
 #include "ncurses/SceneMenu.hpp"
 #include "ncurses/SceneGame.hpp"
+#include "ncurses/SceneEndGame.hpp"
 #include "ncurses/NcursesError.hpp"
 
 arc::Graphical::Graphical()
@@ -36,6 +37,7 @@ arc::Graphical::Graphical()
     clear();
     _scenes[MAIN_MENU] = std::unique_ptr<IScene>(new SceneMenu());
     _scenes[GAME] = std::unique_ptr<IScene>(new SceneGame());
+    _scenes[END_GAME] = std::unique_ptr<IScene>(new SceneEndGame());
     static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionExit([this]() {
         _exit = true;
     });
@@ -79,12 +81,12 @@ void arc::Graphical::setFunctionPlay(const std::function<void()> &function)
 
 void arc::Graphical::setFunctionRestart(const std::function<void()> &function)
 {
-    _eventRestartButton = function;
+    static_cast<SceneEndGame *>(_scenes[END_GAME].get())->setFunctionRestart(function);
 }
 
 void arc::Graphical::setFunctionMenu(const std::function<void()> &function)
 {
-    _eventMenuButton = function;
+    static_cast<SceneEndGame *>(_scenes[END_GAME].get())->setFunctionMenu(function);
 }
 
 void arc::Graphical::setFunctionTogglePause(const std::function<void()> &function)
@@ -110,7 +112,7 @@ arc::IGraphical::Scene arc::Graphical::getScene() const
 void arc::Graphical::setScene(Scene scene)
 {
     _actualScene = scene;
-    // _scenes[_actualScene].get()->init();
+    _scenes[_actualScene].get()->init();
     clear();
 }
 
