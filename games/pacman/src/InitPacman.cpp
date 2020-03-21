@@ -33,7 +33,20 @@ void Pacman::initEntities()
     initApple();
     initMap();
     // initFruits();
-    // initGhosts();
+    initGhostClyde();
+}
+
+void Pacman::initGhostClyde()
+{
+    std::shared_ptr<Entity> clydeEntity(new Entity);
+    clydeEntity->type = ENEMY;
+    clydeEntity->spritePath = "";
+    clydeEntity->backgroundColor = Color{225, 127, 0, 255};
+    clydeEntity->orientation = Orientation::RIGHT;
+    clydeEntity->x = _width / 4;
+    clydeEntity->y = _height / 8;
+    _entities.push_back(clydeEntity);
+    _clyde.push_back(clydeEntity);
 }
 
 void Pacman::initMap()

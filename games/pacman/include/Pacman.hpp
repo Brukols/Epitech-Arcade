@@ -69,6 +69,7 @@ namespace arc {
             std::vector<std::shared_ptr<Entity>> _pacman;
             std::vector<std::shared_ptr<Entity>> _apple;
             std::vector<std::shared_ptr<Entity>> _myMap;
+            std::vector<std::shared_ptr<Entity>> _clyde;
 
             int _nbApple;
 
@@ -83,13 +84,16 @@ namespace arc {
             void initPacpac();
             void initApple();
             void initMap();
+            void initGhostClyde();
             void initGameControls();
             void initGameStats();
 
             bool doYouEat();
             void movePacman();
+            void moveClyde();
             // void updateOrientationPacman();
-            bool isCollision() const;
+            bool isCollision(std::vector<std::shared_ptr<Entity>>);
+            bool isPacpacEaten(std::vector<std::shared_ptr<Entity>>);
             bool isOnSnake(float x, float y);
     };
 }
