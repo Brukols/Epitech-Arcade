@@ -42,7 +42,7 @@ namespace arc
             std::string _username;
             std::vector<std::pair<std::string, std::string>> _scores;
 
-            std::vector<std::pair<Text, Text>> _textScores;
+            std::vector<std::pair<Button, Button>> _textScores;
 
             std::vector<Rectangle> _rects;
             std::vector<Text> _texts;

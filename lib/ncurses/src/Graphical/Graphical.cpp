@@ -66,7 +66,7 @@ void arc::Graphical::setListLibraries(const std::vector<std::string> &libraries,
 
 void arc::Graphical::setScores(const std::vector<std::pair<std::string, std::string>> &scores)
 {
-    _scores = scores;
+    static_cast<SceneEndGame *>(_scenes[END_GAME].get())->setScores(scores);
 }
 
 void arc::Graphical::setControls(const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &controls)

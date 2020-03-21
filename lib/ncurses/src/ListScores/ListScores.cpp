@@ -40,4 +40,17 @@ void arc::ListScores::display()
     std::for_each(_texts.begin(), _texts.end(), [](Text &text) {
         text.display();
     });
+
+    int i = 0;
+    std::for_each(_textScores.begin(), _textScores.end(), [this, &i](std::pair<Button, Button> &button) {
+        if (i >= 8 + _begin)
+            return;
+        if (i < _begin) {
+            i++;
+            return;
+        }
+        button.first.display();
+        button.second.display();
+        i++;
+    });
 }
