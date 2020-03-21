@@ -7,8 +7,6 @@
 
 #include "Pacman.hpp"
 
-#include <iostream>
-
 void Pacman::initPacman()
 {
     _start = std::chrono::system_clock::now();
@@ -50,11 +48,7 @@ void Pacman::initMap()
          while(getline(mapFile, readLine)) //not end of file
         {
             x = 0;
-            std::cout << "x" << x << "y" << y << "readLine" << readLine << std::endl;
-            // while (readLine[x] != '\0') {
             for (std::string::iterator it = readLine.begin(); it!=readLine.end(); ++it) {
-                std::cout << "texte" << std::endl;
-                std::cout << x << "  readLine[x]" << readLine[x] << std::endl;
                 if (readLine[x] == '1') {
                     std::shared_ptr<Entity> mapEntity(new Entity);
                     mapEntity->type = OBSTACLE;
@@ -63,21 +57,14 @@ void Pacman::initMap()
                     mapEntity->orientation = Orientation::LEFT;
                     mapEntity->x = x;
                     mapEntity->y = y;
-                    std::cout << "x" << x << std::endl;
                     _entities.push_back(mapEntity);
-                    std::cout << "y" << y << std::endl;
                     _myMap.push_back(mapEntity);
-                    std::cout << "push" << readLine << std::endl;
                 }
-                std::cout << "x++" << std::endl;
                 x++;
             }
-            std::cout << "y++" << std::endl;
             y++;
         }
-        std::cout << "mapFile" << std::endl;
         mapFile.close();
-        std::cout << "close" << std::endl;
     } else {
         std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
     }

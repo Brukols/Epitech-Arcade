@@ -29,16 +29,34 @@ void Pacman::updateGame()
 
 void Pacman::movePacman()
 {
-    std::for_each(_pacman.begin(), _pacman.end(), [this](std::shared_ptr<Entity> &s) {
-        if (s->orientation == Orientation::UP)
-            s->y -= 1;
-        if (s->orientation == Orientation::RIGHT)
-            s->x += 1;
-        if (s->orientation == Orientation::DOWN)
-            s->y += 1;
-        if (s->orientation == Orientation::LEFT)
-            s->x -= 1;
-    });
+    std::cout << "movePacman" << std::endl;
+    if (_pacman[0]->orientation == Orientation::UP) {
+        std::cout << "movePacman : UP" << std::endl;
+        _pacman[0]->y -= 1;
+        if (isCollision())
+            _pacman[0]->y += 1;
+    }
+        
+    if (_pacman[0]->orientation == Orientation::RIGHT) {
+        _pacman[0]->x += 1;
+        if (isCollision())
+            _pacman[0]->x -= 1;
+    }
+
+
+    if (_pacman[0]->orientation == Orientation::DOWN) {
+        _pacman[0]->y += 1;
+        if (isCollision())
+            _pacman[0]->y -= 1;
+    }
+
+    if (_pacman[0]->orientation == Orientation::LEFT) {
+        std::cout << "movePacman : LEFT" << std::endl;
+        _pacman[0]->x -= 1;
+        if (isCollision())
+            _pacman[0]->x += 1;
+    }
+
     //updateOrientationSnake();
     if (doYouEat() == true) {
         _score += 1;
@@ -46,10 +64,6 @@ void Pacman::movePacman()
         _nbApple++;
         initGameStats();
         //initialisation de sound si le serpent mange quelque chose
-    }
-    if (isCollision() == true) {
-        //tant que key not pressed
-        //on garde la meme position
     }
 }
 
@@ -93,14 +107,11 @@ bool Pacman::isGameOver() const
 
 bool Pacman::isCollision() const
 {
-    auto const &ptr = std::find_if(_pacman.begin(), _pacman.end(), [this] (std::shared_ptr<Entity> const &o) {
-        if (_pacman.front()->x == o->x && _pacman.front()->y == o->y && _pacman.front() != o)
+    for (auto it = _myMap.begin(); it != _myMap.end(); it++) {
+        if (_pacman[0]->x == (*it)->x && _pacman[0]->y == (*it)->y)
             return true;
-        return false;
-    });
-    if (ptr == _pacman.end())
-        return false;
-    return true;
+    }
+    return false;
 }
 
 bool Pacman::isOnSnake(float x, float y)
