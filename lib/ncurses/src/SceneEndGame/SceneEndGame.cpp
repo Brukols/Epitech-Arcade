@@ -25,12 +25,12 @@ void arc::SceneEndGame::setFunctionRestart(const std::function<void()> &function
     _eventRestart = function;
 }
 
-void setScores(const std::vector<std::pair<std::string, std::string>> &scores)
+void arc::SceneEndGame::setScores(const std::vector<std::pair<std::string, std::string>> &scores)
 {
-    (void)scores;
+    _listScores.setScores(scores);
 }
 
-void setUsername(const std::string &username)
+void arc::SceneEndGame::setUsername(const std::string &username)
 {
-    (void)username;
+    _listScores.setUsername(username);
 }

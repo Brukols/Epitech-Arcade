@@ -12,6 +12,7 @@
 #include "Button.hpp"
 #include "Text.hpp"
 #include "Rectangle.hpp"
+#include "ListScores.hpp"
 
 #include <vector>
 
@@ -42,6 +43,8 @@ namespace arc
 
             std::function<void()> _eventMenu;
             std::function<void()> _eventRestart;
+
+            ListScores _listScores;
     };
 } // namespace arc
 

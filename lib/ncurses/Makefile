@@ -48,6 +48,9 @@ SRCS	=	src/Graphical/Graphical.cpp	\
 			src/List/List.cpp	\
 			src/List/ListEvent.cpp	\
 			src/List/ListInitButtons.cpp	\
+			src/ListScores/ListScores.cpp	\
+			src/ListScores/ListScoresEvent.cpp	\
+			src/ListScores/ListScoresInit.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)
 

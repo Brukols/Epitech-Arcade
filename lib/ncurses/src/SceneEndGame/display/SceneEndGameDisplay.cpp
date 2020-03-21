@@ -12,4 +12,6 @@ void arc::SceneEndGame::display()
     std::for_each(_buttons.begin(), _buttons.end(), [](Button &button) {
         button.display();
     });
+
+    _listScores.display();
 }

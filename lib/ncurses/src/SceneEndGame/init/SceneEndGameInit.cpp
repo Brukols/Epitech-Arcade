@@ -10,4 +10,5 @@
 void arc::SceneEndGame::init()
 {
     initButtons();
+    _listScores.init();
 }
