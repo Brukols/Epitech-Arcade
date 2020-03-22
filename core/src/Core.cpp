@@ -30,8 +30,11 @@ arc::Core::~Core()
 
 void arc::Core::functionPlay()
 {
+    _graph->setGameTitle(_game->getTitle());
     _graph->setControls(_game->getControls());
     _graph->setMapSize(_game->getMapHeight(), _game->getMapWidth());
+    _graph->setGameStats(_game->getGameControlsFormatString());
+    _graph->setHowToPlay(_game->getGameControlsFormatString());
     _graph->setScene(arc::IGraphical::GAME);
     _graph->setFunctionMenu([this]() {
         _graph->setScene(arc::IGraphical::MAIN_MENU);

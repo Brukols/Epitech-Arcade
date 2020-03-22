@@ -28,9 +28,6 @@ namespace arc
 
             void setFont(const sf::Font &font);
 
-            void initButtons();
-            void initTexts();
-            void initRects();
 
             void eventFunctionBackToMenu(std::function<void()> event);
 
@@ -39,11 +36,22 @@ namespace arc
 
             void setControls(const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &controls);
 
+            void setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info);
+            void setGameStats(const std::vector<std::pair<std::string, std::string>> &info);
+
+            void setTitle(const std::string &name);
+
         private:
+            void initButtons();
+            void initTexts();
+            void initRects();
             void eventButtons(sf::RenderWindow &window, sf::Event &event);
 
             void displayGame(sf::RenderWindow &window);
             void eventErrorMessage(sf::Event &event);
+
+            void initTextHowToPlay(const std::vector<std::pair<std::string, std::string>> &info);
+            void initTextStats(const std::vector<std::pair<std::string, std::string>> &info);
 
         private:
             std::vector<Button> _buttons;
@@ -64,7 +72,12 @@ namespace arc
 
             std::vector<ErrorMessage> _errorMessages;
 
+            std::vector<Text> _stats;
+            std::vector<Text> _howToPlay;
+
             bool _exit = false;
+
+            std::string _title;
     };
 }
 
