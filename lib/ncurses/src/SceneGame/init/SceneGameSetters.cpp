@@ -32,3 +32,18 @@ void arc::SceneGame::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &
 {
     _gameMap = gameMap;
 }
+
+void arc::SceneGame::setGameStats(const std::vector<std::pair<std::string, std::string>> &info)
+{
+    initTextStats(info);
+}
+
+void arc::SceneGame::setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info)
+{
+    initTextHowToPlay(info);
+}
+
+void arc::SceneGame::setTitle(const std::string &name)
+{
+    _title = name;
+}

@@ -23,4 +23,16 @@ void arc::SceneGame::display()
         _rect.setColors(arc::BACKGROUND_COLOR, Utility::generateColor(entity.get()->backgroundColor));
         _rect.display();
     });
+
+    std::for_each(_texts.begin(), _texts.end(), [](Text &text) {
+        text.display();
+    });
+
+    std::for_each(_howToPlay.begin(), _howToPlay.end(), [](Text &text) {
+        text.display();
+    });
+
+    std::for_each(_stats.begin(), _stats.end(), [](Text &text) {
+        text.display();
+    });
 }

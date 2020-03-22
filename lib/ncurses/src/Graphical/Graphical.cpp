@@ -119,12 +119,12 @@ void arc::Graphical::setScene(Scene scene)
 
 void arc::Graphical::setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info)
 {
-    _infoHowToPlay = info;
+    static_cast<SceneGame *>(_scenes[GAME].get())->setHowToPlay(info);
 }
 
 void arc::Graphical::setGameStats(const std::vector<std::pair<std::string, std::string>> &info)
 {
-    (void)info;
+    static_cast<SceneGame *>(_scenes[GAME].get())->setGameStats(info);
 }
 
 void arc::Graphical::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap)
@@ -149,7 +149,7 @@ void arc::Graphical::setMapSize(size_t height, size_t width)
 
 void arc::Graphical::setGameTitle(const std::string &game)
 {
-    (void)game;
+    static_cast<SceneGame *>(_scenes[GAME].get())->setTitle(game);
 }
 
 arc::Event::Type arc::Graphical::getEventType() const

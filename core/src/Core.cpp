@@ -15,6 +15,8 @@
 
 arc::Core::Core(const std::string &libname)
 try {
+    _games.clear();
+    _graphs.clear();
     initGraphs();
     initGames();
     setGraphical(libname);
@@ -25,6 +27,10 @@ try {
 }
 
 arc::Core::~Core()
+{
+}
+
+void arc::Core::clean()
 {
 }
 

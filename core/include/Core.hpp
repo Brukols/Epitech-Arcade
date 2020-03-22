@@ -25,6 +25,8 @@ namespace arc {
 
             void playArcade();
 
+            void clean();
+
         private:
             void initGraphs();
             void initGames();
