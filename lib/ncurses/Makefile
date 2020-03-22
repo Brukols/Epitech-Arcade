@@ -39,6 +39,10 @@ SRCS	=	src/Graphical/Graphical.cpp	\
 			src/SceneError/display/SceneErrorDisplay.cpp	\
 			src/SceneError/init/SceneErrorInit.cpp	\
 			src/SceneError/event/SceneErrorEvent.cpp	\
+			src/SceneScores/SceneScores.cpp	\
+			src/SceneScores/init/SceneScoresInit.cpp	\
+			src/SceneScores/event/SceneScoresEvent.cpp	\
+			src/SceneScores/display/SceneScoresDisplay.cpp	\
 			src/Rectangle/Rectangle.cpp		\
 			src/Utility/Utility.cpp	\
 			src/Text/Text.cpp		\
