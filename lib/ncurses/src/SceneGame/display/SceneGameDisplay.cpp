@@ -20,6 +20,7 @@ void arc::SceneGame::display()
 
     std::for_each(_gameMap.begin(), _gameMap.end(), [this](std::shared_ptr<Entity> entity) {
         _rect.setPosition(entity.get()->x * 2 + 6, entity.get()->y + 3);
+        _rect.setColors(arc::BACKGROUND_COLOR, Utility::generateColor(entity.get()->backgroundColor));
         _rect.display();
     });
 }
