@@ -35,3 +35,10 @@ const sf::Vector2f &arc::Image::getPosition() const
 {
     return (_pos);
 }
+
+bool arc::Image::isMouseHover(const sf::Vector2i &pos) const
+{
+    if (pos.x > _pos.x && pos.x < _pos.x + _sprite.getLocalBounds().width && pos.y > _pos.y && pos.y < _pos.y + _sprite.getLocalBounds().height)
+        return (true);
+    return (false);
+}

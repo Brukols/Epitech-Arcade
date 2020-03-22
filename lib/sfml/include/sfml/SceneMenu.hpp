@@ -14,6 +14,7 @@
 #include "sfml/Text.hpp"
 #include "sfml/Input.hpp"
 #include "sfml/Image.hpp"
+#include "SceneScores.hpp"
 #include "List.hpp"
 #include <functional>
 #include "ErrorMessage.hpp"
@@ -47,6 +48,8 @@ namespace arc
             void setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen);
             void setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen);
 
+            void setScores(const std::vector<std::pair<std::string, std::string>> &scores);
+
         private:
             void initButtons();
             void initTexts();
@@ -60,6 +63,8 @@ namespace arc
             void inputEvent(sf::RenderWindow &window, sf::Event &event);
 
             void eventValidateUsername();
+
+            void eventWatchScores();
 
             void eventButtonPlay();
             void eventErrorMessage(sf::Event &event);
@@ -90,6 +95,8 @@ namespace arc
             bool _exit = false;
 
             std::vector<List> _lists;
+
+            SceneScores _sceneScores;
     };
 }
 

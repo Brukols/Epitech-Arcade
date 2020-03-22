@@ -87,7 +87,10 @@ void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
             eventErrorMessage(event);
             return;
         }
-        buttonsEvent(window, event);
+        if (_sceneScores.isActivate()) {
+            _sceneScores.event(event);
+        } else
+            buttonsEvent(window, event);
         if (inputIsFocus()) {
             inputEvent(window, event);
             continue;

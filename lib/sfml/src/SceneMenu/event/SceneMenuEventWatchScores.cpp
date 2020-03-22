@@ -1,14 +1,16 @@
 /*
 ** EPITECH PROJECT, 2020
-** Arcade
+** OOP_arcade_2019
 ** File description:
-** EventButtonPlay
+** SceneMenuWatchScores
 */
 
 #include "sfml/SceneMenu.hpp"
 
-void arc::SceneMenu::eventButtonPlay()
+void arc::SceneMenu::eventWatchScores()
 {
+    _sceneScores.init();
+
     bool good = true;
     std::for_each(_lists.begin(), _lists.end(), [this, &good](const List &list) {
         if (good == false)
@@ -21,8 +23,6 @@ void arc::SceneMenu::eventButtonPlay()
             good = true;
         }
     });
-    if (!good)
-        return;
-    _texts[1].setDisplay(false);
-    _eventPlay();
+    if (good == true)
+        _sceneScores.setActivate(true);
 }

@@ -52,6 +52,8 @@ void arc::Core::setNextGraphical()
     }, _indexGraph);
     _graph->setListGames(getNamesSharedGames(), [this](const std::string &name) {
         setGame(name);
+        _pathScoreFile = "." + _game->getTitle();
+        _graph->setScores(getScores());
     }, _indexGame);
     _graph->setFunctionPlay([this]() {
         if (_game)
@@ -79,6 +81,8 @@ void arc::Core::setPrevGraphical()
     }, _indexGraph);
     _graph->setListGames(getNamesSharedGames(), [this](const std::string &name) {
         setGame(name);
+        _pathScoreFile = "." + _game->getTitle();
+        _graph->setScores(getScores());
     }, _indexGame);
     _graph->setFunctionPlay([this]() {
         if (_game)
@@ -105,6 +109,8 @@ void arc::Core::setGraphical(const std::string &libname)
             }, i);
             _graph->setListGames(getNamesSharedGames(), [this](const std::string &name) {
                 setGame(name);
+                _pathScoreFile = "." + _game->getTitle();
+                _graph->setScores(getScores());
             }, _indexGame);
             _graph->setFunctionPlay([this]() {
                 if (_game)
@@ -123,6 +129,8 @@ void arc::Core::setGraphical(const std::string &libname)
         }, -1);
         _graph->setListGames(getNamesSharedGames(), [this](const std::string &name) {
             setGame(name);
+            _pathScoreFile = "." + _game->getTitle();
+            _graph->setScores(getScores());
         }, -1);
         _graph->setFunctionPlay([this]() {
             if (_game)

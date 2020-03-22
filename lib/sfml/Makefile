@@ -25,6 +25,7 @@ SRCS	=	src/Graphical.cpp	\
 			src/SceneMenu/event/SceneMenuEvent.cpp		\
 			src/SceneMenu/event/SceneMenuEventButtonPlay.cpp		\
 			src/SceneMenu/event/SceneMenuEventValidateUsername.cpp		\
+			src/SceneMenu/event/SceneMenuEventWatchScores.cpp		\
 			src/SceneGame/SceneGame.cpp	\
 			src/SceneGame/init/SceneGameInit.cpp	\
 			src/SceneGame/init/SceneGameInitButtons.cpp	\
@@ -39,6 +40,10 @@ SRCS	=	src/Graphical.cpp	\
 			src/SceneEndGame/init/SceneEndGameInit.cpp	\
 			src/SceneEndGame/init/SceneEndGameSetter.cpp	\
 			src/SceneEndGame/init/SceneEndGameInitButtons.cpp	\
+			src/SceneScores/SceneScores.cpp	\
+			src/SceneScores/init/SceneScoresInit.cpp	\
+			src/SceneScores/event/SceneScoresEvent.cpp	\
+			src/SceneScores/display/SceneScoresDisplay.cpp	\
 			src/ListScores/ListScores.cpp	\
 			src/ListScores/ListScoresInit.cpp	\
 			src/ListScores/ListScoresDisplay.cpp	\

@@ -54,6 +54,8 @@ void arc::Core::playArcade()
             setNextGraphical();
         if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM1)
             setPrevGraphical();
+        
+        // if scene game
         if (_graph->getScene() == arc::IGraphical::GAME) {
             if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM9)
                 setNextGame();

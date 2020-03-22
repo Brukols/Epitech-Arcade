@@ -14,7 +14,7 @@ static arc::Button initButtonPlay(std::function<void()> &event, sf::Font &font)
     rect.setFillColor(sf::Color(100, 100, 100, 255));
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
-    rect.setPosition(sf::Vector2f(830, 500));
+    rect.setPosition(sf::Vector2f(830, 300));
     arc::Button button(event, rect, "Play", font);
     button.setHoverColor(sf::Color(90, 90, 90, 255));
     button.setActivate(false);
@@ -48,6 +48,19 @@ static arc::Button initButtonEnterUsername(std::function<void()> event, sf::Font
     return (button);
 }
 
+static arc::Button initButtonWatchScores(std::function<void()> &event, sf::Font &font)
+{
+    sf::RectangleShape rect(sf::Vector2f(220, 100));
+
+    rect.setFillColor(sf::Color(100, 100, 100, 255));
+    rect.setOutlineColor(sf::Color::White);
+    rect.setOutlineThickness(1);
+    rect.setPosition(sf::Vector2f(830, 500));
+    arc::Button button(event, rect, "Watch scores", font);
+    button.setHoverColor(sf::Color(90, 90, 90, 255));
+    return (button);
+}
+
 void arc::SceneMenu::initButtons()
 {
     std::vector<std::pair<arc::Button (*)(std::function<void()> &, sf::Font &), std::function<void()>>> buttons;
@@ -56,6 +69,9 @@ void arc::SceneMenu::initButtons()
         eventButtonPlay();
     }));
     buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &, sf::Font &), std::function<void()>>(initButtonExit, _eventExit));
+    buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &, sf::Font &), std::function<void()>>(initButtonWatchScores, [this]() {
+        eventWatchScores();
+    }));
 
     _buttons.clear();
 

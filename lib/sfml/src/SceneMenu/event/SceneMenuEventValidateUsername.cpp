@@ -10,6 +10,7 @@
 void arc::SceneMenu::eventValidateUsername()
 {
     _username = _inputs[0].getInput();
+    _sceneScores.setUsername(_username);
     _textUsername.clear();
     _inputs.clear();
     _rects.clear();

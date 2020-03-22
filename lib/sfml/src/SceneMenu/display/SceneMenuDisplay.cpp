@@ -50,4 +50,8 @@ void arc::SceneMenu::display(sf::RenderWindow &window)
 
     if (_errorMessages.size() > 0)
         _errorMessages[0].display(window);
+
+    if (_sceneScores.isActivate()) {
+        _sceneScores.display(window);
+    }
 }
