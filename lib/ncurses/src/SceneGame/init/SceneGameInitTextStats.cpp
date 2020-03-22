@@ -17,11 +17,11 @@ static arc::Text initText(const std::string &index, const std::string &value, in
 
 void arc::SceneGame::initTextStats(const std::vector<std::pair<std::string, std::string>> &info)
 {
-    _howToPlay.clear();
+    _stats.clear();
 
     int y = 11;
     std::for_each(info.begin(), info.end(), [this, &y](const std::pair<std::string, std::string> &pair) {
-        _howToPlay.push_back(initText(pair.first, pair.second, y));
+        _stats.push_back(initText(pair.first, pair.second, y));
         y += 1;
     });
 }
