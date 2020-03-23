@@ -51,5 +51,7 @@ void arc::SceneMenu::event(arc::Event::Type &actualEventType, arc::Event::Key &a
         if (actualKeyPress == arc::Event::Key::ESCAPE)
             actualEventType = arc::Event::Type::QUIT;
         eventButtons(actualEventType, actualKeyPress);
+        _listGames.event(actualEventType, actualKeyPress, event);
+        _listGraphical.event(actualEventType, actualKeyPress, event);
     }
 }

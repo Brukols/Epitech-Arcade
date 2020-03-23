@@ -26,10 +26,14 @@ namespace arc
             void display(SDL_Renderer *window);
 
             const SDL_Rect &getRect() const;
+            void setOutline(bool outline);
+
+            bool isMouseHover(int x, int y) const;
 
         private:
             SDL_Rect _rect;
             SDL_Color _color;
+            bool _outline = false;
     };
 } // namespace arc
 

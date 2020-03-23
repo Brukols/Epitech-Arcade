@@ -53,15 +53,16 @@ static arc::ButtonRect initButtonList(int y, const std::string &name)
     arc::Text text;
 
     rect.setColor({2, 148, 165, 255});
-    rect.setSize(500, 80);
+    rect.setSize(498, 80);
 
     text.setColor({255, 255, 255, 255});
     text.setFont(FONT, 20);
     text.setText(getLibName(name));
     button.setRect(rect);
     button.setText(text);
-    button.setPosition(0, y);
+    button.setPosition(1, y);
     button.setColorHover({22, 168, 185, 255});
+    button.setColorSelect({22, 168, 185, 255});
     return (button);
 }
 
@@ -75,8 +76,10 @@ void arc::ListLibraries::setNameLibraries(const std::vector<std::string> &list, 
     _buttonsList.clear();
 
     int i = 0;
-    std::for_each(list.begin(), list.end(), [this, &i](const std::string &name) {
-        _buttonsList.push_back(std::make_pair(initButtonList(i * 80 + 100, name), &arc::ListLibraries::eventListButtons));
+    std::for_each(list.begin(), list.end(), [this, &i, &chosen](const std::string &name) {
+        _buttonsList.push_back(std::make_pair(initButtonList(i * 80 + 89, name), name));
+        if (i == chosen)
+            _buttonsList[_buttonsList.size() - 1].first.setSelect(true);
         if (i % 2) {
             _buttonsList[_buttonsList.size() - 1].first.setColor({0, 28, 45, 255});
         } else {
@@ -85,6 +88,7 @@ void arc::ListLibraries::setNameLibraries(const std::vector<std::string> &list, 
         i++;
     });
 }
+
 void arc::ListLibraries::display(SDL_Renderer *window)
 {
     std::for_each(_rects.begin(), _rects.end(), [&window](Rectangle &rect) {
@@ -95,8 +99,16 @@ void arc::ListLibraries::display(SDL_Renderer *window)
         text.display(window);
     });
 
-    std::for_each(_buttonsList.begin(), _buttonsList.end(), [&window](std::pair<ButtonRect, void (arc::ListLibraries::*)(const std::string &)> &button) {
+    int i = 0;
+    std::for_each(_buttonsList.begin(), _buttonsList.end(), [this, &window, &i](std::pair<ButtonRect, std::string> &button) {
+        if (i > 6 + _begin)
+            return;
+        if (i < _begin) {
+            i++;
+            return;
+        }
         button.first.display(window);
+        i++;
     });
 }
 
@@ -110,7 +122,65 @@ void arc::ListLibraries::setPosition(int x, int y)
         text.setPosition(text.getPosX() + x, text.getPosY() + y);
     });
 
-    std::for_each(_buttonsList.begin(), _buttonsList.end(), [&x, &y](std::pair<ButtonRect, void (arc::ListLibraries::*)(const std::string &)> &button) {
+    std::for_each(_buttonsList.begin(), _buttonsList.end(), [&x, &y](std::pair<ButtonRect, std::string> &button) {
         button.first.setPosition(button.first.getPosX() + x, button.first.getPosY() + y);
+    });
+}
+
+void arc::ListLibraries::resetButtonsList()
+{
+    std::for_each(_buttonsList.begin(), _buttonsList.end(), [](std::pair<ButtonRect, std::string> &button) {
+        button.first.setSelect(false);
+    });
+}
+
+void arc::ListLibraries::eventScrollUp()
+{
+    if (_begin == 0)
+        return;
+    _begin--;
+    std::for_each(_buttonsList.begin(), _buttonsList.end(), [this](std::pair<ButtonRect, std::string> &button) {
+        button.first.setPosition(button.first.getPosX(), button.first.getPosY() + 80);
+    });
+}
+
+void arc::ListLibraries::eventScrollDown()
+{
+    if (_buttonsList.size() <= 6)
+        return;
+    if (_begin + 1 == _buttonsList.size() - 6)
+        return;
+    _begin++;
+    std::for_each(_buttonsList.begin(), _buttonsList.end(), [this](std::pair<ButtonRect, std::string> &button) {
+        button.first.setPosition(button.first.getPosX(), button.first.getPosY() - 80);
+    });
+}
+
+void arc::ListLibraries::event(const arc::Event::Type &actualEventType, const arc::Event::Key &actualKeyPress, const SDL_Event &event)
+{
+    int x;
+    int y;
+
+    SDL_GetMouseState(&x, &y);
+    if (actualEventType == arc::Event::Type::MOUSE_WHEEL) {
+        if (!_rects[0].isMouseHover(x, y))
+            return;
+        if (event.wheel.y > 0) {
+            eventScrollUp();
+        } else if (event.wheel.y < 0) {
+            eventScrollDown();
+        }
+        return;
+    }
+    if (actualEventType != arc::Event::Type::MOUSE_RELEASED)
+        return;
+    std::for_each(_buttonsList.begin(), _buttonsList.end(), [&x, &y, this](std::pair<ButtonRect, std::string> &button) {
+        if (button.first.isSelect())
+            return;
+        if (button.first.isMouseHover(x, y)) {
+            resetButtonsList();
+            eventListButtons(button.second);
+            button.first.setSelect(true);
+        }
     });
 }

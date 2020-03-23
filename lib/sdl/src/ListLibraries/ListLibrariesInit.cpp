@@ -14,6 +14,7 @@ static arc::Rectangle initBackgroundRect()
     rect.setPosition(0, 0);
     rect.setColor({4, 6, 15, 255});
     rect.setSize(500, 650);
+    rect.setOutline(true);
     return (rect);
 }
 

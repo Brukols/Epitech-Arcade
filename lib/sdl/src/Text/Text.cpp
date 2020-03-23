@@ -85,3 +85,8 @@ int arc::Text::getPosY() const
 {
     return (_y);
 }
+
+const std::string &arc::Text::getString() const
+{
+    return (_text);
+}

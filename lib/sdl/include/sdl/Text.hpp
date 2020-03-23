@@ -31,6 +31,8 @@ namespace arc
             int getPosX() const;
             int getPosY() const;
 
+            const std::string &getString() const;
+
         private:
             SDL_Surface *_surface = nullptr;
             SDL_Texture *_texture = nullptr;

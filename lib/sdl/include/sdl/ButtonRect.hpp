@@ -28,9 +28,14 @@ namespace arc
             void display(SDL_Renderer *window) override;
             void setColorHover(const SDL_Color &color);
             void setColor(const SDL_Color &color);
+            void setColorSelect(const SDL_Color &color);
+            void setSelect(bool select);
+            bool isSelect() const;
 
             int getPosX() const;
             int getPosY() const;
+
+            const std::string &getText() const;
 
         private:
 
@@ -39,6 +44,9 @@ namespace arc
             Text _text;
             SDL_Color _color;
             SDL_Color _colorHover;
+            SDL_Color _colorSelect;
+
+            bool _select = false;
     };
 } // namespace arc
 

@@ -36,6 +36,10 @@ void arc::Rectangle::display(SDL_Renderer *window)
 {
     SDL_SetRenderDrawColor(window, _color.r, _color.g, _color.b, _color.a);
     SDL_RenderFillRect(window, &_rect);
+    if (_outline) {
+        SDL_SetRenderDrawColor(window, 255, 255, 255, 255);
+        SDL_RenderDrawRect(window, &_rect);
+    }
 }
 
 const SDL_Rect &arc::Rectangle::getRect() const
@@ -46,4 +50,16 @@ const SDL_Rect &arc::Rectangle::getRect() const
 const SDL_Color &arc::Rectangle::getColor() const
 {
     return (_color);
+}
+
+void arc::Rectangle::setOutline(bool outline)
+{
+    _outline = outline;
+}
+
+bool arc::Rectangle::isMouseHover(int x, int y) const
+{
+    if (x > _rect.x && x < _rect.x + _rect.w && y > _rect.y && y < _rect.y + _rect.h)
+        return (true);
+    return (false);
 }

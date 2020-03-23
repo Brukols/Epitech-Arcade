@@ -50,7 +50,9 @@ void arc::ButtonRect::display(SDL_Renderer *window)
     int y;
 
     SDL_GetMouseState(&x, &y);
-    if (isMouseHover(x, y)) {
+    if (_select)
+        _rect.setColor(_colorSelect);
+    else if (isMouseHover(x, y)) {
         _rect.setColor(_colorHover);
     } else {
         _rect.setColor(_color);
@@ -72,4 +74,24 @@ int arc::ButtonRect::getPosY() const
 void arc::ButtonRect::setColor(const SDL_Color &color)
 {
     _color = color;
+}
+
+void arc::ButtonRect::setColorSelect(const SDL_Color &color)
+{
+    _colorSelect = color;
+}
+
+void arc::ButtonRect::setSelect(bool select)
+{
+    _select = select;
+}
+
+bool arc::ButtonRect::isSelect() const
+{
+    return (_select);
+}
+
+const std::string &arc::ButtonRect::getText() const
+{
+    return (_text.getString());
 }
