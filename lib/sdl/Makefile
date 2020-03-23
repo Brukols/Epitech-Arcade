@@ -19,6 +19,7 @@ SRCS	=	src/Graphical/Graphical.cpp		\
 			src/Rectangle/Rectangle.cpp		\
 			src/Text/Text.cpp	\
 			src/ButtonRect/ButtonRect.cpp		\
+			src/ListLibraries/ListLibraries.cpp		\
 
 OBJS	=	$(SRCS:.cpp=.o)
 

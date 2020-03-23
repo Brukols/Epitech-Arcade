@@ -8,12 +8,13 @@
 #ifndef SCENEMENU_HPP_
 #define SCENEMENU_HPP_
 
-#include "IScene.hpp"
-#include "Rectangle.hpp"
-#include "Text.hpp"
-#include "ButtonRect.hpp"
+#include "sdl/IScene.hpp"
+#include "sdl/Rectangle.hpp"
+#include "sdl/Text.hpp"
+#include "sdl/ButtonRect.hpp"
 #include <algorithm>
 #include <memory>
+#include "sdl/ListLibraries.hpp"
 
 namespace arc
 {
@@ -26,15 +27,28 @@ namespace arc
             void display(SDL_Renderer *window);
             void event(arc::Event::Type &actualEventType, arc::Event::Key &actualKeyPress);
 
+            void setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen);
+            void setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen);
+
         private:
             void initRects();
             void initTexts();
             void initButtons();
+
+            void eventExit();
+            void eventPlay();
+            void eventShowScores();
+
+            void eventButtons(const arc::Event::Type &type, const arc::Event::Key &key);
         
         private:
             std::vector<Rectangle> _rects;
             std::vector<Text> _texts;
-            std::vector<std::shared_ptr<IButton>> _buttons;
+            std::vector<std::pair<std::shared_ptr<IButton>, void (SceneMenu::*)()>> _buttons;
+            ListLibraries _listGraphical;
+            ListLibraries _listGames;
+
+            bool _exit = false;
     };
 } // namespace arc
 

@@ -20,5 +20,5 @@ static arc::Rectangle initRectExample()
 void arc::SceneMenu::initRects()
 {
     _rects.clear();
-    _rects.push_back(initRectExample());
+    // _rects.push_back(initRectExample());
 }

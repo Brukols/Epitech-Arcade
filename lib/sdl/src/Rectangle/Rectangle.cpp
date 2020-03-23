@@ -42,3 +42,8 @@ const SDL_Rect &arc::Rectangle::getRect() const
 {
     return (_rect);
 }
+
+const SDL_Color &arc::Rectangle::getColor() const
+{
+    return (_color);
+}

@@ -18,6 +18,7 @@ arc::ButtonRect::~ButtonRect()
 void arc::ButtonRect::setRect(const Rectangle &rect)
 {
     _rect = rect;
+    _color = rect.getColor();
 }
 
 void arc::ButtonRect::setText(const Text &text)
@@ -28,10 +29,15 @@ void arc::ButtonRect::setText(const Text &text)
 void arc::ButtonRect::setPosition(size_t x, size_t y)
 {
     _rect.setPosition(x, y);
-    _text.setPosition(x + _rect.getRect().w / 2 - _text.getWidth(), y + _rect.getRect().h / 2 - _text.getHeight() / 2);
+    _text.setPosition(x + _rect.getRect().w / 2 - _text.getWidth() / 2, y + _rect.getRect().h / 2 - _text.getHeight() / 2);
 }
 
-bool arc::ButtonRect::isMouseHover(size_t x, size_t y) const
+void arc::ButtonRect::setColorHover(const SDL_Color &color)
+{
+    _colorHover = color;
+}
+
+bool arc::ButtonRect::isMouseHover(int x, int y) const
 {
     if (x > _rect.getRect().x && x < _rect.getRect().x + _rect.getRect().w && y > _rect.getRect().y && y < _rect.getRect().y + _rect.getRect().h)
         return (true);
@@ -40,6 +46,15 @@ bool arc::ButtonRect::isMouseHover(size_t x, size_t y) const
 
 void arc::ButtonRect::display(SDL_Renderer *window)
 {
+    int x;
+    int y;
+
+    SDL_GetMouseState(&x, &y);
+    if (isMouseHover(x, y)) {
+        _rect.setColor(_colorHover);
+    } else {
+        _rect.setColor(_color);
+    }
     _rect.display(window);
     _text.display(window);
 }

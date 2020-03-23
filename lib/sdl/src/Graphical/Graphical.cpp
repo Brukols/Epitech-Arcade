@@ -51,9 +51,7 @@ For the menu
 */
 void arc::Graphical::setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen)
 {
-    (void)games;
-    (void)fct;
-    (void)chosen;
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListGames(games, fct, chosen);
 }
 
 /*
@@ -61,9 +59,7 @@ For the menu
 */
 void arc::Graphical::setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen)
 {
-    (void)libraries;
-    (void)fct;
-    (void)chosen;
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setListLibraries(libraries, fct, chosen);
 }
 
 /*

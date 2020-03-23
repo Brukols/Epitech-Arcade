@@ -73,5 +73,5 @@ size_t arc::Text::getWidth() const
     int h;
 
     TTF_SizeText(_font, _text.c_str(), &w, &h);
-    return (h);
+    return (w);
 }

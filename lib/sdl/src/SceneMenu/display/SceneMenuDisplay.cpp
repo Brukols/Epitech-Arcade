@@ -6,7 +6,7 @@
 */
 
 #include "sdl/SceneMenu.hpp"
-#include <iostream>
+
 void arc::SceneMenu::display(SDL_Renderer *window)
 {
     std::for_each(_rects.begin(), _rects.end(), [&window](Rectangle &rect) {
@@ -17,9 +17,11 @@ void arc::SceneMenu::display(SDL_Renderer *window)
         text.display(window);
     });
 
-    std::for_each(_buttons.begin(), _buttons.end(), [&window](std::shared_ptr<IButton> &button) {
-        button->display(window);
+    std::for_each(_buttons.begin(), _buttons.end(), [&window](std::pair<std::shared_ptr<IButton>, void (SceneMenu::*)()> &button) {
+        button.first->display(window);
     });
+
+    _listGames.display(window);
 
     SDL_RenderPresent(window);
 }

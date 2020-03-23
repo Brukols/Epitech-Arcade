@@ -24,12 +24,17 @@ namespace arc
             void setRect(const Rectangle &rect);
             void setText(const Text &text);
             void setPosition(size_t x, size_t y) override;
-            bool isMouseHover(size_t x, size_t y) const override;
+            bool isMouseHover(int x, int y) const override;
             void display(SDL_Renderer *window) override;
+            void setColorHover(const SDL_Color &color);
+
+        private:
 
         private:
             Rectangle _rect;
             Text _text;
+            SDL_Color _color;
+            SDL_Color _colorHover;
     };
 } // namespace arc
 

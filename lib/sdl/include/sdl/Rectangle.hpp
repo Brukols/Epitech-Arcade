@@ -21,6 +21,8 @@ namespace arc
             void setSize(size_t w, size_t h);
             void setColor(const SDL_Color &color);
 
+            const SDL_Color &getColor() const;
+
             void display(SDL_Renderer *window);
 
             const SDL_Rect &getRect() const;
