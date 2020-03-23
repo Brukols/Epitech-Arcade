@@ -28,13 +28,13 @@ void arc::ListLibraries::setEventList(const std::function<void (const std::strin
 
 void arc::ListLibraries::setNameList(const std::string &nameList)
 {
-    arc::Text text;
+    arc::Text *text = new arc::Text();
 
-    text.setFont(_font, 30);
-    text.setText(nameList);
-    text.setPosition(250 - text.getWidth() / 2, 30);
-    text.setColor({255, 255, 255, 255});
-    _texts.push_back(text);
+    text->setFont(_font, 30);
+    text->setText(nameList);
+    text->setPosition(250 - text->getWidth() / 2, 30);
+    text->setColor({255, 255, 255, 255});
+    _texts.push_back(std::shared_ptr<Text>(text));
 }
 
 static const std::string getLibName(const std::string &path)
@@ -50,14 +50,14 @@ static arc::ButtonRect initButtonList(int y, const std::string &name)
     arc::ButtonRect button;
 
     arc::Rectangle rect;
-    arc::Text text;
+    arc::Text *text = new arc::Text();
 
     rect.setColor({2, 148, 165, 255});
     rect.setSize(498, 80);
 
-    text.setColor({255, 255, 255, 255});
-    text.setFont(FONT, 20);
-    text.setText(getLibName(name));
+    text->setColor({255, 255, 255, 255});
+    text->setFont(FONT, 20);
+    text->setText(getLibName(name));
     button.setRect(rect);
     button.setText(text);
     button.setPosition(1, y);
@@ -95,8 +95,8 @@ void arc::ListLibraries::display(SDL_Renderer *window)
         rect.display(window);
     });
 
-    std::for_each(_texts.begin(), _texts.end(), [&window](Text &text) {
-        text.display(window);
+    std::for_each(_texts.begin(), _texts.end(), [&window](std::shared_ptr<Text> &text) {
+        text->display(window);
     });
 
     int i = 0;
@@ -118,8 +118,8 @@ void arc::ListLibraries::setPosition(int x, int y)
         rect.setPosition(rect.getRect().x + x, rect.getRect().y + y);
     });
 
-    std::for_each(_texts.begin(), _texts.end(), [&x, &y](Text &text) {
-        text.setPosition(text.getPosX() + x, text.getPosY() + y);
+    std::for_each(_texts.begin(), _texts.end(), [&x, &y](std::shared_ptr<Text> &text) {
+        text->setPosition(text->getPosX() + x, text->getPosY() + y);
     });
 
     std::for_each(_buttonsList.begin(), _buttonsList.end(), [&x, &y](std::pair<ButtonRect, std::string> &button) {

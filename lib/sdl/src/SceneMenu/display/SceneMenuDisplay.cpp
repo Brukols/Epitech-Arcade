@@ -13,8 +13,8 @@ void arc::SceneMenu::display(SDL_Renderer *window)
         rect.display(window);
     });
 
-    std::for_each(_texts.begin(), _texts.end(), [&window](Text &text) {
-        text.display(window);
+    std::for_each(_texts.begin(), _texts.end(), [&window](std::shared_ptr<Text> &text) {
+        text->display(window);
     });
 
     std::for_each(_buttons.begin(), _buttons.end(), [&window](std::pair<std::shared_ptr<IButton>, void (SceneMenu::*)()> &button) {

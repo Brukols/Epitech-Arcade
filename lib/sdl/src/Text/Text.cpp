@@ -13,9 +13,12 @@ arc::Text::Text()
 
 arc::Text::~Text()
 {
-    // TTF_CloseFont(_font);
-    SDL_FreeSurface(_surface);
-    SDL_DestroyTexture(_texture);
+    if (_font)
+        TTF_CloseFont(_font);
+    if (_surface)
+        SDL_FreeSurface(_surface);
+    if (_texture)
+        SDL_DestroyTexture(_texture);
 }
 
 void arc::Text::setPosition(size_t x, size_t y)

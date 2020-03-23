@@ -6,6 +6,7 @@
 */
 
 #include "sdl/ButtonRect.hpp"
+#include <memory>
 
 arc::ButtonRect::ButtonRect()
 {
@@ -21,15 +22,15 @@ void arc::ButtonRect::setRect(const Rectangle &rect)
     _color = rect.getColor();
 }
 
-void arc::ButtonRect::setText(const Text &text)
+void arc::ButtonRect::setText(Text *text)
 {
-    _text = text;
+    _text = std::shared_ptr<Text>(text);
 }
 
 void arc::ButtonRect::setPosition(size_t x, size_t y)
 {
     _rect.setPosition(x, y);
-    _text.setPosition(x + _rect.getRect().w / 2 - _text.getWidth() / 2, y + _rect.getRect().h / 2 - _text.getHeight() / 2);
+    _text->setPosition(x + _rect.getRect().w / 2 - _text->getWidth() / 2, y + _rect.getRect().h / 2 - _text->getHeight() / 2);
 }
 
 void arc::ButtonRect::setColorHover(const SDL_Color &color)
@@ -58,7 +59,7 @@ void arc::ButtonRect::display(SDL_Renderer *window)
         _rect.setColor(_color);
     }
     _rect.display(window);
-    _text.display(window);
+    _text->display(window);
 }
 
 int arc::ButtonRect::getPosX() const
@@ -93,5 +94,5 @@ bool arc::ButtonRect::isSelect() const
 
 const std::string &arc::ButtonRect::getText() const
 {
-    return (_text.getString());
+    return (_text->getString());
 }

@@ -11,15 +11,15 @@ static arc::IButton *initButtonPlay()
 {
     arc::ButtonRect *button = new arc::ButtonRect();
     arc::Rectangle rect;
-    arc::Text text;
+    arc::Text *text = new arc::Text();
 
     rect.setColor({2, 148, 165, 255});
     rect.setSize(220, 120);
 
-    text.setPosition(800, 50);
-    text.setColor({255, 255, 255, 255});
-    text.setFont(FONT, 30);
-    text.setText("Play");
+    text->setPosition(800, 50);
+    text->setColor({255, 255, 255, 255});
+    text->setFont(FONT, 30);
+    text->setText("Play");
     button->setRect(rect);
     button->setText(text);
     button->setPosition(100, 350);
@@ -31,15 +31,15 @@ static arc::IButton *initButtonShowScores()
 {
     arc::ButtonRect *button = new arc::ButtonRect();
     arc::Rectangle rect;
-    arc::Text text;
+    arc::Text *text = new arc::Text();
 
     rect.setColor({2, 148, 165, 255});
     rect.setSize(220, 120);
 
-    text.setPosition(800, 50);
-    text.setColor({255, 255, 255, 255});
-    text.setFont(FONT, 30);
-    text.setText("Show scores");
+    text->setPosition(800, 50);
+    text->setColor({255, 255, 255, 255});
+    text->setFont(FONT, 30);
+    text->setText("Show scores");
     button->setRect(rect);
     button->setText(text);
     button->setPosition(100, 550);
@@ -51,15 +51,15 @@ static arc::IButton *initButtonExit()
 {
     arc::ButtonRect *button = new arc::ButtonRect();
     arc::Rectangle rect;
-    arc::Text text;
+    arc::Text *text = new arc::Text();
 
     rect.setColor({2, 148, 165, 255});
     rect.setSize(220, 120);
 
-    text.setPosition(800, 50);
-    text.setColor({255, 255, 255, 255});
-    text.setFont(FONT, 30);
-    text.setText("Exit");
+    text->setPosition(800, 50);
+    text->setColor({255, 255, 255, 255});
+    text->setFont(FONT, 30);
+    text->setText("Exit");
     button->setRect(rect);
     button->setText(text);
     button->setPosition(100, 750);

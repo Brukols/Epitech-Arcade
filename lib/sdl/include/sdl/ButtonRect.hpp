@@ -13,6 +13,7 @@
 #include <SDL2/SDL_ttf.h>
 #include "Text.hpp"
 #include "Rectangle.hpp"
+#include <memory>
 
 namespace arc
 {
@@ -22,7 +23,7 @@ namespace arc
             ~ButtonRect();
 
             void setRect(const Rectangle &rect);
-            void setText(const Text &text);
+            void setText(Text *text);
             void setPosition(size_t x, size_t y) override;
             bool isMouseHover(int x, int y) const override;
             void display(SDL_Renderer *window) override;
@@ -41,7 +42,7 @@ namespace arc
 
         private:
             Rectangle _rect;
-            Text _text;
+            std::shared_ptr<Text> _text;
             SDL_Color _color;
             SDL_Color _colorHover;
             SDL_Color _colorSelect;

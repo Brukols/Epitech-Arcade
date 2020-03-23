@@ -43,7 +43,7 @@ namespace arc
         
         private:
             std::vector<Rectangle> _rects;
-            std::vector<Text> _texts;
+            std::vector<std::shared_ptr<Text>> _texts;
             std::vector<std::pair<std::shared_ptr<IButton>, void (SceneMenu::*)()>> _buttons;
             ListLibraries _listGraphical;
             ListLibraries _listGames;

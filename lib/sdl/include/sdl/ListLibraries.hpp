@@ -44,7 +44,7 @@ namespace arc
 
         private:
             std::vector<Rectangle> _rects;
-            std::vector<Text> _texts;
+            std::vector<std::shared_ptr<Text>> _texts;
             std::vector<std::pair<ButtonRect, std::string>> _buttonsList;
 
             std::function<void(const std::string &)> _eventList;

@@ -15,6 +15,7 @@ arc::SceneMenu::SceneMenu()
 
 arc::SceneMenu::~SceneMenu()
 {
+    _texts.clear();
 }
 
 void arc::SceneMenu::setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen)
