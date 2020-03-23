@@ -14,8 +14,10 @@ void arc::SceneMenu::event(arc::Event::Type &actualEventType, arc::Event::Key &a
 
     while (SDL_PollEvent(&event)) {
         actualEventType = Utility::getEventType(event);
-        actualKeyPress = Utility::getEventKey(event);
-
+        if (actualEventType == arc::Event::Type::KEY_PRESSED || actualEventType == arc::Event::Type::KEY_RELEASED)
+            actualKeyPress = Utility::getEventKey(event);
+        else
+            actualKeyPress = arc::Event::Key::NONE;
         if (actualKeyPress == arc::Event::Key::ESCAPE)
             actualEventType = arc::Event::Type::QUIT;
     }

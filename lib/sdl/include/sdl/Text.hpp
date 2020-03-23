@@ -25,6 +25,9 @@ namespace arc
             void setColor(const SDL_Color &color);
             void setFont(const std::string &path, int size);
             void display(SDL_Renderer *window);
+            void setText(const std::string &text);
+            size_t getHeight() const;
+            size_t getWidth() const;
 
         private:
             SDL_Surface *_surface = nullptr;

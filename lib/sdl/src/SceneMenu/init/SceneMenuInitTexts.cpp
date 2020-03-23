@@ -7,18 +7,19 @@
 
 #include "sdl/SceneMenu.hpp"
 
-static arc::Text initTextExample()
+static arc::Text initTextTitle()
 {
     arc::Text text;
 
-    text.setPosition(10, 10);
+    text.setPosition(800, 50);
     text.setColor({255, 255, 255, 255});
-    text.setFont(FONT, 22);
+    text.setFont(FONT, 100);
+    text.setText("Arcade");
     return (text);
 }
 
 void arc::SceneMenu::initTexts()
 {
     _texts.clear();
-    _texts.push_back(initTextExample());
+    _texts.push_back(initTextTitle());
 }

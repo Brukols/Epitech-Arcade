@@ -37,3 +37,8 @@ void arc::Rectangle::display(SDL_Renderer *window)
     SDL_SetRenderDrawColor(window, _color.r, _color.g, _color.b, _color.a);
     SDL_RenderFillRect(window, &_rect);
 }
+
+const SDL_Rect &arc::Rectangle::getRect() const
+{
+    return (_rect);
+}

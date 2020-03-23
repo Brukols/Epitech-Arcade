@@ -11,7 +11,9 @@
 #include "IScene.hpp"
 #include "Rectangle.hpp"
 #include "Text.hpp"
+#include "ButtonRect.hpp"
 #include <algorithm>
+#include <memory>
 
 namespace arc
 {
@@ -27,10 +29,12 @@ namespace arc
         private:
             void initRects();
             void initTexts();
+            void initButtons();
         
         private:
             std::vector<Rectangle> _rects;
             std::vector<Text> _texts;
+            std::vector<std::shared_ptr<IButton>> _buttons;
     };
 } // namespace arc
 

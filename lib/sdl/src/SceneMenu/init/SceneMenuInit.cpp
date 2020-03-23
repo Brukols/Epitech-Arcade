@@ -11,4 +11,5 @@ void arc::SceneMenu::init()
 {
     initRects();
     initTexts();
+    initButtons();
 }

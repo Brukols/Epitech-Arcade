@@ -23,6 +23,8 @@ namespace arc
 
             void display(SDL_Renderer *window);
 
+            const SDL_Rect &getRect() const;
+
         private:
             SDL_Rect _rect;
             SDL_Color _color;
