@@ -75,3 +75,13 @@ size_t arc::Text::getWidth() const
     TTF_SizeText(_font, _text.c_str(), &w, &h);
     return (w);
 }
+
+int arc::Text::getPosX() const
+{
+    return (_x);
+}
+
+int arc::Text::getPosY() const
+{
+    return (_y);
+}

@@ -22,6 +22,7 @@ namespace arc
             ListLibraries();
             ~ListLibraries();
 
+            void setPosition(int x, int y);
             void setFont(const std::string &path);
             void setEventList(const std::function<void (const std::string &)> &fct);
             void setNameList(const std::string &nameList);
@@ -32,10 +33,12 @@ namespace arc
         private:
             void initRects();
 
+            void eventListButtons(const std::string &name);
+
         private:
             std::vector<Rectangle> _rects;
             std::vector<Text> _texts;
-            std::vector<std::pair<std::shared_ptr<IButton>, void (ListLibraries::*)()>> _buttons;
+            std::vector<std::pair<ButtonRect, void (ListLibraries::*)(const std::string &)>> _buttonsList;
 
             std::function<void(const std::string &)> _eventList;
             std::string _font;

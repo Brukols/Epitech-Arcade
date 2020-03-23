@@ -27,6 +27,10 @@ namespace arc
             bool isMouseHover(int x, int y) const override;
             void display(SDL_Renderer *window) override;
             void setColorHover(const SDL_Color &color);
+            void setColor(const SDL_Color &color);
+
+            int getPosX() const;
+            int getPosY() const;
 
         private:
 

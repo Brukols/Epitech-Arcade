@@ -28,6 +28,8 @@ namespace arc
             void setText(const std::string &text);
             size_t getHeight() const;
             size_t getWidth() const;
+            int getPosX() const;
+            int getPosY() const;
 
         private:
             SDL_Surface *_surface = nullptr;
@@ -36,8 +38,8 @@ namespace arc
             TTF_Font *_font = nullptr;
             SDL_Color _color;
 
-            size_t _x;
-            size_t _y;
+            int _x;
+            int _y;
     };
 } // namespace arc
 

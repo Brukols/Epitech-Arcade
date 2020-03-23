@@ -58,3 +58,18 @@ void arc::ButtonRect::display(SDL_Renderer *window)
     _rect.display(window);
     _text.display(window);
 }
+
+int arc::ButtonRect::getPosX() const
+{
+    return (_rect.getRect().x);
+}
+
+int arc::ButtonRect::getPosY() const
+{
+    return (_rect.getRect().y);
+}
+
+void arc::ButtonRect::setColor(const SDL_Color &color)
+{
+    _color = color;
+}

@@ -22,6 +22,7 @@ void arc::SceneMenu::display(SDL_Renderer *window)
     });
 
     _listGames.display(window);
+    _listGraphical.display(window);
 
     SDL_RenderPresent(window);
 }
