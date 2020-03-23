@@ -10,6 +10,7 @@
 
 #include "IGraphical.hpp"
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include <map>
 #include "IScene.hpp"
 
@@ -50,6 +51,7 @@ namespace arc
 
         private:
             SDL_Window *_window;
+            SDL_Renderer *_renderer = nullptr;
 
             std::map<Scene, std::unique_ptr<IScene>> _scenes;
 

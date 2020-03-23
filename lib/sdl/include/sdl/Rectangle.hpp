@@ -8,6 +8,8 @@
 #ifndef RECTANGLE_HPP_
 #define RECTANGLE_HPP_
 
+#include <SDL2/SDL.h>
+
 namespace arc
 {
     class Rectangle {
@@ -15,8 +17,15 @@ namespace arc
             Rectangle();
             ~Rectangle();
 
-        protected:
+            void setPosition(size_t x, size_t y);
+            void setSize(size_t w, size_t h);
+            void setColor(const SDL_Color &color);
+
+            void display(SDL_Renderer *window);
+
         private:
+            SDL_Rect _rect;
+            SDL_Color _color;
     };
 } // namespace arc
 

@@ -10,9 +10,13 @@ NAME	=	lib_arcade_sdl.so
 SRCS	=	src/Graphical/Graphical.cpp		\
 			src/SceneMenu/SceneMenu.cpp		\
 			src/SceneMenu/init/SceneMenuInit.cpp	\
+			src/SceneMenu/init/SceneMenuInitRects.cpp	\
+			src/SceneMenu/init/SceneMenuInitTexts.cpp	\
 			src/SceneMenu/event/SceneMenuEvent.cpp	\
 			src/SceneMenu/display/SceneMenuDisplay.cpp	\
 			src/Utility/Utility.cpp	\
+			src/Rectangle/Rectangle.cpp		\
+			src/Text/Text.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)
 
@@ -20,7 +24,7 @@ OBJS_TEST	=	$(SRCS:.cpp=.gcno) $(SRCS:.cpp=.gcda)
 
 CXXFLAGS	=	-I./include -I../../include -W -Wall -Wextra -std=c++17 -fPIC
 
-LDFLAGS		=	-lSDL2
+LDFLAGS		=	-lSDL2 -lSDL2_ttf
 
 CC	=	g++
 
@@ -30,13 +34,14 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) -shared -o $(NAME) $(OBJS) $(LDFLAGS)
+	mv $(NAME) ../
 
 clean:
 	$(RM) $(OBJS)
 	$(RM) $(OBJS_TEST)
 
 fclean: clean
-	$(RM) $(NAME_SFML)
+	$(RM) ../$(NAME)
 
 re: fclean all
 

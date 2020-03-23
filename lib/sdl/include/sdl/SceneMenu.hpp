@@ -9,6 +9,9 @@
 #define SCENEMENU_HPP_
 
 #include "IScene.hpp"
+#include "Rectangle.hpp"
+#include "Text.hpp"
+#include <algorithm>
 
 namespace arc
 {
@@ -18,10 +21,16 @@ namespace arc
             ~SceneMenu();
 
             void init();
-            void display(SDL_Window *window);
+            void display(SDL_Renderer *window);
             void event(arc::Event::Type &actualEventType, arc::Event::Key &actualKeyPress);
 
         private:
+            void initRects();
+            void initTexts();
+        
+        private:
+            std::vector<Rectangle> _rects;
+            std::vector<Text> _texts;
     };
 } // namespace arc
 

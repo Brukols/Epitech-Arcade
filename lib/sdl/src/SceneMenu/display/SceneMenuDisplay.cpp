@@ -6,12 +6,16 @@
 */
 
 #include "sdl/SceneMenu.hpp"
-
-void arc::SceneMenu::display(SDL_Window *window)
+#include <iostream>
+void arc::SceneMenu::display(SDL_Renderer *window)
 {
-    SDL_Surface *windowSurface = SDL_GetWindowSurface(window);
+    std::for_each(_rects.begin(), _rects.end(), [&window](Rectangle &rect) {
+        rect.display(window);
+    });
 
-    SDL_FillRect(windowSurface, NULL, SDL_MapRGB(windowSurface->format, 0x00, 0x00, 0x00));
+    std::for_each(_texts.begin(), _texts.end(), [&window](Text &text) {
+        text.display(window);
+    });
 
-    SDL_UpdateWindowSurface(window);
+    SDL_RenderPresent(window);
 }

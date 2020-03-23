@@ -74,13 +74,14 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) -shared -o $(NAME) $(OBJS) $(LDFLAGS)
+	mv $(NAME) ../
 
 clean:
 	$(RM) $(OBJS)
 	$(RM) $(OBJS_TEST)
 
 fclean: clean
-	$(RM) $(NAME_SFML)
+	$(RM) ../$(NAME)
 
 re: fclean all
 

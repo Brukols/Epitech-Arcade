@@ -18,7 +18,7 @@ namespace arc
             virtual ~IScene() = default;
 
             virtual void init() = 0;
-            virtual void display(SDL_Window *window) = 0;
+            virtual void display(SDL_Renderer *window) = 0;
             virtual void event(arc::Event::Type &actualEventType, arc::Event::Key &actualKeyPress) = 0;
     };
 } // namespace arc
