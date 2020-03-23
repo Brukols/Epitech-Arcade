@@ -7,15 +7,16 @@
 
 #include "Pacman.hpp"
 
+// BLEU CLARE : 11 112 231
+// ROSE : 244 158 280
+
 void Pacman::initPacman()
 {
     _start = std::chrono::system_clock::now();
     _end = std::chrono::system_clock::now();
     _title = "Pacman";
-    // _height = 36;
-    // _width = 48;
     _height = 11;
-    _width = 11;
+    _width = 20;
     _music = "";
     _sound = "";
     _score = 0;
@@ -33,7 +34,49 @@ void Pacman::initEntities()
     initApple();
     initMap();
     // initFruits();
+    initGhostBlinky();
+    initGhostPinky();
+    initGhostInky();
     initGhostClyde();
+}
+
+void Pacman::initGhostBlinky()
+{
+    std::shared_ptr<Entity> blinkyEntity(new Entity);
+    blinkyEntity->type = ENEMY;
+    blinkyEntity->spritePath = "";
+    blinkyEntity->backgroundColor = Color{255, 4, 5, 255};
+    blinkyEntity->orientation = Orientation::DOWN;
+    blinkyEntity->x = 8;
+    blinkyEntity->y = 5;
+    _entities.push_back(blinkyEntity);
+    _blinky.push_back(blinkyEntity);
+}
+
+void Pacman::initGhostPinky()
+{
+    std::shared_ptr<Entity> pinkyEntity(new Entity);
+    pinkyEntity->type = ENEMY;
+    pinkyEntity->spritePath = "";
+    pinkyEntity->backgroundColor = Color{244, 158, 250, 255};
+    pinkyEntity->orientation = Orientation::RIGHT;
+    pinkyEntity->x = 9;
+    pinkyEntity->y = 5;
+    _entities.push_back(pinkyEntity);
+    _pinky.push_back(pinkyEntity);
+}
+
+void Pacman::initGhostInky()
+{
+    std::shared_ptr<Entity> inkyEntity(new Entity);
+    inkyEntity->type = ENEMY;
+    inkyEntity->spritePath = "";
+    inkyEntity->backgroundColor = Color{11, 12, 231, 255};
+    inkyEntity->orientation = Orientation::RIGHT;
+    inkyEntity->x = 10;
+    inkyEntity->y = 5;
+    _entities.push_back(inkyEntity);
+    _inky.push_back(inkyEntity);
 }
 
 void Pacman::initGhostClyde()
@@ -41,10 +84,10 @@ void Pacman::initGhostClyde()
     std::shared_ptr<Entity> clydeEntity(new Entity);
     clydeEntity->type = ENEMY;
     clydeEntity->spritePath = "";
-    clydeEntity->backgroundColor = Color{225, 127, 0, 255};
+    clydeEntity->backgroundColor = Color{243, 130, 2, 255};
     clydeEntity->orientation = Orientation::RIGHT;
-    clydeEntity->x = _width / 4;
-    clydeEntity->y = _height / 8;
+    clydeEntity->x = 11;
+    clydeEntity->y = 5;
     _entities.push_back(clydeEntity);
     _clyde.push_back(clydeEntity);
 }
@@ -54,7 +97,7 @@ void Pacman::initMap()
     std::string readLine;
     int x = 0;
     int y = 0;
-    std::ifstream mapFile("./games/pacman/map.txt");  //On essaye d'ouvrir le fichier
+    std::ifstream mapFile("./games/pacman/map2.txt");  //On essaye d'ouvrir le fichier
 
     if(mapFile)
     {
@@ -66,7 +109,7 @@ void Pacman::initMap()
                     std::shared_ptr<Entity> mapEntity(new Entity);
                     mapEntity->type = OBSTACLE;
                     mapEntity->spritePath = "";
-                    mapEntity->backgroundColor = Color{25, 25, 166, 255};
+                    mapEntity->backgroundColor = Color{30, 17, 149, 255};
                     mapEntity->orientation = Orientation::LEFT;
                     mapEntity->x = x;
                     mapEntity->y = y;
@@ -88,10 +131,10 @@ void Pacman::initPacpac()
     std::shared_ptr<Entity> pacmanEntity(new Entity);
     pacmanEntity->type = PLAYER;
     pacmanEntity->spritePath = "";
-    pacmanEntity->backgroundColor = Color{255, 228, 58, 255};
+    pacmanEntity->backgroundColor = Color{250, 255, 1, 255};
     pacmanEntity->orientation = Orientation::LEFT;
-    pacmanEntity->x = _width / 2;
-    pacmanEntity->y = _height / 2;
+    pacmanEntity->x = 9;
+    pacmanEntity->y = 7;
     _entities.push_back(pacmanEntity);
     _pacman.push_back(pacmanEntity);
 }

@@ -12,6 +12,9 @@ void Pacman::restart()
     _entities.clear();
     _pacman.clear();
     _apple.clear();
+    _blinky.clear();
+    _pinky.clear();
+    _inky.clear();
     _clyde.clear();
     initPacman();
 }
@@ -23,9 +26,14 @@ void Pacman::updateGame()
     if (std::chrono::duration_cast<std::chrono::milliseconds>(_end - _start).count() > 500) {
         _start = std::chrono::system_clock::now();
             movePacman();
+            moveBlinky();
+            movePinky();
+            moveInky();
             moveClyde();
     }
-    if (isPacpacEaten(_clyde))
+    // if (isPacpacEaten(_blinky) || isPacpacEaten(_pinky) || isPacpacEaten(_inky) || isPacpacEaten(_clyde))
+    //     restart();
+    if (isPacpacEaten(_blinky))
         restart();
     // if (isGameOver() == true)
     //     restart();
@@ -39,32 +47,151 @@ bool Pacman::isPacpacEaten(std::vector<std::shared_ptr<Entity>> _entity)
     return false;
 }
 
+void Pacman::moveBlinky()
+{
+    int i = std::rand() % 4;
+
+    if (i == 0) {
+        _blinky[0]->y -= 1;
+        if (isCollision(_blinky)) {
+            _blinky[0]->y += 1;
+            i = std::rand() % 4;
+        }
+    }
+
+    if (i == 1) {
+        _blinky[0]->x += 1;
+        if (isCollision(_blinky)) {
+            _blinky[0]->x -= 1;
+            i = std::rand() % 4;
+        }
+    }
+
+    if (i == 2) {
+        _blinky[0]->y += 1;
+        if (isCollision(_blinky)) {
+            _blinky[0]->y -= 1;
+            i = std::rand() % 4;
+        }
+    }
+
+    if (i == 3) {
+        _blinky[0]->x -= 1;
+        if (isCollision(_blinky)) {
+            _blinky[0]->x += 1;
+            i = std::rand() % 4;
+        }
+    }
+}
+
+void Pacman::movePinky()
+{
+    int i = std::rand() % 4;
+
+    if (i == 0) {
+        _pinky[0]->y -= 1;
+        if (isCollision(_pinky)) {
+            _pinky[0]->y += 1;
+            i = std::rand() % 4;
+        }
+    }
+
+    if (i == 1) {
+        _pinky[0]->x += 1;
+        if (isCollision(_pinky)) {
+            _pinky[0]->x -= 1;
+            i = std::rand() % 4;
+        }
+    }
+
+    if (i == 2) {
+        _pinky[0]->y += 1;
+        if (isCollision(_pinky)) {
+            _pinky[0]->y -= 1;
+            i = std::rand() % 4;
+        }
+    }
+
+    if (i == 3) {
+        _pinky[0]->x -= 1;
+        if (isCollision(_pinky)) {
+            _pinky[0]->x += 1;
+            i = std::rand() % 4;
+        }
+    }
+}
+
+void Pacman::moveInky()
+{
+    int i = std::rand() % 4;
+
+    if (i == 0) {
+        _inky[0]->y -= 1;
+        if (isCollision(_inky)) {
+            _inky[0]->y += 1;
+            i = std::rand() % 4;
+        }
+    }
+
+    if (i == 1) {
+        _inky[0]->x += 1;
+        if (isCollision(_inky)) {
+            _inky[0]->x -= 1;
+            i = std::rand() % 4;
+        }
+    }
+
+    if (i == 2) {
+        _inky[0]->y += 1;
+        if (isCollision(_inky)) {
+            _inky[0]->y -= 1;
+            i = std::rand() % 4;
+        }
+    }
+
+    if (i == 3) {
+        _inky[0]->x -= 1;
+        if (isCollision(_inky)) {
+            _inky[0]->x += 1;
+            i = std::rand() % 4;
+        }
+    }
+}
+
 void Pacman::moveClyde()
 {
     int i = std::rand() % 4;
 
     if (i == 0) {
         _clyde[0]->y -= 1;
-        if (isCollision(_clyde))
+        if (isCollision(_clyde)) {
             _clyde[0]->y += 1;
+            i = std::rand() % 4;
+        }
     }
 
     if (i == 1) {
         _clyde[0]->x += 1;
-        if (isCollision(_clyde))
+        if (isCollision(_clyde)) {
             _clyde[0]->x -= 1;
+            i = std::rand() % 4;
+        }
     }
 
     if (i == 2) {
         _clyde[0]->y += 1;
-        if (isCollision(_clyde))
+        if (isCollision(_clyde)) {
             _clyde[0]->y -= 1;
+            i = std::rand() % 4;
+        }
     }
 
     if (i == 3) {
         _clyde[0]->x -= 1;
-        if (isCollision(_clyde))
+        if (isCollision(_clyde)) {
             _clyde[0]->x += 1;
+            i = std::rand() % 4;
+        }
     }
 }
 
