@@ -34,6 +34,7 @@ SRCS	=	src/Graphical/Graphical.cpp		\
 			src/ListLibraries/ListLibraries.cpp		\
 			src/ListLibraries/ListLibrariesInit.cpp		\
 			src/ListScores/ListScores.cpp	\
+			src/Input/Input.cpp		\
 
 OBJS	=	$(SRCS:.cpp=.o)
 

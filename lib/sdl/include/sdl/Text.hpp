@@ -31,12 +31,14 @@ namespace arc
             int getPosX() const;
             int getPosY() const;
 
+            int getWidthFont(const std::string &str);
+
             const std::string &getString() const;
 
         private:
             SDL_Surface *_surface = nullptr;
             SDL_Texture *_texture = nullptr;
-            std::string _text = "coucou";
+            std::string _text = "";
             TTF_Font *_font = nullptr;
             SDL_Color _color;
 

@@ -17,6 +17,7 @@
 #include "sdl/ListLibraries.hpp"
 #include "sdl/ListScores.hpp"
 #include "sdl/SceneScores.hpp"
+#include "sdl/Input.hpp"
 
 namespace arc
 {
@@ -39,6 +40,7 @@ namespace arc
             void initRects();
             void initTexts();
             void initButtons();
+            void initInputUsername();
 
             void eventExit();
             void eventPlay();
@@ -58,6 +60,8 @@ namespace arc
             std::unique_ptr<ListScores> _listScores;
 
             std::unique_ptr<SceneScores> _sceneScores;
+
+            std::unique_ptr<Input> _inputUsername;
 
             bool _exit = false;
     };

@@ -23,9 +23,11 @@ void arc::SceneMenu::display(SDL_Renderer *window)
 
     _listGames.display(window);
     _listGraphical.display(window);
+    _inputUsername->display(window);
 
     if (_sceneScores->isActivate())
         _sceneScores->display(window);
+
 
     SDL_RenderPresent(window);
 }

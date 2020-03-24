@@ -9,9 +9,10 @@
 
 arc::SceneMenu::SceneMenu()
 {
-    _sceneScores = std::unique_ptr<SceneScores>(new SceneScores);
+    _sceneScores = std::unique_ptr<SceneScores>(new SceneScores());
     _listGames.setFont(FONT);
     _listGraphical.setFont(FONT);
+    initInputUsername();
 }
 
 arc::SceneMenu::~SceneMenu()

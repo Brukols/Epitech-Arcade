@@ -38,7 +38,7 @@ void arc::Rectangle::display(SDL_Renderer *window)
     SDL_SetRenderDrawColor(window, _color.r, _color.g, _color.b, _color.a);
     SDL_RenderFillRect(window, &_rect);
     if (_outline) {
-        SDL_SetRenderDrawColor(window, 255, 255, 255, 255);
+        SDL_SetRenderDrawColor(window, _outlineColor.r, _outlineColor.g, _outlineColor.b, _outlineColor.a);
         SDL_RenderDrawRect(window, &_rect);
     }
 }
@@ -73,4 +73,19 @@ int arc::Rectangle::getHeight() const
 int arc::Rectangle::getWidth() const
 {
     return (_rect.w);
+}
+
+void arc::Rectangle::setColorOutline(const SDL_Color &color)
+{
+    _outlineColor = color;
+}
+
+int arc::Rectangle::getPosX() const
+{
+    return (_rect.x);
+}
+
+int arc::Rectangle::getPosY() const
+{
+    return (_rect.y);
 }

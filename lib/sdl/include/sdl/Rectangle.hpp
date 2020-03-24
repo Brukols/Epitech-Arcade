@@ -33,10 +33,16 @@ namespace arc
             int getHeight() const;
             int getWidth() const;
 
+            void setColorOutline(const SDL_Color &color);
+
+            int getPosX() const;
+            int getPosY() const;
+
         private:
             SDL_Rect _rect;
             SDL_Color _color;
             bool _outline = false;
+            SDL_Color _outlineColor = {255, 255, 255, 255};
     };
 } // namespace arc
 

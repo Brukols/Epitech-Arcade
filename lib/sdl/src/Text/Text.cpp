@@ -34,6 +34,15 @@ void arc::Text::setColor(const SDL_Color &color)
 
 void arc::Text::setFont(const std::string &path, int size)
 {
+    if (_font) {
+        TTF_CloseFont(_font);
+        if (_surface)
+            SDL_FreeSurface(_surface);
+        if (_texture)
+            SDL_DestroyTexture(_texture);
+        _surface = nullptr;
+        _texture = nullptr;
+    }
     _font = TTF_OpenFont(path.c_str(), size);
 }
 
@@ -44,6 +53,9 @@ void arc::Text::setText(const std::string &text)
         SDL_DestroyTexture(_texture);
         _texture = nullptr;
     }
+    if (_surface)
+        SDL_FreeSurface(_surface);
+    _surface = nullptr;
 }
 
 void arc::Text::display(SDL_Renderer *window)
@@ -92,4 +104,13 @@ int arc::Text::getPosY() const
 const std::string &arc::Text::getString() const
 {
     return (_text);
+}
+
+int arc::Text::getWidthFont(const std::string &str)
+{
+    int w;
+    int h;
+
+    TTF_SizeText(_font, str.c_str(), &w, &h);
+    return (w);
 }

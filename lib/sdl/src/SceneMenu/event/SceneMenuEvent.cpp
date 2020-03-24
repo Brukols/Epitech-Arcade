@@ -61,5 +61,6 @@ void arc::SceneMenu::event(arc::Event::Type &actualEventType, arc::Event::Key &a
         eventButtons(actualEventType, actualKeyPress);
         _listGames.event(actualEventType, actualKeyPress, event);
         _listGraphical.event(actualEventType, actualKeyPress, event);
+        _inputUsername->event(actualEventType, actualKeyPress, event);
     }
 }

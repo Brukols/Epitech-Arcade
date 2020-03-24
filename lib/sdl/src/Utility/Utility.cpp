@@ -14,7 +14,7 @@ arc::Event::Type arc::Utility::getEventType(const SDL_Event &event)
         std::map<int, arc::Event::Type> map;
 
         map[SDL_QUIT] = arc::Event::Type::QUIT;
-        map[SDL_KEYDOWN] = arc::Event::Type::KEY_PRESSED;
+        map[SDL_KEYDOWN] = arc::Event::Type::KEY_RELEASED;
         map[SDL_KEYUP] = arc::Event::Type::KEY_PRESSED;
         map[SDL_MOUSEBUTTONDOWN] = arc::Event::Type::MOUSE_PRESSED;
         map[SDL_MOUSEBUTTONUP] = arc::Event::Type::MOUSE_RELEASED;
