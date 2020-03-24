@@ -48,8 +48,11 @@ void arc::SceneGame::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &
 
 void arc::SceneGame::setMapSize(size_t height, size_t width)
 {
-    (void)height;
-    (void)width;
+    _cell = std::unique_ptr<Rectangle>(new Rectangle());
+
+    _cell.get()->setPosition(0, 0);
+    _cell.get()->setColor({0, 0, 0, 255});
+    _cell.get()->setSize(1200 / width, 900 / height);
 }
 
 void arc::SceneGame::setGameTitle(const std::string &game)

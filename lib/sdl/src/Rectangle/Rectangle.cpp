@@ -63,3 +63,13 @@ bool arc::Rectangle::isMouseHover(int x, int y) const
         return (true);
     return (false);
 }
+
+int arc::Rectangle::getHeight() const
+{
+    return (_rect.h);
+}
+
+int arc::Rectangle::getWidth() const
+{
+    return (_rect.w);
+}

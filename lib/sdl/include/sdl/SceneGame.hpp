@@ -56,7 +56,7 @@ namespace arc
             std::function<void()> _eventMenu;
             std::function<void()> _eventPause;
 
-            std::vector<std::unique_ptr<Rectangle>> _cell;
+            std::unique_ptr<Rectangle> _cell;
     };
 } // namespace arc
 

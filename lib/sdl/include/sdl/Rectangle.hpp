@@ -30,6 +30,9 @@ namespace arc
 
             bool isMouseHover(int x, int y) const;
 
+            int getHeight() const;
+            int getWidth() const;
+
         private:
             SDL_Rect _rect;
             SDL_Color _color;

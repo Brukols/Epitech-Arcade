@@ -75,7 +75,7 @@ void arc::Graphical::setScores(const std::vector<std::pair<std::string, std::str
 
 void arc::Graphical::setControls(const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &controls)
 {
-    (void)controls;
+    static_cast<SceneGame *>(_scenes[GAME].get())->setControls(controls);
 }
 
 /*
@@ -140,13 +140,12 @@ void arc::Graphical::setGameStats(const std::vector<std::pair<std::string, std::
 
 void arc::Graphical::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap)
 {
-    (void)gameMap;
+    static_cast<SceneGame *>(_scenes[GAME].get())->updateGameInfo(gameMap);
 }
 
 void arc::Graphical::setMapSize(size_t height, size_t width)
 {
-    (void)height;
-    (void)width;
+    static_cast<SceneGame *>(_scenes[GAME].get())->setMapSize(height, width);
 }
 
 void arc::Graphical::setGameTitle(const std::string &game)
