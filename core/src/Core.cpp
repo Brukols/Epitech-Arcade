@@ -80,6 +80,7 @@ void arc::Core::playArcade()
                 _game->updateGame();
                 _graph->updateGameInfo(_game->getEntities());
             }
+            _graph->setGameStats(_game->getGameStats());
         }
         _graph->display();
     }
