@@ -46,7 +46,7 @@ void Pacman::initGhostBlinky()
     blinkyEntity->type = ENEMY;
     blinkyEntity->spritePath = "";
     blinkyEntity->backgroundColor = Color{255, 4, 5, 255};
-    blinkyEntity->orientation = Orientation::DOWN;
+    blinkyEntity->orientation = Orientation::RIGHT;
     blinkyEntity->x = 8;
     blinkyEntity->y = 5;
     _entities.push_back(blinkyEntity);
@@ -59,7 +59,7 @@ void Pacman::initGhostPinky()
     pinkyEntity->type = ENEMY;
     pinkyEntity->spritePath = "";
     pinkyEntity->backgroundColor = Color{244, 158, 250, 255};
-    pinkyEntity->orientation = Orientation::RIGHT;
+    pinkyEntity->orientation = Orientation::UP;
     pinkyEntity->x = 9;
     pinkyEntity->y = 5;
     _entities.push_back(pinkyEntity);
@@ -72,7 +72,7 @@ void Pacman::initGhostInky()
     inkyEntity->type = ENEMY;
     inkyEntity->spritePath = "";
     inkyEntity->backgroundColor = Color{11, 12, 231, 255};
-    inkyEntity->orientation = Orientation::RIGHT;
+    inkyEntity->orientation = Orientation::UP;
     inkyEntity->x = 10;
     inkyEntity->y = 5;
     _entities.push_back(inkyEntity);
@@ -85,7 +85,7 @@ void Pacman::initGhostClyde()
     clydeEntity->type = ENEMY;
     clydeEntity->spritePath = "";
     clydeEntity->backgroundColor = Color{243, 130, 2, 255};
-    clydeEntity->orientation = Orientation::RIGHT;
+    clydeEntity->orientation = Orientation::LEFT;
     clydeEntity->x = 11;
     clydeEntity->y = 5;
     _entities.push_back(clydeEntity);
