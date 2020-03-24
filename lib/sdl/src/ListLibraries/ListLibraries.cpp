@@ -148,7 +148,7 @@ void arc::ListLibraries::eventScrollDown()
 {
     if (_buttonsList.size() <= 6)
         return;
-    if (_begin + 1 == _buttonsList.size() - 6)
+    if (static_cast<long unsigned int>(_begin + 1) == _buttonsList.size() - 6)
         return;
     _begin++;
     std::for_each(_buttonsList.begin(), _buttonsList.end(), [this](std::pair<ButtonRect, std::string> &button) {
@@ -158,6 +158,7 @@ void arc::ListLibraries::eventScrollDown()
 
 void arc::ListLibraries::event(const arc::Event::Type &actualEventType, const arc::Event::Key &actualKeyPress, const SDL_Event &event)
 {
+    (void)actualKeyPress;
     int x;
     int y;
 

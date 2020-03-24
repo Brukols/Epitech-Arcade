@@ -23,6 +23,7 @@ void arc::SceneMenu::eventShowScores()
 
 void arc::SceneMenu::eventButtons(const arc::Event::Type &type, const arc::Event::Key &key)
 {
+    (void)key;
     if (type != arc::Event::Type::MOUSE_RELEASED)
         return;
     int x;
