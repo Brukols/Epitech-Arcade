@@ -7,6 +7,7 @@
 
 #include "sdl/Graphical.hpp"
 #include "sdl/SceneMenu.hpp"
+#include "sdl/SceneGame.hpp"
 
 arc::Graphical::Graphical()
 {
@@ -18,6 +19,7 @@ arc::Graphical::Graphical()
     _window = SDL_CreateWindow("Arcade", 0, 0, 1920, 1080, SDL_WINDOW_FULLSCREEN_DESKTOP);
     _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
     _scenes[MAIN_MENU] = std::unique_ptr<IScene>(new SceneMenu());
+    _scenes[GAME] = std::unique_ptr<IScene>(new SceneGame());
     _scenes[MAIN_MENU]->init();
 }
 
