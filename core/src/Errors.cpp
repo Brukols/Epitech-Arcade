@@ -50,3 +50,12 @@ arc::DirectoryError::DirectoryError(const std::string &message, const std::strin
 arc::DirectoryError::~DirectoryError()
 {
 }
+
+
+arc::FileError::FileError(const std::string &message, const std::string &component) : ArcadeError(message, component)
+{
+}
+
+arc::FileError::~FileError()
+{
+}

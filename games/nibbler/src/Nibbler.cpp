@@ -42,11 +42,6 @@ const std::string &Nibbler::getScore()
     return _strScore;
 }
 
-const std::map<char, std::pair<std::string, Color>> &Nibbler::getVisualAssets() const
-{
-    return _visualAssets;
-}
-
 const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &Nibbler::getControls() const
 {
     return _controls;
@@ -57,12 +52,12 @@ const std::vector<std::shared_ptr<Entity>> &Nibbler::getEntities() const
     return _entities;
 }
 
-const std::vector<std::pair<std::string, std::string>> &Nibbler::getGameControlsFormatString() const
+const std::vector<std::pair<std::string, std::string>> &Nibbler::getGameControls() const
 {
     return _gameControls;
 }
 
-const std::vector<std::string> &Nibbler::getGameStatsFormatString() const
+const std::vector<std::pair<std::string, std::string>> &Nibbler::getGameStats() const
 {
     return _gameStats;
 }

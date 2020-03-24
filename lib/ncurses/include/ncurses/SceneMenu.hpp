@@ -17,6 +17,7 @@
 #include "ColorsMode.hpp"
 #include "Input.hpp"
 #include "List.hpp"
+#include "ncurses/SceneScores.hpp"
 
 namespace arc
 {
@@ -37,12 +38,15 @@ namespace arc
 
             void setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen);
             void setListLibraries(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen);
+            void setScores(const std::vector<std::pair<std::string, std::string>> &scores);
 
         private:
             void initRects();
             void initTexts();
             void initButtons();
             void initInputs();
+
+            void eventShowScores();
 
             void eventButtons(MEVENT event);
             void eventInputs(MEVENT event);
@@ -59,6 +63,8 @@ namespace arc
             std::string _username = "";
 
             std::vector<List> _lists;
+
+            SceneScores _sceneScores;
     };
 };
 

@@ -37,11 +37,18 @@ namespace arc
             void setMapSize(size_t height, size_t width);
             void updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap);
 
+            void setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info);
+            void setGameStats(const std::vector<std::pair<std::string, std::string>> &info);
+            void setTitle(const std::string &title);
+
         private:
             void initButtons();
             void initTexts();
             void initRects();
             void initMap();
+
+            void initTextHowToPlay(const std::vector<std::pair<std::string, std::string>> &info);
+            void initTextStats(const std::vector<std::pair<std::string, std::string>> &info);
 
             void eventButtons(MEVENT event);
 
@@ -59,6 +66,11 @@ namespace arc
     
             size_t _height;
             size_t _width;
+
+            std::string _title;
+
+            std::vector<Text> _howToPlay;
+            std::vector<Text> _stats;
     };
 };
 

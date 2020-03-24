@@ -21,7 +21,7 @@ class DLLoader {
     public:
         DLLoader(const std::string &libname) : _libname(libname)
         {
-            _handle = dlopen(_libname.c_str(), RTLD_LAZY);
+            _handle = dlopen(_libname.c_str(), RTLD_LAZY | RTLD_NODELETE);
             if (!_handle) {
                 throw arc::DlError(dlerror(), "DLLoader");
             }
@@ -29,7 +29,7 @@ class DLLoader {
 
         ~DLLoader()
         {
-            // dlclose(_handle);
+            dlclose(_handle);
         }
 
         T *getInstance() const

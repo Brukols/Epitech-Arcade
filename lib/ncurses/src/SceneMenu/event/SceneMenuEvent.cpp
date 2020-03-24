@@ -8,8 +8,19 @@
 #include "ncurses/SceneMenu.hpp"
 #include "Utils.hpp"
 
+void arc::SceneMenu::eventShowScores()
+{
+    _sceneScores.init();
+    _sceneScores.setActivate(true);
+    clear();
+}
+
 void arc::SceneMenu::event(arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress)
 {
+    if (_sceneScores.isActivate()) {
+        _sceneScores.event(_actualEventType, _actualKeyPress);
+        return;
+    }
     int c = wgetch(stdscr);
     static int tmp = -1;
 

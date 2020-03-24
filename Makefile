@@ -26,7 +26,7 @@ clean:
 	make clean -C lib/
 	make clean -C games/
 
-fclean: clean
+fclean:
 	make fclean -C core/
 	make fclean -C lib/
 	make fclean -C games/

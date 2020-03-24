@@ -46,6 +46,18 @@ void arc::SceneGame::display(sf::RenderWindow &window)
         button.displayButton(window);
     });
 
+    std::for_each(_stats.begin(), _stats.end(), [&window](Text &text) {
+        text.display(window);
+    });
+
+    std::for_each(_howToPlay.begin(), _howToPlay.end(), [&window](Text &text) {
+        text.display(window);
+    });
+
+    std::for_each(_texts.begin(), _texts.end(), [&window](Text &text) {
+        text.display(window);
+    });
+
     displayGame(window);
 
     if (_errorMessages.size() != 0)

@@ -8,18 +8,18 @@
 #include "ncurses/SceneMenu.hpp"
 
 
-arc::Button initPlayButton(std::function<void()> &event)
+static arc::Button initPlayButton(std::function<void()> &event)
 {
     arc::Rectangle rect(5, 20, arc::MAIN_COLOR_1, arc::BACKGROUND_COLOR);
 
-    rect.setPosition(110, 25);
+    rect.setPosition(110, 21);
     rect.setOutlineColors(arc::MAIN_COLOR_1, arc::MAIN_COLOR_1);
     arc::Button button("Play", rect, event);
     button.setColors(arc::MAIN_COLOR_1, arc::BACKGROUND_COLOR);
     return (button);
 }
 
-arc::Button initExitButton(std::function<void()> &event)
+static arc::Button initExitButton(std::function<void()> &event)
 {
     arc::Rectangle rect(5, 20, arc::MAIN_COLOR_2, arc::BACKGROUND_COLOR);
 
@@ -30,17 +30,29 @@ arc::Button initExitButton(std::function<void()> &event)
     return (button);
 }
 
+static arc::Button initShowScoresButton(std::function<void()> &event)
+{
+    arc::Rectangle rect(5, 20, arc::MAIN_COLOR_2, arc::BACKGROUND_COLOR);
+
+    rect.setPosition(110, 28);
+    rect.setOutlineColors(arc::MAIN_COLOR_2, arc::MAIN_COLOR_2);
+    arc::Button button("Show scores", rect, event);
+    button.setColors(arc::MAIN_COLOR_2, arc::BACKGROUND_COLOR);
+    return (button);
+}
+
 void arc::SceneMenu::initButtons()
 {
-    std::vector<std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>> buttons = [this]() -> std::vector<std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>> {
-        std::vector<std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>> buttons;
+    std::vector<std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>> buttons;
 
-        buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initPlayButton, [this]() {
-            _eventFunctionPlay();
-        }));
-        buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initExitButton, _eventFunctionExit));
-        return (buttons);
-    }();
+    buttons.clear();
+    buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initPlayButton, [this]() {
+        _eventFunctionPlay();
+    }));
+    buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initExitButton, _eventFunctionExit));
+    buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>>(initShowScoresButton, [this] () {
+        eventShowScores();
+    }));
 
     _buttons.clear();
     std::for_each(buttons.begin(), buttons.end(), [this](std::pair<arc::Button (*)(std::function<void()> &), std::function<void()>> &pair) {

@@ -27,13 +27,12 @@ namespace arc {
             const std::string &getSound() const override;
             const std::string &getScore() override;
 
-            const std::map<char, std::pair<std::string, Color>> &getVisualAssets() const override;
             const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &getControls() const override;
 
             const std::vector<std::shared_ptr<Entity>> &getEntities() const override;
 
-            const std::vector<std::pair<std::string, std::string>> &getGameControlsFormatString() const override;
-            const std::vector<std::string> &getGameStatsFormatString() const override;
+            const std::vector<std::pair<std::string, std::string>> &getGameControls() const override;
+            const std::vector<std::pair<std::string, std::string>> &getGameStats() const override;
 
             void restart() override;
             void updateGame() override;
@@ -53,7 +52,6 @@ namespace arc {
             std::string _title;
             int _score;
 
-            std::map<char, std::pair<std::string, Color>> _visualAssets;
             std::map<std::pair<Event::Type, Event::Key>, std::function<void()>> _controls;
 
             std::vector<std::shared_ptr<Entity>> _entities;
@@ -63,11 +61,10 @@ namespace arc {
             int _nbApple;
 
             std::vector <std::pair<std::string, std::string>> _gameControls;
-            std::vector<std::string> _gameStats;
+            std::vector <std::pair<std::string, std::string>> _gameStats;
         private:
             //InitNibbler
             void initNibbler();
-            void initVisualAssets();
             void initControls();
             void initEntities();
             void initApple();

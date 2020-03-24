@@ -10,6 +10,9 @@ NAME	=	arcade
 SRCS	=	src/main.cpp	\
 			src/Errors.cpp	\
 			src/Core.cpp 	\
+			src/CoreSetGame.cpp	\
+			src/CoreSetGraphical.cpp	\
+			src/CoreScores.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)
 

@@ -21,6 +21,9 @@ namespace arc
             void display(sf::RenderWindow &window);
             void setText(const std::string &text);
             void setDisplay(bool display);
+            void setPosition(const sf::Vector2f &pos);
+            const sf::Vector2f &getPosition() const;
+            const sf::Text &getText() const;
 
         private:
             sf::Font _font;

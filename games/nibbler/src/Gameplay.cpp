@@ -23,8 +23,6 @@ void Nibbler::updateGame()
         _start = std::chrono::system_clock::now();
         moveSnake();
     }
-    if (isGameOver() == true)
-        restart();
 }
 
 void Nibbler::moveSnake()

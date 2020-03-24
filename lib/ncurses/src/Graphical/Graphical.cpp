@@ -11,6 +11,7 @@
 #include <iostream>
 #include "ncurses/SceneMenu.hpp"
 #include "ncurses/SceneGame.hpp"
+#include "ncurses/SceneEndGame.hpp"
 #include "ncurses/NcursesError.hpp"
 
 arc::Graphical::Graphical()
@@ -36,6 +37,7 @@ arc::Graphical::Graphical()
     clear();
     _scenes[MAIN_MENU] = std::unique_ptr<IScene>(new SceneMenu());
     _scenes[GAME] = std::unique_ptr<IScene>(new SceneGame());
+    _scenes[END_GAME] = std::unique_ptr<IScene>(new SceneEndGame());
     static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionExit([this]() {
         _exit = true;
     });
@@ -64,7 +66,8 @@ void arc::Graphical::setListLibraries(const std::vector<std::string> &libraries,
 
 void arc::Graphical::setScores(const std::vector<std::pair<std::string, std::string>> &scores)
 {
-    _scores = scores;
+    static_cast<SceneEndGame *>(_scenes[END_GAME].get())->setScores(scores);
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setScores(scores);
 }
 
 void arc::Graphical::setControls(const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &controls)
@@ -79,12 +82,12 @@ void arc::Graphical::setFunctionPlay(const std::function<void()> &function)
 
 void arc::Graphical::setFunctionRestart(const std::function<void()> &function)
 {
-    _eventRestartButton = function;
+    static_cast<SceneEndGame *>(_scenes[END_GAME].get())->setFunctionRestart(function);
 }
 
 void arc::Graphical::setFunctionMenu(const std::function<void()> &function)
 {
-    _eventMenuButton = function;
+    static_cast<SceneEndGame *>(_scenes[END_GAME].get())->setFunctionMenu(function);
 }
 
 void arc::Graphical::setFunctionTogglePause(const std::function<void()> &function)
@@ -110,18 +113,18 @@ arc::IGraphical::Scene arc::Graphical::getScene() const
 void arc::Graphical::setScene(Scene scene)
 {
     _actualScene = scene;
-    // _scenes[_actualScene].get()->init();
+    _scenes[_actualScene].get()->init();
     clear();
 }
 
 void arc::Graphical::setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info)
 {
-    _infoHowToPlay = info;
+    static_cast<SceneGame *>(_scenes[GAME].get())->setHowToPlay(info);
 }
 
 void arc::Graphical::setGameStats(const std::vector<std::pair<std::string, std::string>> &info)
 {
-    (void)info;
+    static_cast<SceneGame *>(_scenes[GAME].get())->setGameStats(info);
 }
 
 void arc::Graphical::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap)
@@ -146,7 +149,7 @@ void arc::Graphical::setMapSize(size_t height, size_t width)
 
 void arc::Graphical::setGameTitle(const std::string &game)
 {
-    (void)game;
+    static_cast<SceneGame *>(_scenes[GAME].get())->setTitle(game);
 }
 
 arc::Event::Type arc::Graphical::getEventType() const

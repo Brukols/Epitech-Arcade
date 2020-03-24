@@ -10,6 +10,7 @@
 void arc::SceneMenu::setFunctionExit(std::function<void()> fct)
 {
     _eventFunctionExit = fct;
+    _sceneScores.setEventFunctionExit(fct);
 }
 
 void arc::SceneMenu::setFunctionPlay(const std::function<void()> &fct)
@@ -36,4 +37,10 @@ void arc::SceneMenu::setUsername(const std::string &name)
 {
     _inputs[0].setText(name);
     _username = name;
+    _sceneScores.setUsername(name);
+}
+
+void arc::SceneMenu::setScores(const std::vector<std::pair<std::string, std::string>> &scores)
+{
+    _sceneScores.setScores(scores);
 }

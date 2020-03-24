@@ -13,6 +13,8 @@
 #include "IGraphical.hpp"
 #include "DLLoader.hpp"
 
+#define SCORE_FILENAME "scores.txt"
+
 namespace arc {
 
     class Core {
@@ -22,6 +24,8 @@ namespace arc {
             ~Core();
 
             void playArcade();
+
+            void clean();
 
         private:
             void initGraphs();
@@ -41,6 +45,9 @@ namespace arc {
 
             void functionPlay();
 
+            void insertScore(const std::string &name, const std::string &username);
+            const std::vector<std::pair<std::string, std::string>> getScores() const;
+
         private:
             std::vector<std::pair<std::string, std::unique_ptr<DLLoader<IGraphical>>>> _graphs;
             std::vector<std::pair<std::string, std::unique_ptr<DLLoader<IGame>>>> _games;
@@ -54,6 +61,8 @@ namespace arc {
             std::string _nextGraphPath = "";
 
             std::unique_ptr<DLLoader<IGraphical>> _initialGraph;
+
+            std::string _pathScoreFile = "";
     };
 }
 

@@ -27,13 +27,24 @@ SRCS	=	src/Graphical/Graphical.cpp	\
 			src/SceneGame/init/SceneGameInitRects.cpp	\
 			src/SceneGame/init/SceneGameInitTexts.cpp	\
 			src/SceneGame/init/SceneGameInitMap.cpp	\
+			src/SceneGame/init/SceneGameInitTextHowToPlay.cpp	\
+			src/SceneGame/init/SceneGameInitTextStats.cpp	\
 			src/SceneGame/display/SceneGameDisplay.cpp	\
 			src/SceneGame/event/SceneGameEvent.cpp	\
 			src/SceneGame/event/SceneGameEventButtons.cpp	\
+			src/SceneEndGame/SceneEndGame.cpp	\
+			src/SceneEndGame/init/SceneEndGameInit.cpp	\
+			src/SceneEndGame/init/SceneEndGameInitButtons.cpp	\
+			src/SceneEndGame/event/SceneEndGameEvent.cpp	\
+			src/SceneEndGame/display/SceneEndGameDisplay.cpp	\
 			src/SceneError/SceneError.cpp	\
 			src/SceneError/display/SceneErrorDisplay.cpp	\
 			src/SceneError/init/SceneErrorInit.cpp	\
 			src/SceneError/event/SceneErrorEvent.cpp	\
+			src/SceneScores/SceneScores.cpp	\
+			src/SceneScores/init/SceneScoresInit.cpp	\
+			src/SceneScores/event/SceneScoresEvent.cpp	\
+			src/SceneScores/display/SceneScoresDisplay.cpp	\
 			src/Rectangle/Rectangle.cpp		\
 			src/Utility/Utility.cpp	\
 			src/Text/Text.cpp		\
@@ -43,6 +54,9 @@ SRCS	=	src/Graphical/Graphical.cpp	\
 			src/List/List.cpp	\
 			src/List/ListEvent.cpp	\
 			src/List/ListInitButtons.cpp	\
+			src/ListScores/ListScores.cpp	\
+			src/ListScores/ListScoresEvent.cpp	\
+			src/ListScores/ListScoresInit.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)
 
@@ -60,13 +74,14 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) -shared -o $(NAME) $(OBJS) $(LDFLAGS)
+	mv $(NAME) ../
 
 clean:
 	$(RM) $(OBJS)
 	$(RM) $(OBJS_TEST)
 
 fclean: clean
-	$(RM) $(NAME_SFML)
+	$(RM) ../$(NAME)
 
 re: fclean all
 

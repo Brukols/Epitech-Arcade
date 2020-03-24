@@ -20,6 +20,7 @@ arc::SceneMenu::SceneMenu()
     initRects();
     initImages();
     _lists.clear();
+    _sceneScores.setFont(_font);
 }
 
 arc::SceneMenu::~SceneMenu()

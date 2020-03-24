@@ -32,3 +32,18 @@ void arc::Text::setDisplay(bool display)
 {
     _display = display;
 }
+
+void arc::Text::setPosition(const sf::Vector2f &pos)
+{
+    _text.setPosition(pos);
+}
+
+const sf::Vector2f &arc::Text::getPosition() const
+{
+    return (_text.getPosition());
+}
+
+const sf::Text &arc::Text::getText() const
+{
+    return (_text);
+}

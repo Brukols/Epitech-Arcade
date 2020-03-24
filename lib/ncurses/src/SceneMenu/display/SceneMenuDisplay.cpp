@@ -9,6 +9,10 @@
 
 void arc::SceneMenu::display()
 {
+    if (_sceneScores.isActivate()) {
+        _sceneScores.display();
+        return;
+    }
     std::for_each(_rects.begin(), _rects.end(), [this](Rectangle &rect) {
         rect.display();
     });

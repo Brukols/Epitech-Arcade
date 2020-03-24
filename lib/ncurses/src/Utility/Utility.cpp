@@ -9,6 +9,7 @@
 #include <streambuf>
 #include <fstream>
 #include <map>
+#include <tuple>
 
 void arc::Utility::display(const std::string &text, int x, int y, int noPair)
 {
@@ -30,6 +31,22 @@ std::string arc::Utility::getText(const std::string &path)
     std::string str((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
     file.close();
     return (str);
+}
+
+int arc::Utility::generateColor(const Color &color)
+{
+    static int noColor = 9;
+    static std::map<std::tuple<unsigned char, unsigned char, unsigned char>, int> colors;
+
+    std::tuple<unsigned char, unsigned char, unsigned char> tmp = std::make_tuple(color.r, color.g, color.b);
+
+    if (colors.count(tmp)) {
+        return (colors[tmp]);
+    }
+    noColor++;
+    init_color(noColor, color.r * 4, color.g * 4, color.b * 4);
+    colors[tmp] = noColor;
+    return (noColor);
 }
 
 int arc::Utility::generatePairColor(int textColor, int bgColor)

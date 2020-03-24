@@ -21,7 +21,6 @@ void Nibbler::initNibbler()
     _score = 0;
     _nbApple = 0;
     initEntities();
-    initVisualAssets();
     initControls();
     initGameControls();
     initGameStats();
@@ -69,11 +68,6 @@ void Nibbler::initApple()
     _apple.push_back(fruitEntity);
 }
 
-void Nibbler::initVisualAssets()
-{
-    _visualAssets['a'] = std::pair<std::string, Color> ("", Color{227, 18, 18, 255});
-}
-
 void Nibbler::initControls()
 {
     _controls[std::pair<Event::Type, Event::Key>(Event::KEY_PRESSED, Event::LEFT)] = [this]() -> void {
@@ -111,6 +105,7 @@ void Nibbler::initControls()
 
 void Nibbler::initGameControls()
 {
+    _gameControls.clear();
     _gameControls.push_back(std::pair<std::string, std::string> ("UP ARROW", "Go up"));
     _gameControls.push_back(std::pair<std::string, std::string> ("RIGHT ARROW", "Go right"));
     _gameControls.push_back(std::pair<std::string, std::string> ("DOWN ARROW", "Go down"));
@@ -120,6 +115,6 @@ void Nibbler::initGameControls()
 void Nibbler::initGameStats()
 {
     _gameStats.clear();
-    _gameStats.push_back("Score: " + std::to_string(_score));
-    _gameStats.push_back("Apple: " + std::to_string(_nbApple));
+    _gameStats.push_back(std::pair<std::string, std::string> ("Score", std::to_string(_score)));
+    _gameStats.push_back(std::pair<std::string, std::string> ("Apples", std::to_string(_nbApple)));
 }

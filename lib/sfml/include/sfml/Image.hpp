@@ -22,6 +22,7 @@ namespace arc
             void setPosition(const sf::Vector2f &pos);
             void display(sf::RenderWindow &window);
             const sf::Vector2f &getPosition() const;
+            bool isMouseHover(const sf::Vector2i &pos) const;
 
         private:
             std::string _path;

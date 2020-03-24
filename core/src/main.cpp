@@ -6,6 +6,8 @@
 */
 
 #include <iostream>
+#include <fstream>
+#include <string>
 #include "Core.hpp"
 
 void print_usage()
@@ -22,6 +24,7 @@ int main(int ac, const char **av)
     try {
         arc::Core core(av[1]);
         core.playArcade();
+        core.clean();
     } catch(const std::exception& e) {
         std::cerr << e.what() << '\n';
         return (84);

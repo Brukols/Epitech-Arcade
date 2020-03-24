@@ -25,14 +25,32 @@ SRCS	=	src/Graphical.cpp	\
 			src/SceneMenu/event/SceneMenuEvent.cpp		\
 			src/SceneMenu/event/SceneMenuEventButtonPlay.cpp		\
 			src/SceneMenu/event/SceneMenuEventValidateUsername.cpp		\
+			src/SceneMenu/event/SceneMenuEventWatchScores.cpp		\
 			src/SceneGame/SceneGame.cpp	\
 			src/SceneGame/init/SceneGameInit.cpp	\
 			src/SceneGame/init/SceneGameInitButtons.cpp	\
 			src/SceneGame/init/SceneGameInitRects.cpp	\
 			src/SceneGame/init/SceneGameSetter.cpp	\
+			src/SceneGame/init/SceneGameInitTextHowToPlay.cpp	\
+			src/SceneGame/init/SceneGameInitTexts.cpp	\
+			src/SceneGame/init/SceneGameInitTextStats.cpp	\
 			src/SceneGame/display/SceneGameDisplay.cpp	\
 			src/SceneGame/event/SceneGameEvent.cpp	\
 			src/SceneGame/event/SceneGameEventButtons.cpp	\
+			src/SceneEndGame/SceneEndGame.cpp	\
+			src/SceneEndGame/display/SceneEndGameDisplay.cpp	\
+			src/SceneEndGame/event/SceneEndGameEvent.cpp	\
+			src/SceneEndGame/init/SceneEndGameInit.cpp	\
+			src/SceneEndGame/init/SceneEndGameSetter.cpp	\
+			src/SceneEndGame/init/SceneEndGameInitButtons.cpp	\
+			src/SceneScores/SceneScores.cpp	\
+			src/SceneScores/init/SceneScoresInit.cpp	\
+			src/SceneScores/event/SceneScoresEvent.cpp	\
+			src/SceneScores/display/SceneScoresDisplay.cpp	\
+			src/ListScores/ListScores.cpp	\
+			src/ListScores/ListScoresInit.cpp	\
+			src/ListScores/ListScoresDisplay.cpp	\
+			src/ListScores/ListScoresEvent.cpp	\
 			src/Utility/Utility.cpp	\
 			src/image/Image.cpp	\
 			src/SFMLErrors/SFMLErrors.cpp	\
@@ -56,13 +74,14 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) -shared -o $(NAME) $(OBJS) $(LDFLAGS)
+	mv $(NAME) ../
 
 clean:
 	$(RM) $(OBJS)
 	$(RM) $(OBJS_TEST)
 
 fclean: clean
-	$(RM) $(NAME_SFML)
+	$(RM) ../$(NAME)
 
 re: fclean all
 

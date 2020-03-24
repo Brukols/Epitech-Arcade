@@ -65,8 +65,6 @@ namespace arc
 
             std::vector<std::pair<std::string, std::string>> _scores;
 
-            std::function<void()> _eventRestartButton; // A suppr
-            std::function<void()> _eventMenuButton; // A suppr
             std::function<void()> _eventTogglePauseButton; // A suppr
 
             std::vector<std::shared_ptr<Entity>> _entities;

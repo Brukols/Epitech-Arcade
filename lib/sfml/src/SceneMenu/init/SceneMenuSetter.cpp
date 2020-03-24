@@ -47,3 +47,8 @@ void arc::SceneMenu::setUsername(const std::string &name)
     _username = name;
     _texts[_texts.size() - 1].setText("Username : " + _username);
 }
+
+void arc::SceneMenu::setScores(const std::vector<std::pair<std::string, std::string>> &scores)
+{
+    _sceneScores.setScores(scores);
+}
