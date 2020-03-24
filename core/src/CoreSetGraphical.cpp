@@ -46,6 +46,7 @@ void arc::Core::setNextGraphical()
     if (_indexGraph == static_cast<int>(_graphs.size())) {
         _indexGraph = 0;
     }
+    _graph.reset();
     _graph = std::unique_ptr<IGraphical>(_graphs[_indexGraph].second.get()->getInstance());
     _graph->setListLibraries(getNamesSharedGraphs(), [this](const std::string &name) {
         _nextGraphPath = name;
@@ -75,6 +76,7 @@ void arc::Core::setPrevGraphical()
     if (_indexGraph == -1) {
         _indexGraph = _graphs.size() - 1;
     }
+    _graph.reset();
     _graph = std::unique_ptr<IGraphical>(_graphs[_indexGraph].second.get()->getInstance());
     _graph->setListLibraries(getNamesSharedGraphs(), [this](const std::string &name) {
         _nextGraphPath = name;
@@ -103,6 +105,7 @@ void arc::Core::setGraphical(const std::string &libname)
     _indexGraph = -1;
     std::for_each(_graphs.begin(), _graphs.end(), [this, &libname, &i, &username](const std::pair<std::string, std::unique_ptr<DLLoader<IGraphical>>> &pair) {
         if (getLibName(pair.first) == getLibName(libname)) {
+            _graph.reset();
             _graph = std::unique_ptr<IGraphical>(pair.second.get()->getInstance());
             _graph->setListLibraries(getNamesSharedGraphs(), [this](const std::string &name) {
                 _nextGraphPath = name;
