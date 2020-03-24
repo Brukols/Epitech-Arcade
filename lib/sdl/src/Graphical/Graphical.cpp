@@ -8,6 +8,7 @@
 #include "sdl/Graphical.hpp"
 #include "sdl/SceneMenu.hpp"
 #include "sdl/SceneGame.hpp"
+#include "sdl/SceneEndGame.hpp"
 
 arc::Graphical::Graphical()
 {
@@ -20,6 +21,7 @@ arc::Graphical::Graphical()
     _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
     _scenes[MAIN_MENU] = std::unique_ptr<IScene>(new SceneMenu());
     _scenes[GAME] = std::unique_ptr<IScene>(new SceneGame());
+    _scenes[END_GAME] = std::unique_ptr<IScene>(new SceneEndGame());
     _scenes[MAIN_MENU]->init();
 }
 
@@ -88,12 +90,13 @@ void arc::Graphical::setFunctionPlay(const std::function<void()> &function)
 
 void arc::Graphical::setFunctionRestart(const std::function<void()> &function)
 {
-    (void)function;
+    static_cast<SceneEndGame *>(_scenes[END_GAME].get())->setFunctionRestart(function);
 }
 
 void arc::Graphical::setFunctionMenu(const std::function<void()> &function)
 {
     static_cast<SceneGame *>(_scenes[GAME].get())->setFunctionMenu(function);
+    static_cast<SceneEndGame *>(_scenes[END_GAME].get())->setFunctionMenu(function);
 }
 
 void arc::Graphical::setFunctionTogglePause(const std::function<void()> &function)

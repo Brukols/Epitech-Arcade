@@ -33,6 +33,7 @@ void arc::SceneGame::setFunctionTogglePause(const std::function<void()> &functio
 
 void arc::SceneGame::setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info)
 {
+    _howToPlay.clear();
     int y = 620;
     std::for_each(info.begin(), info.end(), [this, &y](const std::pair<std::string, std::string> &pair) {
         Text *text = new Text();
@@ -47,6 +48,7 @@ void arc::SceneGame::setHowToPlay(const std::vector<std::pair<std::string, std::
 
 void arc::SceneGame::setGameStats(const std::vector<std::pair<std::string, std::string>> &info)
 {
+    _stats.clear();
     int y = 270;
     std::for_each(info.begin(), info.end(), [this, &y](const std::pair<std::string, std::string> &pair) {
         Text *text = new Text();
