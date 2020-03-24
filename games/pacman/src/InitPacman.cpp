@@ -203,6 +203,6 @@ void Pacman::initGameControls()
 void Pacman::initGameStats()
 {
     _gameStats.clear();
-    _gameStats.push_back("Score: " + std::to_string(_score));
-    _gameStats.push_back("Cherry: " + std::to_string(_nbCherry));
+    _gameStats.push_back(std::pair<std::string, std::string> ("Score", std::to_string(_score)));
+    _gameStats.push_back(std::pair<std::string, std::string> ("Cherry", std::to_string(_nbCherry)));
 }

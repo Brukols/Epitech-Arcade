@@ -42,11 +42,6 @@ const std::string &Pacman::getScore()
     return _strScore;
 }
 
-const std::map<char, std::pair<std::string, Color>> &Pacman::getVisualAssets() const
-{
-    return _visualAssets;
-}
-
 const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &Pacman::getControls() const
 {
     return _controls;
@@ -57,12 +52,12 @@ const std::vector<std::shared_ptr<Entity>> &Pacman::getEntities() const
     return _entities;
 }
 
-const std::vector<std::pair<std::string, std::string>> &Pacman::getGameControlsFormatString() const
+const std::vector<std::pair<std::string, std::string>> &Pacman::getGameControls() const
 {
     return _gameControls;
 }
 
-const std::vector<std::string> &Pacman::getGameStatsFormatString() const
+const std::vector<std::pair<std::string, std::string>> &Pacman::getGameStats() const
 {
     return _gameStats;
 }
