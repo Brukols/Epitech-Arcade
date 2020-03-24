@@ -12,14 +12,13 @@ void Pacman::initPacman()
     _start = std::chrono::system_clock::now();
     _end = std::chrono::system_clock::now();
     _title = "Pacman";
-    // _height = 36;
-    // _width = 48;
     _height = 11;
-    _width = 11;
+    _width = 20;
     _music = "";
     _sound = "";
     _score = 0;
-    _nbApple = 0;
+    _nbCherry = 0;
+    _nbPacGum = 0;
     initEntities();
     initVisualAssets();
     initControls();
@@ -30,31 +29,72 @@ void Pacman::initPacman()
 void Pacman::initEntities()
 {
     initPacpac();
-    initApple();
+    initCherry();
     initMap();
-    // initFruits();
+    initGhostBlinky();
+    initGhostPinky();
+    initGhostInky();
     initGhostClyde();
+}
+
+void Pacman::initGhostBlinky()
+{
+    std::shared_ptr<Entity> blinkyEntity(new Entity);
+    blinkyEntity->type = ENEMY;
+    blinkyEntity->spritePath = "./assets/pacman/blinky.png";
+    // blinkyEntity->backgroundColor = Color{255, 4, 5, 255}; //Red
+    blinkyEntity->orientation = Orientation::RIGHT;
+    blinkyEntity->x = 8;
+    blinkyEntity->y = 5;
+    _entities.push_back(blinkyEntity);
+    _blinky.push_back(blinkyEntity);
+}
+
+void Pacman::initGhostPinky()
+{
+    std::shared_ptr<Entity> pinkyEntity(new Entity);
+    pinkyEntity->type = ENEMY;
+    pinkyEntity->spritePath = "./assets/pacman/pinky.png";
+    // pinkyEntity->backgroundColor = Color{244, 158, 250, 255}; //Pink
+    pinkyEntity->orientation = Orientation::UP;
+    pinkyEntity->x = 9;
+    pinkyEntity->y = 5;
+    _entities.push_back(pinkyEntity);
+    _pinky.push_back(pinkyEntity);
+}
+
+void Pacman::initGhostInky()
+{
+    std::shared_ptr<Entity> inkyEntity(new Entity);
+    inkyEntity->type = ENEMY;
+    inkyEntity->spritePath = "./assets/pacman/inky.png";
+    // inkyEntity->backgroundColor = Color{11, 12, 231, 255}; //Blue
+    inkyEntity->orientation = Orientation::UP;
+    inkyEntity->x = 10;
+    inkyEntity->y = 5;
+    _entities.push_back(inkyEntity);
+    _inky.push_back(inkyEntity);
 }
 
 void Pacman::initGhostClyde()
 {
     std::shared_ptr<Entity> clydeEntity(new Entity);
     clydeEntity->type = ENEMY;
-    clydeEntity->spritePath = "";
-    clydeEntity->backgroundColor = Color{225, 127, 0, 255};
-    clydeEntity->orientation = Orientation::RIGHT;
-    clydeEntity->x = _width / 4;
-    clydeEntity->y = _height / 8;
+    clydeEntity->spritePath = "./assets/pacman/clyde.png";
+    // clydeEntity->backgroundColor = Color{243, 130, 2, 255}; //Orange
+    clydeEntity->orientation = Orientation::LEFT;
+    clydeEntity->x = 11;
+    clydeEntity->y = 5;
     _entities.push_back(clydeEntity);
     _clyde.push_back(clydeEntity);
 }
 
-void Pacman::initMap()
+void Pacman::initMap() //init _myMap and _pacGum
 {
     std::string readLine;
     int x = 0;
     int y = 0;
-    std::ifstream mapFile("./games/pacman/map.txt");  //On essaye d'ouvrir le fichier
+    std::ifstream mapFile("./games/pacman/map2.txt");  //On essaye d'ouvrir le fichier
 
     if(mapFile)
     {
@@ -66,12 +106,23 @@ void Pacman::initMap()
                     std::shared_ptr<Entity> mapEntity(new Entity);
                     mapEntity->type = OBSTACLE;
                     mapEntity->spritePath = "";
-                    mapEntity->backgroundColor = Color{25, 25, 166, 255};
+                    mapEntity->backgroundColor = Color{30, 17, 149, 255};
                     mapEntity->orientation = Orientation::LEFT;
                     mapEntity->x = x;
                     mapEntity->y = y;
                     _entities.push_back(mapEntity);
                     _myMap.push_back(mapEntity);
+                }
+                if (readLine[x] == '0') {
+                    std::shared_ptr<Entity> pacGumEntity(new Entity);
+                    pacGumEntity->type = CONSUMABLE;
+                    pacGumEntity->spritePath = "./assets/pacman/pacGum.png";
+                    // pacGumEntity->backgroundColor = Color{30, 17, 149, 255};
+                    pacGumEntity->orientation = Orientation::LEFT;
+                    pacGumEntity->x = x;
+                    pacGumEntity->y = y;
+                    _entities.push_back(pacGumEntity);
+                    _pacGum.push_back(pacGumEntity);
                 }
                 x++;
             }
@@ -87,33 +138,37 @@ void Pacman::initPacpac()
 {
     std::shared_ptr<Entity> pacmanEntity(new Entity);
     pacmanEntity->type = PLAYER;
-    pacmanEntity->spritePath = "";
-    pacmanEntity->backgroundColor = Color{255, 228, 58, 255};
+    pacmanEntity->spritePath = "./assets/pacman/pacpacLeft.png";
+    // pacmanEntity->backgroundColor = Color{250, 255, 1, 255};
     pacmanEntity->orientation = Orientation::LEFT;
-    pacmanEntity->x = _width / 2;
-    pacmanEntity->y = _height / 2;
+    pacmanEntity->x = 9;
+    pacmanEntity->y = 7;
     _entities.push_back(pacmanEntity);
     _pacman.push_back(pacmanEntity);
 }
 
-void Pacman::initApple()
+void Pacman::initCherry()
 {
     float random_x = rand () % _width;
     float random_y = rand () % _height;
 
-    while (isOnSnake(random_x, random_y) == true) {
-        random_x = rand () % _width;
-        random_y = rand () % _height;
-    }
     std::shared_ptr<Entity> fruitEntity(new Entity);
     fruitEntity->type = CONSUMABLE;
-    fruitEntity->spritePath = "";
+    fruitEntity->spritePath = "./assets/pacman/cherry.png";
     fruitEntity->backgroundColor = Color{227, 18, 18, 255};
     fruitEntity->orientation = Orientation::LEFT;
+
     fruitEntity->x = random_x;
     fruitEntity->y = random_y;
+
+    while (isCollision(fruitEntity)) {
+        float random_x = rand () % _width;
+        float random_y = rand () % _height;
+        fruitEntity->x = random_x;
+        fruitEntity->y = random_y;
+    }
     _entities.push_back(fruitEntity);
-    _apple.push_back(fruitEntity);
+    _cherry.push_back(fruitEntity);
 }
 
 void Pacman::initVisualAssets()
@@ -149,5 +204,5 @@ void Pacman::initGameStats()
 {
     _gameStats.clear();
     _gameStats.push_back("Score: " + std::to_string(_score));
-    _gameStats.push_back("Apple: " + std::to_string(_nbApple));
+    _gameStats.push_back("Cherry: " + std::to_string(_nbCherry));
 }
