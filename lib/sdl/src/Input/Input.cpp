@@ -40,6 +40,11 @@ void arc::Input::setPosition(int x, int y)
     _cursor->setPosition(x + 5, y + _textHover->getHeight() / 2 + 2);
 }
 
+const std::string &arc::Input::getText() const
+{
+    return (_text->getString());
+}
+
 void arc::Input::setSize(int w, int h)
 {
     _rect->setSize(w, h);
@@ -68,6 +73,8 @@ void arc::Input::setSelect(bool select)
 void arc::Input::setText(const std::string &text)
 {
     _text->setText(text);
+    _cursor->setPosition(_cursor->getPosX() + _text->getWidth(), _cursor->getPosY());
+    _cursorPosition = _text->getString().size();
 }
 
 void arc::Input::display(SDL_Renderer *window)
@@ -181,25 +188,25 @@ void arc::Input::event(const arc::Event::Type &actualEventType, const arc::Event
     int y;
 
     SDL_GetMouseState(&x, &y);
-    if (actualKeyPress == arc::Event::Key::LEFT && actualEventType == arc::Event::Type::KEY_RELEASED && _text->getString().size() != 0) {
+    if (actualKeyPress == arc::Event::Key::LEFT && actualEventType == arc::Event::Type::KEY_RELEASED && _text->getString().size() != 0 && _select) {
         moveCursorToLeft();
         resetClock();
         return;
-    } else if (actualKeyPress == arc::Event::Key::RIGHT && actualEventType == arc::Event::Type::KEY_RELEASED && _text->getString().size() != 0) {
+    } else if (actualKeyPress == arc::Event::Key::RIGHT && actualEventType == arc::Event::Type::KEY_RELEASED && _text->getString().size() != 0 && _select) {
         _add = true;
         moveCursorToRight();
         resetClock();
         return;
-    } else if (actualKeyPress == arc::Event::Key::BACKSPACE && actualEventType == arc::Event::Type::KEY_RELEASED && _text->getString().size() != 0) {
+    } else if (actualKeyPress == arc::Event::Key::BACKSPACE && actualEventType == arc::Event::Type::KEY_RELEASED && _text->getString().size() != 0 && _select) {
         moveCursorToLeft();
         deleteCharacter();
         resetClock();
         return;
-    } else if (actualKeyPress == arc::Event::Key::DELETE && actualEventType == arc::Event::Type::KEY_RELEASED && _text->getString().size() != 0) {
+    } else if (actualKeyPress == arc::Event::Key::DELETE && actualEventType == arc::Event::Type::KEY_RELEASED && _text->getString().size() != 0 && _select) {
         deleteCharacterForSuppr();
         resetClock();
         return;
-    } else if (actualKeyPress == arc::Event::Key::RETURN && actualEventType == arc::Event::Type::KEY_RELEASED) {
+    } else if (actualKeyPress == arc::Event::Key::RETURN && actualEventType == arc::Event::Type::KEY_RELEASED && _select) {
         _select = false;
         _rect->setOutline(false);
         return;

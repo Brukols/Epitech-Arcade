@@ -110,7 +110,7 @@ For the menu
 */
 const std::string &arc::Graphical::getUsername()
 {
-    return (_username);
+    return (static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->getUsername());
 }
 
 /*
@@ -118,7 +118,7 @@ For the menu
 */
 void arc::Graphical::setUsername(const std::string &username)
 {
-    (void)username;
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setUsername(username);
 }
 
 arc::IGraphical::Scene arc::Graphical::getScene() const

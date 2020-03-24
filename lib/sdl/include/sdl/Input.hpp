@@ -30,6 +30,7 @@ namespace arc
             void setColorOutline(const SDL_Color &color);
 
             void setText(const std::string &text);
+            const std::string &getText() const;
 
             void display(SDL_Renderer *window);
 

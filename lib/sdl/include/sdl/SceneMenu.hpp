@@ -36,6 +36,9 @@ namespace arc
             void setFunctionPlay(const std::function<void()> &function);
             void setScores(const std::vector<std::pair<std::string, std::string>> &scores);
 
+            const std::string &getUsername();
+            void setUsername(const std::string &username);
+
         private:
             void initRects();
             void initTexts();

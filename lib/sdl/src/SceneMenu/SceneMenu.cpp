@@ -45,3 +45,13 @@ void arc::SceneMenu::setScores(const std::vector<std::pair<std::string, std::str
 {
     _sceneScores->setScores(scores);
 }
+
+const std::string &arc::SceneMenu::getUsername()
+{
+    return (_inputUsername->getText());
+}
+
+void arc::SceneMenu::setUsername(const std::string &username)
+{
+    _inputUsername->setText(username);
+}

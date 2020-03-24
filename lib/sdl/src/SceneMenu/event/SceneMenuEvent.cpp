@@ -62,5 +62,9 @@ void arc::SceneMenu::event(arc::Event::Type &actualEventType, arc::Event::Key &a
         _listGames.event(actualEventType, actualKeyPress, event);
         _listGraphical.event(actualEventType, actualKeyPress, event);
         _inputUsername->event(actualEventType, actualKeyPress, event);
+        if (_inputUsername->isSelect()) {
+            actualEventType = arc::Event::Type::NO_EVENT;
+            actualKeyPress = arc::Event::Key::NONE;
+        }
     }
 }
