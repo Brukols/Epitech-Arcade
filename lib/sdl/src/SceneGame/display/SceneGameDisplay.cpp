@@ -24,5 +24,19 @@ void arc::SceneGame::display(SDL_Renderer *window)
         _cell.get()->display(window);
     });
 
+    std::for_each(_howToPlay.begin(), _howToPlay.end(), [&window](std::unique_ptr<Text> &text) {
+        text->display(window);
+    });
+
+    std::for_each(_stats.begin(), _stats.end(), [&window](std::unique_ptr<Text> &text) {
+        text->display(window);
+    });
+
+    std::for_each(_texts.begin(), _texts.end(), [&window](std::unique_ptr<Text> &text) {
+        text->display(window);
+    });
+
+    _title->display(window);
+
     SDL_RenderPresent(window);
 }

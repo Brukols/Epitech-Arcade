@@ -33,12 +33,30 @@ void arc::SceneGame::setFunctionTogglePause(const std::function<void()> &functio
 
 void arc::SceneGame::setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info)
 {
-    (void)info;
+    int y = 620;
+    std::for_each(info.begin(), info.end(), [this, &y](const std::pair<std::string, std::string> &pair) {
+        Text *text = new Text();
+        text->setFont(FONT, 16);
+        text->setText(pair.first + " : " + pair.second);
+        text->setPosition(20, y);
+        text->setColor({255, 255, 255, 255});
+        _howToPlay.push_back(std::unique_ptr<Text>(text));
+        y += 40;
+    });
 }
 
 void arc::SceneGame::setGameStats(const std::vector<std::pair<std::string, std::string>> &info)
 {
-    (void)info;
+    int y = 270;
+    std::for_each(info.begin(), info.end(), [this, &y](const std::pair<std::string, std::string> &pair) {
+        Text *text = new Text();
+        text->setFont(FONT, 16);
+        text->setText(pair.first + " : " + pair.second);
+        text->setPosition(20, y);
+        text->setColor({255, 255, 255, 255});
+        _stats.push_back(std::unique_ptr<Text>(text));
+        y += 40;
+    });
 }
 
 void arc::SceneGame::updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap)
@@ -57,5 +75,10 @@ void arc::SceneGame::setMapSize(size_t height, size_t width)
 
 void arc::SceneGame::setGameTitle(const std::string &game)
 {
-    (void)game;
+    _title = std::unique_ptr<Text>(new Text());
+
+    _title->setFont(FONT, 40);
+    _title->setText(game);
+    _title->setColor({255, 255, 255, 255});
+    _title->setPosition(350 / 2 - _title->getWidth() / 2, 30);
 }

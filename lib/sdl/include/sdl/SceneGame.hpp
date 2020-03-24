@@ -45,6 +45,7 @@ namespace arc
         private:
             void initRects();
             void initButtons();
+            void initTexts();
 
             void eventMenu();
 
@@ -54,6 +55,8 @@ namespace arc
             std::vector<std::unique_ptr<Rectangle>> _rects;
             std::vector<std::unique_ptr<Text>> _texts;
             std::vector<std::pair<std::unique_ptr<IButton>, void (SceneGame::*)()>> _buttons;
+            std::vector<std::unique_ptr<Text>> _howToPlay;
+            std::vector<std::unique_ptr<Text>> _stats;
 
             std::unique_ptr<Text> _title;
 
