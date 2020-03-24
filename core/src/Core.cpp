@@ -39,8 +39,8 @@ void arc::Core::functionPlay()
     _graph->setGameTitle(_game->getTitle());
     _graph->setControls(_game->getControls());
     _graph->setMapSize(_game->getMapHeight(), _game->getMapWidth());
-    _graph->setGameStats(_game->getGameControlsFormatString());
-    _graph->setHowToPlay(_game->getGameControlsFormatString());
+    _graph->setGameStats(_game->getGameStats());
+    _graph->setHowToPlay(_game->getGameControls());
     _graph->setScene(arc::IGraphical::GAME);
     _graph->setFunctionMenu([this]() {
         _graph->setScene(arc::IGraphical::MAIN_MENU);
@@ -63,7 +63,7 @@ void arc::Core::playArcade()
             setNextGraphical();
         if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM1)
             setPrevGraphical();
-        
+
         // if scene game
         if (_graph->getScene() == arc::IGraphical::GAME) {
             if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM9)

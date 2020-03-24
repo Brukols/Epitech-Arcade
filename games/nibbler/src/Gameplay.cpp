@@ -17,13 +17,14 @@ void Nibbler::restart()
 
 void Nibbler::updateGame()
 {
-    if (isGameOver() == true)
-        return;
+
     _end = std::chrono::system_clock::now();
     if (std::chrono::duration_cast<std::chrono::milliseconds>(_end - _start).count() > 200) {
         _start = std::chrono::system_clock::now();
         moveSnake();
     }
+    if (isGameOver() == true)
+        restart();
 }
 
 void Nibbler::moveSnake()
