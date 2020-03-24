@@ -13,6 +13,7 @@ arc::Input::Input()
     _text = std::unique_ptr<Text>(new Text());
     _textHover = std::unique_ptr<Text>(new Text());
     _text->setFont(FONT, 25);
+    _text->setColor({0, 0, 0, 255});
     _textHover->setFont(FONT, 25);
     _textHover->setText("Enter a username");
     _textHover->setColor({150, 150, 150, 255});
