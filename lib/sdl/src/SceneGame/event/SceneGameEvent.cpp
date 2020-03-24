@@ -8,6 +8,25 @@
 #include "sdl/SceneGame.hpp"
 #include "sdl/Utility.hpp"
 
+void arc::SceneGame::eventMenu()
+{
+    _eventMenu();
+}
+
+void arc::SceneGame::eventButtons(const arc::Event::Type &type, const arc::Event::Key &key)
+{
+    (void)key;
+    if (type != arc::Event::Type::MOUSE_RELEASED)
+        return;
+    int x;
+    int y;
+    SDL_GetMouseState(&x, &y);
+    std::for_each(_buttons.begin(), _buttons.end(), [this, &x, &y](std::pair<std::unique_ptr<IButton>, void (SceneGame::*)()> &button) {
+        if (button.first->isMouseHover(x, y))
+            (this->*button.second)();
+    });
+}
+
 void arc::SceneGame::event(arc::Event::Type &actualEventType, arc::Event::Key &actualKeyPress)
 {
     SDL_Event event;
@@ -20,6 +39,7 @@ void arc::SceneGame::event(arc::Event::Type &actualEventType, arc::Event::Key &a
             actualKeyPress = arc::Event::Key::NONE;
         if (actualKeyPress == arc::Event::Key::ESCAPE)
             actualEventType = arc::Event::Type::QUIT;
+        eventButtons(actualEventType, actualKeyPress);
         std::pair pair = std::pair<Event::Type, Event::Key>(actualEventType, actualKeyPress);
         if (_controls.count(pair)) {
             _controls[pair]();

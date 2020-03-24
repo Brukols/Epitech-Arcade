@@ -93,7 +93,7 @@ void arc::Graphical::setFunctionRestart(const std::function<void()> &function)
 
 void arc::Graphical::setFunctionMenu(const std::function<void()> &function)
 {
-    (void)function;
+    static_cast<SceneGame *>(_scenes[GAME].get())->setFunctionMenu(function);
 }
 
 void arc::Graphical::setFunctionTogglePause(const std::function<void()> &function)
