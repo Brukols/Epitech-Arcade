@@ -9,6 +9,7 @@
 
 arc::SceneEndGame::SceneEndGame()
 {
+    _listScores = std::unique_ptr<ListScores>(new ListScores());
 }
 
 arc::SceneEndGame::~SceneEndGame()
@@ -17,7 +18,7 @@ arc::SceneEndGame::~SceneEndGame()
 
 void arc::SceneEndGame::setScores(const std::vector<std::pair<std::string, std::string>> &scores)
 {
-    (void)scores;
+    _listScores->setScores(scores);
 }
 
 void arc::SceneEndGame::setFunctionRestart(const std::function<void()> &function)

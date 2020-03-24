@@ -10,6 +10,7 @@
 
 #include "IScene.hpp"
 #include "ButtonRect.hpp"
+#include "ListScores.hpp"
 
 #include <functional>
 #include <vector>
@@ -41,6 +42,8 @@ namespace arc
 
             std::function<void()> _eventRestart;
             std::function<void()> _eventMenu;
+
+            std::unique_ptr<ListScores> _listScores;
     };
 } // namespace arc
 

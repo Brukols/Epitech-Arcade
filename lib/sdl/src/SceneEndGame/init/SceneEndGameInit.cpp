@@ -21,7 +21,7 @@ static arc::IButton *initButtonMenu()
     text->setText("Menu");
     button->setRect(rect);
     button->setText(text);
-    button->setPosition(300, 800);
+    button->setPosition(400, 800);
     button->setColorHover({22, 168, 185, 255});
     return (button);
 }
@@ -40,7 +40,7 @@ static arc::IButton *initButtonRestart()
     text->setText("Restart");
     button->setRect(rect);
     button->setText(text);
-    button->setPosition(1200, 800);
+    button->setPosition(1180, 800);
     button->setColorHover({22, 168, 185, 255});
     return (button);
 }
@@ -55,4 +55,5 @@ void arc::SceneEndGame::initButtons()
 void arc::SceneEndGame::init()
 {
     initButtons();
+    _listScores->init();
 }

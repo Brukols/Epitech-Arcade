@@ -13,5 +13,7 @@ void arc::SceneEndGame::display(SDL_Renderer *window)
         button.first->display(window);
     });
 
+    _listScores->display(window);
+
     SDL_RenderPresent(window);
 }
