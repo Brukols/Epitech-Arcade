@@ -15,6 +15,7 @@ void arc::SceneMenu::eventExit()
 
 void arc::SceneMenu::eventPlay()
 {
+    _eventPlay();
 }
 
 void arc::SceneMenu::eventShowScores()

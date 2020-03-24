@@ -30,6 +30,8 @@ namespace arc
             void setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen);
             void setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen);
 
+            void setFunctionPlay(const std::function<void()> &function);
+
         private:
             void initRects();
             void initTexts();
@@ -47,6 +49,8 @@ namespace arc
             std::vector<std::pair<std::shared_ptr<IButton>, void (SceneMenu::*)()>> _buttons;
             ListLibraries _listGraphical;
             ListLibraries _listGames;
+
+            std::function<void()> _eventPlay;
 
             bool _exit = false;
     };

@@ -33,3 +33,8 @@ void arc::SceneMenu::setListLibraries(const std::vector<std::string> &libraries,
     _listGraphical.setNameLibraries(libraries, chosen);
     _listGraphical.setPosition(1300, 300);
 }
+
+void arc::SceneMenu::setFunctionPlay(const std::function<void()> &function)
+{
+    _eventPlay = function;
+}

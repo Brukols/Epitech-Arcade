@@ -81,7 +81,7 @@ For the menu
 */
 void arc::Graphical::setFunctionPlay(const std::function<void()> &function)
 {
-    (void)function;
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setFunctionPlay(function);
 }
 
 void arc::Graphical::setFunctionRestart(const std::function<void()> &function)
