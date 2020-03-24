@@ -36,6 +36,14 @@ namespace arc
             void event(const arc::Event::Type &actualEventType, const arc::Event::Key &actualKeyPress, const SDL_Event &event);
 
         private:
+            void moveCursorToLeft();
+            void moveCursorToRight();
+            void resetClock();
+            void deleteCharacter();
+            void addCharacter(const char *c);
+            void deleteCharacterForSuppr();
+
+        private:
             std::unique_ptr<Text> _text;
             std::unique_ptr<Rectangle> _rect;
             std::unique_ptr<Text> _textHover;
@@ -44,9 +52,16 @@ namespace arc
             SDL_Color _colorRectSelect;
             SDL_Color _colorOutlineRect = {255, 255, 255, 255};
 
+            std::clock_t _clock;
+            bool _cursorDisplay = true;
+            bool _editing = false;
+
             int _cursorPosition = 0;
 
             bool _select = false;
+
+            bool _delete = false;
+            bool _add = false;
     };
 } // namespace arc
 
