@@ -30,6 +30,8 @@ namespace arc
             void display(SDL_Renderer *window);
             void event(const arc::Event::Type &actualEventType, const arc::Event::Key &actualKeyPress, const SDL_Event &event);
 
+            bool isMouseHover() const;
+
         private:
             void initRects();
             void initTexts();

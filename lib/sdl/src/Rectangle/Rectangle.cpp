@@ -34,6 +34,7 @@ void arc::Rectangle::setColor(const SDL_Color &color)
 
 void arc::Rectangle::display(SDL_Renderer *window)
 {
+    SDL_SetRenderDrawBlendMode(window, SDL_BLENDMODE_BLEND);
     SDL_SetRenderDrawColor(window, _color.r, _color.g, _color.b, _color.a);
     SDL_RenderFillRect(window, &_rect);
     if (_outline) {

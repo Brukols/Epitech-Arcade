@@ -20,6 +20,8 @@ void arc::SceneMenu::eventPlay()
 
 void arc::SceneMenu::eventShowScores()
 {
+    _sceneScores->setActivate(true);
+    _sceneScores->init();
 }
 
 void arc::SceneMenu::eventButtons(const arc::Event::Type &type, const arc::Event::Key &key)
@@ -52,6 +54,10 @@ void arc::SceneMenu::event(arc::Event::Type &actualEventType, arc::Event::Key &a
             actualKeyPress = arc::Event::Key::NONE;
         if (actualKeyPress == arc::Event::Key::ESCAPE)
             actualEventType = arc::Event::Type::QUIT;
+        if (_sceneScores->isActivate()) {
+            _sceneScores->event(actualEventType, actualKeyPress, event);
+            return;
+        }
         eventButtons(actualEventType, actualKeyPress);
         _listGames.event(actualEventType, actualKeyPress, event);
         _listGraphical.event(actualEventType, actualKeyPress, event);

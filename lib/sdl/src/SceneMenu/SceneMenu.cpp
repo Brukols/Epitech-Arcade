@@ -9,6 +9,7 @@
 
 arc::SceneMenu::SceneMenu()
 {
+    _sceneScores = std::unique_ptr<SceneScores>(new SceneScores);
     _listGames.setFont(FONT);
     _listGraphical.setFont(FONT);
 }
@@ -37,4 +38,9 @@ void arc::SceneMenu::setListLibraries(const std::vector<std::string> &libraries,
 void arc::SceneMenu::setFunctionPlay(const std::function<void()> &function)
 {
     _eventPlay = function;
+}
+
+void arc::SceneMenu::setScores(const std::vector<std::pair<std::string, std::string>> &scores)
+{
+    _sceneScores->setScores(scores);
 }

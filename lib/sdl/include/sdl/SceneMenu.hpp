@@ -15,6 +15,8 @@
 #include <algorithm>
 #include <memory>
 #include "sdl/ListLibraries.hpp"
+#include "sdl/ListScores.hpp"
+#include "sdl/SceneScores.hpp"
 
 namespace arc
 {
@@ -31,6 +33,7 @@ namespace arc
             void setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen);
 
             void setFunctionPlay(const std::function<void()> &function);
+            void setScores(const std::vector<std::pair<std::string, std::string>> &scores);
 
         private:
             void initRects();
@@ -51,6 +54,10 @@ namespace arc
             ListLibraries _listGames;
 
             std::function<void()> _eventPlay;
+
+            std::unique_ptr<ListScores> _listScores;
+
+            std::unique_ptr<SceneScores> _sceneScores;
 
             bool _exit = false;
     };

@@ -26,6 +26,7 @@ SRCS	=	src/Graphical/Graphical.cpp		\
 			src/SceneEndGame/init/SceneEndGameInit.cpp	\
 			src/SceneEndGame/event/SceneEndGameEvent.cpp	\
 			src/SceneEndGame/display/SceneEndGameDisplay.cpp	\
+			src/SceneScores/SceneScores.cpp		\
 			src/Utility/Utility.cpp	\
 			src/Rectangle/Rectangle.cpp		\
 			src/Text/Text.cpp	\

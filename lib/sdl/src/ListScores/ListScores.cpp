@@ -187,3 +187,12 @@ void arc::ListScores::event(const arc::Event::Type &actualEventType, const arc::
         return;
     }
 }
+
+bool arc::ListScores::isMouseHover() const
+{
+    int x;
+    int y;
+
+    SDL_GetMouseState(&x, &y);
+    return (_rects[0]->isMouseHover(x, y));
+}
