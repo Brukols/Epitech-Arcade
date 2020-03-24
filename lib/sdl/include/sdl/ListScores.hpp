@@ -40,7 +40,7 @@ namespace arc
         private:
             std::vector<std::unique_ptr<Rectangle>> _rects;
             std::vector<std::unique_ptr<Text>> _texts;
-            std::vector<std::unique_ptr<IButton>> _buttons;
+            std::vector<std::pair<std::unique_ptr<ButtonRect>, std::unique_ptr<ButtonRect>>> _buttons;
             std::string _username = "";
 
             int _begin = 0;

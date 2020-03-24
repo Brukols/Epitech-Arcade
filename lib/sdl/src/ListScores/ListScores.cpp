@@ -59,7 +59,7 @@ void arc::ListScores::setUsername(const std::string &username)
     _username = username;
 }
 
-static arc::IButton *initButtonUsername(const std::string &username, int y)
+static arc::ButtonRect *initButtonUsername(const std::string &username, int y)
 {
     arc::ButtonRect *button = new arc::ButtonRect();
     arc::Rectangle rect;
@@ -78,7 +78,7 @@ static arc::IButton *initButtonUsername(const std::string &username, int y)
     return (button);
 }
 
-static arc::IButton *initButtonScore(const std::string &score, int y)
+static arc::ButtonRect *initButtonScore(const std::string &score, int y)
 {
     arc::ButtonRect *button = new arc::ButtonRect();
     arc::Rectangle rect;
@@ -99,21 +99,22 @@ static arc::IButton *initButtonScore(const std::string &score, int y)
 
 void arc::ListScores::setScores(const std::vector<std::pair<std::string, std::string>> &scores)
 {
+    _buttons.clear();
+    _begin = 0;
     int y = 199;
     int i = 0;
     std::for_each(scores.begin(), scores.end(), [this, &y, &i](const std::pair<std::string, std::string> &pair) {
-        _buttons.push_back(std::unique_ptr<IButton>(initButtonUsername(pair.first, y)));
-        _buttons.push_back(std::unique_ptr<IButton>(initButtonScore(pair.second, y)));
+        _buttons.push_back(std::pair<std::unique_ptr<ButtonRect>, std::unique_ptr<ButtonRect>>(initButtonUsername(pair.first, y), initButtonScore(pair.second, y)));
         if (i % 2) {
-            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].get())->setColor({0, 28, 45, 255});
-            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].get())->setColorHover({0, 28, 45, 255});
-            static_cast<ButtonRect *>(_buttons[_buttons.size() - 2].get())->setColor({0, 28, 45, 255});
-            static_cast<ButtonRect *>(_buttons[_buttons.size() - 2].get())->setColorHover({0, 28, 45, 255});
+            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].first.get())->setColor({0, 28, 45, 255});
+            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].first.get())->setColorHover({0, 28, 45, 255});
+            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].second.get())->setColor({0, 28, 45, 255});
+            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].second.get())->setColorHover({0, 28, 45, 255});
         } else {
-            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].get())->setColor({0, 48, 65, 255});
-            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].get())->setColorHover({0, 48, 65, 255});
-            static_cast<ButtonRect *>(_buttons[_buttons.size() - 2].get())->setColor({0, 48, 65, 255});
-            static_cast<ButtonRect *>(_buttons[_buttons.size() - 2].get())->setColorHover({0, 48, 65, 255});
+            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].first.get())->setColor({0, 48, 65, 255});
+            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].first.get())->setColorHover({0, 48, 65, 255});
+            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].second.get())->setColor({0, 48, 65, 255});
+            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].second.get())->setColorHover({0, 48, 65, 255});
         }
         y += 50;
         i++;
@@ -127,14 +128,15 @@ void arc::ListScores::display(SDL_Renderer *window)
     });
 
     int i = 0;
-    std::for_each(_buttons.begin(), _buttons.end(), [&window, &i, this](std::unique_ptr<IButton> &button) {
-        if (i > 19 + _begin)
+    std::for_each(_buttons.begin(), _buttons.end(), [&window, &i, this](std::pair<std::unique_ptr<ButtonRect>, std::unique_ptr<ButtonRect>> &button) {
+        if (i > 9 + _begin)
             return;
         if (i < _begin) {
             i++;
             return;
         }
-        button->display(window);
+        button.first->display(window);
+        button.second->display(window);
         i++;
     });
 
@@ -143,7 +145,45 @@ void arc::ListScores::display(SDL_Renderer *window)
     });
 }
 
+void arc::ListScores::eventScrollDown()
+{
+    if (_buttons.size() <= 9)
+        return;
+    if (static_cast<long unsigned int>(_begin + 1) == _buttons.size() - 9)
+        return;
+    _begin++;
+    std::for_each(_buttons.begin(), _buttons.end(), [this](std::pair<std::unique_ptr<ButtonRect>, std::unique_ptr<ButtonRect>> &button) {
+        button.first->setPosition(button.first->getPosX(), button.first->getPosY() - 50);
+        button.second->setPosition(button.second->getPosX(), button.second->getPosY() - 50);
+    });
+}
+
+void arc::ListScores::eventScrollUp()
+{
+    if (_begin == 0)
+        return;
+    _begin--;
+    std::for_each(_buttons.begin(), _buttons.end(), [this](std::pair<std::unique_ptr<ButtonRect>, std::unique_ptr<ButtonRect>> &button) {
+        button.first->setPosition(button.first->getPosX(), button.first->getPosY() + 50);
+        button.second->setPosition(button.second->getPosX(), button.second->getPosY() + 50);
+    });
+}
+
 void arc::ListScores::event(const arc::Event::Type &actualEventType, const arc::Event::Key &actualKeyPress, const SDL_Event &event)
 {
+    (void)actualKeyPress;
+    int x;
+    int y;
 
+    SDL_GetMouseState(&x, &y);
+    if (actualEventType == arc::Event::Type::MOUSE_WHEEL) {
+        if (!_rects[0]->isMouseHover(x, y))
+            return;
+        if (event.wheel.y > 0) {
+            eventScrollUp();
+        } else if (event.wheel.y < 0) {
+            eventScrollDown();
+        }
+        return;
+    }
 }

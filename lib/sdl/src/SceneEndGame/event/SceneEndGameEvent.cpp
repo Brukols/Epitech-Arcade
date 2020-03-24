@@ -45,5 +45,6 @@ void arc::SceneEndGame::event(arc::Event::Type &actualEventType, arc::Event::Key
         if (actualKeyPress == arc::Event::Key::ESCAPE)
             actualEventType = arc::Event::Type::QUIT;
         eventButtons(actualEventType, actualKeyPress);
+        _listScores->event(actualEventType, actualKeyPress, event);
     }
 }
