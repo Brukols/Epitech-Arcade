@@ -28,10 +28,13 @@ namespace arc
 
         private:
             sf::RectangleShape _rect;
+            sf::RectangleShape _cursor;
+            sf::Text _textHover;
             sf::Text _text;
             sf::String _str;
             bool _focus = false;
             bool _display = true;
+            int _position = 0;
     };
 } // namespace arc
 

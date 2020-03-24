@@ -18,7 +18,7 @@ arc::Input initInputUsername(const sf::Font &font)
 
     sf::Text _text;
     _text.setFont(font);
-    _text.setString("|");
+    _text.setString("");
     _text.setCharacterSize(30);
     _text.setOutlineThickness(4);
     _text.setOutlineColor(sf::Color::Black);
