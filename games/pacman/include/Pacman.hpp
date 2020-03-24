@@ -104,7 +104,7 @@ namespace arc {
             void moveInky();
             void moveClyde();
 
-            // void updateOrientationPacman();
+            void updateOrientationPacman();
             bool isCollision(std::vector<std::shared_ptr<Entity>>);
             bool isPacpacEaten(std::vector<std::shared_ptr<Entity>>);
             bool isOnSnake(float x, float y);

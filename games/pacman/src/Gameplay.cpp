@@ -31,10 +31,10 @@ void Pacman::updateGame()
             moveInky();
             moveClyde();
     }
-    // if (isPacpacEaten(_blinky) || isPacpacEaten(_pinky) || isPacpacEaten(_inky) || isPacpacEaten(_clyde))
-    //     restart();
-    if (isPacpacEaten(_blinky))
+    if (isPacpacEaten(_blinky) || isPacpacEaten(_pinky) || isPacpacEaten(_inky) || isPacpacEaten(_clyde))
         restart();
+    // if (isPacpacEaten(_blinky))
+    //     restart();
     // if (isGameOver() == true)
     //     restart();
 }
@@ -221,7 +221,7 @@ void Pacman::movePacman()
             _pacman[0]->x += 1;
     }
 
-    //updateOrientationSnake();
+    updateOrientationPacman();
     if (doYouEat() == true) {
         _score += 1;
         initApple();
@@ -250,14 +250,20 @@ bool Pacman::doYouEat()
     return true;
 }
 
-// void Pacman::updateOrientationPacman()
-// {
-//     int i = 0;
+void Pacman::updateOrientationPacman()
+{
+    if (_pacman[0]->orientation == Orientation::LEFT)
+        _pacman[0]->spritePath = "./assets/pacman/pacpacLeft.png";
+    
+    if (_pacman[0]->orientation == Orientation::DOWN)
+        _pacman[0]->spritePath = "./assets/pacman/pacpacDown.png";
 
-//     for (i = _pacman.size() - 1; i > 0; i--) {
-//         _pacman[i]->orientation = _pacman[i - 1]->orientation;
-//     }
-// }
+    if (_pacman[0]->orientation == Orientation::RIGHT)
+        _pacman[0]->spritePath = "./assets/pacman/pacpacRight.png";
+
+    if (_pacman[0]->orientation == Orientation::UP)
+        _pacman[0]->spritePath = "./assets/pacman/pacpacUp.png";
+}
 
 bool Pacman::isGameOver() const
 {
