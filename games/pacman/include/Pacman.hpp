@@ -9,7 +9,6 @@
 #define PACMAN_HPP_
 
 #include "IGame.hpp"
-
 #include <ctime>
 #include <chrono>
 #include <iostream>

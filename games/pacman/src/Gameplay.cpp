@@ -224,7 +224,7 @@ void Pacman::movePacman()
 
     updateOrientationPacman();
     if (doYouEat() == true) {
-        _score += 1;
+        _score += 100;
         initCherry();
         _nbCherry++;
         initGameStats();
