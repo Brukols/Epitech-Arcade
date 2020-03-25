@@ -12,6 +12,9 @@
 #include "Rectangle.hpp"
 #include "Text.hpp"
 #include <memory>
+#include "ButtonRect.hpp"
+#include <functional>
+#include "Utils.hpp"
 
 namespace arc
 {
@@ -25,9 +28,19 @@ namespace arc
             bool isActivate() const;
             void setActivate(bool activate);
 
+            void setFunctionTogglePause(const std::function<void()> &function);
+            void event(const arc::Event::Type &actualEventType, const arc::Event::Key &actualKeyPress, const SDL_Event &event);
+
+        private:
+            void eventTogglePause();
+            void initButtonPlay();
+
         private:
             std::unique_ptr<Rectangle> _bg;
             std::unique_ptr<Text> _textPause;
+            std::unique_ptr<ButtonRect> _buttonPlay;
+
+            std::function<void()> _eventTogglePause;
 
             bool _activate = false;
     };

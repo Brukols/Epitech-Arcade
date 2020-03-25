@@ -29,7 +29,7 @@ void arc::SceneGame::setFunctionMenu(const std::function<void()> &function)
 
 void arc::SceneGame::setFunctionTogglePause(const std::function<void()> &function)
 {
-    _eventPause = function;
+    _scenePause->setFunctionTogglePause(function);
 }
 
 void arc::SceneGame::setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info)

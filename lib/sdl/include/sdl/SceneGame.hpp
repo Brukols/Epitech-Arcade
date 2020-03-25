@@ -65,7 +65,6 @@ namespace arc
             std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> _controls;
             std::vector<std::shared_ptr<Entity>> _gameMap;
             std::function<void()> _eventMenu;
-            std::function<void()> _eventPause;
 
             std::unique_ptr<Rectangle> _cell;
             std::unique_ptr<ScenePause> _scenePause;

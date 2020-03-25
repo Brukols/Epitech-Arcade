@@ -41,8 +41,10 @@ void arc::SceneGame::event(arc::Event::Type &actualEventType, arc::Event::Key &a
             actualKeyPress = arc::Event::Key::NONE;
         if (actualKeyPress == arc::Event::Key::ESCAPE)
             actualEventType = arc::Event::Type::QUIT;
-        if (_scenePause->isActivate())
+        if (_scenePause->isActivate()) {
+            _scenePause->event(actualEventType, actualKeyPress, event);
             continue;
+        }
         eventButtons(actualEventType, actualKeyPress);
         std::pair pair = std::pair<Event::Type, Event::Key>(actualEventType, actualKeyPress);
         if (_controls.count(pair)) {

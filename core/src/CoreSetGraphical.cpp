@@ -18,6 +18,31 @@ const std::vector<std::string> arc::Core::getNamesSharedGraphs()
     return (vector);
 }
 
+void arc::Core::initGraphical(const std::string &username, IGraphical::Scene scene)
+{
+    _graph->setListLibraries(getNamesSharedGraphs(), [this](const std::string &name) {
+        _nextGraphPath = name;
+    }, _indexGraph);
+    _graph->setListGames(getNamesSharedGames(), [this](const std::string &name) {
+        setGame(name);
+        _pathScoreFile = "." + _game->getTitle();
+        _graph->setScores(getScores());
+    }, _indexGame);
+    _graph->setFunctionPlay([this]() {
+        if (_game)
+            functionPlay();
+    });
+    _graph->setFunctionTogglePause([this]() {
+        _pause = !_pause;
+        _graph->setGamePause(_pause);
+    });
+    if (scene == IGraphical::GAME) {
+        functionPlay();
+    }
+    _graph.get()->setScene(scene);
+    _graph.get()->setUsername(username);
+}
+
 void arc::Core::initGraphs()
 {
     try {
@@ -48,23 +73,7 @@ void arc::Core::setNextGraphical()
     }
     _graph.reset();
     _graph = std::unique_ptr<IGraphical>(_graphs[_indexGraph].second.get()->getInstance());
-    _graph->setListLibraries(getNamesSharedGraphs(), [this](const std::string &name) {
-        _nextGraphPath = name;
-    }, _indexGraph);
-    _graph->setListGames(getNamesSharedGames(), [this](const std::string &name) {
-        setGame(name);
-        _pathScoreFile = "." + _game->getTitle();
-        _graph->setScores(getScores());
-    }, _indexGame);
-    _graph->setFunctionPlay([this]() {
-        if (_game)
-            functionPlay();
-    });
-    if (scene == IGraphical::GAME) {
-        functionPlay();
-    }
-    _graph.get()->setScene(scene);
-    _graph.get()->setUsername(username);
+    initGraphical(username, scene);
 }
 
 void arc::Core::setPrevGraphical()
@@ -78,23 +87,7 @@ void arc::Core::setPrevGraphical()
     }
     _graph.reset();
     _graph = std::unique_ptr<IGraphical>(_graphs[_indexGraph].second.get()->getInstance());
-    _graph->setListLibraries(getNamesSharedGraphs(), [this](const std::string &name) {
-        _nextGraphPath = name;
-    }, _indexGraph);
-    _graph->setListGames(getNamesSharedGames(), [this](const std::string &name) {
-        setGame(name);
-        _pathScoreFile = "." + _game->getTitle();
-        _graph->setScores(getScores());
-    }, _indexGame);
-    _graph->setFunctionPlay([this]() {
-        if (_game)
-            functionPlay();
-    });
-    if (scene == IGraphical::GAME) {
-        functionPlay();
-    }
-    _graph.get()->setScene(scene);
-    _graph.get()->setUsername(username);
+    initGraphical(username, scene);
 }
 
 void arc::Core::setGraphical(const std::string &libname)
@@ -107,19 +100,7 @@ void arc::Core::setGraphical(const std::string &libname)
         if (getLibName(pair.first) == getLibName(libname)) {
             _graph.reset();
             _graph = std::unique_ptr<IGraphical>(pair.second.get()->getInstance());
-            _graph->setListLibraries(getNamesSharedGraphs(), [this](const std::string &name) {
-                _nextGraphPath = name;
-            }, i);
-            _graph->setListGames(getNamesSharedGames(), [this](const std::string &name) {
-                setGame(name);
-                _pathScoreFile = "." + _game->getTitle();
-                _graph->setScores(getScores());
-            }, _indexGame);
-            _graph->setFunctionPlay([this]() {
-                if (_game)
-                    functionPlay();
-            });
-            _graph->setUsername(username);
+            initGraphical(username, arc::IGraphical::MAIN_MENU);
             _indexGraph = i;
         }
         i++;
@@ -127,18 +108,7 @@ void arc::Core::setGraphical(const std::string &libname)
     if (_indexGraph == -1) {
         _initialGraph = std::unique_ptr<DLLoader<IGraphical>>(new DLLoader<IGraphical>(libname));
         _graph = std::unique_ptr<IGraphical>(_initialGraph.get()->getInstance());
-        _graph->setListLibraries(getNamesSharedGraphs(), [this](const std::string &name) {
-            _nextGraphPath = name;
-        }, -1);
-        _graph->setListGames(getNamesSharedGames(), [this](const std::string &name) {
-            setGame(name);
-            _pathScoreFile = "." + _game->getTitle();
-            _graph->setScores(getScores());
-        }, -1);
-        _graph->setFunctionPlay([this]() {
-            if (_game)
-                functionPlay();
-        });
+        initGraphical("", arc::IGraphical::MAIN_MENU);
         _indexGraph = 0;
     }
 }
