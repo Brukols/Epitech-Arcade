@@ -14,6 +14,7 @@ arc::SceneMenu::SceneMenu()
     _listGraphical.setFont(FONT);
     initInputUsername();
     _sceneHowToPlay = std::unique_ptr<SceneHowToPlay>(new SceneHowToPlay());
+    initButtons();
 }
 
 arc::SceneMenu::~SceneMenu()
