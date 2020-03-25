@@ -6,6 +6,7 @@
 */
 
 #include "sdl/SceneMenu.hpp"
+#include "sdl/Utility.hpp"
 
 static arc::IButton *initButtonPlay()
 {
@@ -13,7 +14,7 @@ static arc::IButton *initButtonPlay()
     arc::Rectangle rect;
     arc::Text *text = new arc::Text();
 
-    rect.setColor({2, 148, 165, 255});
+    rect.setColor(arc::Utility::getColor(arc::Utility::BUTTON));
     rect.setSize(220, 120);
 
     text->setPosition(800, 50);
@@ -23,7 +24,7 @@ static arc::IButton *initButtonPlay()
     button->setRect(rect);
     button->setText(text);
     button->setPosition(100, 250);
-    button->setColorHover({22, 168, 185, 255});
+    button->setColorHover(arc::Utility::getColor(arc::Utility::BUTTON_HOVER));
     button->setActivate(false);
     return (button);
 }
@@ -34,7 +35,7 @@ static arc::IButton *initButtonShowScores()
     arc::Rectangle rect;
     arc::Text *text = new arc::Text();
 
-    rect.setColor({2, 148, 165, 255});
+    rect.setColor(arc::Utility::getColor(arc::Utility::BUTTON));
     rect.setSize(220, 120);
 
     text->setPosition(800, 50);
@@ -44,7 +45,7 @@ static arc::IButton *initButtonShowScores()
     button->setRect(rect);
     button->setText(text);
     button->setPosition(100, 450);
-    button->setColorHover({22, 168, 185, 255});
+    button->setColorHover(arc::Utility::getColor(arc::Utility::BUTTON_HOVER));
     button->setActivate(false);
     return (button);
 }
@@ -55,7 +56,7 @@ static arc::IButton *initButtonExit()
     arc::Rectangle rect;
     arc::Text *text = new arc::Text();
 
-    rect.setColor({2, 148, 165, 255});
+    rect.setColor(arc::Utility::getColor(arc::Utility::BUTTON));
     rect.setSize(220, 120);
 
     text->setPosition(800, 50);
@@ -65,7 +66,7 @@ static arc::IButton *initButtonExit()
     button->setRect(rect);
     button->setText(text);
     button->setPosition(100, 850);
-    button->setColorHover({22, 168, 185, 255});
+    button->setColorHover(arc::Utility::getColor(arc::Utility::BUTTON_HOVER));
     return (button);
 }
 
@@ -75,7 +76,7 @@ static arc::IButton *initButtonHowToPlay()
     arc::Rectangle rect;
     arc::Text *text = new arc::Text();
 
-    rect.setColor({2, 148, 165, 255});
+    rect.setColor(arc::Utility::getColor(arc::Utility::BUTTON));
     rect.setSize(220, 120);
 
     text->setPosition(800, 50);
@@ -85,7 +86,47 @@ static arc::IButton *initButtonHowToPlay()
     button->setRect(rect);
     button->setText(text);
     button->setPosition(100, 650);
-    button->setColorHover({22, 168, 185, 255});
+    button->setColorHover(arc::Utility::getColor(arc::Utility::BUTTON_HOVER));
+    return (button);
+}
+
+static arc::IButton *initButtonChangeToBlueTheme()
+{
+    arc::ButtonRect *button = new arc::ButtonRect();
+    arc::Rectangle rect;
+    arc::Text *text = new arc::Text();
+
+    rect.setColor(arc::Utility::getColor(arc::Utility::BUTTON));
+    rect.setSize(220, 120);
+
+    text->setPosition(800, 50);
+    text->setColor({255, 255, 255, 255});
+    text->setFont(FONT, 22);
+    text->setText("Switch to blue");
+    button->setRect(rect);
+    button->setText(text);
+    button->setPosition(1600, 50);
+    button->setColorHover(arc::Utility::getColor(arc::Utility::BUTTON_HOVER));
+    return (button);
+}
+
+static arc::IButton *initButtonChangeToRedTheme()
+{
+    arc::ButtonRect *button = new arc::ButtonRect();
+    arc::Rectangle rect;
+    arc::Text *text = new arc::Text();
+
+    rect.setColor(arc::Utility::getColor(arc::Utility::BUTTON));
+    rect.setSize(220, 120);
+
+    text->setPosition(800, 50);
+    text->setColor({255, 255, 255, 255});
+    text->setFont(FONT, 22);
+    text->setText("Switch to Red");
+    button->setRect(rect);
+    button->setText(text);
+    button->setPosition(1600, 50);
+    button->setColorHover(arc::Utility::getColor(arc::Utility::BUTTON_HOVER));
     return (button);
 }
 
@@ -96,4 +137,9 @@ void arc::SceneMenu::initButtons()
     _buttons.push_back(std::make_pair(std::shared_ptr<IButton>(initButtonShowScores()), &arc::SceneMenu::eventShowScores));
     _buttons.push_back(std::make_pair(std::shared_ptr<IButton>(initButtonHowToPlay()), &arc::SceneMenu::eventHowToPlay));
     _buttons.push_back(std::make_pair(std::shared_ptr<IButton>(initButtonExit()), &arc::SceneMenu::eventExit));
+    if (Utility::getTheme() == Utility::BLUE) {
+        _buttons.push_back(std::make_pair(std::shared_ptr<IButton>(initButtonChangeToRedTheme()), &arc::SceneMenu::eventChangeTheme));
+    } else {
+        _buttons.push_back(std::make_pair(std::shared_ptr<IButton>(initButtonChangeToBlueTheme()), &arc::SceneMenu::eventChangeTheme));
+    }
 }

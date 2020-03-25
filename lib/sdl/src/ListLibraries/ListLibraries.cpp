@@ -6,6 +6,7 @@
 */
 
 #include "sdl/ListLibraries.hpp"
+#include "sdl/Utility.hpp"
 
 arc::ListLibraries::ListLibraries()
 {
@@ -24,6 +25,23 @@ void arc::ListLibraries::setFont(const std::string &path)
 void arc::ListLibraries::setEventList(const std::function<void (const std::string &)> &fct)
 {
     _eventList = fct;
+}
+
+void arc::ListLibraries::changeColor()
+{
+    int i = 0;
+    std::for_each(_buttonsList.begin(), _buttonsList.end(), [&i](std::pair<ButtonRect, std::string> &button) {
+        if (i % 2) {
+            button.first.setColor(Utility::getColor(Utility::BUTTON_LIST));
+            button.first.setColorHover(arc::Utility::getColor(arc::Utility::BUTTON_LIST_HOVER));
+            button.first.setColorSelect(arc::Utility::getColor(arc::Utility::BUTTON_LIST_HOVER));
+        } else {
+            button.first.setColor(Utility::getColor(Utility::BUTTON_LIST));
+            button.first.setColorHover(arc::Utility::getColor(arc::Utility::BUTTON_LIST_HOVER));
+            button.first.setColorSelect(arc::Utility::getColor(arc::Utility::BUTTON_LIST_HOVER));
+        }
+        i++;
+    });
 }
 
 void arc::ListLibraries::setNameList(const std::string &nameList)
@@ -61,8 +79,8 @@ static arc::ButtonRect initButtonList(int y, const std::string &name)
     button.setRect(rect);
     button.setText(text);
     button.setPosition(1, y);
-    button.setColorHover({22, 168, 185, 255});
-    button.setColorSelect({22, 168, 185, 255});
+    button.setColorHover(arc::Utility::getColor(arc::Utility::BUTTON_LIST_HOVER));
+    button.setColorSelect(arc::Utility::getColor(arc::Utility::BUTTON_LIST_HOVER));
     return (button);
 }
 
@@ -81,9 +99,9 @@ void arc::ListLibraries::setNameLibraries(const std::vector<std::string> &list, 
         if (i == chosen)
             _buttonsList[_buttonsList.size() - 1].first.setSelect(true);
         if (i % 2) {
-            _buttonsList[_buttonsList.size() - 1].first.setColor({0, 28, 45, 255});
+            _buttonsList[_buttonsList.size() - 1].first.setColor(Utility::getColor(Utility::BUTTON_LIST));
         } else {
-            _buttonsList[_buttonsList.size() - 1].first.setColor({0, 48, 65, 255});
+            _buttonsList[_buttonsList.size() - 1].first.setColor(Utility::getColor(Utility::BUTTON_LIST_2));
         }
         i++;
     });

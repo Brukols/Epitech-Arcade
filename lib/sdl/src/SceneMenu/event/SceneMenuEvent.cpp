@@ -8,6 +8,15 @@
 #include "sdl/SceneMenu.hpp"
 #include "sdl/Utility.hpp"
 
+void arc::SceneMenu::eventChangeTheme()
+{
+    Utility::getTheme((Utility::getTheme() == Utility::BLUE ? Utility::ORNAMENTAL : Utility::BLUE));
+
+    initButtons();
+    _listGames.changeColor();
+    _listGraphical.changeColor();
+}
+
 void arc::SceneMenu::eventExit()
 {
     _exit = true;

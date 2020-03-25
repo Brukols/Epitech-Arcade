@@ -50,6 +50,7 @@ namespace arc
             void eventPlay();
             void eventShowScores();
             void eventHowToPlay();
+            void eventChangeTheme();
 
             void eventButtons(const arc::Event::Type &type, const arc::Event::Key &key);
         

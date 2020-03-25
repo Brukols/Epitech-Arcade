@@ -37,7 +37,7 @@ arc::Graphical::~Graphical()
 void arc::Graphical::display()
 {
     Utility::changeCursor(SDL_SYSTEM_CURSOR_ARROW);
-    SDL_SetRenderDrawColor(_renderer, 3, 53, 62, 255);
+    SDL_SetRenderDrawColor(_renderer, Utility::getColor(Utility::BACKGROUND_COLOR).r, Utility::getColor(Utility::BACKGROUND_COLOR).g, Utility::getColor(Utility::BACKGROUND_COLOR).b, Utility::getColor(Utility::BACKGROUND_COLOR).a);
     SDL_RenderClear(_renderer);
     _scenes[_actualScene]->display(_renderer);
     _scenes[_actualScene]->event(_actualEventType, _actualKeyPress);

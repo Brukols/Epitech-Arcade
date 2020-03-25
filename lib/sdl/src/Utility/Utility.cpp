@@ -21,6 +21,45 @@ void arc::Utility::changeCursor(SDL_SystemCursor system, bool display)
     }
 }
 
+arc::Utility::Theme arc::Utility::getTheme(Theme theme)
+{
+    static Theme _theme = BLUE;
+
+    if (theme == NONE)
+        return (_theme);
+    _theme = theme;
+    return (_theme);
+}
+
+SDL_Color arc::Utility::getColor(ColorType type)
+{
+    static std::map<ColorType, SDL_Color> blueMap = []() -> std::map<ColorType, SDL_Color> {
+        std::map<ColorType, SDL_Color> map;
+
+        map[BUTTON] = {2, 148, 165, 255};
+        map[BUTTON_HOVER] = {22, 168, 185, 255};
+        map[BACKGROUND_COLOR] = {3, 53, 62, 255};
+        map[BUTTON_LIST] = {0, 28, 45, 255};
+        map[BUTTON_LIST_2] = {0, 48, 65, 255};
+        map[BUTTON_LIST_HOVER] = {22, 168, 185, 255};
+        return (map);
+    }();
+
+    static std::map<ColorType, SDL_Color> redMap = []() -> std::map<ColorType, SDL_Color> {
+        std::map<ColorType, SDL_Color> map;
+        
+        map[BUTTON] = {114, 0, 23, 255};
+        map[BUTTON_HOVER] = {134, 20, 43, 255};
+        map[BACKGROUND_COLOR] = {39, 1, 1, 255};
+        map[BUTTON_LIST] = {45, 28, 0, 255};
+        map[BUTTON_LIST_2] = {65, 48, 0, 255};
+        map[BUTTON_LIST_HOVER] = {118, 63, 2, 255};
+        return (map);
+    }();
+
+    return ((getTheme() == BLUE ? blueMap[type] : redMap[type]));
+}
+
 arc::Event::Type arc::Utility::getEventType(const SDL_Event &event)
 {
     static std::map<int, arc::Event::Type> map = []() -> std::map<int, arc::Event::Type> {

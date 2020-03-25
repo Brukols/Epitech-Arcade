@@ -15,10 +15,26 @@ namespace arc
 {
     class Utility {
         public:
+            enum ColorType {
+                BUTTON,
+                BUTTON_HOVER,
+                BACKGROUND_COLOR,
+                BUTTON_LIST,
+                BUTTON_LIST_2,
+                BUTTON_LIST_HOVER,
+            };
+            enum Theme {
+                NONE,
+                ORNAMENTAL,
+                BLUE,
+            };
+        public:
 
             static arc::Event::Type getEventType(const SDL_Event &event);
             static arc::Event::Key getEventKey(const SDL_Event &event);
             static void changeCursor(SDL_SystemCursor cursor, bool display = false);
+            static Theme getTheme(Theme theme = NONE);
+            static SDL_Color getColor(ColorType type);
 
     };
 } // namespace arc
