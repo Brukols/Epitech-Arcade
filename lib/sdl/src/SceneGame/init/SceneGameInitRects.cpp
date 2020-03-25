@@ -6,13 +6,14 @@
 */
 
 #include "sdl/SceneGame.hpp"
+#include "sdl/Utility.hpp"
 
 static arc::Rectangle *initSideRectangle()
 {
     arc::Rectangle *rect = new arc::Rectangle();
 
     rect->setPosition(0, 0);
-    rect->setColor({0, 48, 65, 255});
+    rect->setColor(arc::Utility::getColor(arc::Utility::SIDE_RECTANGLE));
     rect->setSize(350, 1080);
     return (rect);
 }

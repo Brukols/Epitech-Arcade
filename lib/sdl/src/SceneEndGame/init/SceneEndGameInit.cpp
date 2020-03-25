@@ -6,6 +6,7 @@
 */
 
 #include "sdl/SceneEndGame.hpp"
+#include "sdl/Utility.hpp"
 
 static arc::IButton *initButtonMenu()
 {
@@ -13,7 +14,7 @@ static arc::IButton *initButtonMenu()
     arc::Rectangle rect;
     arc::Text *text = new arc::Text();
 
-    rect.setColor({2, 148, 165, 255});
+    rect.setColor(arc::Utility::getColor(arc::Utility::BUTTON));
     rect.setSize(220, 120);
 
     text->setColor({255, 255, 255, 255});
@@ -22,7 +23,7 @@ static arc::IButton *initButtonMenu()
     button->setRect(rect);
     button->setText(text);
     button->setPosition(400, 800);
-    button->setColorHover({22, 168, 185, 255});
+    button->setColorHover(arc::Utility::getColor(arc::Utility::BUTTON_HOVER));
     return (button);
 }
 
@@ -32,7 +33,7 @@ static arc::IButton *initButtonRestart()
     arc::Rectangle rect;
     arc::Text *text = new arc::Text();
 
-    rect.setColor({2, 148, 165, 255});
+    rect.setColor(arc::Utility::getColor(arc::Utility::BUTTON));
     rect.setSize(220, 120);
 
     text->setColor({255, 255, 255, 255});
@@ -41,7 +42,7 @@ static arc::IButton *initButtonRestart()
     button->setRect(rect);
     button->setText(text);
     button->setPosition(1180, 800);
-    button->setColorHover({22, 168, 185, 255});
+    button->setColorHover(arc::Utility::getColor(arc::Utility::BUTTON_HOVER));
     return (button);
 }
 

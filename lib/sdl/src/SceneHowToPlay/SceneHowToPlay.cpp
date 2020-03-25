@@ -7,6 +7,7 @@
 
 #include "sdl/SceneHowToPlay.hpp"
 #include <algorithm>
+#include "sdl/Utility.hpp"
 
 arc::SceneHowToPlay::SceneHowToPlay()
 {
@@ -20,13 +21,19 @@ arc::SceneHowToPlay::~SceneHowToPlay()
 {
 }
 
+void arc::SceneHowToPlay::changeColor()
+{
+    _buttonOk->setColor(Utility::getColor(Utility::BUTTON));
+    _buttonOk->setColorHover(Utility::getColor(Utility::BUTTON_HOVER));
+}
+
 void arc::SceneHowToPlay::initButtonOk()
 {
     arc::ButtonRect *button = new arc::ButtonRect();
     arc::Rectangle rect;
     arc::Text *text = new arc::Text();
 
-    rect.setColor({2, 148, 165, 255});
+    rect.setColor(Utility::getColor(Utility::BUTTON));
     rect.setSize(220, 120);
 
     text->setPosition(800, 50);
@@ -36,7 +43,7 @@ void arc::SceneHowToPlay::initButtonOk()
     button->setRect(rect);
     button->setText(text);
     button->setPosition(850, 750);
-    button->setColorHover({22, 168, 185, 255});
+    button->setColorHover(Utility::getColor(Utility::BUTTON_HOVER));
     _buttonOk = std::unique_ptr<ButtonRect>(button);
 }
 

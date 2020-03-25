@@ -31,6 +31,7 @@ namespace arc
             bool event(const arc::Event::Type &actualEventType, const arc::Event::Key &actualKeyPress, const SDL_Event &event);
 
             void display(SDL_Renderer *window);
+            bool hasASelectButton() const;
             void changeColor();
 
         private:

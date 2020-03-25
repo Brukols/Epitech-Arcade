@@ -32,6 +32,8 @@ namespace arc
 
             bool isMouseHover() const;
 
+            void changeColor();
+
         private:
             void initRects();
             void initTexts();

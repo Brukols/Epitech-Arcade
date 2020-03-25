@@ -6,6 +6,7 @@
 */
 
 #include "sdl/ListScores.hpp"
+#include "sdl/Utility.hpp"
 
 arc::ListScores::ListScores()
 {
@@ -13,6 +14,25 @@ arc::ListScores::ListScores()
 
 arc::ListScores::~ListScores()
 {
+}
+
+void arc::ListScores::changeColor()
+{
+    int i = 0;
+    std::for_each(_buttons.begin(), _buttons.end(), [&i, this](std::pair<std::unique_ptr<ButtonRect>, std::unique_ptr<ButtonRect>> &button) {
+        if (i % 2) {
+            button.first->setColor(Utility::getColor(Utility::BUTTON_LIST));
+            button.first->setColorHover(Utility::getColor(Utility::BUTTON_LIST));
+            button.second->setColor(Utility::getColor(Utility::BUTTON_LIST));
+            button.second->setColorHover(Utility::getColor(Utility::BUTTON_LIST));
+        } else {
+            button.first->setColor(Utility::getColor(Utility::BUTTON_LIST_2));
+            button.first->setColorHover(Utility::getColor(Utility::BUTTON_LIST_2));
+            button.second->setColor(Utility::getColor(Utility::BUTTON_LIST_2));
+            button.second->setColorHover(Utility::getColor(Utility::BUTTON_LIST_2));
+        }
+        i++;
+    });
 }
 
 static arc::Rectangle *initBackground()
@@ -106,15 +126,15 @@ void arc::ListScores::setScores(const std::vector<std::pair<std::string, std::st
     std::for_each(scores.begin(), scores.end(), [this, &y, &i](const std::pair<std::string, std::string> &pair) {
         _buttons.push_back(std::pair<std::unique_ptr<ButtonRect>, std::unique_ptr<ButtonRect>>(initButtonUsername(pair.first, y), initButtonScore(pair.second, y)));
         if (i % 2) {
-            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].first.get())->setColor({0, 28, 45, 255});
-            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].first.get())->setColorHover({0, 28, 45, 255});
-            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].second.get())->setColor({0, 28, 45, 255});
-            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].second.get())->setColorHover({0, 28, 45, 255});
+            _buttons[_buttons.size() - 1].first.get()->setColor(Utility::getColor(Utility::BUTTON_LIST));
+            _buttons[_buttons.size() - 1].first.get()->setColorHover(Utility::getColor(Utility::BUTTON_LIST));
+            _buttons[_buttons.size() - 1].second.get()->setColor(Utility::getColor(Utility::BUTTON_LIST));
+            _buttons[_buttons.size() - 1].second.get()->setColorHover(Utility::getColor(Utility::BUTTON_LIST));
         } else {
-            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].first.get())->setColor({0, 48, 65, 255});
-            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].first.get())->setColorHover({0, 48, 65, 255});
-            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].second.get())->setColor({0, 48, 65, 255});
-            static_cast<ButtonRect *>(_buttons[_buttons.size() - 1].second.get())->setColorHover({0, 48, 65, 255});
+            _buttons[_buttons.size() - 1].first.get()->setColor(Utility::getColor(Utility::BUTTON_LIST_2));
+            _buttons[_buttons.size() - 1].first.get()->setColorHover(Utility::getColor(Utility::BUTTON_LIST_2));
+            _buttons[_buttons.size() - 1].second.get()->setColor(Utility::getColor(Utility::BUTTON_LIST_2));
+            _buttons[_buttons.size() - 1].second.get()->setColorHover(Utility::getColor(Utility::BUTTON_LIST_2));
         }
         y += 50;
         i++;

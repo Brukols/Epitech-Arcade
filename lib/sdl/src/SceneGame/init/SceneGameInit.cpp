@@ -12,4 +12,10 @@ void arc::SceneGame::init()
     initRects();
     initButtons();
     initTexts();
+    changeColor();
+}
+
+void arc::SceneGame::changeColor()
+{
+    _scenePause->changeColor();
 }

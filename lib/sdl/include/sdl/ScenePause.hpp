@@ -31,6 +31,8 @@ namespace arc
             void setFunctionTogglePause(const std::function<void()> &function);
             void event(const arc::Event::Type &actualEventType, const arc::Event::Key &actualKeyPress, const SDL_Event &event);
 
+            void changeColor();
+
         private:
             void eventTogglePause();
             void initButtonPlay();

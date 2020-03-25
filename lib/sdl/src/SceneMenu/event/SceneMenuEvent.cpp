@@ -15,6 +15,8 @@ void arc::SceneMenu::eventChangeTheme()
     initButtons();
     _listGames.changeColor();
     _listGraphical.changeColor();
+    _sceneScores->changeColor();
+    _sceneHowToPlay->changeColor();
 }
 
 void arc::SceneMenu::eventExit()
@@ -60,6 +62,10 @@ void arc::SceneMenu::event(arc::Event::Type &actualEventType, arc::Event::Key &a
     if (_exit == true) {
         actualEventType = arc::Event::Type::QUIT;
         return;
+    }
+    if (_listGames.hasASelectButton()) {
+        _buttons[0].first->setActivate(true);
+        _buttons[1].first->setActivate(true);
     }
     while (SDL_PollEvent(&event)) {
         actualEventType = Utility::getEventType(event);

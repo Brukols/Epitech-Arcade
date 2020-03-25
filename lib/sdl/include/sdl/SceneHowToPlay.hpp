@@ -28,6 +28,7 @@ namespace arc
             void setActivate(bool activate);
 
             void event(const arc::Event::Type &actualEventType, const arc::Event::Key &actualKeyPress, const SDL_Event &event);
+            void changeColor();
 
         private:
             void initButtonOk();

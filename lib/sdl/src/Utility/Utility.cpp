@@ -42,6 +42,7 @@ SDL_Color arc::Utility::getColor(ColorType type)
         map[BUTTON_LIST] = {0, 28, 45, 255};
         map[BUTTON_LIST_2] = {0, 48, 65, 255};
         map[BUTTON_LIST_HOVER] = {22, 168, 185, 255};
+        map[SIDE_RECTANGLE] = {0, 48, 65, 255};
         return (map);
     }();
 
@@ -54,6 +55,7 @@ SDL_Color arc::Utility::getColor(ColorType type)
         map[BUTTON_LIST] = {45, 28, 0, 255};
         map[BUTTON_LIST_2] = {65, 48, 0, 255};
         map[BUTTON_LIST_HOVER] = {118, 63, 2, 255};
+        map[SIDE_RECTANGLE] = {127, 82, 2, 255};
         return (map);
     }();
 

@@ -17,6 +17,11 @@ arc::SceneScores::~SceneScores()
 {
 }
 
+void arc::SceneScores::changeColor()
+{
+    _listScores->changeColor();
+}
+
 static arc::Rectangle *initBackground()
 {
     arc::Rectangle *rect = new arc::Rectangle();

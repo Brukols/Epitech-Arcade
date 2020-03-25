@@ -48,6 +48,7 @@ namespace arc
             void initRects();
             void initButtons();
             void initTexts();
+            void changeColor();
 
             void eventMenu();
 

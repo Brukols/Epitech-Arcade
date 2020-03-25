@@ -6,6 +6,7 @@
 */
 
 #include "sdl/ScenePause.hpp"
+#include "sdl/Utility.hpp"
 
 arc::ScenePause::ScenePause()
 {
@@ -28,6 +29,12 @@ arc::ScenePause::~ScenePause()
 {
 }
 
+void arc::ScenePause::changeColor()
+{
+    _buttonPlay->setColor(arc::Utility::getColor(arc::Utility::BUTTON));
+    _buttonPlay->setColorHover(arc::Utility::getColor(arc::Utility::BUTTON_HOVER));
+}
+
 void arc::ScenePause::initButtonPlay()
 {
     _buttonPlay = std::unique_ptr<ButtonRect>(new arc::ButtonRect());
@@ -35,7 +42,7 @@ void arc::ScenePause::initButtonPlay()
     arc::Rectangle rect;
     arc::Text *text = new arc::Text();
 
-    rect.setColor({2, 148, 165, 255});
+    rect.setColor(arc::Utility::getColor(arc::Utility::BUTTON));
     rect.setSize(220, 120);
 
     text->setColor({255, 255, 255, 255});
@@ -45,7 +52,7 @@ void arc::ScenePause::initButtonPlay()
     _buttonPlay->setRect(rect);
     _buttonPlay->setText(text);
     _buttonPlay->setPosition(850, 600);
-    _buttonPlay->setColorHover({22, 168, 185, 255});
+    _buttonPlay->setColorHover(arc::Utility::getColor(arc::Utility::BUTTON_HOVER));
 }
 
 void arc::ScenePause::display(SDL_Renderer *window)

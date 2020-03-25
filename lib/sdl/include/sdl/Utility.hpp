@@ -22,6 +22,7 @@ namespace arc
                 BUTTON_LIST,
                 BUTTON_LIST_2,
                 BUTTON_LIST_HOVER,
+                SIDE_RECTANGLE,
             };
             enum Theme {
                 NONE,

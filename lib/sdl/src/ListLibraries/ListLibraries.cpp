@@ -174,6 +174,13 @@ void arc::ListLibraries::eventScrollDown()
     });
 }
 
+bool arc::ListLibraries::hasASelectButton() const
+{
+    return (!(_buttonsList.end() == std::find_if(_buttonsList.begin(), _buttonsList.end(), [](const std::pair<ButtonRect, std::string> &button) -> bool {
+        return (button.first.isSelect());
+    })));
+}
+
 bool arc::ListLibraries::event(const arc::Event::Type &actualEventType, const arc::Event::Key &actualKeyPress, const SDL_Event &event)
 {
     (void)actualKeyPress;
@@ -195,8 +202,9 @@ bool arc::ListLibraries::event(const arc::Event::Type &actualEventType, const ar
         return (false);
     bool hasEvent = false;
     std::for_each(_buttonsList.begin(), _buttonsList.end(), [&x, &y, this, &hasEvent](std::pair<ButtonRect, std::string> &button) {
-        if (button.first.isSelect())
+        if (button.first.isSelect()) {
             return;
+        }
         if (button.first.isMouseHover(x, y)) {
             resetButtonsList();
             eventListButtons(button.second);
