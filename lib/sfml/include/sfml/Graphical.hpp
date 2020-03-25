@@ -58,6 +58,8 @@ namespace arc
             void setMapSize(size_t height, size_t width);
             void setGameTitle(const std::string &game);
 
+            void setGamePause(bool pause) override;
+
             /*
             ** End of override methods for IGraphical
             */
@@ -70,9 +72,6 @@ namespace arc
             std::vector<std::pair<std::string, std::string>> _scores;
 
             std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> _controls;
-
-            std::function<void()> _eventMenuButton; // A suppr
-            std::function<void()> _eventTogglePauseButton; // A suppr
 
             std::vector<std::shared_ptr<Entity>> _entities;
             std::string _username;

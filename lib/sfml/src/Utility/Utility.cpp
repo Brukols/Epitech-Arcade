@@ -79,6 +79,7 @@ arc::Event::Key arc::Utility::getKey(sf::Event event)
         map[sf::Keyboard::Key::Num7] = arc::Event::Key::NUM7;
         map[sf::Keyboard::Key::Num8] = arc::Event::Key::NUM8;
         map[sf::Keyboard::Key::Num9] = arc::Event::Key::NUM9;
+        map[sf::Keyboard::Key::Space] = arc::Event::Key::PAUSE;
         return (map);
     }();
 

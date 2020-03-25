@@ -42,8 +42,8 @@ void arc::SceneGame::display(sf::RenderWindow &window)
         window.draw(rect);
     });
 
-    std::for_each(_buttons.begin(), _buttons.end(), [this, &window](Button &button) {
-        button.displayButton(window);
+    std::for_each(_buttons.begin(), _buttons.end(), [this, &window](std::pair<std::unique_ptr<Button>, void (SceneGame::*)()> &button) {
+        button.first->displayButton(window);
     });
 
     std::for_each(_stats.begin(), _stats.end(), [&window](Text &text) {
@@ -59,6 +59,10 @@ void arc::SceneGame::display(sf::RenderWindow &window)
     });
 
     displayGame(window);
+
+    if (_scenePause->isActivate()) {
+        _scenePause->display(window);
+    }
 
     if (_errorMessages.size() != 0)
         _errorMessages[0].display(window);

@@ -67,12 +67,12 @@ void arc::Graphical::setFunctionRestart(const std::function<void()> &function)
 
 void arc::Graphical::setFunctionMenu(const std::function<void()> &function)
 {
-    _eventMenuButton = function;
+    static_cast<SceneGame *>(_scenes[GAME].get())->setFunctionMenu(function);
 }
 
 void arc::Graphical::setFunctionTogglePause(const std::function<void()> &function)
 {
-    _eventTogglePauseButton = function;
+    static_cast<SceneGame *>(_scenes[GAME].get())->setFunctionTogglePause(function);
 }
 
 const std::string &arc::Graphical::getUsername()
@@ -120,6 +120,11 @@ void arc::Graphical::setMapSize(size_t height, size_t width)
 void arc::Graphical::setGameTitle(const std::string &game)
 {
     static_cast<SceneGame *>(_scenes[GAME].get())->setTitle(game);
+}
+
+void arc::Graphical::setGamePause(bool pause)
+{
+    static_cast<SceneGame *>(_scenes[GAME].get())->setGamePause(pause);
 }
 
 extern "C" arc::IGraphical *instance_ctor()

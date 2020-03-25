@@ -36,19 +36,19 @@ void arc::SceneGame::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
             eventErrorMessage(event);
             return;
         }
-        eventButtons(window, event);
         if (event.type == sf::Event::KeyPressed) {
             _actualEventType = arc::Event::KEY_PRESSED;
             _actualKeyPress = Utility::getKey(event);
-            // if (_actualKeyPress != arc::Event::Key::NONE)
-            //     return;
         }
         if (event.type == sf::Event::KeyReleased) {
             _actualEventType = arc::Event::KEY_RELEASED;
             _actualKeyPress = Utility::getKey(event);
-            // if (_actualKeyPress != arc::Event::Key::NONE)
-            //     return;
         }
+        if (_scenePause->isActivate()) {
+            _scenePause->event(_actualEventType, _actualKeyPress, event);
+            continue;
+        }
+        eventButtons(window, event);
         std::pair pair = std::pair<Event::Type, Event::Key>(_actualEventType, _actualKeyPress);
         if (_controls.count(pair)) {
             _controls[pair]();

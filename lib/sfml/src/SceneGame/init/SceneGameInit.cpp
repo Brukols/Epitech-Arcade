@@ -15,6 +15,7 @@ void arc::SceneGame::init()
         _exit = true;
         return;
     }
+    _scenePause->setFont(_font);
     initButtons();
     initTexts();
     initRects();

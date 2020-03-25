@@ -14,6 +14,7 @@
 #include "sfml/Text.hpp"
 #include "ErrorMessage.hpp"
 #include <memory>
+#include "sfml/ScenePause.hpp"
 
 namespace arc
 {
@@ -41,6 +42,10 @@ namespace arc
 
             void setTitle(const std::string &name);
 
+            void setFunctionTogglePause(const std::function<void()> &function);
+            void setFunctionMenu(const std::function<void()> &function);
+            void setGamePause(bool pause);
+
         private:
             void initButtons();
             void initTexts();
@@ -53,8 +58,10 @@ namespace arc
             void initTextHowToPlay(const std::vector<std::pair<std::string, std::string>> &info);
             void initTextStats(const std::vector<std::pair<std::string, std::string>> &info);
 
+            void eventFunctionBackToMenu();
+
         private:
-            std::vector<Button> _buttons;
+            std::vector<std::pair<std::unique_ptr<Button>, void (SceneGame::*)()>> _buttons;
             std::vector<Text> _texts;
             std::vector<sf::RectangleShape> _rects;
             sf::Font _font;
@@ -78,6 +85,8 @@ namespace arc
             bool _exit = false;
 
             std::string _title;
+
+            std::unique_ptr<ScenePause> _scenePause;
     };
 }
 

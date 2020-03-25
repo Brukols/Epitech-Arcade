@@ -100,8 +100,8 @@ void arc::Core::setGraphical(const std::string &libname)
         if (getLibName(pair.first) == getLibName(libname)) {
             _graph.reset();
             _graph = std::unique_ptr<IGraphical>(pair.second.get()->getInstance());
-            initGraphical(username, arc::IGraphical::MAIN_MENU);
             _indexGraph = i;
+            initGraphical(username, arc::IGraphical::MAIN_MENU);
         }
         i++;
     });
