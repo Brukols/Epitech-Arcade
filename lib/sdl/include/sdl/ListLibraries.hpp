@@ -28,7 +28,7 @@ namespace arc
             void setEventList(const std::function<void (const std::string &)> &fct);
             void setNameList(const std::string &nameList);
             void setNameLibraries(const std::vector<std::string> &list, int chosen);
-            void event(const arc::Event::Type &actualEventType, const arc::Event::Key &actualKeyPress, const SDL_Event &event);
+            bool event(const arc::Event::Type &actualEventType, const arc::Event::Key &actualKeyPress, const SDL_Event &event);
 
             void display(SDL_Renderer *window);
 

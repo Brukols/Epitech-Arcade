@@ -156,7 +156,7 @@ void arc::ListLibraries::eventScrollDown()
     });
 }
 
-void arc::ListLibraries::event(const arc::Event::Type &actualEventType, const arc::Event::Key &actualKeyPress, const SDL_Event &event)
+bool arc::ListLibraries::event(const arc::Event::Type &actualEventType, const arc::Event::Key &actualKeyPress, const SDL_Event &event)
 {
     (void)actualKeyPress;
     int x;
@@ -165,23 +165,26 @@ void arc::ListLibraries::event(const arc::Event::Type &actualEventType, const ar
     SDL_GetMouseState(&x, &y);
     if (actualEventType == arc::Event::Type::MOUSE_WHEEL) {
         if (!_rects[0].isMouseHover(x, y))
-            return;
+            return (false);
         if (event.wheel.y > 0) {
             eventScrollUp();
         } else if (event.wheel.y < 0) {
             eventScrollDown();
         }
-        return;
+        return (false);
     }
     if (actualEventType != arc::Event::Type::MOUSE_RELEASED)
-        return;
-    std::for_each(_buttonsList.begin(), _buttonsList.end(), [&x, &y, this](std::pair<ButtonRect, std::string> &button) {
+        return (false);
+    bool hasEvent = false;
+    std::for_each(_buttonsList.begin(), _buttonsList.end(), [&x, &y, this, &hasEvent](std::pair<ButtonRect, std::string> &button) {
         if (button.first.isSelect())
             return;
         if (button.first.isMouseHover(x, y)) {
             resetButtonsList();
             eventListButtons(button.second);
             button.first.setSelect(true);
+            hasEvent = true;
         }
     });
+    return (hasEvent);
 }

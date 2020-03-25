@@ -18,6 +18,7 @@ namespace arc
 
             static arc::Event::Type getEventType(const SDL_Event &event);
             static arc::Event::Key getEventKey(const SDL_Event &event);
+            static void changeCursor(SDL_SystemCursor cursor, bool display = false);
 
     };
 } // namespace arc

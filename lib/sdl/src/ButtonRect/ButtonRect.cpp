@@ -7,6 +7,7 @@
 
 #include "sdl/ButtonRect.hpp"
 #include <memory>
+#include "sdl/Utility.hpp"
 
 arc::ButtonRect::ButtonRect()
 {
@@ -51,10 +52,17 @@ void arc::ButtonRect::display(SDL_Renderer *window)
     int y;
 
     SDL_GetMouseState(&x, &y);
-    if (_select)
+    if (!_activate) {
+        _rect.setColor(_colorDisable);
+        if (isMouseHover(x, y))
+            Utility::changeCursor(SDL_SYSTEM_CURSOR_NO);
+    } else if (_select) {
         _rect.setColor(_colorSelect);
-    else if (isMouseHover(x, y)) {
+        if (isMouseHover(x, y))
+            Utility::changeCursor(SDL_SYSTEM_CURSOR_NO);
+    } else if (isMouseHover(x, y)) {
         _rect.setColor(_colorHover);
+        Utility::changeCursor(SDL_SYSTEM_CURSOR_HAND);
     } else {
         _rect.setColor(_color);
     }
@@ -95,4 +103,14 @@ bool arc::ButtonRect::isSelect() const
 const std::string &arc::ButtonRect::getText() const
 {
     return (_text->getString());
+}
+
+bool arc::ButtonRect::isActivate() const
+{
+    return (_activate);
+}
+
+void arc::ButtonRect::setActivate(bool activate)
+{
+    _activate = activate;
 }

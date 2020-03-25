@@ -24,9 +24,14 @@ namespace arc
 
             void setRect(const Rectangle &rect);
             void setText(Text *text);
+
             void setPosition(size_t x, size_t y) override;
             bool isMouseHover(int x, int y) const override;
+            void setActivate(bool activate) override;
+            bool isActivate() const override;
             void display(SDL_Renderer *window) override;
+            
+            void setColorDisable(const SDL_Color &color);
             void setColorHover(const SDL_Color &color);
             void setColor(const SDL_Color &color);
             void setColorSelect(const SDL_Color &color);
@@ -46,8 +51,10 @@ namespace arc
             SDL_Color _color;
             SDL_Color _colorHover;
             SDL_Color _colorSelect;
+            SDL_Color _colorDisable = {100, 100, 100, 255};
 
             bool _select = false;
+            bool _activate = true;
     };
 } // namespace arc
 

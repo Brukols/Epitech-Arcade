@@ -8,6 +8,19 @@
 #include "sdl/Utility.hpp"
 #include <map>
 
+void arc::Utility::changeCursor(SDL_SystemCursor system, bool display)
+{
+    SDL_Cursor *cursor;
+    static SDL_SystemCursor current = SDL_SYSTEM_CURSOR_ARROW;
+
+    if (!display) {
+        current = system;
+    } else {
+        cursor = SDL_CreateSystemCursor(current);
+        SDL_SetCursor(cursor);
+    }
+}
+
 arc::Event::Type arc::Utility::getEventType(const SDL_Event &event)
 {
     static std::map<int, arc::Event::Type> map = []() -> std::map<int, arc::Event::Type> {

@@ -9,6 +9,7 @@
 #include "sdl/SceneMenu.hpp"
 #include "sdl/SceneGame.hpp"
 #include "sdl/SceneEndGame.hpp"
+#include "sdl/Utility.hpp"
 
 arc::Graphical::Graphical()
 {
@@ -35,10 +36,12 @@ arc::Graphical::~Graphical()
 
 void arc::Graphical::display()
 {
+    Utility::changeCursor(SDL_SYSTEM_CURSOR_ARROW);
     SDL_SetRenderDrawColor(_renderer, 3, 53, 62, 255);
     SDL_RenderClear(_renderer);
     _scenes[_actualScene]->display(_renderer);
     _scenes[_actualScene]->event(_actualEventType, _actualKeyPress);
+    Utility::changeCursor(SDL_SYSTEM_CURSOR_ARROW, true);
 }
 
 arc::Event::Type arc::Graphical::getEventType() const

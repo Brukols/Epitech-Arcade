@@ -6,6 +6,7 @@
 */
 
 #include "sdl/Input.hpp"
+#include "sdl/Utility.hpp"
 
 arc::Input::Input()
 {
@@ -84,6 +85,13 @@ void arc::Input::display(SDL_Renderer *window)
         _cursorDisplay = !_cursorDisplay;
     }
 
+    int x;
+    int y;
+
+    SDL_GetMouseState(&x, &y);
+    if (_rect->isMouseHover(x, y)) {
+        Utility::changeCursor(SDL_SYSTEM_CURSOR_IBEAM);
+    }
     if (_select) {
         _rect->setColor(_colorRectSelect);
         _rect->display(window);

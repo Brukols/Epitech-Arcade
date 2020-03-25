@@ -44,6 +44,7 @@ static arc::IButton *initButtonShowScores()
     button->setText(text);
     button->setPosition(100, 550);
     button->setColorHover({22, 168, 185, 255});
+    button->setActivate(false);
     return (button);
 }
 

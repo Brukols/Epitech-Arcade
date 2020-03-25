@@ -33,8 +33,9 @@ void arc::SceneMenu::eventButtons(const arc::Event::Type &type, const arc::Event
     int y;
     SDL_GetMouseState(&x, &y);
     std::for_each(_buttons.begin(), _buttons.end(), [this, &x, &y](std::pair<std::shared_ptr<IButton>, void (SceneMenu::*)()> &button) {
-        if (button.first->isMouseHover(x, y))
+        if (button.first->isMouseHover(x, y) && button.first->isActivate()) {
             (this->*button.second)();
+        }
     });
 }
 
@@ -59,7 +60,8 @@ void arc::SceneMenu::event(arc::Event::Type &actualEventType, arc::Event::Key &a
             return;
         }
         eventButtons(actualEventType, actualKeyPress);
-        _listGames.event(actualEventType, actualKeyPress, event);
+        if (_listGames.event(actualEventType, actualKeyPress, event) == true)
+            _buttons[1].first->setActivate(true);
         _listGraphical.event(actualEventType, actualKeyPress, event);
         _inputUsername->event(actualEventType, actualKeyPress, event);
         if (_inputUsername->isSelect()) {
