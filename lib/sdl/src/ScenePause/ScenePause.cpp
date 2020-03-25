@@ -85,4 +85,7 @@ void arc::ScenePause::event(const arc::Event::Type &actualEventType, const arc::
     if (_buttonPlay->isMouseHover(x, y) && actualEventType == arc::Event::Type::MOUSE_RELEASED) {
         eventTogglePause();
     }
+    (void)actualEventType;
+    (void)actualKeyPress;
+    (void)event;
 }
