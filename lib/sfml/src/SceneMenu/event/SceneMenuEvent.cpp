@@ -29,25 +29,17 @@ void arc::SceneMenu::buttonsEvent(sf::RenderWindow &window, sf::Event &event)
     });
 }
 
-static void enteredText(std::vector<arc::Input> &input, sf::Event &event)
-{
-    std::for_each(input.begin(), input.end(), [&event](arc::Input &input) {
-        if (input.isFocus()) {
-            input.addLetter(event);
-        }
-    });
-}
-
 void arc::SceneMenu::inputEvent(sf::RenderWindow &window, sf::Event &event)
 {
     (void)window;
-    if (event.type != sf::Event::TextEntered)
-        return;
-    if (event.text.unicode == 13) {
-        _buttonEnterUsername[0].clickButton();
-        return;
-    }
-    enteredText(_inputs, event);
+    std::for_each(_inputs.begin(), _inputs.end(), [&event, this](Input &input) {
+        if (input.isFocus()) {
+            input.event(event);
+            if (!input.isFocus()) {
+                eventValidateUsername();
+            }
+        }
+    });
 }
 
 bool arc::SceneMenu::inputIsFocus() const

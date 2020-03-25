@@ -38,11 +38,6 @@ void arc::Input::addLetter(const sf::Event &event)
 void arc::Input::setFocus(bool focus)
 {
     _focus = focus;
-    if (_focus)
-        removeLetter();
-    else {
-        _text.setString(_str);
-    }
 }
 
 const std::string arc::Input::getInput()
@@ -71,4 +66,15 @@ void arc::Input::display(sf::RenderWindow &window)
 bool arc::Input::isFocus() const
 {
     return (_focus);
+}
+
+void arc::Input::event(const sf::Event &event)
+{
+    if (event.type != sf::Event::TextEntered)
+        return;
+    if (event.text.unicode == 13) {
+        setFocus(false);
+        return;
+    }
+    addLetter(event);
 }

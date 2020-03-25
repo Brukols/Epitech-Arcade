@@ -9,6 +9,7 @@
 #define INPUT_HPP
 
 #include <SFML/Graphics.hpp>
+#include "Utils.hpp"
 
 namespace arc
 {
@@ -25,6 +26,7 @@ namespace arc
             const std::string getInput();
 
             void display(sf::RenderWindow &window);
+            void event(const sf::Event &event);
 
         private:
             sf::RectangleShape _rect;
