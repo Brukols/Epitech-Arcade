@@ -22,8 +22,9 @@ static arc::IButton *initButtonPlay()
     text->setText("Play");
     button->setRect(rect);
     button->setText(text);
-    button->setPosition(100, 350);
+    button->setPosition(100, 250);
     button->setColorHover({22, 168, 185, 255});
+    button->setActivate(false);
     return (button);
 }
 
@@ -42,7 +43,7 @@ static arc::IButton *initButtonShowScores()
     text->setText("Show scores");
     button->setRect(rect);
     button->setText(text);
-    button->setPosition(100, 550);
+    button->setPosition(100, 450);
     button->setColorHover({22, 168, 185, 255});
     button->setActivate(false);
     return (button);
@@ -63,7 +64,27 @@ static arc::IButton *initButtonExit()
     text->setText("Exit");
     button->setRect(rect);
     button->setText(text);
-    button->setPosition(100, 750);
+    button->setPosition(100, 850);
+    button->setColorHover({22, 168, 185, 255});
+    return (button);
+}
+
+static arc::IButton *initButtonHowToPlay()
+{
+    arc::ButtonRect *button = new arc::ButtonRect();
+    arc::Rectangle rect;
+    arc::Text *text = new arc::Text();
+
+    rect.setColor({2, 148, 165, 255});
+    rect.setSize(220, 120);
+
+    text->setPosition(800, 50);
+    text->setColor({255, 255, 255, 255});
+    text->setFont(FONT, 30);
+    text->setText("How to play");
+    button->setRect(rect);
+    button->setText(text);
+    button->setPosition(100, 650);
     button->setColorHover({22, 168, 185, 255});
     return (button);
 }
@@ -73,5 +94,6 @@ void arc::SceneMenu::initButtons()
     _buttons.clear();
     _buttons.push_back(std::make_pair(std::shared_ptr<IButton>(initButtonPlay()), &arc::SceneMenu::eventPlay));
     _buttons.push_back(std::make_pair(std::shared_ptr<IButton>(initButtonShowScores()), &arc::SceneMenu::eventShowScores));
+    _buttons.push_back(std::make_pair(std::shared_ptr<IButton>(initButtonHowToPlay()), &arc::SceneMenu::eventHowToPlay));
     _buttons.push_back(std::make_pair(std::shared_ptr<IButton>(initButtonExit()), &arc::SceneMenu::eventExit));
 }

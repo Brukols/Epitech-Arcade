@@ -73,6 +73,11 @@ void arc::Core::playArcade()
             else if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::PAUSE) {
                 _pause = !_pause;
                 _graph->setGamePause(_pause);
+            } else if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::R) {
+                _game->restart();
+            } else if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::M) {
+                _graph->setScene(arc::IGraphical::MAIN_MENU);
+                _game->restart();
             }
             if (_game->isGameOver()) {
                 _pathScoreFile = "." + _game->getTitle();

@@ -24,6 +24,11 @@ void arc::SceneMenu::eventShowScores()
     _sceneScores->init();
 }
 
+void arc::SceneMenu::eventHowToPlay()
+{
+    _sceneHowToPlay->setActivate(true);
+}
+
 void arc::SceneMenu::eventButtons(const arc::Event::Type &type, const arc::Event::Key &key)
 {
     (void)key;
@@ -58,10 +63,15 @@ void arc::SceneMenu::event(arc::Event::Type &actualEventType, arc::Event::Key &a
         if (_sceneScores->isActivate()) {
             _sceneScores->event(actualEventType, actualKeyPress, event);
             return;
+        } else if (_sceneHowToPlay->isActivate()) {
+            _sceneHowToPlay->event(actualEventType, actualKeyPress, event);
+            return;
         }
         eventButtons(actualEventType, actualKeyPress);
-        if (_listGames.event(actualEventType, actualKeyPress, event) == true)
+        if (_listGames.event(actualEventType, actualKeyPress, event) == true) {
+            _buttons[0].first->setActivate(true);
             _buttons[1].first->setActivate(true);
+        }
         _listGraphical.event(actualEventType, actualKeyPress, event);
         _inputUsername->event(actualEventType, actualKeyPress, event);
         if (_inputUsername->isSelect()) {

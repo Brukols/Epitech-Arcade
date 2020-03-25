@@ -27,7 +27,9 @@ void arc::SceneMenu::display(SDL_Renderer *window)
 
     if (_sceneScores->isActivate())
         _sceneScores->display(window);
-
+    else if (_sceneHowToPlay->isActivate()) {
+        _sceneHowToPlay->display(window);
+    }
 
     SDL_RenderPresent(window);
 }

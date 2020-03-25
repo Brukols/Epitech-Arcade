@@ -13,6 +13,7 @@ arc::SceneMenu::SceneMenu()
     _listGames.setFont(FONT);
     _listGraphical.setFont(FONT);
     initInputUsername();
+    _sceneHowToPlay = std::unique_ptr<SceneHowToPlay>(new SceneHowToPlay());
 }
 
 arc::SceneMenu::~SceneMenu()

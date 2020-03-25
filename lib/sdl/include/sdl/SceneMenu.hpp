@@ -18,6 +18,7 @@
 #include "sdl/ListScores.hpp"
 #include "sdl/SceneScores.hpp"
 #include "sdl/Input.hpp"
+#include "sdl/SceneHowToPlay.hpp"
 
 namespace arc
 {
@@ -48,6 +49,7 @@ namespace arc
             void eventExit();
             void eventPlay();
             void eventShowScores();
+            void eventHowToPlay();
 
             void eventButtons(const arc::Event::Type &type, const arc::Event::Key &key);
         
@@ -65,6 +67,8 @@ namespace arc
             std::unique_ptr<SceneScores> _sceneScores;
 
             std::unique_ptr<Input> _inputUsername;
+
+            std::unique_ptr<SceneHowToPlay> _sceneHowToPlay;
 
             bool _exit = false;
     };
