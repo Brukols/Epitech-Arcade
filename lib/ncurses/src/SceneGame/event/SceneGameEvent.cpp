@@ -15,6 +15,10 @@ void arc::SceneGame::event(arc::Event::Type &_actualEventType, arc::Event::Key &
     _actualKeyPress = Utility::getEventKey(c);
     if (_actualKeyPress == arc::Event::Key::ESCAPE)
         _actualEventType = arc::Event::QUIT;
+    if (_scenePause->isActivate()) {
+        _scenePause->event(_actualEventType, _actualKeyPress);
+        return;
+    }
     if (c == KEY_MOUSE) {
         MEVENT event;
         getmouse(&event);

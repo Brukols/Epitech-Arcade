@@ -57,6 +57,7 @@ SRCS	=	src/Graphical/Graphical.cpp	\
 			src/ListScores/ListScores.cpp	\
 			src/ListScores/ListScoresEvent.cpp	\
 			src/ListScores/ListScoresInit.cpp	\
+			src/ScenePause/ScenePause.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)
 

@@ -10,6 +10,10 @@
 
 void arc::SceneGame::display()
 {
+    if (_scenePause->isActivate()) {
+        _scenePause->display();
+        return;
+    }
     std::for_each(_rects.begin(), _rects.end(), [this](Rectangle &rect) {
         rect.display();
     });

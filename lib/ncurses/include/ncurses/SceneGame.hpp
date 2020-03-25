@@ -16,6 +16,7 @@
 #include <memory>
 #include "Utils.hpp"
 #include "ColorsMode.hpp"
+#include "ScenePause.hpp"
 
 #include <functional>
 
@@ -40,6 +41,8 @@ namespace arc
             void setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info);
             void setGameStats(const std::vector<std::pair<std::string, std::string>> &info);
             void setTitle(const std::string &title);
+            void setGamePause(bool pause);
+            void setFunctionTogglePause(const std::function<void()> &function);
 
         private:
             void initButtons();
@@ -71,6 +74,8 @@ namespace arc
 
             std::vector<Text> _howToPlay;
             std::vector<Text> _stats;
+
+            std::unique_ptr<ScenePause> _scenePause;
     };
 };
 

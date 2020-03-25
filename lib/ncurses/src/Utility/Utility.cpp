@@ -139,6 +139,7 @@ arc::Event::Key arc::Utility::getEventKey(int c)
         keys['7'] = arc::Event::Key::NUM7;
         keys['8'] = arc::Event::Key::NUM8;
         keys['9'] = arc::Event::Key::NUM9;
+        keys[' '] = arc::Event::Key::PAUSE;
         keys[KEY_BACKSPACE] = arc::Event::Key::BACKSPACE;
         keys[KEY_ENTER] = arc::Event::Key::RETURN;
         keys[KEY_CTAB] = arc::Event::Key::TAB;

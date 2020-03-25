@@ -55,6 +55,8 @@ namespace arc
             void setMapSize(size_t height, size_t width) override;
             void setGameTitle(const std::string &game) override;
 
+            void setGamePause(bool pause) override;
+
             /*
             ** End of override methods for IGraphical
             */
@@ -63,22 +65,10 @@ namespace arc
 
             std::map<Scene, std::unique_ptr<IScene>> _scenes;
 
-            std::vector<std::pair<std::string, std::string>> _scores;
-
-            std::function<void()> _eventTogglePauseButton; // A suppr
-
-            std::vector<std::shared_ptr<Entity>> _entities;
-
             arc::Event::Type _actualEventType = arc::Event::Type::NO_EVENT;
             arc::Event::Key _actualKeyPress = arc::Event::Key::NONE;
 
             arc::IGraphical::Scene _actualScene = arc::IGraphical::Scene::MAIN_MENU;
-
-            std::vector<std::pair<std::string, std::string>> _infoHowToPlay;
-            std::vector<std::string> _infoGameStat;
-
-            std::map<char, std::string> _sprites;
-            std::map<char, Color> _backgroundColors;
 
             bool _exit = false;
 

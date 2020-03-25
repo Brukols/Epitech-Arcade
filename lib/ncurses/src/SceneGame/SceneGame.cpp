@@ -9,8 +9,20 @@
 
 arc::SceneGame::SceneGame()
 {
+    _scenePause = std::unique_ptr<ScenePause>(new ScenePause());
 }
 
 arc::SceneGame::~SceneGame()
 {
+}
+
+void arc::SceneGame::setGamePause(bool pause)
+{
+    clear();
+    _scenePause->setActivate(pause);
+}
+
+void arc::SceneGame::setFunctionTogglePause(const std::function<void()> &function)
+{
+    _scenePause->setFunctionTogglePause(function);
 }

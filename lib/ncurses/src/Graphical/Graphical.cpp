@@ -92,7 +92,7 @@ void arc::Graphical::setFunctionMenu(const std::function<void()> &function)
 
 void arc::Graphical::setFunctionTogglePause(const std::function<void()> &function)
 {
-    _eventTogglePauseButton = function;
+    static_cast<SceneGame *>(_scenes[GAME].get())->setFunctionTogglePause(function);
 }
 
 const std::string &arc::Graphical::getUsername()
@@ -160,6 +160,11 @@ arc::Event::Type arc::Graphical::getEventType() const
 arc::Event::Key arc::Graphical::getKeyPressed() const
 {
     return (_actualKeyPress);
+}
+
+void arc::Graphical::setGamePause(bool pause)
+{
+    static_cast<SceneGame *>(_scenes[GAME].get())->setGamePause(pause);
 }
 
 extern "C" arc::IGraphical *instance_ctor()
