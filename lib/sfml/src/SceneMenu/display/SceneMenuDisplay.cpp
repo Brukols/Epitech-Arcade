@@ -53,5 +53,7 @@ void arc::SceneMenu::display(sf::RenderWindow &window)
 
     if (_sceneScores.isActivate()) {
         _sceneScores.display(window);
+    } else if (_sceneHowToPlay->isActivate()) {
+        _sceneHowToPlay->display(window);
     }
 }

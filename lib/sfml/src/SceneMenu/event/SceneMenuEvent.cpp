@@ -8,6 +8,11 @@
 #include "sfml/SceneMenu.hpp"
 #include "sfml/Utility.hpp"
 
+void arc::SceneMenu::eventHowToPlay()
+{
+    _sceneHowToPlay->setActivate(true);
+}
+
 void arc::SceneMenu::buttonsEvent(sf::RenderWindow &window, sf::Event &event)
 {
     std::for_each(_lists.begin(), _lists.end(), [this, &event](List &list) {
@@ -81,6 +86,8 @@ void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
         }
         if (_sceneScores.isActivate()) {
             _sceneScores.event(event);
+        } else if (_sceneHowToPlay->isActivate()) {
+            _sceneHowToPlay->event(event);
         } else
             buttonsEvent(window, event);
         if (inputIsFocus()) {

@@ -18,6 +18,7 @@
 #include "List.hpp"
 #include <functional>
 #include "ErrorMessage.hpp"
+#include "SceneHowToPlay.hpp"
 
 namespace arc
 {
@@ -65,6 +66,7 @@ namespace arc
             void eventValidateUsername();
 
             void eventWatchScores();
+            void eventHowToPlay();
 
             void eventButtonPlay();
             void eventErrorMessage(sf::Event &event);
@@ -97,6 +99,7 @@ namespace arc
             std::vector<List> _lists;
 
             SceneScores _sceneScores;
+            std::unique_ptr<SceneHowToPlay> _sceneHowToPlay;
     };
 }
 

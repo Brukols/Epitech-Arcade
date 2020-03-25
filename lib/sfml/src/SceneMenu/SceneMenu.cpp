@@ -21,6 +21,8 @@ arc::SceneMenu::SceneMenu()
     initImages();
     _lists.clear();
     _sceneScores.setFont(_font);
+    _sceneHowToPlay = std::unique_ptr<SceneHowToPlay>(new SceneHowToPlay());
+    _sceneHowToPlay->setFont(_font);
 }
 
 arc::SceneMenu::~SceneMenu()
