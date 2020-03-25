@@ -11,11 +11,11 @@ arc::Input initInputUsername()
 {
     arc::Rectangle rect(3, 20, arc::MAIN_COLOR_3, arc::MAIN_COLOR_3);
 
-    rect.setPosition(110, 47);
+    rect.setPosition(180, 7);
 
     arc::Text text("Enter your username", arc::MAIN_COLOR_5, arc::BACKGROUND_COLOR);
 
-    text.setPosition(110, 45);
+    text.setPosition(180, 5);
 
     arc::Input input(rect, text);
     input.setColorsSelect(arc::MAIN_COLOR_8, arc::MAIN_COLOR_8);
