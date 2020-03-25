@@ -10,6 +10,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Utils.hpp"
+#include <ctime>
 
 namespace arc
 {
@@ -29,6 +30,10 @@ namespace arc
             void event(const sf::Event &event);
 
         private:
+            void deleteCharacterForSuppr();
+            void resetClock();
+
+        private:
             sf::RectangleShape _rect;
             sf::RectangleShape _cursor;
             sf::Text _textHover;
@@ -37,6 +42,9 @@ namespace arc
             bool _focus = false;
             bool _display = true;
             int _position = 0;
+
+            std::clock_t _clock;
+            bool _displayCursor = true;
     };
 } // namespace arc
 

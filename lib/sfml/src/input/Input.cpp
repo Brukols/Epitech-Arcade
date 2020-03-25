@@ -12,6 +12,7 @@ arc::Input::Input(const sf::RectangleShape &rect, const sf::Text &text) : _rect(
     _cursor.setSize(sf::Vector2f(3, 40));
     _cursor.setFillColor(sf::Color::Black);
     _cursor.setPosition(sf::Vector2f(755, 525));
+    _clock = std::clock();
 }
 
 arc::Input::~Input()
@@ -20,19 +21,31 @@ arc::Input::~Input()
 
 void arc::Input::addLetter(const sf::Event &event)
 {
+    std::string text = _text.getString();
+    std::string newText = "";
+    int i = 0;
+
     if (event.text.unicode == '\b') {
         removeLetter();
-        _text.setString(_str);
-        _cursor.setPosition(sf::Vector2f(755 + _text.getGlobalBounds().width, 525));
         return;
     }
-    _str += event.text.unicode;
-    _text.setString(_str);
+    if (!isprint(event.text.unicode))
+        return;
+    for (; text[i]; i++) {
+        if (i == _position) {
+            newText += event.text.unicode;
+        }
+        newText += text[i];
+    }
+    if (i == _position)
+        newText += event.text.unicode;
+    _text.setString(newText);
+    _position++;
     if (_text.getLocalBounds().width + 30 > _rect.getLocalBounds().width) {
         removeLetter();
-        _text.setString(_str);
+        return;
     }
-    _cursor.setPosition(sf::Vector2f(755 + _text.getGlobalBounds().width, 525));
+    _cursor.setPosition(sf::Vector2f(_text.findCharacterPos(_position).x, 525));
 }
 
 void arc::Input::setFocus(bool focus)
@@ -42,16 +55,24 @@ void arc::Input::setFocus(bool focus)
 
 const std::string arc::Input::getInput()
 {
-    return (_str.toAnsiString());
+    return (_text.getString());
 }
 
 void arc::Input::removeLetter()
 {
-    if (_str.getSize() == 0)
+    std::string text = _text.getString();
+    std::string newText = "";
+
+    if (_position == 0)
         return;
-    _str.erase(_str.getSize() - 1, 1);
-    _cursor.setPosition(sf::Vector2f(755 + _text.getGlobalBounds().width, 525));
     _position--;
+    for (int i = 0; text[i]; i++) {
+        if (i == _position)
+            continue;
+        newText += text[i];
+    }
+    _text.setString(newText);
+    _cursor.setPosition(sf::Vector2f(_text.findCharacterPos(_position).x, 525));
 }
 
 void arc::Input::display(sf::RenderWindow &window)
@@ -60,7 +81,12 @@ void arc::Input::display(sf::RenderWindow &window)
         return;
     window.draw(_rect);
     window.draw(_text);
-    window.draw(_cursor);
+    if (std::clock() - _clock > 80000) {
+        _displayCursor = !_displayCursor;
+        _clock = std::clock();
+    }
+    if (_displayCursor)
+        window.draw(_cursor);
 }
 
 bool arc::Input::isFocus() const
@@ -68,13 +94,51 @@ bool arc::Input::isFocus() const
     return (_focus);
 }
 
+void arc::Input::resetClock()
+{
+    _clock = std::clock();
+    _displayCursor = true;
+}
+
+void arc::Input::deleteCharacterForSuppr()
+{
+    std::string text = _text.getString();
+    std::string newText = "";
+
+    for (int i = 0; text[i]; i++) {
+        if (i == _position)
+            continue;
+        newText += text[i];
+    }
+    _text.setString(newText);
+    _cursor.setPosition(sf::Vector2f(_text.findCharacterPos(_position).x, 525));
+}
+
 void arc::Input::event(const sf::Event &event)
 {
-    if (event.type != sf::Event::TextEntered)
-        return;
-    if (event.text.unicode == 13) {
-        setFocus(false);
-        return;
+    if (event.type == sf::Event::KeyPressed) {
+        if (event.key.code == sf::Keyboard::Left) {
+            resetClock();
+            if (_position == 0)
+                return;
+            _position--;
+            _cursor.setPosition(sf::Vector2f(_text.findCharacterPos(_position).x, 525));
+        } else if (event.key.code == sf::Keyboard::Right) {
+            resetClock();
+            if (!(static_cast<size_t>(_position) < _text.getString().getSize()))
+                return;
+            _position++;
+            _cursor.setPosition(sf::Vector2f(_text.findCharacterPos(_position).x, 525));
+        } else if (event.key.code == sf::Keyboard::Delete) {
+            deleteCharacterForSuppr();
+            resetClock();
+        }
+    } else if (event.type == sf::Event::TextEntered) {
+        if (event.text.unicode == 13) {
+            setFocus(false);
+            return;
+        }
+        addLetter(event);
+        resetClock();
     }
-    addLetter(event);
 }
