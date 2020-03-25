@@ -46,6 +46,7 @@ arc::Event::Key arc::Utility::getEventKey(const SDL_Event &event)
     static std::map<int, arc::Event::Key> map = []() -> std::map<int, arc::Event::Key> {
         std::map<int, arc::Event::Key> map;
 
+        map[SDLK_SPACE] = arc::Event::Key::PAUSE;
         map[SDLK_UNKNOWN] = arc::Event::Key::UNKNOWN;
         map[SDLK_RETURN] = arc::Event::Key::RETURN;
         map[SDLK_ESCAPE] = arc::Event::Key::ESCAPE;

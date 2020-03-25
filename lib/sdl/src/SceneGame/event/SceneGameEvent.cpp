@@ -31,6 +31,8 @@ void arc::SceneGame::event(arc::Event::Type &actualEventType, arc::Event::Key &a
 {
     SDL_Event event;
 
+    actualEventType = arc::Event::Type::NO_EVENT;
+    actualKeyPress = arc::Event::Key::NONE;
     while (SDL_PollEvent(&event)) {
         actualEventType = Utility::getEventType(event);
         if (actualEventType == arc::Event::Type::KEY_PRESSED || actualEventType == arc::Event::Type::KEY_RELEASED)
@@ -39,11 +41,13 @@ void arc::SceneGame::event(arc::Event::Type &actualEventType, arc::Event::Key &a
             actualKeyPress = arc::Event::Key::NONE;
         if (actualKeyPress == arc::Event::Key::ESCAPE)
             actualEventType = arc::Event::Type::QUIT;
+        if (_scenePause->isActivate())
+            continue;
         eventButtons(actualEventType, actualKeyPress);
         std::pair pair = std::pair<Event::Type, Event::Key>(actualEventType, actualKeyPress);
         if (_controls.count(pair)) {
             _controls[pair]();
-            return;
+            continue;
         }
     }
 }

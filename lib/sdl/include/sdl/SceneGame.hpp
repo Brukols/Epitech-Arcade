@@ -15,6 +15,7 @@
 #include <vector>
 #include <map>
 #include <functional>
+#include "sdl/ScenePause.hpp"
 
 namespace arc
 {
@@ -41,6 +42,7 @@ namespace arc
             void updateGameInfo(const std::vector<std::shared_ptr<Entity>> &gameMap);
             void setMapSize(size_t height, size_t width);
             void setGameTitle(const std::string &game);
+            void setGamePause(bool pause);
 
         private:
             void initRects();
@@ -66,6 +68,7 @@ namespace arc
             std::function<void()> _eventPause;
 
             std::unique_ptr<Rectangle> _cell;
+            std::unique_ptr<ScenePause> _scenePause;
     };
 } // namespace arc
 

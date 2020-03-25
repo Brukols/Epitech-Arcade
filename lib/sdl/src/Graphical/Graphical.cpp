@@ -108,6 +108,11 @@ void arc::Graphical::setFunctionTogglePause(const std::function<void()> &functio
     (void)function;
 }
 
+void arc::Graphical::setGamePause(bool pause)
+{
+    static_cast<SceneGame *>(_scenes[GAME].get())->setGamePause(pause);
+}
+
 /*
 For the menu
 */

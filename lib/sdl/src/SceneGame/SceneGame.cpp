@@ -10,6 +10,7 @@
 
 arc::SceneGame::SceneGame()
 {
+    _scenePause = std::unique_ptr<ScenePause>(new ScenePause());
 }
 
 arc::SceneGame::~SceneGame()
@@ -83,4 +84,9 @@ void arc::SceneGame::setGameTitle(const std::string &game)
     _title->setText(game);
     _title->setColor({255, 255, 255, 255});
     _title->setPosition(350 / 2 - _title->getWidth() / 2, 30);
+}
+
+void arc::SceneGame::setGamePause(bool pause)
+{
+    _scenePause->setActivate(pause);
 }

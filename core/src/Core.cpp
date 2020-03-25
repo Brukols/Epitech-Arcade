@@ -68,15 +68,19 @@ void arc::Core::playArcade()
         if (_graph->getScene() == arc::IGraphical::GAME) {
             if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM9)
                 setNextGame();
-            if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM2)
+            else if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM2)
                 setNextGame();
+            else if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::PAUSE) {
+                _pause = !_pause;
+                _graph->setGamePause(_pause);
+            }
             if (_game->isGameOver()) {
                 _pathScoreFile = "." + _game->getTitle();
                 if (!_graph->getUsername().empty())
                     insertScore(_graph->getUsername(), _game->getScore());
                 _graph->setScores(getScores());
                 _graph->setScene(arc::IGraphical::END_GAME);
-            } else {
+            } else if (!_pause) {
                 _game->updateGame();
                 _graph->updateGameInfo(_game->getEntities());
             }

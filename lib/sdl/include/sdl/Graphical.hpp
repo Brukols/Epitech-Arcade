@@ -49,6 +49,8 @@ namespace arc
             void setMapSize(size_t height, size_t width) override;
             void setGameTitle(const std::string &game) override;
 
+            void setGamePause(bool pause) override;
+
         private:
             SDL_Window *_window;
             SDL_Renderer *_renderer = nullptr;
@@ -61,8 +63,6 @@ namespace arc
             arc::IGraphical::Scene _actualScene = arc::IGraphical::Scene::MAIN_MENU;
 
             bool _exit = false;
-
-            std::string _username = ""; // A suppr
     };
 } // namespace arc
 

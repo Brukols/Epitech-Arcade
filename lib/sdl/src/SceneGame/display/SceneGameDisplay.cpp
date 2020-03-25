@@ -38,5 +38,9 @@ void arc::SceneGame::display(SDL_Renderer *window)
 
     _title->display(window);
 
+    if (_scenePause->isActivate()) {
+        _scenePause->display(window);
+    }
+
     SDL_RenderPresent(window);
 }
