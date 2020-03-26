@@ -6,6 +6,7 @@
 */
 
 #include "sdl/Text.hpp"
+#include "sdl/Errors.hpp"
 
 arc::Text::Text()
 {
@@ -44,6 +45,9 @@ void arc::Text::setFont(const std::string &path, int size)
         _texture = nullptr;
     }
     _font = TTF_OpenFont(path.c_str(), size);
+    if (_font == nullptr) {
+        throw FontError("Unable to load this font " + path, "setFont");
+    }
 }
 
 void arc::Text::setText(const std::string &text)

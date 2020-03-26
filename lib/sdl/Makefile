@@ -37,6 +37,7 @@ SRCS	=	src/Graphical/Graphical.cpp		\
 			src/Input/Input.cpp		\
 			src/ScenePause/ScenePause.cpp	\
 			src/SceneHowToPlay/SceneHowToPlay.cpp	\
+			src/Errors/Errors.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)
 
