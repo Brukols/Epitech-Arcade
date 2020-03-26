@@ -66,7 +66,8 @@ void arc::SceneHowToPlay::initTexts()
         "Exit : key escape"
     };
 
-    for (size_t i = 0; i < 9; i++) {
+    _texts.clear();
+    for (size_t i = 0; i < 8; i++) {
         sf::Text text;
 
         text.setFont(_font);
