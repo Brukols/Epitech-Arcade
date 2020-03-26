@@ -9,6 +9,7 @@
 #include <fstream>
 #include <string>
 #include "Core.hpp"
+#include "Errors.hpp"
 
 void print_usage()
 {
@@ -25,8 +26,8 @@ int main(int ac, const char **av)
         arc::Core core(av[1]);
         core.playArcade();
         core.clean();
-    } catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
+    } catch(const arc::ArcadeError& e) {
+        std::cerr << e.what() << " in " << e.getComponent() << '\n';
         return (84);
     }
     return (0);

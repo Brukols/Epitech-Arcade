@@ -6,12 +6,12 @@
 */
 
 #include "sfml/SceneEndGame.hpp"
+#include "sfml/SFMLErrors.hpp"
 
 arc::SceneEndGame::SceneEndGame()
 {
     if (!_font.loadFromFile("resources/sfml/fonts/Raleway-Bold.ttf")) {
-        _exit = true;
-        return;
+        throw FontError("Unable to load the font", "SceneEndGame");
     }
     _listScores.setFont(_font);
 }

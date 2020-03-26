@@ -13,10 +13,11 @@
 
 namespace arc
 {
-    class SFMLErrors : public std::exception {
+    class ArcadeError : public std::exception {
+
         public:
-            SFMLErrors(const std::string &message, const std::string &component = "Unknown");
-            ~SFMLErrors();
+            ArcadeError(const std::string &message, const std::string &component = "Unknown");
+            ~ArcadeError();
 
             const std::string &getComponent() const;
             const char *what() const noexcept override;
@@ -26,10 +27,22 @@ namespace arc
             const std::string _component;
     };
 
-    class SpriteError : public SFMLErrors {
+    class SFMLErrors : public ArcadeError {
+        public:
+            SFMLErrors(const std::string &message, const std::string &component = "Unknown");
+            ~SFMLErrors();
+    };
+
+    class SpriteError : public ArcadeError {
         public:
             SpriteError(const std::string &message, const std::string &component = "Unknown");
             ~SpriteError();
+    };
+
+    class FontError : public ArcadeError {
+        public:
+            FontError(const std::string &message, const std::string &component = "Unknown");
+            ~FontError();
     };
 };
 

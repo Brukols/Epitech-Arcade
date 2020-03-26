@@ -7,12 +7,12 @@
 
 #include "sfml/SceneMenu.hpp"
 #include <SFML/Graphics.hpp>
+#include "sfml/SFMLErrors.hpp"
 
 arc::SceneMenu::SceneMenu()
 {
     if (!_font.loadFromFile("resources/sfml/fonts/Raleway-Bold.ttf")) {
-        _exit = true;
-        return;
+        throw FontError("Unable to load the font", "SceneMenu");
     }
     initButtons();
     initTexts();
