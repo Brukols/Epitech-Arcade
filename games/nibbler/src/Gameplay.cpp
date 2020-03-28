@@ -25,17 +25,19 @@ void Nibbler::updateGame()
     }
 }
 
+#include <iostream>
+
 void Nibbler::moveSnake()
 {
     std::for_each(_snake.begin(), _snake.end(), [this](std::shared_ptr<Entity> &s) {
         if (s->orientation == Orientation::UP)
-            s->y -= 1;
-        if (s->orientation == Orientation::RIGHT)
-            s->x += 1;
-        if (s->orientation == Orientation::DOWN)
-            s->y += 1;
-        if (s->orientation == Orientation::LEFT)
-            s->x -= 1;
+            s->y -= MOVE;
+        else if (s->orientation == Orientation::RIGHT)
+            s->x += MOVE;
+        else if (s->orientation == Orientation::DOWN)
+            s->y += MOVE;
+        else if (s->orientation == Orientation::LEFT)
+            s->x -= MOVE;
     });
     updateOrientationSnake();
     if (doYouEat() == true) {
@@ -141,9 +143,28 @@ void Nibbler::updateOrientationSnake()
 {
     int i = 0;
 
+    // for_each(_snake.rbegin(), _snake.rend(), [this] () {
+
+    // });
     for (i = _snake.size() - 1; i > 0; i--) {
-        _snake[i]->orientation = _snake[i - 1]->orientation;
+        if (_snake[i]->orientation == Orientation::RIGHT || _snake[i]->orientation == Orientation::LEFT) {
+            std::cout << _snake[i]->x << " " << (int)_snake[i]->x + 1 << std::endl;
+            if (_snake[i]->x == (int)_snake[i]->x + 1) {
+                std::cout << _snake[i]->x << std::endl;
+                _snake[i]->orientation = _snake[i - 1]->orientation;
+            }
+        } else if (_snake[i]->orientation == Orientation::UP || _snake[i]->orientation == Orientation::DOWN) {
+            if (_snake[i]->y == (int)_snake[i]->y + 1){
+                _snake[i]->orientation = _snake[i - 1]->orientation;
+            }
+        }
     }
+    // for (std::vector<Entity>::reverse_iterator it = _snake.rbegin(); it != _snake.rend(); it++) {
+    //     if (it->orientation == Orientation::RIGHT || it->orientation == Orientation::LEFT) {
+    //         std::vector<Entity>::reverse_iterator it_next = it + 1;
+    //         it->orientation = it_next->orientation;
+    //     }
+    // }
 }
 
 bool Nibbler::isGameOver() const
