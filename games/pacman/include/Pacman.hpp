@@ -9,18 +9,16 @@
 #define PACMAN_HPP_
 
 #include "IGame.hpp"
-
 #include <ctime>
 #include <chrono>
 #include <iostream>
 #include <fstream>
 
-
-#include <vector>
-#include <string>
-#include <cstring>
-#include <ios>
-#include <algorithm>
+// #include <vector>
+// #include <string>
+// #include <cstring>
+// #include <ios>
+// #include <algorithm>
 
 using namespace arc;
 
@@ -36,13 +34,12 @@ namespace arc {
             const std::string &getSound() const override;
             const std::string &getScore() override;
 
-            const std::map<char, std::pair<std::string, Color>> &getVisualAssets() const override;
-            const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &getControls() const override;
+            const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &getControls() const;
 
             const std::vector<std::shared_ptr<Entity>> &getEntities() const override;
 
-            const std::vector<std::pair<std::string, std::string>> &getGameControlsFormatString() const override;
-            const std::vector<std::string> &getGameStatsFormatString() const override;
+            const std::vector<std::pair<std::string, std::string>> &getGameControls() const override;
+            const std::vector<std::pair<std::string, std::string>> &getGameStats() const override;
 
             void restart() override;
             void updateGame() override;
@@ -79,7 +76,7 @@ namespace arc {
             int _nbPacGum;
 
             std::vector <std::pair<std::string, std::string>> _gameControls;
-            std::vector<std::string> _gameStats;
+            std::vector <std::pair<std::string, std::string>> _gameStats;
         private:
             // //InitPacman
             void initPacman();
@@ -111,7 +108,6 @@ namespace arc {
             bool isCollision(std::vector<std::shared_ptr<Entity>>);
             bool isCollision(std::shared_ptr<Entity> _entity);
             bool isPacpacEaten(std::vector<std::shared_ptr<Entity>>);
-            // bool isOnSnake(float x, float y);
     };
 }
 

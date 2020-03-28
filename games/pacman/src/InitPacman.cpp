@@ -12,8 +12,10 @@ void Pacman::initPacman()
     _start = std::chrono::system_clock::now();
     _end = std::chrono::system_clock::now();
     _title = "Pacman";
-    _height = 11;
-    _width = 20;
+    // _height = 11;
+    // _width = 20;
+    _height = 30;
+    _width = 40;
     _music = "";
     _sound = "";
     _score = 0;
@@ -94,7 +96,7 @@ void Pacman::initMap() //init _myMap and _pacGum
     std::string readLine;
     int x = 0;
     int y = 0;
-    std::ifstream mapFile("./games/pacman/map2.txt");  //On essaye d'ouvrir le fichier
+    std::ifstream mapFile("./games/pacman/map3.txt");  //On essaye d'ouvrir le fichier
 
     if(mapFile)
     {
@@ -132,6 +134,8 @@ void Pacman::initMap() //init _myMap and _pacGum
     } else {
         std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
     }
+    _myMap.size();
+    std::cout << _myMap.size() << std::endl;
 }
 
 void Pacman::initPacpac()
@@ -151,10 +155,7 @@ void Pacman::initCherry()
 {
     float random_x = rand () % _width;
     float random_y = rand () % _height;
-    // while (isOnSnake(random_x, random_y) == true) {
-    //     random_x = rand () % _width;
-    //     random_y = rand () % _height;
-    // }
+
     std::shared_ptr<Entity> fruitEntity(new Entity);
     fruitEntity->type = CONSUMABLE;
     fruitEntity->spritePath = "./assets/pacman/cherry.png";
@@ -206,6 +207,6 @@ void Pacman::initGameControls()
 void Pacman::initGameStats()
 {
     _gameStats.clear();
-    _gameStats.push_back("Score: " + std::to_string(_score));
-    _gameStats.push_back("Cherry: " + std::to_string(_nbCherry));
+    _gameStats.push_back(std::pair<std::string, std::string> ("Score", std::to_string(_score)));
+    _gameStats.push_back(std::pair<std::string, std::string> ("Cherry", std::to_string(_nbCherry)));
 }
