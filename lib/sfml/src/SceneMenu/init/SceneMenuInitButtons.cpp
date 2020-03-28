@@ -11,12 +11,12 @@ static arc::Button initButtonPlay(std::function<void()> &event, sf::Font &font)
 {
     sf::RectangleShape rect(sf::Vector2f(220, 100));
 
-    rect.setFillColor(sf::Color(100, 100, 100, 255));
+    rect.setFillColor(sf::Color(89, 87, 117, 255));
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(830, 320));
     arc::Button button(event, rect, "Play", font);
-    button.setHoverColor(sf::Color(90, 90, 90, 255));
+    button.setHoverColor(sf::Color(109, 107, 137, 255));
     button.setActivate(false);
     return (button);
 }
@@ -25,13 +25,14 @@ static arc::Button initButtonExit(std::function<void()> &event, sf::Font &font)
 {
     sf::RectangleShape rect(sf::Vector2f(220, 100));
 
-    rect.setFillColor(sf::Color(100, 100, 100, 255));
+    rect.setFillColor(sf::Color(89, 87, 117, 255));
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(830, 820));
     arc::Button button(event, rect, "Exit", font);
-    button.setHoverColor(sf::Color(90, 90, 90, 255));
+    button.setHoverColor(sf::Color(109, 107, 137, 255));
     button.setActivate(false);
+    button.setColorUnable(sf::Color(150, 150, 150, 255));
     return (button);
 }
 
@@ -39,12 +40,12 @@ static arc::Button initButtonEnterUsername(std::function<void()> event, sf::Font
 {
     sf::RectangleShape rect(sf::Vector2f(220, 80));
 
-    rect.setFillColor(sf::Color(100, 100, 100, 255));
+    rect.setFillColor(sf::Color(89, 87, 117, 255));
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(830, 700));
     arc::Button button(event, rect, "Validate", font);
-    button.setHoverColor(sf::Color(90, 90, 90, 255));
+    button.setHoverColor(sf::Color(109, 107, 137, 255));
     return (button);
 }
 
@@ -52,12 +53,12 @@ static arc::Button initButtonWatchScores(std::function<void()> &event, sf::Font 
 {
     sf::RectangleShape rect(sf::Vector2f(220, 100));
 
-    rect.setFillColor(sf::Color(100, 100, 100, 255));
+    rect.setFillColor(sf::Color(89, 87, 117, 255));
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(830, 490));
     arc::Button button(event, rect, "Watch scores", font);
-    button.setHoverColor(sf::Color(90, 90, 90, 255));
+    button.setHoverColor(sf::Color(109, 107, 137, 255));
     return (button);
 }
 
@@ -65,13 +66,14 @@ static arc::Button initButtonHowToPlay(std::function<void()> &event, sf::Font &f
 {
     sf::RectangleShape rect(sf::Vector2f(220, 100));
 
-    rect.setFillColor(sf::Color(100, 100, 100, 255));
+    rect.setFillColor(sf::Color(89, 87, 117, 255));
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(830, 660));
     arc::Button button(event, rect, "How to play", font);
-    button.setHoverColor(sf::Color(90, 90, 90, 255));
+    button.setHoverColor(sf::Color(109, 107, 137, 255));
     button.setActivate(false);
+    button.setColorUnable(sf::Color(150, 150, 150, 255));
     return (button);
 }
 

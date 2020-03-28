@@ -9,20 +9,5 @@
 
 void arc::SceneMenu::eventButtonPlay()
 {
-    bool good = true;
-    std::for_each(_lists.begin(), _lists.end(), [this, &good](const List &list) {
-        if (good == false)
-            return;
-        if (!list.hasASelectButton()) {
-            _texts[1].setText("Please choose a game");
-            _texts[1].setDisplay(true);
-            good = false;
-        } else {
-            good = true;
-        }
-    });
-    if (!good)
-        return;
-    _texts[1].setDisplay(false);
     _eventPlay();
 }

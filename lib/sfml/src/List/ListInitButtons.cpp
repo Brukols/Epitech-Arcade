@@ -11,13 +11,13 @@ static arc::Button initButtonArrowDown(const sf::Font &font, std::function<void(
 {
     sf::RectangleShape rect(sf::Vector2f(400, 60));
 
-    rect.setFillColor(sf::Color(100, 100, 100, 255));
+    rect.setFillColor(sf::Color(89, 87, 107, 255));
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(0, 540));
 
     arc::Button button(fct, rect, "", font);
-    button.setHoverColor(sf::Color(90, 90, 90, 255));
+    button.setHoverColor(sf::Color(109, 107, 137, 255));
     return (button);
 }
 
@@ -25,13 +25,13 @@ static arc::Button initButtonArrowUp(const sf::Font &font, std::function<void()>
 {
     sf::RectangleShape rect(sf::Vector2f(400, 60));
 
-    rect.setFillColor(sf::Color(100, 100, 100, 255));
+    rect.setFillColor(sf::Color(89, 87, 107, 255));
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(0, 60));
 
     arc::Button button(fct, rect, "", font);
-    button.setHoverColor(sf::Color(90, 90, 90, 255));
+    button.setHoverColor(sf::Color(109, 107, 137, 255));
     return (button);
 }
 

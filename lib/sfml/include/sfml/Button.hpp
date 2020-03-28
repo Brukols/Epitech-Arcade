@@ -28,7 +28,6 @@ namespace arc
             void setColorSelect(sf::Color selectColor, sf::Color selectOutlineColor, sf::Color selectHoverColor);
             void resetSelect();
             bool isSelect() const;
-            void setActivate(bool activate);
 
             // GETTER AND SETTER
             void setPosition(const sf::Vector2f &pos);
@@ -42,6 +41,9 @@ namespace arc
             void setDisplay(bool display);
             const sf::Vector2f &getPosition() const;
             void setCharacterSize(size_t size);
+            void setActivate(bool activate);
+            bool isActivate() const;
+            void setColorUnable(const sf::Color &color);
 
         private:
             sf::RectangleShape _rect;
@@ -63,6 +65,8 @@ namespace arc
             bool _display = true;
 
             sf::Vector2f _pos;
+
+            sf::Color _colorUnable = sf::Color(150, 150, 150, 255);
     };
 }
 

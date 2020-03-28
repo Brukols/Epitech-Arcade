@@ -13,12 +13,12 @@ static arc::Button initButtonRestart(const std::function<void()> &event, const s
 {
     sf::RectangleShape rect(sf::Vector2f(220, 80));
 
-    rect.setFillColor(sf::Color(100, 100, 100, 255));
+    rect.setFillColor(sf::Color(89, 87, 117, 255));
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(1230, 800));
     arc::Button button(event, rect, "Restart", font);
-    button.setHoverColor(sf::Color(90, 90, 90, 255));
+    button.setHoverColor(sf::Color(109, 107, 137, 255));
     return (button);
 }
 
@@ -26,12 +26,12 @@ static arc::Button initButtonMenu(const std::function<void()> &event, const sf::
 {
     sf::RectangleShape rect(sf::Vector2f(220, 80));
 
-    rect.setFillColor(sf::Color(100, 100, 100, 255));
+    rect.setFillColor(sf::Color(89, 87, 117, 255));
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(450, 800));
     arc::Button button(event, rect, "Menu", font);
-    button.setHoverColor(sf::Color(90, 90, 90, 255));
+    button.setHoverColor(sf::Color(109, 107, 137, 255));
     return (button);
 }
 

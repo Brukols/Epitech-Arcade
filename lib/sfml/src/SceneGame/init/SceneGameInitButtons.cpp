@@ -11,12 +11,12 @@ static arc::Button *initButtonBackToMenu(const sf::Font &font)
 {
     sf::RectangleShape rect(sf::Vector2f(250, 100));
 
-    rect.setFillColor(sf::Color(82, 91, 86, 255));
+    rect.setFillColor(sf::Color(89, 87, 117, 255));
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(1600, 900));
     arc::Button *button = new arc::Button(std::function<void()>(), rect, "Menu", font);
-    button->setHoverColor(sf::Color(72, 81, 76, 255));
+    button->setHoverColor(sf::Color(109, 107, 137, 255));
     button->setActivate(true);
     return (button);
 }

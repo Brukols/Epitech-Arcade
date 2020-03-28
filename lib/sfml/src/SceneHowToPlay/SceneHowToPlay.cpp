@@ -73,12 +73,12 @@ void arc::SceneHowToPlay::initButtonOk()
 {
     sf::RectangleShape rect(sf::Vector2f(220, 100));
 
-    rect.setFillColor(sf::Color(100, 100, 100, 255));
+    rect.setFillColor(sf::Color(89, 87, 117, 255));
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(830, 700));
     _buttonOk = std::unique_ptr<Button>(new Button(std::function<void()>(), rect, "Ok", _font));
-    _buttonOk->setHoverColor(sf::Color(90, 90, 90, 255));
+    _buttonOk->setHoverColor(sf::Color(109, 107, 137, 255));
 }
 
 void arc::SceneHowToPlay::eventButtonOk()

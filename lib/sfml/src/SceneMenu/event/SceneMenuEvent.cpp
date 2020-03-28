@@ -74,6 +74,10 @@ void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
     }
     _actualEventType = arc::Event::Type::NO_EVENT;
     _actualKeyPress = arc::Event::Key::NONE;
+    if (_lists[1].hasASelectButton()) {
+        _buttons[0].setActivate(true);
+        _buttons[2].setActivate(true);
+    }
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
             _actualEventType = arc::Event::QUIT;

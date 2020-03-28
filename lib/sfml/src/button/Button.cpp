@@ -55,6 +55,12 @@ void arc::Button::displayButton(sf::RenderWindow &window)
 {
     if (!_display)
         return;
+    if (!_activate) {
+        _rect.setFillColor(_colorUnable);
+        window.draw(_rect);
+        window.draw(_text);
+        return;
+    }
     if (isMouseHover(sf::Mouse::getPosition(window)) && _activate) {
         if (_select) {
             _rect.setFillColor(_selectHoverColor);
@@ -154,4 +160,14 @@ void arc::Button::setCharacterSize(size_t size)
 {
     _text.setCharacterSize(size);
     _text.setPosition(sf::Vector2f(_rect.getPosition().x + (_rect.getLocalBounds().width / 2 - _text.getLocalBounds().width / 2), _rect.getPosition().y - 10 + (_rect.getLocalBounds().height / 2 - _text.getCharacterSize() / 2)));
+}
+
+bool arc::Button::isActivate() const
+{
+    return (_activate);
+}
+
+void arc::Button::setColorUnable(const sf::Color &color)
+{
+    _colorUnable = color;
 }

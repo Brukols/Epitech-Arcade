@@ -18,6 +18,8 @@ void arc::SceneMenu::eventValidateUsername()
     std::for_each(_buttons.begin(), _buttons.end(), [this](Button &button) {
         button.setActivate(true);
     });
+    _buttons[0].setActivate(false);
+    _buttons[2].setActivate(false);
     _texts.push_back([this]() -> Text {
         sf::Text text;
 
