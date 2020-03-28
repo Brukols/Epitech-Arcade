@@ -7,9 +7,6 @@
 
 #include "Pacman.hpp"
 
-// BLEU CLARE : 11 112 231
-// ROSE : 244 158 280
-
 void Pacman::initPacman()
 {
     _start = std::chrono::system_clock::now();
@@ -20,7 +17,8 @@ void Pacman::initPacman()
     _music = "";
     _sound = "";
     _score = 0;
-    _nbApple = 0;
+    _nbCherry = 0;
+    _nbPacGum = 0;
     initEntities();
     initVisualAssets();
     initControls();
@@ -31,9 +29,8 @@ void Pacman::initPacman()
 void Pacman::initEntities()
 {
     initPacpac();
-    initApple();
+    initCherry();
     initMap();
-    // initFruits();
     initGhostBlinky();
     initGhostPinky();
     initGhostInky();
@@ -92,7 +89,7 @@ void Pacman::initGhostClyde()
     _clyde.push_back(clydeEntity);
 }
 
-void Pacman::initMap()
+void Pacman::initMap() //init _myMap and _pacGum
 {
     std::string readLine;
     int x = 0;
@@ -115,6 +112,17 @@ void Pacman::initMap()
                     mapEntity->y = y;
                     _entities.push_back(mapEntity);
                     _myMap.push_back(mapEntity);
+                }
+                if (readLine[x] == '0') {
+                    std::shared_ptr<Entity> pacGumEntity(new Entity);
+                    pacGumEntity->type = CONSUMABLE;
+                    pacGumEntity->spritePath = "./assets/pacman/pacGum.png";
+                    // pacGumEntity->backgroundColor = Color{30, 17, 149, 255};
+                    pacGumEntity->orientation = Orientation::LEFT;
+                    pacGumEntity->x = x;
+                    pacGumEntity->y = y;
+                    _entities.push_back(pacGumEntity);
+                    _pacGum.push_back(pacGumEntity);
                 }
                 x++;
             }
@@ -139,24 +147,31 @@ void Pacman::initPacpac()
     _pacman.push_back(pacmanEntity);
 }
 
-void Pacman::initApple()
+void Pacman::initCherry()
 {
     float random_x = rand () % _width;
     float random_y = rand () % _height;
-
-    while (isOnSnake(random_x, random_y) == true) {
-        random_x = rand () % _width;
-        random_y = rand () % _height;
-    }
+    // while (isOnSnake(random_x, random_y) == true) {
+    //     random_x = rand () % _width;
+    //     random_y = rand () % _height;
+    // }
     std::shared_ptr<Entity> fruitEntity(new Entity);
     fruitEntity->type = CONSUMABLE;
     fruitEntity->spritePath = "./assets/pacman/cherry.png";
     fruitEntity->backgroundColor = Color{227, 18, 18, 255};
     fruitEntity->orientation = Orientation::LEFT;
+
     fruitEntity->x = random_x;
     fruitEntity->y = random_y;
+
+    while (isCollision(fruitEntity)) {
+        float random_x = rand () % _width;
+        float random_y = rand () % _height;
+        fruitEntity->x = random_x;
+        fruitEntity->y = random_y;
+    }
     _entities.push_back(fruitEntity);
-    _apple.push_back(fruitEntity);
+    _cherry.push_back(fruitEntity);
 }
 
 void Pacman::initVisualAssets()
@@ -192,5 +207,5 @@ void Pacman::initGameStats()
 {
     _gameStats.clear();
     _gameStats.push_back("Score: " + std::to_string(_score));
-    _gameStats.push_back("Apple: " + std::to_string(_nbApple));
+    _gameStats.push_back("Cherry: " + std::to_string(_nbCherry));
 }

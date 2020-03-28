@@ -67,14 +67,16 @@ namespace arc {
 
             std::vector<std::shared_ptr<Entity>> _entities;
             std::vector<std::shared_ptr<Entity>> _pacman;
-            std::vector<std::shared_ptr<Entity>> _apple;
+            std::vector<std::shared_ptr<Entity>> _cherry;
             std::vector<std::shared_ptr<Entity>> _myMap;
             std::vector<std::shared_ptr<Entity>> _blinky;
             std::vector<std::shared_ptr<Entity>> _pinky;
             std::vector<std::shared_ptr<Entity>> _inky;
             std::vector<std::shared_ptr<Entity>> _clyde;
+            std::vector<std::shared_ptr<Entity>> _pacGum;
 
-            int _nbApple;
+            int _nbCherry;
+            int _nbPacGum;
 
             std::vector <std::pair<std::string, std::string>> _gameControls;
             std::vector<std::string> _gameStats;
@@ -85,7 +87,7 @@ namespace arc {
             void initControls();
             void initEntities();
             void initPacpac();
-            void initApple();
+            void initCherry();
             void initMap();
 
             void initGhostBlinky();
@@ -97,6 +99,7 @@ namespace arc {
             void initGameStats();
 
             bool doYouEat();
+            bool doYouEatPacGum();
             void movePacman();
             
             void moveBlinky();
@@ -106,8 +109,9 @@ namespace arc {
 
             void updateOrientationPacman();
             bool isCollision(std::vector<std::shared_ptr<Entity>>);
+            bool isCollision(std::shared_ptr<Entity> _entity);
             bool isPacpacEaten(std::vector<std::shared_ptr<Entity>>);
-            bool isOnSnake(float x, float y);
+            // bool isOnSnake(float x, float y);
     };
 }
 

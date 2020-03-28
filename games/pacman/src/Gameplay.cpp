@@ -11,11 +11,12 @@ void Pacman::restart()
 {
     _entities.clear();
     _pacman.clear();
-    _apple.clear();
+    _cherry.clear();
     _blinky.clear();
     _pinky.clear();
     _inky.clear();
     _clyde.clear();
+    _pacGum.clear();
     initPacman();
 }
 
@@ -224,18 +225,23 @@ void Pacman::movePacman()
     updateOrientationPacman();
     if (doYouEat() == true) {
         _score += 1;
-        initApple();
-        _nbApple++;
+        initCherry();
+        _nbCherry++;
         initGameStats();
         //initialisation de sound si le serpent mange quelque chose
     }
+    if (doYouEatPacGum() == true) {
+        _score += 1;
+        _nbPacGum++;
+        initGameStats();
+    }
 }
 
-bool Pacman::doYouEat()
+bool Pacman::doYouEatPacGum()
 {
     auto const &ptr = std::find_if(_entities.begin(), _entities.end(), [this] (std::shared_ptr<Entity> &p) {
-        for (size_t i = 0; i < _apple.size(); i++) {
-            if (p == _apple[i]) {
+        for (size_t i = 0; i < _pacGum.size(); i++) {
+            if (p == _pacGum[i]) {
                 if ((p->x == _pacman.front()->x) && (p->y == _pacman.front()->y)) {
                     return true;
                 }
@@ -246,7 +252,25 @@ bool Pacman::doYouEat()
     if (ptr == _entities.end())
         return false;
     _entities.erase(ptr);
-    _apple.clear();
+    return true;
+}
+
+bool Pacman::doYouEat()
+{
+    auto const &ptr = std::find_if(_entities.begin(), _entities.end(), [this] (std::shared_ptr<Entity> &p) {
+        for (size_t i = 0; i < _cherry.size(); i++) {
+            if (p == _cherry[i]) {
+                if ((p->x == _pacman.front()->x) && (p->y == _pacman.front()->y)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    });
+    if (ptr == _entities.end())
+        return false;
+    _entities.erase(ptr);
+    _cherry.clear();
     return true;
 }
 
@@ -284,6 +308,15 @@ bool Pacman::isCollision(std::vector<std::shared_ptr<Entity>> _entity)
     return false;
 }
 
+bool Pacman::isCollision(std::shared_ptr<Entity> _entity)
+{
+    for (auto it = _myMap.begin(); it != _myMap.end(); it++) {
+        if (_entity->x == (*it)->x && _entity->y == (*it)->y)
+            return true;
+    }
+    return false;
+}
+
 // bool Pacman::isCollision() const
 // {
 //     for (auto it = _myMap.begin(); it != _myMap.end(); it++) {
@@ -293,14 +326,14 @@ bool Pacman::isCollision(std::vector<std::shared_ptr<Entity>> _entity)
 //     return false;
 // }
 
-bool Pacman::isOnSnake(float x, float y)
-{
-    auto const &ptr = std::find_if(_pacman.begin(), _pacman.end(), [x, y](std::shared_ptr<Entity> &o){
-        if (o->x == x && o->y == y)
-            return true;
-        return false;
-    });
-    if (ptr == _pacman.end())
-        return false;
-    return true;
-}
+// bool Pacman::isOnSnake(float x, float y)
+// {
+//     auto const &ptr = std::find_if(_pacman.begin(), _pacman.end(), [x, y](std::shared_ptr<Entity> &o){
+//         if (o->x == x && o->y == y)
+//             return true;
+//         return false;
+//     });
+//     if (ptr == _pacman.end())
+//         return false;
+//     return true;
+// }
