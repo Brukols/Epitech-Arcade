@@ -29,9 +29,9 @@ void arc::SceneGame::initTextHowToPlay(const std::vector<std::pair<std::string, 
 
     _howToPlay.clear();
 
-    int y = 600;
+    int y = 500;
     std::for_each(info.begin(), info.end(), [this, &y](const std::pair<std::string, std::string> &pair) {
         _howToPlay.push_back(initText(_font, pair.first, pair.second, y));
-        y += 30;
+        y += 25;
     });
 }

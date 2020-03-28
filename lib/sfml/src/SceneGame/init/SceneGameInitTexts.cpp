@@ -43,7 +43,7 @@ static arc::Text initTextTitleHowToPlay(const sf::Font &font)
     text.setString("How to play");
     text.setCharacterSize(30);
     text.setFillColor(sf::Color::White);
-    text.setPosition(sf::Vector2f(1600, 550));
+    text.setPosition(sf::Vector2f(1600, 450));
     arc::Text _text(font, text);
     _text.setDisplay(true);
     return (_text);

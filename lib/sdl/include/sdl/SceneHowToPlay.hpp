@@ -29,10 +29,10 @@ namespace arc
 
             void event(const arc::Event::Type &actualEventType, const arc::Event::Key &actualKeyPress, const SDL_Event &event);
             void changeColor();
+            void initTexts(const std::vector<std::pair<std::string, std::string>> &info);
 
         private:
             void initButtonOk();
-            void initTexts();
             void initBg();
             void initCase();
 

@@ -35,7 +35,7 @@ void arc::SceneGame::setFunctionTogglePause(const std::function<void()> &functio
 void arc::SceneGame::setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info)
 {
     _howToPlay.clear();
-    int y = 620;
+    int y = 500;
     std::for_each(info.begin(), info.end(), [this, &y](const std::pair<std::string, std::string> &pair) {
         Text *text = new Text();
         text->setFont(FONT, 16);
@@ -43,7 +43,7 @@ void arc::SceneGame::setHowToPlay(const std::vector<std::pair<std::string, std::
         text->setPosition(20, y);
         text->setColor({255, 255, 255, 255});
         _howToPlay.push_back(std::unique_ptr<Text>(text));
-        y += 40;
+        y += 25;
     });
 }
 

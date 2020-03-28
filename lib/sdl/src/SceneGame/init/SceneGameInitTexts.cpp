@@ -22,7 +22,7 @@ static arc::Text *initTitleHowToPlay()
     arc::Text *text = new arc::Text();
     text->setFont(FONT, 30);
     text->setText("How to play");
-    text->setPosition(350 / 2 - text->getWidth() / 2, 550);
+    text->setPosition(350 / 2 - text->getWidth() / 2, 450);
     text->setColor({255, 255, 255, 255});
     return (text);
 }

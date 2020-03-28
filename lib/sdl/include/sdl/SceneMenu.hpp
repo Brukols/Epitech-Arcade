@@ -33,6 +33,7 @@ namespace arc
 
             void setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen);
             void setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen);
+            void setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info);
 
             void setFunctionPlay(const std::function<void()> &function);
             void setScores(const std::vector<std::pair<std::string, std::string>> &scores);

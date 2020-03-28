@@ -39,6 +39,7 @@ namespace arc
             void setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen);
             void setListLibraries(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen);
             void setScores(const std::vector<std::pair<std::string, std::string>> &scores);
+            void setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info);
 
         private:
             void initRects();
@@ -59,6 +60,7 @@ namespace arc
             std::vector<Text> _texts;
             std::vector<Button> _buttons;
             std::vector<Input> _inputs;
+            std::vector<Text> _howToPlay;
 
             std::string _username = "";
 

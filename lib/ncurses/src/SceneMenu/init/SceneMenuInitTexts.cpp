@@ -64,21 +64,4 @@ void arc::SceneMenu::initTexts()
     std::for_each(texts.begin(), texts.end(), [this](Text (*fct)()) {
         _texts.push_back(fct());
     });
-
-    const std::string names[] = {
-        "Previous graphics library : 1",
-        "Next graphics library : 0",
-        "Previous game : 2",
-        "Next game : 9",
-        "Restart the game : r",
-        "Go back to menu : m",
-        "Pause : key space",
-        "Exit : key escape"
-    };
-    for (size_t i = 0; i < 8; i++) {
-        arc::Text text(names[i], arc::MAIN_COLOR_1, arc::BACKGROUND_COLOR);
-
-        text.setPosition(103, i + 44);
-        _texts.push_back(text);
-    }
 }

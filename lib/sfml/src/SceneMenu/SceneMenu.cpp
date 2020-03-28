@@ -29,6 +29,11 @@ arc::SceneMenu::~SceneMenu()
 {
 }
 
+void arc::SceneMenu::setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info)
+{
+    _sceneHowToPlay->initTexts(info);
+}
+
 const std::string &arc::SceneMenu::getUsername()
 {
     return (_username);

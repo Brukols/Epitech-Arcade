@@ -26,11 +26,11 @@ namespace arc
 
             void event(const sf::Event &event);
             void setFont(const sf::Font &font);
+            void initTexts(const std::vector<std::pair<std::string, std::string>> &info);
 
         private:
             void initBg();
             void initCase();
-            void initTexts();
             void initButtonOk();
 
             void eventButtonOk();

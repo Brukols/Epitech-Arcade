@@ -120,6 +120,7 @@ void arc::Graphical::setScene(Scene scene)
 void arc::Graphical::setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info)
 {
     static_cast<SceneGame *>(_scenes[GAME].get())->setHowToPlay(info);
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setHowToPlay(info);
 }
 
 void arc::Graphical::setGameStats(const std::vector<std::pair<std::string, std::string>> &info)

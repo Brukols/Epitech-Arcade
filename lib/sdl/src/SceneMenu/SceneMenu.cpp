@@ -57,3 +57,8 @@ void arc::SceneMenu::setUsername(const std::string &username)
 {
     _inputUsername->setText(username);
 }
+
+void arc::SceneMenu::setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info)
+{
+    _sceneHowToPlay->initTexts(info);
+}

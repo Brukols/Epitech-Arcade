@@ -50,33 +50,23 @@ void arc::SceneHowToPlay::setFont(const sf::Font &font)
 {
     _font = font;
     initButtonOk();
-    initTexts();
 }
 
-void arc::SceneHowToPlay::initTexts()
+void arc::SceneHowToPlay::initTexts(const std::vector<std::pair<std::string, std::string>> &info)
 {
-    const std::string names[] = {
-        "Previous graphics library : 1",
-        "Next graphics library : 0",
-        "Previous game : 2",
-        "Next game : 9",
-        "Restart the game : r",
-        "Go back to menu : m",
-        "Pause : key space",
-        "Exit : key escape"
-    };
-
     _texts.clear();
-    for (size_t i = 0; i < 8; i++) {
+    int i = 0;
+    std::for_each(info.begin(), info.end(), [this, &i](const std::pair<std::string, std::string> &pair) {
         sf::Text text;
 
         text.setFont(_font);
-        text.setString(names[i]);
+        text.setString(pair.first + " : " + pair.second);
         text.setCharacterSize(20);
         text.setFillColor(sf::Color::White);
-        text.setPosition(sf::Vector2f(650, i * 50 + 230));
+        text.setPosition(sf::Vector2f(650, i * 30 + 230));
         _texts.push_back(std::unique_ptr<Text>(new Text(_font, text)));
-    }
+        i++;
+    });
 }
 
 void arc::SceneHowToPlay::initButtonOk()

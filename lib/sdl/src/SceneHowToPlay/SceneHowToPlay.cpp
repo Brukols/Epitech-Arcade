@@ -14,7 +14,7 @@ arc::SceneHowToPlay::SceneHowToPlay()
     initButtonOk();
     initCase();
     initBg();
-    initTexts();
+    // initTexts();
 }
 
 arc::SceneHowToPlay::~SceneHowToPlay()
@@ -47,28 +47,20 @@ void arc::SceneHowToPlay::initButtonOk()
     _buttonOk = std::unique_ptr<ButtonRect>(button);
 }
 
-void arc::SceneHowToPlay::initTexts()
+void arc::SceneHowToPlay::initTexts(const std::vector<std::pair<std::string, std::string>> &info)
 {
-    const std::string names[] = {
-        "Previous graphics library : 1",
-        "Next graphics library : 0",
-        "Previous game : 2",
-        "Next game : 9",
-        "Restart the game : r",
-        "Go back to menu : m",
-        "Pause : key space",
-        "Exit : key escape"
-    };
-
-    for (size_t i = 0; i < 8; i++) {
+    _texts.clear();
+    int i = 0;
+    std::for_each(info.begin(), info.end(), [this, &i](const std::pair<std::string, std::string> &pair) {
         arc::Text *text = new arc::Text();
 
-        text->setPosition(650, i * 50 + 250);
+        text->setPosition(650, i * 30 + 250);
         text->setColor({255, 255, 255, 255});
         text->setFont(FONT, 20);
-        text->setText(names[i]);
+        text->setText(pair.first + " : " + pair.second);
         _texts.push_back(std::unique_ptr<Text>(text));
-    }
+        i++;
+    });
 }
 
 void arc::SceneHowToPlay::initBg()

@@ -50,6 +50,7 @@ namespace arc
             void setListLibraries(const std::vector<std::string> &libraries, const std::function<void (const std::string &)> &fct, int chosen);
 
             void setScores(const std::vector<std::pair<std::string, std::string>> &scores);
+            void setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info);
 
         private:
             void initButtons();

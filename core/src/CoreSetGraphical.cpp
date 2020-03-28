@@ -36,6 +36,7 @@ void arc::Core::initGraphical(const std::string &username, IGraphical::Scene sce
         setGame(name);
         _pathScoreFile = "." + _game->getTitle();
         _graph->setScores(getScores());
+        _graph->setHowToPlay(getControls());
     }, _indexGame);
     _graph->setFunctionPlay([this]() {
         if (_game)
