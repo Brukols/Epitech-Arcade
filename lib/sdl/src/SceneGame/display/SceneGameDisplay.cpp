@@ -6,6 +6,7 @@
 */
 
 #include "sdl/SceneGame.hpp"
+#include "sdl/Sprite.hpp"
 #include <iostream>
 
 void arc::SceneGame::display(SDL_Renderer *window)
@@ -19,9 +20,27 @@ void arc::SceneGame::display(SDL_Renderer *window)
     });
 
     std::for_each(_gameMap.begin(), _gameMap.end(), [&window, this](std::shared_ptr<Entity> &entity) {
-        _cell.get()->setPosition(entity->x * _cell.get()->getWidth() + 500, entity->y * _cell.get()->getHeight() + 100);
-        _cell.get()->setColor({entity->backgroundColor.r, entity->backgroundColor.g, entity->backgroundColor.b, entity->backgroundColor.a});
-        _cell.get()->display(window);
+        if (!entity->spritePath.empty()) {
+            if (!_textureMap.count(entity->spritePath)) {
+                _textureMap[entity->spritePath] = std::unique_ptr<Sprite>(new Sprite(entity->spritePath));
+            }
+            if (entity->orientation == arc::Orientation::DOWN) {
+                _textureMap[entity->spritePath]->setRotation(180);
+            } else if (entity->orientation == arc::Orientation::RIGHT) {
+                _textureMap[entity->spritePath]->setRotation(90);
+            } else if (entity->orientation == arc::Orientation::LEFT) {
+                _textureMap[entity->spritePath]->setRotation(270);
+            } else {
+                _textureMap[entity->spritePath]->setRotation(0);
+            }
+            _textureMap[entity->spritePath]->setScale(_cell->getWidth(), _cell->getHeight());
+            _textureMap[entity->spritePath]->setPosition(entity->x * _cell->getWidth() + 500, entity->y * _cell->getHeight() + 100);
+            _textureMap[entity->spritePath]->display(window);
+        } else {
+            _cell.get()->setPosition(entity->x * _cell.get()->getWidth() + 500, entity->y * _cell.get()->getHeight() + 100);
+            _cell.get()->setColor({entity->backgroundColor.r, entity->backgroundColor.g, entity->backgroundColor.b, entity->backgroundColor.a});
+            _cell.get()->display(window);
+        }
     });
 
     std::for_each(_howToPlay.begin(), _howToPlay.end(), [&window](std::unique_ptr<Text> &text) {

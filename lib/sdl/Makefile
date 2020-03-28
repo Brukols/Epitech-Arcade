@@ -38,6 +38,7 @@ SRCS	=	src/Graphical/Graphical.cpp		\
 			src/ScenePause/ScenePause.cpp	\
 			src/SceneHowToPlay/SceneHowToPlay.cpp	\
 			src/Errors/Errors.cpp	\
+			src/Sprite/Sprite.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)
 
@@ -45,7 +46,7 @@ OBJS_TEST	=	$(SRCS:.cpp=.gcno) $(SRCS:.cpp=.gcda)
 
 CXXFLAGS	=	-I./include -I../../include -W -Wall -Wextra -std=c++17 -fPIC
 
-LDFLAGS		=	-lSDL2 -lSDL2_ttf
+LDFLAGS		=	-lSDL2 -lSDL2_ttf -lSDL2_image
 
 CC	=	g++
 

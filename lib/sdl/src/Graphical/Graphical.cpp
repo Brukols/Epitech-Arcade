@@ -10,14 +10,15 @@
 #include "sdl/SceneGame.hpp"
 #include "sdl/SceneEndGame.hpp"
 #include "sdl/Utility.hpp"
+#include "sdl/Errors.hpp"
 
 arc::Graphical::Graphical()
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-        // Throw exception
-        return;
+        throw ArcadeError("Unable to init the lib", "Grapical");
     }
     TTF_Init();
+    IMG_Init(IMG_INIT_PNG);
     _window = SDL_CreateWindow("Arcade", 0, 0, 1920, 1080, SDL_WINDOW_FULLSCREEN_DESKTOP);
     _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
     _scenes[MAIN_MENU] = std::unique_ptr<IScene>(new SceneMenu());
@@ -29,6 +30,7 @@ arc::Graphical::Graphical()
 arc::Graphical::~Graphical()
 {
     _scenes.clear();
+    IMG_Quit();
     TTF_Quit();
     SDL_DestroyRenderer(_renderer);
     SDL_DestroyWindow(_window);

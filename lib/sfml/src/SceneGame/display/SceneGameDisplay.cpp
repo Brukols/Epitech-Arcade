@@ -22,6 +22,14 @@ void arc::SceneGame::displayGame(sf::RenderWindow &window)
                 }
             }
             sprite.setTexture(_textureMap[entity.get()->spritePath]);
+            sprite.setOrigin(sprite.getLocalBounds().width / 2.0f, sprite.getLocalBounds().height / 2.0f);
+            if (entity->orientation == arc::Orientation::DOWN) {
+                sprite.setRotation(180);
+            } else if (entity->orientation == arc::Orientation::RIGHT) {
+                sprite.setRotation(90);
+            } else if (entity->orientation == arc::Orientation::LEFT) {
+                sprite.setRotation(270);
+            }
             sprite.setScale(_cell.getSize().x / sprite.getTextureRect().width, _cell.getSize().y / sprite.getTextureRect().height);
             sprite.setPosition(sf::Vector2f(entity.get()->x * _cell.getSize().x + 100, entity.get()->y * _cell.getSize().y + 100));
             window.draw(sprite);

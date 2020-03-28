@@ -16,6 +16,7 @@
 #include <map>
 #include <functional>
 #include "sdl/ScenePause.hpp"
+#include "sdl/Sprite.hpp"
 
 namespace arc
 {
@@ -60,6 +61,7 @@ namespace arc
             std::vector<std::pair<std::unique_ptr<IButton>, void (SceneGame::*)()>> _buttons;
             std::vector<std::unique_ptr<Text>> _howToPlay;
             std::vector<std::unique_ptr<Text>> _stats;
+            std::map<std::string, std::unique_ptr<Sprite>> _textureMap;
 
             std::unique_ptr<Text> _title;
 
