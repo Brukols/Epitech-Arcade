@@ -74,7 +74,7 @@ void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
     }
     _actualEventType = arc::Event::Type::NO_EVENT;
     _actualKeyPress = arc::Event::Key::NONE;
-    if (_lists[1].hasASelectButton()) {
+    if (_lists.size() > 1 && _lists[1].hasASelectButton()) {
         _buttons[0].setActivate(true);
         _buttons[2].setActivate(true);
     }

@@ -21,20 +21,6 @@ static arc::Text initTextArcade(const sf::Font &font)
     return (arc::Text(font, text));
 }
 
-static arc::Text initTextErrorMessage(const sf::Font &font)
-{
-    sf::Text text;
-
-    text.setFont(font);
-    text.setString("");
-    text.setCharacterSize(30);
-    text.setFillColor(sf::Color::Red);
-    text.setPosition(sf::Vector2f(780, 900));
-    arc::Text _text(font, text);
-    _text.setDisplay(false);
-    return (_text);
-}
-
 static arc::Text initTextEnterUsername(const sf::Font &font)
 {
     sf::Text text;
@@ -57,7 +43,6 @@ void arc::SceneMenu::initTexts()
         std::vector<arc::Text (*)(const sf::Font &)> text;
 
         text.push_back(initTextArcade);
-        text.push_back(initTextErrorMessage);
         return (text);
     }();
 
