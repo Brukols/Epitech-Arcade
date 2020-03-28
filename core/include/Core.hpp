@@ -50,6 +50,8 @@ namespace arc {
 
             void initGraphical(const std::string &usernmae, IGraphical::Scene scene);
 
+            const std::vector<std::pair<std::string, std::string>> getControls() const;
+
         private:
             std::vector<std::pair<std::string, std::unique_ptr<DLLoader<IGraphical>>>> _graphs;
             std::vector<std::pair<std::string, std::unique_ptr<DLLoader<IGame>>>> _games;

@@ -19,11 +19,13 @@ try {
     _graphs.clear();
     initGraphs();
     initGames();
-    setGraphical(libname);
+    setGraphical(getLibName(libname));
 } catch(const DlError &e) {
     throw e;
 } catch(const DirectoryError &e) {
     throw e;
+} catch(const std::exception &e) {
+    throw FileError("Wrong name of file", "CoreInit");
 }
 
 arc::Core::~Core()
@@ -34,13 +36,35 @@ void arc::Core::clean()
 {
 }
 
+const std::vector<std::pair<std::string, std::string>> arc::Core::getControls() const
+{
+    std::vector<std::pair<std::string, std::string>> controls;
+    controls.push_back(std::make_pair("Previous graphics library", "1"));
+    controls.push_back(std::make_pair("Next graphics library", "0"));
+    controls.push_back(std::make_pair("Previous game", "2"));
+    controls.push_back(std::make_pair("Next game", "9"));
+    controls.push_back(std::make_pair("Restart the menu", "r"));
+    controls.push_back(std::make_pair("Go back to menu", "m"));
+    controls.push_back(std::make_pair("Pause", "space"));
+    controls.push_back(std::make_pair("Exit", "escape"));
+
+    if (_indexGame != -1) {
+        std::vector<std::pair<std::string, std::string>> gameControls = _game->getGameControls();
+
+        std::for_each(gameControls.begin(), gameControls.end(), [&controls](const std::pair<std::string, std::string> &pair) {
+            controls.push_back(std::make_pair(pair.first, pair.second));
+        });
+    }
+    return (controls);
+}
+
 void arc::Core::functionPlay()
 {
     _graph->setGameTitle(_game->getTitle());
     _graph->setControls(_game->getControls());
     _graph->setMapSize(_game->getMapHeight(), _game->getMapWidth());
     _graph->setGameStats(_game->getGameStats());
-    _graph->setHowToPlay(_game->getGameControls());
+    _graph->setHowToPlay(getControls());
     _graph->setScene(arc::IGraphical::GAME);
     _graph->setFunctionMenu([this]() {
         _graph->setScene(arc::IGraphical::MAIN_MENU);
@@ -54,7 +78,7 @@ void arc::Core::functionPlay()
 
 void arc::Core::playArcade()
 {
-    while (_graph->getEventType() != Event::QUIT) {
+    while (_graph->getEventType() != Event::QUIT && _graph->getKeyPressed() != Event::Key::ESCAPE) {
         if (!_nextGraphPath.empty()) {
             setGraphical(_nextGraphPath);
             _nextGraphPath = "";
@@ -69,7 +93,7 @@ void arc::Core::playArcade()
             if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM9)
                 setNextGame();
             else if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM2)
-                setNextGame();
+                setPrevGame();
             else if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::PAUSE) {
                 _pause = !_pause;
                 _graph->setGamePause(_pause);

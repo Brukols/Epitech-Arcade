@@ -61,6 +61,7 @@ void arc::SceneMenu::event(arc::Event::Type &actualEventType, arc::Event::Key &a
 
     if (_exit == true) {
         actualEventType = arc::Event::Type::QUIT;
+        actualKeyPress = arc::Event::Key::ESCAPE;
         return;
     }
     if (_listGames.hasASelectButton()) {
@@ -89,7 +90,7 @@ void arc::SceneMenu::event(arc::Event::Type &actualEventType, arc::Event::Key &a
         }
         _listGraphical.event(actualEventType, actualKeyPress, event);
         _inputUsername->event(actualEventType, actualKeyPress, event);
-        if (_inputUsername->isSelect()) {
+        if (_inputUsername->isSelect() && (actualKeyPress != arc::Event::Key::ESCAPE || actualEventType != arc::Event::Type::QUIT)) {
             actualEventType = arc::Event::Type::NO_EVENT;
             actualKeyPress = arc::Event::Key::NONE;
         }

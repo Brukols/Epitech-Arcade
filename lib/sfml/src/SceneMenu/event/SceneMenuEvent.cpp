@@ -77,12 +77,12 @@ void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
             _actualEventType = arc::Event::QUIT;
-            window.close();
+            _actualKeyPress = arc::Event::ESCAPE;
             return;
         }
         if (_errorMessages.size() != 0) {
             eventErrorMessage(event);
-            return;
+            continue;
         }
         if (_sceneScores.isActivate()) {
             _sceneScores.event(event);
