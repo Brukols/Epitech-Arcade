@@ -58,14 +58,6 @@ static arc::Button initButton(const std::string &name, const std::function<void(
     return (button);
 }
 
-static const std::string getLibName(const std::string &path)
-{
-    std::string tmp = path.substr(path.find("lib_arcade_"), path.length());
-
-    tmp = tmp.substr(11, tmp.size() - 14);
-    return (tmp);
-}
-
 void arc::List::initButtonsList(const std::vector<std::string> &list, int chosen, const std::function<void(const std::string &)> &fct)
 {
     int y = 8;
@@ -74,10 +66,10 @@ void arc::List::initButtonsList(const std::vector<std::string> &list, int chosen
     int i = 0;
     std::for_each(list.begin(), list.end(), [this, &y, &i, &chosen, &fct](const std::string &name) {
         if (i == chosen) {
-            _buttonsList.push_back(initButton(getLibName(name), []() {}, y));
+            _buttonsList.push_back(initButton(name, []() {}, y));
             _buttonsList[_buttonsList.size() - 1].toggleSelect();
         } else {
-            _buttonsList.push_back(initButton(getLibName(name), [this, name, fct]() {
+            _buttonsList.push_back(initButton(name, [this, name, fct]() {
                 fct(name);
             }, y));
         }

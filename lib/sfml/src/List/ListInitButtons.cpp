@@ -70,14 +70,6 @@ void arc::List::initButtons(const sf::Font &font)
     });
 }
 
-static const std::string getLibName(const std::string &path)
-{
-    std::string tmp = path.substr(path.find("lib_arcade_"), path.length());
-
-    tmp = tmp.substr(11, tmp.size() - 14);
-    return (tmp);
-}
-
 void arc::List::initButtonsList(const std::vector<std::string> &list, int chosen, const std::function<void (const std::string &)> &fct, const sf::Font &font)
 {
     int y = 120;
@@ -96,7 +88,7 @@ void arc::List::initButtonsList(const std::vector<std::string> &list, int chosen
         rect.setOutlineThickness(1);
         rect.setPosition(sf::Vector2f(0, y));
 
-        arc::Button button([this, name, fct](){fct(name);}, rect, getLibName(name), font);
+        arc::Button button([this, name, fct](){fct(name);}, rect, name, font);
 
         if (i == chosen)
             button.setEvent([this](){});

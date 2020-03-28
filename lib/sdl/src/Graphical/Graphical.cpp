@@ -30,6 +30,7 @@ arc::Graphical::~Graphical()
 {
     _scenes.clear();
     TTF_Quit();
+    SDL_DestroyRenderer(_renderer);
     SDL_DestroyWindow(_window);
     SDL_Quit();
 }

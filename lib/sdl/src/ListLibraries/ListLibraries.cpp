@@ -55,14 +55,6 @@ void arc::ListLibraries::setNameList(const std::string &nameList)
     _texts.push_back(std::shared_ptr<Text>(text));
 }
 
-static const std::string getLibName(const std::string &path)
-{
-    std::string tmp = path.substr(path.find("lib_arcade_"), path.length());
-
-    tmp = tmp.substr(11, tmp.size() - 14);
-    return (tmp);
-}
-
 static arc::ButtonRect initButtonList(int y, const std::string &name)
 {
     arc::ButtonRect button;
@@ -75,7 +67,7 @@ static arc::ButtonRect initButtonList(int y, const std::string &name)
 
     text->setColor({255, 255, 255, 255});
     text->setFont(FONT, 20);
-    text->setText(getLibName(name));
+    text->setText(name);
     button.setRect(rect);
     button.setText(text);
     button.setPosition(1, y);

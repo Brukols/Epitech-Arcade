@@ -71,7 +71,7 @@ void arc::Core::initGraphs()
             if (path.substr(path.find_last_of(".") + 1) != "so")
                 continue;
             try {
-                _graphs.push_back(std::pair<std::string, std::unique_ptr<DLLoader<IGraphical>>>(path, new DLLoader<IGraphical>(path)));
+                _graphs.push_back(std::pair<std::string, std::unique_ptr<DLLoader<IGraphical>>>(getLibName(path), new DLLoader<IGraphical>(path)));
             } catch(...) {}
         }
     } catch(const std::exception& e) {
@@ -114,7 +114,7 @@ void arc::Core::setGraphical(const std::string &libname)
 
     _indexGraph = -1;
     std::for_each(_graphs.begin(), _graphs.end(), [this, &libname, &i, &username](const std::pair<std::string, std::unique_ptr<DLLoader<IGraphical>>> &pair) {
-        if (getLibName(pair.first) == getLibName(libname)) {
+        if (pair.first == libname) {
             _graph.reset();
             _graph = std::unique_ptr<IGraphical>(pair.second.get()->getInstance());
             _indexGraph = i;

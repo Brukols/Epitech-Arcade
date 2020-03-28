@@ -32,6 +32,7 @@ arc::Graphical::Graphical() : _window(sf::RenderWindow(sf::VideoMode(1920, 1080,
 
 arc::Graphical::~Graphical()
 {
+    _window.close();
 }
 
 void arc::Graphical::setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen)

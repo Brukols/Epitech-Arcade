@@ -47,7 +47,7 @@ void arc::Core::initGames()
             if (path.substr(path.find_last_of(".") + 1) != "so")
                 continue;
             try {
-                _games.push_back(std::pair<std::string, std::unique_ptr<DLLoader<IGame>>>(path, new DLLoader<IGame>(path)));
+                _games.push_back(std::pair<std::string, std::unique_ptr<DLLoader<IGame>>>(getLibName(path), new DLLoader<IGame>(path)));
             } catch(...) {}
         }
     } catch(const std::exception& e) {
@@ -61,7 +61,7 @@ void arc::Core::setGame(const std::string &libname)
 
     _indexGame = -1;
     std::for_each(_games.begin(), _games.end(), [this, &libname, &i](const std::pair<std::string, std::unique_ptr<DLLoader<IGame>>> &pair) {
-        if (getLibName(pair.first) == getLibName(libname)) {
+        if (pair.first == libname) {
             _game = std::unique_ptr<IGame>(pair.second.get()->getInstance());
             _indexGame = i;
         }

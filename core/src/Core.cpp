@@ -93,6 +93,8 @@ void arc::Core::playArcade()
         }
         _graph->display();
     }
+    _graph.reset();
+    _game.reset();
 }
 
 
