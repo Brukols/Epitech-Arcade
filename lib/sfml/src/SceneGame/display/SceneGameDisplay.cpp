@@ -6,7 +6,7 @@
 */
 
 #include "sfml/SceneGame.hpp"
-#include <iostream>
+
 void arc::SceneGame::displayGame(sf::RenderWindow &window)
 {
     std::for_each(_gameMap.begin(), _gameMap.end(), [this, &window](std::shared_ptr<Entity> entity) {
