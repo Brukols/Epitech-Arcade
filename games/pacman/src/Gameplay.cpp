@@ -58,7 +58,8 @@ bool Pacman::goUp(std::vector<std::shared_ptr<Entity>> _entity){
     return true;
 }
 bool Pacman::goRight(std::vector<std::shared_ptr<Entity>> _entity){
-    _entity[0]->orientation = Orientation::RIGHT;
+    // _entity[0]->orientation = Orientation::RIGHT;
+    _entity[0]->orientation = Orientation::UP;
     _entity[0]->x += 1;
     if (isCollision(_entity)) {
         _entity[0]->x -= 1;
@@ -68,7 +69,8 @@ bool Pacman::goRight(std::vector<std::shared_ptr<Entity>> _entity){
     
 }
 bool Pacman::goDown(std::vector<std::shared_ptr<Entity>> _entity){
-    _entity[0]->orientation = Orientation::DOWN;
+    // _entity[0]->orientation = Orientation::DOWN;
+    _entity[0]->orientation = Orientation::UP;
     _entity[0]->y += 1;
     if (isCollision(_entity)) {
         _entity[0]->y -= 1;
@@ -77,7 +79,8 @@ bool Pacman::goDown(std::vector<std::shared_ptr<Entity>> _entity){
     return true;
 }
 bool Pacman::goLeft(std::vector<std::shared_ptr<Entity>> _entity){
-    _entity[0]->orientation = Orientation::LEFT;
+    // _entity[0]->orientation = Orientation::LEFT;
+    _entity[0]->orientation = Orientation::UP;
     _entity[0]->x -= 1;
     if (isCollision(_entity)) {
         _entity[0]->x += 1;
@@ -286,7 +289,6 @@ void Pacman::movePacman()
             _pacman[0]->x += 1;
     }
 
-    updateOrientationPacman();
     if (doYouEat() == true) {
         _score += 1;
         initCherry();
@@ -336,21 +338,6 @@ bool Pacman::doYouEat()
     _entities.erase(ptr);
     _cherry.clear();
     return true;
-}
-
-void Pacman::updateOrientationPacman()
-{
-    if (_pacman[0]->orientation == Orientation::LEFT)
-        _pacman[0]->spritePath = "./assets/pacman/pacpacLeft.png";
-    
-    if (_pacman[0]->orientation == Orientation::DOWN)
-        _pacman[0]->spritePath = "./assets/pacman/pacpacDown.png";
-
-    if (_pacman[0]->orientation == Orientation::RIGHT)
-        _pacman[0]->spritePath = "./assets/pacman/pacpacRight.png";
-
-    if (_pacman[0]->orientation == Orientation::UP)
-        _pacman[0]->spritePath = "./assets/pacman/pacpacUp.png";
 }
 
 bool Pacman::isGameOver() const
