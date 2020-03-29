@@ -143,7 +143,7 @@ void Pacman::initPacpac()
 {
     std::shared_ptr<Entity> pacmanEntity(new Entity);
     pacmanEntity->type = PLAYER;
-    pacmanEntity->spritePath = "./assets/pacman/pacpacLeft.png";
+    pacmanEntity->spritePath = "./assets/pacman/pacpacUp.png";
     pacmanEntity->backgroundColor = Color{250, 255, 1, 255};
     pacmanEntity->orientation = Orientation::LEFT;
     pacmanEntity->x = 20;
