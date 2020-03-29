@@ -53,7 +53,6 @@ bool Pacman::isPacpacEaten() const
 }
 
 bool Pacman::goUp(std::vector<std::shared_ptr<Entity>> _entity){
-    // _entity[0]->orientation = Orientation::UP;
     _entity[0]->y -= 1;
     if (isCollision(_entity)) {
         _entity[0]->y += 1;
@@ -62,8 +61,6 @@ bool Pacman::goUp(std::vector<std::shared_ptr<Entity>> _entity){
     return true;
 }
 bool Pacman::goRight(std::vector<std::shared_ptr<Entity>> _entity){
-    // _entity[0]->direction = Direction::RIGHT;
-    // int a = X::direction::left;
     _entity[0]->x += 1;
     if (isCollision(_entity)) {
         _entity[0]->x -= 1;
@@ -73,8 +70,6 @@ bool Pacman::goRight(std::vector<std::shared_ptr<Entity>> _entity){
     
 }
 bool Pacman::goDown(std::vector<std::shared_ptr<Entity>> _entity){
-    // _entity[0]->orientation = Orientation::DOWN;
-    // _entity[0]->orientation = Orientation::UP;
     _entity[0]->y += 1;
     if (isCollision(_entity)) {
         _entity[0]->y -= 1;
@@ -83,8 +78,6 @@ bool Pacman::goDown(std::vector<std::shared_ptr<Entity>> _entity){
     return true;
 }
 bool Pacman::goLeft(std::vector<std::shared_ptr<Entity>> _entity){
-    // _entity[0]->orientation = Orientation::LEFT;
-    // _entity[0]->orientation = Orientation::UP;
     _entity[0]->x -= 1;
     if (isCollision(_entity)) {
         _entity[0]->x += 1;
@@ -93,224 +86,196 @@ bool Pacman::goLeft(std::vector<std::shared_ptr<Entity>> _entity){
     return true;
 }
 
-void Pacman::moveBlinky()
+Orientation Pacman::moveGhosts(std::vector<std::shared_ptr<Entity>> _ghost, Orientation direction)
 {
-    int i;
-    bool isMoving;
+        int i;
+        int cpt = 0;
+    bool isMoving = false;
 
-    // switch (_blinky[0]->orientation)
-    // {
-    // case Orientation::UP:
-    //     isMoving = goUp(_blinky);
-    //     break;
-    // case Orientation::RIGHT:
-    //     isMoving = goRight(_blinky);
-    //     break;
-    // case Orientation::DOWN:
-    //     isMoving = goDown(_blinky);
-    //     break;
-    // case Orientation::LEFT:
-    //     isMoving = goLeft(_blinky);
-    //     break;
-    // default:
-    //     break;
-    // }
-
-        i = std::rand() % 4;
-        switch (i)
-        {
-        case 0:
-            isMoving = goUp(_blinky);
-            break;
-        case 1:
-            isMoving = goRight(_blinky);
-            break;
-        case 2:
-            isMoving = goDown(_blinky);
-            break;
-        case 3:
-            isMoving = goLeft(_blinky);
-            break;
-
-        default:
-            break;
+    switch (direction)
+    {
+    case Orientation::UP:
+        while (!isMoving) {
+            i = std::rand() % 3;
+            if (cpt < 10) {
+                switch (i)
+                {
+                case 0:
+                    isMoving = goUp(_ghost);
+                    direction = Orientation::UP;
+                    break;
+                case 1:
+                    isMoving = goRight(_ghost);
+                    direction = Orientation::RIGHT;
+                    break;
+                case 2:
+                    isMoving = goLeft(_ghost);
+                    direction = Orientation::LEFT;
+                    break;
+                default:
+                    break;
+                }
+                cpt++;
+            } else {
+                isMoving = goDown(_ghost);
+                direction = Orientation::DOWN;
+            }
         }
+        break;
+    case Orientation::RIGHT:
+        while (!isMoving) {
+            i = std::rand() % 3;
+            if (cpt < 10) {
+                switch (i)
+                {
+                case 0:
+                    isMoving = goUp(_ghost);
+                    direction = Orientation::UP;
+                    break;
+                case 1:
+                    isMoving = goRight(_ghost);
+                    direction = Orientation::RIGHT;
+                    break;
+                case 2:
+                    isMoving = goDown(_ghost);
+                    direction = Orientation::DOWN;
+                    break;
+                default:
+                    break;
+                }
+            cpt++;
+            } else {
+                isMoving = goLeft(_ghost);
+                direction = Orientation::LEFT;
+            }
+        }
+        break;
+    case Orientation::DOWN:
+        while (!isMoving) {
+            i = std::rand() % 3;
+            if (cpt < 10) {
+                switch (i)
+                {
+                case 0:
+                    isMoving = goDown(_ghost);
+                    direction = Orientation::DOWN;
+                    break;
+                case 1:
+                    isMoving = goRight(_ghost);
+                    direction = Orientation::RIGHT;
+                    break;
+                case 2:
+                    isMoving = goLeft(_ghost);
+                    direction = Orientation::LEFT;
+                    break;
+                default:
+                    break;
+                }
+                cpt++;
+            } else {
+                isMoving = goUp(_ghost);
+                direction = Orientation::UP;
+            }
+        }
+        break;
+    case Orientation::LEFT:
+        while (!isMoving) {
+            i = std::rand() % 3;
+            if (cpt < 10) {
+                switch (i)
+                {
+                case 0:
+                    isMoving = goUp(_ghost);
+                    direction = Orientation::UP;
+                    break;
+                case 1:
+                    isMoving = goDown(_ghost);
+                    direction = Orientation::DOWN;
+                    break;
+                case 2:
+                    isMoving = goLeft(_ghost);
+                    direction = Orientation::LEFT;
+                    break;
+                default:
+                    break;
+                }
+                cpt++;
+            } else {
+                isMoving = goRight(_ghost);
+                direction = Orientation::RIGHT;
+            }
+        }
+        break;
+    default:
+        break;
+    }
 
     while (!isMoving) {
         i = std::rand() % 4;
         switch (i)
         {
         case 0:
-            isMoving = goUp(_blinky);
+            isMoving = goUp(_ghost);
+            direction = Orientation::UP;
             break;
         case 1:
-            isMoving = goRight(_blinky);
+            isMoving = goRight(_ghost);
+            direction = Orientation::RIGHT;
             break;
         case 2:
-            isMoving = goDown(_blinky);
+            isMoving = goDown(_ghost);
+            direction = Orientation::DOWN;
             break;
         case 3:
-            isMoving = goLeft(_blinky);
+            isMoving = goLeft(_ghost);
+            direction = Orientation::LEFT;
             break;
 
         default:
             break;
         }
     }
+    return direction;
+}
+
+void Pacman::moveBlinky()
+{
+    _blinkyDirection = moveGhosts(_blinky, _blinkyDirection);
 }
 
 void Pacman::movePinky()
 {
-    int i;
-    bool isMoving;
-
-    // switch (_pinky[0]->orientation)
-    // {
-    // case Orientation::UP:
-    //     isMoving = goUp(_pinky);
-    //     break;
-    // case Orientation::RIGHT:
-    //     isMoving = goRight(_pinky);
-    //     break;
-    // case Orientation::DOWN:
-    //     isMoving = goDown(_pinky);
-    //     break;
-    // case Orientation::LEFT:
-    //     isMoving = goLeft(_pinky);
-    //     break;
-    // default:
-    //     break;
-    // }
-
-    while (!isMoving) {
-        i = std::rand() % 4;
-        switch (i)
-        {
-        case 0:
-            isMoving = goUp(_pinky);
-            break;
-        case 1:
-            isMoving = goRight(_pinky);
-            break;
-        case 2:
-            isMoving = goDown(_pinky);
-            break;
-        case 3:
-            isMoving = goLeft(_pinky);
-            break;
-
-        default:
-            break;
-        }
-    }
+    _pinkyDirection = moveGhosts(_pinky, _pinkyDirection);
 }
 
 void Pacman::moveInky()
 {
-    int i;
-    bool isMoving;
-
-    // switch (_inky[0]->orientation)
-    // {
-    // case Orientation::UP:
-    //     isMoving = goUp(_inky);
-    //     break;
-    // case Orientation::RIGHT:
-    //     isMoving = goRight(_inky);
-    //     break;
-    // case Orientation::DOWN:
-    //     isMoving = goDown(_inky);
-    //     break;
-    // case Orientation::LEFT:
-    //     isMoving = goLeft(_inky);
-    //     break;
-    // default:
-    //     break;
-    // }
-
-    while (!isMoving) {
-        i = std::rand() % 4;
-        switch (i)
-        {
-        case 0:
-            isMoving = goUp(_inky);
-            break;
-        case 1:
-            isMoving = goRight(_inky);
-            break;
-        case 2:
-            isMoving = goDown(_inky);
-            break;
-        case 3:
-            isMoving = goLeft(_inky);
-            break;
-
-        default:
-            break;
-        }
-    }}
+    _inkyDirection = moveGhosts(_inky, _inkyDirection);
+}
 
 void Pacman::moveClyde()
 {
-    int i = std::rand() % 4;
-
-    if (i == 0) {
-        _clyde[0]->y -= 1;
-        if (isCollision(_clyde)) {
-            _clyde[0]->y += 1;
-            i = std::rand() % 4;
-        }
-    }
-
-    if (i == 1) {
-        _clyde[0]->x += 1;
-        if (isCollision(_clyde)) {
-            _clyde[0]->x -= 1;
-            i = std::rand() % 4;
-        }
-    }
-
-    if (i == 2) {
-        _clyde[0]->y += 1;
-        if (isCollision(_clyde)) {
-            _clyde[0]->y -= 1;
-            i = std::rand() % 4;
-        }
-    }
-
-    if (i == 3) {
-        _clyde[0]->x -= 1;
-        if (isCollision(_clyde)) {
-            _clyde[0]->x += 1;
-            i = std::rand() % 4;
-        }
-    }
+    _clydeDirection = moveGhosts(_clyde, _clydeDirection);
 }
 
 void Pacman::movePacman()
 {
-    if (_pacman[0]->orientation == Orientation::UP) {
-        _pacman[0]->y -= 1;
-        if (isCollision(_pacman))
-            _pacman[0]->y += 1;
-    }
-
-    if (_pacman[0]->orientation == Orientation::RIGHT) {
-        _pacman[0]->x += 1;
-        if (isCollision(_pacman))
-            _pacman[0]->x -= 1;
-    }
-
-    if (_pacman[0]->orientation == Orientation::DOWN) {
-        _pacman[0]->y += 1;
-        if (isCollision(_pacman))
-            _pacman[0]->y -= 1;
-    }
-
-    if (_pacman[0]->orientation == Orientation::LEFT) {
-        _pacman[0]->x -= 1;
-        if (isCollision(_pacman))
-            _pacman[0]->x += 1;
+    switch (_pacman[0]->orientation)
+    {
+    case Orientation::UP:
+        goUp(_pacman);
+        break;
+    case Orientation::RIGHT:
+        goRight(_pacman);
+        break;
+    case Orientation::DOWN:
+        goDown(_pacman);
+        break;
+    case Orientation::LEFT:
+        goLeft(_pacman);
+        break;
+    default:
+        break;
     }
 
     if (doYouEatCherry() == true) {

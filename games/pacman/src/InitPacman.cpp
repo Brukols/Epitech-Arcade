@@ -31,6 +31,9 @@ void Pacman::initPacman()
 
 void Pacman::initEntities()
 {
+    // _pinkyDirection;
+    // _inkyDirection;
+    // _clydeDirection;
     initMap();
     initPacpac();
     initCherry();
@@ -47,6 +50,7 @@ void Pacman::initGhostBlinky()
     blinkyEntity->spritePath = "./assets/pacman/blinky.png";
     blinkyEntity->backgroundColor = Color{255, 4, 5, 255}; //Red
     blinkyEntity->orientation = Orientation::UP;
+    _blinkyDirection = Orientation::UP;
     blinkyEntity->x = 17;
     blinkyEntity->y = 14;
     _entities.push_back(blinkyEntity);
@@ -60,6 +64,7 @@ void Pacman::initGhostPinky()
     pinkyEntity->spritePath = "./assets/pacman/pinky.png";
     pinkyEntity->backgroundColor = Color{244, 158, 250, 255}; //Pink
     pinkyEntity->orientation = Orientation::UP;
+    _pinkyDirection = Orientation::UP;
     pinkyEntity->x = 18;
     pinkyEntity->y = 14;
     _entities.push_back(pinkyEntity);
@@ -73,6 +78,7 @@ void Pacman::initGhostInky()
     inkyEntity->spritePath = "./assets/pacman/inky.png";
     inkyEntity->backgroundColor = Color{11, 12, 231, 255}; //Blue
     inkyEntity->orientation = Orientation::UP;
+    _inkyDirection = Orientation::UP;
     inkyEntity->x = 19;
     inkyEntity->y = 14;
     _entities.push_back(inkyEntity);
@@ -86,6 +92,7 @@ void Pacman::initGhostClyde()
     clydeEntity->spritePath = "./assets/pacman/clyde.png";
     clydeEntity->backgroundColor = Color{243, 130, 2, 255}; //Orange
     clydeEntity->orientation = Orientation::UP;
+    _clydeDirection = Orientation::UP;
     clydeEntity->x = 20;
     clydeEntity->y = 14;
     _entities.push_back(clydeEntity);
@@ -163,30 +170,11 @@ void Pacman::initPacpac()
     _pacman.push_back(pacmanEntity);
 }
 
-// void Pacman::initCherry()
-// {
-//     std::shared_ptr<Entity> fruitEntity(new Entity);
-//     fruitEntity->type = CONSUMABLE;
-//     fruitEntity->spritePath = "./assets/pacman/cherry.png";
-//     fruitEntity->backgroundColor = Color{227, 18, 18, 255};
-//     fruitEntity->orientation = Orientation::LEFT;
-//     do
-//     {
-//         fruitEntity->x = rand () % _width;
-//         fruitEntity->y = rand () % _height;
-//         // std::cout << "x : " << fruitEntity->x << std::endl;
-//         // std::cout << "y : " << fruitEntity->y << std::endl;
-//     } while (isCollision(fruitEntity));
-    
-//     _entities.push_back(fruitEntity);
-//     _cherry.push_back(fruitEntity);
-// }
-
 void Pacman::initCherry()
 {
     // std::cout << "r" << std::endl;
     int r = rand () % _pacGum.size();
-// std::cout << "r" << r << std::endl;
+    // std::cout << "r" << r << std::endl;
 
     std::shared_ptr<Entity> fruitEntity(new Entity);
     fruitEntity->type = CONSUMABLE;

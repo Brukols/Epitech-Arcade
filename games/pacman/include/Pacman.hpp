@@ -102,6 +102,7 @@ namespace arc {
             // bool doYouEatSpecialPacGum();
             void movePacman();
             
+            Orientation moveGhosts(std::vector<std::shared_ptr<Entity>> _entity, Orientation direction);
             void moveBlinky();
             void movePinky();
             void moveInky();
@@ -115,16 +116,11 @@ namespace arc {
             bool isCollision(std::vector<std::shared_ptr<Entity>>);
             bool isCollision(std::shared_ptr<Entity> _entity);
             bool isPacpacEaten() const;
-            // struct Direction
-            // {
-            //     enum direction {
-            //         UP,
-            //         RIGHT,
-            //         DOWN,
-            //         LEFT,
-            //     };
-            // };
-            // Direction direction;
+
+            Orientation _blinkyDirection;
+            Orientation _pinkyDirection;
+            Orientation _inkyDirection;
+            Orientation _clydeDirection;
     };
 }
 
