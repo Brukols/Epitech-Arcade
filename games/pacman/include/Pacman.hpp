@@ -104,6 +104,11 @@ namespace arc {
             void moveInky();
             void moveClyde();
 
+            bool goUp(std::vector<std::shared_ptr<Entity>>);
+            bool goRight(std::vector<std::shared_ptr<Entity>>);
+            bool goDown(std::vector<std::shared_ptr<Entity>>);
+            bool goLeft(std::vector<std::shared_ptr<Entity>>);
+
             void updateOrientationPacman();
             bool isCollision(std::vector<std::shared_ptr<Entity>>);
             bool isCollision(std::shared_ptr<Entity> _entity);

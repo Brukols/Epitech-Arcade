@@ -9,6 +9,7 @@
 
 void Pacman::initPacman()
 {
+    srand (time(NULL));
     _start = std::chrono::system_clock::now();
     _end = std::chrono::system_clock::now();
     _title = "Pacman";
@@ -44,10 +45,10 @@ void Pacman::initGhostBlinky()
     std::shared_ptr<Entity> blinkyEntity(new Entity);
     blinkyEntity->type = ENEMY;
     blinkyEntity->spritePath = "./assets/pacman/blinky.png";
-    // blinkyEntity->backgroundColor = Color{255, 4, 5, 255}; //Red
+    blinkyEntity->backgroundColor = Color{255, 4, 5, 255}; //Red
     blinkyEntity->orientation = Orientation::RIGHT;
-    blinkyEntity->x = 8;
-    blinkyEntity->y = 5;
+    blinkyEntity->x = 17;
+    blinkyEntity->y = 14;
     _entities.push_back(blinkyEntity);
     _blinky.push_back(blinkyEntity);
 }
@@ -57,10 +58,10 @@ void Pacman::initGhostPinky()
     std::shared_ptr<Entity> pinkyEntity(new Entity);
     pinkyEntity->type = ENEMY;
     pinkyEntity->spritePath = "./assets/pacman/pinky.png";
-    // pinkyEntity->backgroundColor = Color{244, 158, 250, 255}; //Pink
+    pinkyEntity->backgroundColor = Color{244, 158, 250, 255}; //Pink
     pinkyEntity->orientation = Orientation::UP;
-    pinkyEntity->x = 9;
-    pinkyEntity->y = 5;
+    pinkyEntity->x = 18;
+    pinkyEntity->y = 14;
     _entities.push_back(pinkyEntity);
     _pinky.push_back(pinkyEntity);
 }
@@ -70,10 +71,10 @@ void Pacman::initGhostInky()
     std::shared_ptr<Entity> inkyEntity(new Entity);
     inkyEntity->type = ENEMY;
     inkyEntity->spritePath = "./assets/pacman/inky.png";
-    // inkyEntity->backgroundColor = Color{11, 12, 231, 255}; //Blue
+    inkyEntity->backgroundColor = Color{11, 12, 231, 255}; //Blue
     inkyEntity->orientation = Orientation::UP;
-    inkyEntity->x = 10;
-    inkyEntity->y = 5;
+    inkyEntity->x = 19;
+    inkyEntity->y = 14;
     _entities.push_back(inkyEntity);
     _inky.push_back(inkyEntity);
 }
@@ -83,10 +84,10 @@ void Pacman::initGhostClyde()
     std::shared_ptr<Entity> clydeEntity(new Entity);
     clydeEntity->type = ENEMY;
     clydeEntity->spritePath = "./assets/pacman/clyde.png";
-    // clydeEntity->backgroundColor = Color{243, 130, 2, 255}; //Orange
+    clydeEntity->backgroundColor = Color{243, 130, 2, 255}; //Orange
     clydeEntity->orientation = Orientation::LEFT;
-    clydeEntity->x = 11;
-    clydeEntity->y = 5;
+    clydeEntity->x = 20;
+    clydeEntity->y = 14;
     _entities.push_back(clydeEntity);
     _clyde.push_back(clydeEntity);
 }
@@ -96,7 +97,7 @@ void Pacman::initMap() //init _myMap and _pacGum
     std::string readLine;
     int x = 0;
     int y = 0;
-    std::ifstream mapFile("./games/pacman/map3.txt");  //On essaye d'ouvrir le fichier
+    std::ifstream mapFile("./games/pacman/map3.txt");
 
     if(mapFile)
     {
@@ -119,7 +120,7 @@ void Pacman::initMap() //init _myMap and _pacGum
                     std::shared_ptr<Entity> pacGumEntity(new Entity);
                     pacGumEntity->type = CONSUMABLE;
                     pacGumEntity->spritePath = "./assets/pacman/pacGum.png";
-                    // pacGumEntity->backgroundColor = Color{30, 17, 149, 255};
+                    pacGumEntity->backgroundColor = Color{30, 17, 149, 255};
                     pacGumEntity->orientation = Orientation::LEFT;
                     pacGumEntity->x = x;
                     pacGumEntity->y = y;
@@ -135,7 +136,7 @@ void Pacman::initMap() //init _myMap and _pacGum
         std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
     }
     _myMap.size();
-    std::cout << _myMap.size() << std::endl;
+    // std::cout << _myMap.size() << std::endl;
 }
 
 void Pacman::initPacpac()
@@ -143,10 +144,10 @@ void Pacman::initPacpac()
     std::shared_ptr<Entity> pacmanEntity(new Entity);
     pacmanEntity->type = PLAYER;
     pacmanEntity->spritePath = "./assets/pacman/pacpacLeft.png";
-    // pacmanEntity->backgroundColor = Color{250, 255, 1, 255};
+    pacmanEntity->backgroundColor = Color{250, 255, 1, 255};
     pacmanEntity->orientation = Orientation::LEFT;
-    pacmanEntity->x = 9;
-    pacmanEntity->y = 7;
+    pacmanEntity->x = 20;
+    pacmanEntity->y = 16;
     _entities.push_back(pacmanEntity);
     _pacman.push_back(pacmanEntity);
 }

@@ -24,7 +24,7 @@ void Pacman::updateGame()
 {
 
     _end = std::chrono::system_clock::now();
-    if (std::chrono::duration_cast<std::chrono::milliseconds>(_end - _start).count() > 500) {
+    if (std::chrono::duration_cast<std::chrono::milliseconds>(_end - _start).count() > 300) {
         _start = std::chrono::system_clock::now();
             movePacman();
             moveBlinky();
@@ -48,116 +48,180 @@ bool Pacman::isPacpacEaten(std::vector<std::shared_ptr<Entity>> _entity)
     return false;
 }
 
+bool Pacman::goUp(std::vector<std::shared_ptr<Entity>> _entity){
+    _entity[0]->orientation = Orientation::UP;
+    _entity[0]->y -= 1;
+    if (isCollision(_entity)) {
+        _entity[0]->y += 1;
+        return false;
+    }
+    return true;
+}
+bool Pacman::goRight(std::vector<std::shared_ptr<Entity>> _entity){
+    _entity[0]->orientation = Orientation::RIGHT;
+    _entity[0]->x += 1;
+    if (isCollision(_entity)) {
+        _entity[0]->x -= 1;
+        return false;
+    }
+    return true;
+    
+}
+bool Pacman::goDown(std::vector<std::shared_ptr<Entity>> _entity){
+    _entity[0]->orientation = Orientation::DOWN;
+    _entity[0]->y += 1;
+    if (isCollision(_entity)) {
+        _entity[0]->y -= 1;
+        return false;
+    }
+    return true;
+}
+bool Pacman::goLeft(std::vector<std::shared_ptr<Entity>> _entity){
+    _entity[0]->orientation = Orientation::LEFT;
+    _entity[0]->x -= 1;
+    if (isCollision(_entity)) {
+        _entity[0]->x += 1;
+        return false;
+    }
+    return true;
+}
+
 void Pacman::moveBlinky()
 {
-    int i = std::rand() % 4;
+    int i;
+    bool isMoving;
 
-    if (i == 0) {
-        _blinky[0]->y -= 1;
-        if (isCollision(_blinky)) {
-            _blinky[0]->y += 1;
-            i = std::rand() % 4;
-        }
+    switch (_blinky[0]->orientation)
+    {
+    case Orientation::UP:
+        isMoving = goUp(_blinky);
+        break;
+    case Orientation::RIGHT:
+        isMoving = goRight(_blinky);
+        break;
+    case Orientation::DOWN:
+        isMoving = goDown(_blinky);
+        break;
+    case Orientation::LEFT:
+        isMoving = goLeft(_blinky);
+        break;
+    default:
+        break;
     }
 
-    if (i == 1) {
-        _blinky[0]->x += 1;
-        if (isCollision(_blinky)) {
-            _blinky[0]->x -= 1;
-            i = std::rand() % 4;
-        }
-    }
+    while (!isMoving) {
+        i = std::rand() % 4;
+        switch (i)
+        {
+        case 0:
+            isMoving = goUp(_blinky);
+            break;
+        case 1:
+            isMoving = goRight(_blinky);
+            break;
+        case 2:
+            isMoving = goDown(_blinky);
+            break;
+        case 3:
+            isMoving = goLeft(_blinky);
+            break;
 
-    if (i == 2) {
-        _blinky[0]->y += 1;
-        if (isCollision(_blinky)) {
-            _blinky[0]->y -= 1;
-            i = std::rand() % 4;
-        }
-    }
-
-    if (i == 3) {
-        _blinky[0]->x -= 1;
-        if (isCollision(_blinky)) {
-            _blinky[0]->x += 1;
-            i = std::rand() % 4;
+        default:
+            break;
         }
     }
 }
 
 void Pacman::movePinky()
 {
-    int i = std::rand() % 4;
+    int i;
+    bool isMoving;
 
-    if (i == 0) {
-        _pinky[0]->y -= 1;
-        if (isCollision(_pinky)) {
-            _pinky[0]->y += 1;
-            i = std::rand() % 4;
-        }
+    switch (_pinky[0]->orientation)
+    {
+    case Orientation::UP:
+        isMoving = goUp(_pinky);
+        break;
+    case Orientation::RIGHT:
+        isMoving = goRight(_pinky);
+        break;
+    case Orientation::DOWN:
+        isMoving = goDown(_pinky);
+        break;
+    case Orientation::LEFT:
+        isMoving = goLeft(_pinky);
+        break;
+    default:
+        break;
     }
 
-    if (i == 1) {
-        _pinky[0]->x += 1;
-        if (isCollision(_pinky)) {
-            _pinky[0]->x -= 1;
-            i = std::rand() % 4;
-        }
-    }
+    while (!isMoving) {
+        i = std::rand() % 4;
+        switch (i)
+        {
+        case 0:
+            isMoving = goUp(_pinky);
+            break;
+        case 1:
+            isMoving = goRight(_pinky);
+            break;
+        case 2:
+            isMoving = goDown(_pinky);
+            break;
+        case 3:
+            isMoving = goLeft(_pinky);
+            break;
 
-    if (i == 2) {
-        _pinky[0]->y += 1;
-        if (isCollision(_pinky)) {
-            _pinky[0]->y -= 1;
-            i = std::rand() % 4;
-        }
-    }
-
-    if (i == 3) {
-        _pinky[0]->x -= 1;
-        if (isCollision(_pinky)) {
-            _pinky[0]->x += 1;
-            i = std::rand() % 4;
+        default:
+            break;
         }
     }
 }
 
 void Pacman::moveInky()
 {
-    int i = std::rand() % 4;
+    int i;
+    bool isMoving;
 
-    if (i == 0) {
-        _inky[0]->y -= 1;
-        if (isCollision(_inky)) {
-            _inky[0]->y += 1;
-            i = std::rand() % 4;
-        }
+    switch (_inky[0]->orientation)
+    {
+    case Orientation::UP:
+        isMoving = goUp(_inky);
+        break;
+    case Orientation::RIGHT:
+        isMoving = goRight(_inky);
+        break;
+    case Orientation::DOWN:
+        isMoving = goDown(_inky);
+        break;
+    case Orientation::LEFT:
+        isMoving = goLeft(_inky);
+        break;
+    default:
+        break;
     }
 
-    if (i == 1) {
-        _inky[0]->x += 1;
-        if (isCollision(_inky)) {
-            _inky[0]->x -= 1;
-            i = std::rand() % 4;
-        }
-    }
+    while (!isMoving) {
+        i = std::rand() % 4;
+        switch (i)
+        {
+        case 0:
+            isMoving = goUp(_inky);
+            break;
+        case 1:
+            isMoving = goRight(_inky);
+            break;
+        case 2:
+            isMoving = goDown(_inky);
+            break;
+        case 3:
+            isMoving = goLeft(_inky);
+            break;
 
-    if (i == 2) {
-        _inky[0]->y += 1;
-        if (isCollision(_inky)) {
-            _inky[0]->y -= 1;
-            i = std::rand() % 4;
+        default:
+            break;
         }
-    }
-
-    if (i == 3) {
-        _inky[0]->x -= 1;
-        if (isCollision(_inky)) {
-            _inky[0]->x += 1;
-            i = std::rand() % 4;
-        }
-    }
-}
+    }}
 
 void Pacman::moveClyde()
 {
@@ -224,11 +288,11 @@ void Pacman::movePacman()
 
     updateOrientationPacman();
     if (doYouEat() == true) {
-        _score += 100;
+        _score += 1;
         initCherry();
         _nbCherry++;
         initGameStats();
-        //initialisation de sound
+        //initialisation de sound si le serpent mange quelque chose
     }
     if (doYouEatPacGum() == true) {
         _score += 1;
