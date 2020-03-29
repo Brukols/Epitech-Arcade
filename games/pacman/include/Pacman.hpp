@@ -13,12 +13,7 @@
 #include <chrono>
 #include <iostream>
 #include <fstream>
-
-// #include <vector>
-// #include <string>
-// #include <cstring>
-// #include <ios>
-// #include <algorithm>
+#include <math.h>
 
 using namespace arc;
 
@@ -71,7 +66,7 @@ namespace arc {
             std::vector<std::shared_ptr<Entity>> _inky;
             std::vector<std::shared_ptr<Entity>> _clyde;
             std::vector<std::shared_ptr<Entity>> _pacGum;
-            // std::vector<std::shared_ptr<Entity>> _SpecialPacGum;
+            std::vector<std::shared_ptr<Entity>> _SpecialPacGum;
 
             int _nbCherry;
             unsigned int _nbPacGum;
@@ -99,10 +94,16 @@ namespace arc {
 
             bool doYouEatCherry();
             bool doYouEatPacGum();
-            // bool doYouEatSpecialPacGum();
-            void movePacman();
+            bool doYouEatSpecialPacGum();
+            bool doyouEatBlueGhosts();
+
+            // bool _spacialPacGum;
+            int _blueMode;
+            void initBlueMode();
+            void initColorMode();
             
             Orientation moveGhosts(std::vector<std::shared_ptr<Entity>> _entity, Orientation direction);
+            void movePacman();
             void moveBlinky();
             void movePinky();
             void moveInky();
@@ -116,6 +117,7 @@ namespace arc {
             bool isCollision(std::vector<std::shared_ptr<Entity>>);
             bool isCollision(std::shared_ptr<Entity> _entity);
             bool isPacpacEaten() const;
+            int _blueCpt;
 
             Orientation _blinkyDirection;
             Orientation _pinkyDirection;

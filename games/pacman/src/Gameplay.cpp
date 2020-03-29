@@ -22,32 +22,69 @@ void Pacman::restart()
 
 void Pacman::updateGame()
 {
-
     _end = std::chrono::system_clock::now();
     if (std::chrono::duration_cast<std::chrono::milliseconds>(_end - _start).count() > 300) {
         _start = std::chrono::system_clock::now();
+        if (_blueMode > 0) {
+            initBlueMode();
             movePacman();
-            if (isGameOver() == true)
-                restart();
             if (isGameWon() == true)
                 restart();
             moveBlinky();
             movePinky();
             moveInky();
             moveClyde();
-            if (isGameOver() == true)
+            _blueMode--;
+            if (_blueMode == 0)
+                initColorMode();
+        } else {
+            movePacman();
+            if (isGameWon() == true)
                 restart();
+            moveBlinky();
+            movePinky();
+            moveInky();
+            moveClyde();
+        }
     }
+}
+
+void Pacman::initBlueMode()
+{
+    _blinky[0]->spritePath = "./assets/pacman/blueMode.png";
+    _pinky[0]->spritePath = "./assets/pacman/blueMode.png";
+    _inky[0]->spritePath = "./assets/pacman/blueMode.png";
+    _clyde[0]->spritePath = "./assets/pacman/blueMode.png";
+
+    _blinky[0]->backgroundColor = Color{42, 82, 190, 255}; //BlueMode
+    _pinky[0]->backgroundColor = Color{42, 82, 190, 255}; //BlueMode
+    _inky[0]->backgroundColor = Color{42, 82, 190, 255}; //BlueMode
+    _clyde[0]->backgroundColor = Color{42, 82, 190, 255}; //BlueMode
+
+    _blueCpt = 0;
+}
+
+void Pacman::initColorMode()
+{
+    _blinky[0]->spritePath = "./assets/pacman/blinky.png";
+    _pinky[0]->spritePath = "./assets/pacman/pinky.png";
+    _inky[0]->spritePath = "./assets/pacman/inky.png";
+    _clyde[0]->spritePath = "./assets/pacman/clyde.png";
+    _blinky[0]->type = ENEMY;
+    _pinky[0]->type = ENEMY;
+    _inky[0]->type = ENEMY;
+    _clyde[0]->type = ENEMY;
 }
 
 bool Pacman::isPacpacEaten() const
 {
-    //croisement!
-    if ((_blinky[0]->x == _pacman[0]->x && _blinky[0]->y == _pacman[0]->y) ||
-        (_pinky[0]->x == _pacman[0]->x && _pinky[0]->y == _pacman[0]->y) ||
-        (_inky[0]->x == _pacman[0]->x && _inky[0]->y == _pacman[0]->y) ||
-        (_clyde[0]->x == _pacman[0]->x && _clyde[0]->y == _pacman[0]->y)) {
-        return true;
+    if (_blueMode == 0) {
+        if ((_blinky[0]->x == _pacman[0]->x && _blinky[0]->y == _pacman[0]->y) ||
+            (_pinky[0]->x == _pacman[0]->x && _pinky[0]->y == _pacman[0]->y) ||
+            (_inky[0]->x == _pacman[0]->x && _inky[0]->y == _pacman[0]->y) ||
+            (_clyde[0]->x == _pacman[0]->x && _clyde[0]->y == _pacman[0]->y)) {
+            return true;
+        }
     }
     return false;
 }
@@ -289,32 +326,54 @@ void Pacman::movePacman()
         _nbPacGum++;
         initGameStats();
     }
-    ////
-    // if (doYouEatSpecialPacGum() == true) {
-    // _score += 1;
-    // _nbPacGum++;
-    // initGameStats();
-    // }
-    ////
+    if (doYouEatSpecialPacGum() == true) {
+    _score += 1;
+    _nbPacGum++;
+    initGameStats();
+    _blueMode = 30;
+    }
+    if (_blueMode > 0) {
+        if (doyouEatBlueGhosts() == true) {
+            _blueCpt++;
+            _score += pow(2, _blueCpt) * 100;
+            _nbPacGum++;
+            initGameStats();
+                //200
+                //400
+                //800
+                //1600
+        }
+    }
 }
 
-// bool Pacman::doYouEatSpecialPacGum()
-// {
-//     auto const &ptr = std::find_if(_entities.begin(), _entities.end(), [this] (std::shared_ptr<Entity> &p) {
-//         for (size_t i = 0; i < _SpecialPacGum.size(); i++) {
-//             if (p == _SpecialPacGum[i]) {
-//                 if ((p->x == _pacman.front()->x) && (p->y == _pacman.front()->y)) {
-//                     return true;
-//                 }
-//             }
-//         }
-//         return false;
-//     });
-//     if (ptr == _entities.end())
-//         return false;
-//     _entities.erase(ptr);
-//     return true;
-// }
+bool Pacman::doyouEatBlueGhosts()
+{
+    if ((_blinky[0]->x == _pacman[0]->x && _blinky[0]->y == _pacman[0]->y) ||
+        (_pinky[0]->x == _pacman[0]->x && _pinky[0]->y == _pacman[0]->y) ||
+        (_inky[0]->x == _pacman[0]->x && _inky[0]->y == _pacman[0]->y) ||
+        (_clyde[0]->x == _pacman[0]->x && _clyde[0]->y == _pacman[0]->y)) {
+        return true;
+    }
+    return false;
+}
+
+bool Pacman::doYouEatSpecialPacGum()
+{
+    auto const &ptr = std::find_if(_entities.begin(), _entities.end(), [this] (std::shared_ptr<Entity> &p) {
+        for (size_t i = 0; i < _SpecialPacGum.size(); i++) {
+            if (p == _SpecialPacGum[i]) {
+                if ((p->x == _pacman.front()->x) && (p->y == _pacman.front()->y)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    });
+    if (ptr == _entities.end())
+        return false;
+    _entities.erase(ptr);
+    return true;
+}
 
 bool Pacman::doYouEatPacGum()
 {

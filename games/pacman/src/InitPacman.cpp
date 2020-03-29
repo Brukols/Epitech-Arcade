@@ -31,9 +31,6 @@ void Pacman::initPacman()
 
 void Pacman::initEntities()
 {
-    // _pinkyDirection;
-    // _inkyDirection;
-    // _clydeDirection;
     initMap();
     initPacpac();
     initCherry();
@@ -134,17 +131,17 @@ void Pacman::initMap() //init _myMap and _pacGum
                     _entities.push_back(pacGumEntity);
                     _pacGum.push_back(pacGumEntity);
                 }
-                // if (readLine[x] == '*') {
-                //         std::shared_ptr<Entity> SpecialPacGumEntity(new Entity);
-                //         SpecialPacGumEntity->type = CONSUMABLE;
-                //         SpecialPacGumEntity->spritePath = "./assets/pacman/SpecialPacGum.png";
-                //         SpecialPacGumEntity->backgroundColor = Color{30, 17, 149, 255};
-                //         SpecialPacGumEntity->orientation = Orientation::LEFT;
-                //         SpecialPacGumEntity->x = x;
-                //         SpecialPacGumEntity->y = y;
-                //         _entities.push_back(SpecialPacGumEntity);
-                //         // _SpecialPacGum.push_back(SpecialPacGumEntity);
-                // }
+                if (readLine[x] == '*') {
+                    std::shared_ptr<Entity> SpecialPacGumEntity(new Entity);
+                    SpecialPacGumEntity->type = CONSUMABLE;
+                    SpecialPacGumEntity->spritePath = "./assets/pacman/SpecialPacGum.png";
+                    SpecialPacGumEntity->backgroundColor = Color{30, 17, 149, 255};
+                    SpecialPacGumEntity->orientation = Orientation::LEFT;
+                    SpecialPacGumEntity->x = x;
+                    SpecialPacGumEntity->y = y;
+                    _entities.push_back(SpecialPacGumEntity);
+                    _SpecialPacGum.push_back(SpecialPacGumEntity);
+                }
                 x++;
             }
             y++;
