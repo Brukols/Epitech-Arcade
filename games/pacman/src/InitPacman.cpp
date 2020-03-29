@@ -46,7 +46,7 @@ void Pacman::initGhostBlinky()
     blinkyEntity->type = ENEMY;
     blinkyEntity->spritePath = "./assets/pacman/blinky.png";
     blinkyEntity->backgroundColor = Color{255, 4, 5, 255}; //Red
-    blinkyEntity->orientation = Orientation::RIGHT;
+    blinkyEntity->orientation = Orientation::UP;
     blinkyEntity->x = 17;
     blinkyEntity->y = 14;
     _entities.push_back(blinkyEntity);
@@ -85,7 +85,7 @@ void Pacman::initGhostClyde()
     clydeEntity->type = ENEMY;
     clydeEntity->spritePath = "./assets/pacman/clyde.png";
     clydeEntity->backgroundColor = Color{243, 130, 2, 255}; //Orange
-    clydeEntity->orientation = Orientation::LEFT;
+    clydeEntity->orientation = Orientation::UP;
     clydeEntity->x = 20;
     clydeEntity->y = 14;
     _entities.push_back(clydeEntity);
