@@ -71,9 +71,10 @@ namespace arc {
             std::vector<std::shared_ptr<Entity>> _inky;
             std::vector<std::shared_ptr<Entity>> _clyde;
             std::vector<std::shared_ptr<Entity>> _pacGum;
+            // std::vector<std::shared_ptr<Entity>> _SpecialPacGum;
 
             int _nbCherry;
-            int _nbPacGum;
+            unsigned int _nbPacGum;
 
             std::vector <std::pair<std::string, std::string>> _gameControls;
             std::vector <std::pair<std::string, std::string>> _gameStats;
@@ -84,8 +85,9 @@ namespace arc {
             void initControls();
             void initEntities();
             void initPacpac();
-            void initCherry();
+            void initCherry(); 
             void initMap();
+            bool isGameWon();
 
             void initGhostBlinky();
             void initGhostPinky();
@@ -95,8 +97,9 @@ namespace arc {
             void initGameControls();
             void initGameStats();
 
-            bool doYouEat();
+            bool doYouEatCherry();
             bool doYouEatPacGum();
+            // bool doYouEatSpecialPacGum();
             void movePacman();
             
             void moveBlinky();
@@ -111,7 +114,17 @@ namespace arc {
             
             bool isCollision(std::vector<std::shared_ptr<Entity>>);
             bool isCollision(std::shared_ptr<Entity> _entity);
-            bool isPacpacEaten(std::vector<std::shared_ptr<Entity>>);
+            bool isPacpacEaten() const;
+            // struct Direction
+            // {
+            //     enum direction {
+            //         UP,
+            //         RIGHT,
+            //         DOWN,
+            //         LEFT,
+            //     };
+            // };
+            // Direction direction;
     };
 }
 
