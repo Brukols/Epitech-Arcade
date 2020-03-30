@@ -12,9 +12,6 @@
 
 #include <ctime>
 #include <chrono>
-#include <cmath>
-
-#define MOVE 0.2
 
 using namespace arc;
 

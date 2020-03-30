@@ -24,6 +24,7 @@ void Nibbler::initNibbler()
     initControls();
     initGameControls();
     initGameStats();
+    srand(time(NULL));
 }
 
 void Nibbler::initEntities()
@@ -50,8 +51,8 @@ void Nibbler::initSnake()
 
 void Nibbler::initApple()
 {
-    int random_x = rand () % _width;
-    int random_y = rand () % _height;
+    float random_x = rand () % _width;
+    float random_y = rand () % _height;
 
     while (isOnSnake(random_x, random_y) == true) {
         random_x = rand () % _width;
@@ -62,8 +63,8 @@ void Nibbler::initApple()
     fruitEntity->spritePath = "";
     fruitEntity->backgroundColor = Color{227, 18, 18, 255};
     fruitEntity->orientation = Orientation::LEFT;
-    fruitEntity->x = (float)random_x;
-    fruitEntity->y = (float)random_y;
+    fruitEntity->x = random_x;
+    fruitEntity->y = random_y;
     _entities.push_back(fruitEntity);
     _apple.push_back(fruitEntity);
 }
@@ -74,25 +75,32 @@ void Nibbler::initControls()
         if (_snake.front()->orientation == Orientation::RIGHT || _snake.front()->orientation == Orientation::LEFT) {
         } else {
             _snake.front()->orientation = Orientation::LEFT;
+            moveSnake();
         }
     };
     _controls[std::pair<Event::Type, Event::Key>(Event::KEY_PRESSED, Event::RIGHT)] = [this]() -> void {
         if (_snake.front()->orientation == Orientation::LEFT || _snake.front()->orientation == Orientation::RIGHT) {
         } else {
             _snake.front()->orientation = Orientation::RIGHT;
+            moveSnake();
         }
     };
     _controls[std::pair<Event::Type, Event::Key>(Event::KEY_PRESSED, Event::UP)] = [this]() -> void {
         if (_snake.front()->orientation == Orientation::DOWN || _snake.front()->orientation == Orientation::UP) {
         } else {
             _snake.front()->orientation = Orientation::UP;
+            moveSnake();
         }
     };
     _controls[std::pair<Event::Type, Event::Key>(Event::KEY_PRESSED, Event::DOWN)] = [this]() -> void {
         if (_snake.front()->orientation == Orientation::UP || _snake.front()->orientation == Orientation::DOWN) {
         } else {
             _snake.front()->orientation = Orientation::DOWN;
+            moveSnake();
         }
+    };
+    _controls[std::pair<Event::Type, Event::Key>(Event::KEY_PRESSED, Event::BACKSPACE)] = [this]() -> void {
+        moveSnake();
     };
 }
 
