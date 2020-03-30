@@ -10,6 +10,7 @@
 
 arc::ListScores::ListScores()
 {
+    _buttons.clear();
 }
 
 arc::ListScores::~ListScores()
@@ -77,6 +78,28 @@ void arc::ListScores::init()
 void arc::ListScores::setUsername(const std::string &username)
 {
     _username = username;
+    int i = 0;
+    std::for_each(_buttons.begin(), _buttons.end(), [this, &i](std::pair<std::unique_ptr<ButtonRect>, std::unique_ptr<ButtonRect>> &button) {
+        if (button.first->getText() == _username) {
+            button.first->setColor(Utility::getColor(Utility::BUTTON_HOVER));
+            button.second->setColor(Utility::getColor(Utility::BUTTON_HOVER));
+            button.first->setColorHover(Utility::getColor(Utility::BUTTON_HOVER));
+            button.second->setColorHover(Utility::getColor(Utility::BUTTON_HOVER));
+        } else {
+            if (i % 2) {
+                button.first.get()->setColor(Utility::getColor(Utility::BUTTON_LIST));
+                button.first.get()->setColorHover(Utility::getColor(Utility::BUTTON_LIST));
+                button.second.get()->setColor(Utility::getColor(Utility::BUTTON_LIST));
+                button.second.get()->setColorHover(Utility::getColor(Utility::BUTTON_LIST));
+            } else {
+                button.first.get()->setColor(Utility::getColor(Utility::BUTTON_LIST_2));
+                button.first.get()->setColorHover(Utility::getColor(Utility::BUTTON_LIST_2));
+                button.second.get()->setColor(Utility::getColor(Utility::BUTTON_LIST_2));
+                button.second.get()->setColorHover(Utility::getColor(Utility::BUTTON_LIST_2));
+            }
+        }
+        i++;
+    });
 }
 
 static arc::ButtonRect *initButtonUsername(const std::string &username, int y)
@@ -135,6 +158,12 @@ void arc::ListScores::setScores(const std::vector<std::pair<std::string, std::st
             _buttons[_buttons.size() - 1].first.get()->setColorHover(Utility::getColor(Utility::BUTTON_LIST_2));
             _buttons[_buttons.size() - 1].second.get()->setColor(Utility::getColor(Utility::BUTTON_LIST_2));
             _buttons[_buttons.size() - 1].second.get()->setColorHover(Utility::getColor(Utility::BUTTON_LIST_2));
+        }
+        if (_username == pair.first) {
+            _buttons[_buttons.size() - 1].first.get()->setColor(Utility::getColor(Utility::BUTTON_HOVER));
+            _buttons[_buttons.size() - 1].first.get()->setColorHover(Utility::getColor(Utility::BUTTON_HOVER));
+            _buttons[_buttons.size() - 1].second.get()->setColor(Utility::getColor(Utility::BUTTON_HOVER));
+            _buttons[_buttons.size() - 1].second.get()->setColorHover(Utility::getColor(Utility::BUTTON_HOVER));
         }
         y += 50;
         i++;

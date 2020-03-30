@@ -30,3 +30,8 @@ void arc::SceneEndGame::setFunctionMenu(const std::function<void()> &function)
 {
     _eventMenu = function;
 }
+
+void arc::SceneEndGame::setUsername(const std::string &name)
+{
+    _listScores->setUsername(name);
+}

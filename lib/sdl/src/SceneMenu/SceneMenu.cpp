@@ -56,6 +56,7 @@ const std::string &arc::SceneMenu::getUsername()
 void arc::SceneMenu::setUsername(const std::string &username)
 {
     _inputUsername->setText(username);
+    _sceneScores->setUsername(username);
 }
 
 void arc::SceneMenu::setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info)

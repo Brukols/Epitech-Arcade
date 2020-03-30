@@ -78,6 +78,7 @@ For the menu
 */
 void arc::Graphical::setScores(const std::vector<std::pair<std::string, std::string>> &scores)
 {
+    static_cast<SceneEndGame *>(_scenes[END_GAME].get())->setUsername(getUsername());
     static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setScores(scores);
     static_cast<SceneEndGame *>(_scenes[END_GAME].get())->setScores(scores);
 }

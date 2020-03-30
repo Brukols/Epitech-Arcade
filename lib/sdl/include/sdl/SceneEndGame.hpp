@@ -30,6 +30,8 @@ namespace arc
             void setFunctionRestart(const std::function<void()> &function);
             void setFunctionMenu(const std::function<void()> &function);
 
+            void setUsername(const std::string &username);
+
         private:
             void initButtons();
             

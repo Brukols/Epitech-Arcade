@@ -31,6 +31,8 @@ namespace arc
 
             void changeColor();
 
+            void setUsername(const std::string &username);
+
         private:
             void initRects();
 

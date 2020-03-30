@@ -78,3 +78,8 @@ void arc::SceneScores::event(const arc::Event::Type &actualEventType, const arc:
     }
     _listScores->event(actualEventType, actualKeyPress, event);
 }
+
+void arc::SceneScores::setUsername(const std::string &username)
+{
+    _listScores->setUsername(username);
+}
