@@ -19,9 +19,15 @@ void Nibbler::updateGame()
 {
 
     _end = std::chrono::system_clock::now();
-    if (std::chrono::duration_cast<std::chrono::milliseconds>(_end - _start).count() > 200) {
+    _endApple = std::chrono::system_clock::now();
+    if (std::chrono::duration_cast<std::chrono::milliseconds>(_end - _start).count() > _speed) {
         _start = std::chrono::system_clock::now();
         moveSnake();
+    }
+    if (std::chrono::duration_cast<std::chrono::milliseconds>(_endApple- _startApple).count() > 8000) {
+        _startApple = std::chrono::system_clock::now();
+        initApple();
+        _speed -= 10;
     }
 }
 
@@ -41,7 +47,8 @@ void Nibbler::moveSnake()
     if (doYouEat() == true) {
         _score += 1;
         initApple();
-        addBodySnake();
+        for (int i = rand()%(3-1) + 3; i > 0; i--)
+            addBodySnake();
         _nbApple++;
         initGameStats();
         //initialisation de sound si le serpent mange quelque chose
@@ -124,6 +131,8 @@ bool Nibbler::doYouEat()
         for (size_t i = 0; i < _apple.size(); i++) {
             if (p == _apple[i]) {
                 if ((p->x == _snake.front()->x) && (p->y == _snake.front()->y)) {
+                    _apple[i]->x = -1;
+                    _apple[i]->y = -1;
                     return true;
                 }
             }
@@ -133,7 +142,6 @@ bool Nibbler::doYouEat()
     if (ptr == _entities.end())
         return false;
     _entities.erase(ptr);
-    _apple.clear();
     return true;
 }
 
@@ -153,7 +161,19 @@ bool Nibbler::isGameOver() const
     }
     if (isCollision() == true)
         return true;
+    if (nbApple() > 6)
+        return true;
     return false;
+}
+
+int Nibbler::nbApple() const
+{
+    int i = 0;
+    std::for_each(_entities.begin(), _entities.end(), [&i] (std::shared_ptr<Entity> const &o) {
+        if (o->type == CONSUMABLE)
+            i++;
+    });
+    return i;
 }
 
 bool Nibbler::isCollision() const

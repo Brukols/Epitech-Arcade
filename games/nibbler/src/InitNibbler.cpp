@@ -13,6 +13,9 @@ void Nibbler::initNibbler()
 {
     _start = std::chrono::system_clock::now();
     _end = std::chrono::system_clock::now();
+    _startApple = std::chrono::system_clock::now();
+    _endApple = std::chrono::system_clock::now();
+    _speed = 200;
     _title = "Nibbler";
     _height = 36;
     _width = 48;
@@ -24,7 +27,6 @@ void Nibbler::initNibbler()
     initControls();
     initGameControls();
     initGameStats();
-    srand(time(NULL));
 }
 
 void Nibbler::initEntities()
@@ -51,6 +53,7 @@ void Nibbler::initSnake()
 
 void Nibbler::initApple()
 {
+    srand(time(NULL));
     float random_x = rand () % _width;
     float random_y = rand () % _height;
 
@@ -99,9 +102,6 @@ void Nibbler::initControls()
             moveSnake();
         }
     };
-    _controls[std::pair<Event::Type, Event::Key>(Event::KEY_PRESSED, Event::BACKSPACE)] = [this]() -> void {
-        moveSnake();
-    };
 }
 
 void Nibbler::initGameControls()
@@ -111,6 +111,7 @@ void Nibbler::initGameControls()
     _gameControls.push_back(std::pair<std::string, std::string> ("RIGHT ARROW", "Go right"));
     _gameControls.push_back(std::pair<std::string, std::string> ("DOWN ARROW", "Go down"));
     _gameControls.push_back(std::pair<std::string, std::string> ("LEFT ARROW", "Go left"));
+    _gameControls.push_back(std::pair<std::string, std::string> ("If Apple > 6", "You lose !"));
 }
 
 void Nibbler::initGameStats()

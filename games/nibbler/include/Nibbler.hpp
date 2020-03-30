@@ -42,6 +42,9 @@ namespace arc {
         protected:
             std::chrono::time_point<std::chrono::system_clock> _start;
             std::chrono::time_point<std::chrono::system_clock> _end;
+            std::chrono::time_point<std::chrono::system_clock> _startApple;
+            std::chrono::time_point<std::chrono::system_clock> _endApple;
+            int _speed;
             int _elapsedMilliseconds;
 
             size_t _height;
@@ -80,6 +83,7 @@ namespace arc {
             bool isOnSnake(float x, float y);
             bool isPossibleAdd(float x, float y);
             void addBodySnakeFirstPlace(std::shared_ptr<Entity> &o);
+            int nbApple() const;
     };
 
 }
