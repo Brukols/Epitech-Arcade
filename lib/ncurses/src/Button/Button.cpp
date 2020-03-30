@@ -101,3 +101,8 @@ void arc::Button::setPosition(size_t x, size_t y)
     _rect.setPosition(x, y);
     _text.setPosition(_rect.getPosX() + _rect.getWidth() / 2 - _name.size() / 2, _rect.getPosY() + _rect.getHeight() / 2);
 }
+
+const std::string &arc::Button::getText() const
+{
+    return (_name);
+}

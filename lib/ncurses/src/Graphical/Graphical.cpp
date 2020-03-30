@@ -68,6 +68,8 @@ void arc::Graphical::setScores(const std::vector<std::pair<std::string, std::str
 {
     static_cast<SceneEndGame *>(_scenes[END_GAME].get())->setScores(scores);
     static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setScores(scores);
+    static_cast<SceneEndGame *>(_scenes[END_GAME].get())->setUsername(getUsername());
+    static_cast<SceneMenu *>(_scenes[MAIN_MENU].get())->setUsername(getUsername());
 }
 
 void arc::Graphical::setControls(const std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> &controls)

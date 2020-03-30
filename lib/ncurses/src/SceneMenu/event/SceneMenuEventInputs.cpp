@@ -19,4 +19,5 @@ void arc::SceneMenu::eventInputs(MEVENT event)
         }
         input.setActivate(false);
     });
+    _sceneScores.setUsername(_username);
 }

@@ -106,6 +106,7 @@ void arc::ListScores::initTextsScores()
     _textScores.clear();
 
     int i = 0;
+    _begin = 0;
     std::for_each(_scores.begin(), _scores.end(), [this, &i](const std::pair<std::string, std::string> &pair) {
         _textScores.push_back(std::pair<Button, Button>(initLeftButton(i * 3 + 13, pair.first), initRightButton(i * 3 + 13, pair.second)));
         if (i % 2) {
@@ -114,6 +115,10 @@ void arc::ListScores::initTextsScores()
         } else {
             _textScores[_textScores.size() - 1].first.setColors(MAIN_COLOR_1, MAIN_COLOR_9);
             _textScores[_textScores.size() - 1].second.setColors(MAIN_COLOR_1, MAIN_COLOR_9);
+        }
+        if (pair.first == _username) {
+            _textScores[_textScores.size() - 1].first.setColors(MAIN_COLOR_2, MAIN_COLOR_5);
+            _textScores[_textScores.size() - 1].second.setColors(MAIN_COLOR_2, MAIN_COLOR_5);
         }
         i++;
     });

@@ -41,6 +41,8 @@ namespace arc
             size_t getPosX() const;
             size_t getPosY() const;
 
+            const std::string &getText() const;
+
         private:
             std::string _name;
             Rectangle _rect;
