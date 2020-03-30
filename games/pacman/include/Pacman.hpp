@@ -13,12 +13,7 @@
 #include <chrono>
 #include <iostream>
 #include <fstream>
-
-// #include <vector>
-// #include <string>
-// #include <cstring>
-// #include <ios>
-// #include <algorithm>
+#include <math.h>
 
 using namespace arc;
 
@@ -71,9 +66,10 @@ namespace arc {
             std::vector<std::shared_ptr<Entity>> _inky;
             std::vector<std::shared_ptr<Entity>> _clyde;
             std::vector<std::shared_ptr<Entity>> _pacGum;
+            std::vector<std::shared_ptr<Entity>> _SpecialPacGum;
 
             int _nbCherry;
-            int _nbPacGum;
+            unsigned int _nbPacGum;
 
             std::vector <std::pair<std::string, std::string>> _gameControls;
             std::vector <std::pair<std::string, std::string>> _gameStats;
@@ -84,8 +80,9 @@ namespace arc {
             void initControls();
             void initEntities();
             void initPacpac();
-            void initCherry();
+            void initCherry(); 
             void initMap();
+            bool isGameWon();
 
             void initGhostBlinky();
             void initGhostPinky();
@@ -95,19 +92,37 @@ namespace arc {
             void initGameControls();
             void initGameStats();
 
-            bool doYouEat();
+            bool doYouEatCherry();
             bool doYouEatPacGum();
-            void movePacman();
+            bool doYouEatSpecialPacGum();
+            bool doyouEatBlueGhosts();
+
+            // bool _spacialPacGum;
+            int _blueMode;
+            void initBlueMode();
+            void initColorMode();
             
+            Orientation moveGhosts(std::vector<std::shared_ptr<Entity>> _entity, Orientation direction);
+            void movePacman();
             void moveBlinky();
             void movePinky();
             void moveInky();
             void moveClyde();
 
-            void updateOrientationPacman();
+            bool goUp(std::vector<std::shared_ptr<Entity>>);
+            bool goRight(std::vector<std::shared_ptr<Entity>>);
+            bool goDown(std::vector<std::shared_ptr<Entity>>);
+            bool goLeft(std::vector<std::shared_ptr<Entity>>);
+            
             bool isCollision(std::vector<std::shared_ptr<Entity>>);
             bool isCollision(std::shared_ptr<Entity> _entity);
-            bool isPacpacEaten(std::vector<std::shared_ptr<Entity>>);
+            bool isPacpacEaten() const;
+            int _blueCpt;
+
+            Orientation _blinkyDirection;
+            Orientation _pinkyDirection;
+            Orientation _inkyDirection;
+            Orientation _clydeDirection;
     };
 }
 
