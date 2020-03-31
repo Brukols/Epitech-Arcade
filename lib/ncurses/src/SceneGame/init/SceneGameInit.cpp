@@ -10,6 +10,5 @@
 void arc::SceneGame::init()
 {
     initButtons();
-    // initRects();
     initTexts();
 }

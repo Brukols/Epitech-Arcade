@@ -59,6 +59,7 @@ static arc::Button initButtonWatchScores(sf::Font &font)
     rect.setPosition(sf::Vector2f(830, 490));
     arc::Button button(std::function<void()>(), rect, "Watch scores", font);
     button.setHoverColor(sf::Color(109, 107, 137, 255));
+    button.setActivate(false);
     return (button);
 }
 

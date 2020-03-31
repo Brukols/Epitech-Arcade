@@ -11,11 +11,21 @@ void arc::SceneEndGame::eventButtons(const MEVENT &event)
 {
     _listScores.event(event);
 
-    std::for_each(_buttons.begin(), _buttons.end(), [this, &event](Button &button) {
-        if (button.isMouseHover(event.x, event.y))
-            button.click();
+    std::for_each(_buttons.begin(), _buttons.end(), [this, &event](std::pair<Button, void (SceneEndGame::*)()> &button) {
+        if (button.first.isMouseHover(event.x, event.y))
+            (this->*button.second)();
     });
 
+}
+
+void arc::SceneEndGame::eventRestart()
+{
+    _eventRestart();
+}
+
+void arc::SceneEndGame::eventMenu()
+{
+    _eventMenu();
 }
 
 void arc::SceneEndGame::event(arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress)

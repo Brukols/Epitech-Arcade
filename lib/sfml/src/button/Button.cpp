@@ -30,6 +30,8 @@ arc::Button::~Button()
 
 bool arc::Button::isMouseHover(const sf::Vector2i &pos) const
 {
+    if (!_activate)
+        return (false);
     sf::Vector2f _pos = _rect.getPosition();
     sf::Vector2f _size = _rect.getSize();
 

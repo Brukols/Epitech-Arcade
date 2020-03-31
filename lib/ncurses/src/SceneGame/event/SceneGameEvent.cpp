@@ -7,6 +7,20 @@
 
 #include "ncurses/SceneGame.hpp"
 
+void arc::SceneGame::eventMenu()
+{
+    _eventBackToMenu();
+}
+
+void arc::SceneGame::eventButtons(MEVENT event)
+{
+    std::for_each(_buttons.begin(), _buttons.end(), [this, &event](std::pair<Button, void (SceneGame::*)()> &button) {
+        if (button.first.isMouseHover(event.x, event.y)) {
+            (this->*button.second)();
+        }
+    });
+}
+
 void arc::SceneGame::event(arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress)
 {
     int c = wgetch(stdscr);

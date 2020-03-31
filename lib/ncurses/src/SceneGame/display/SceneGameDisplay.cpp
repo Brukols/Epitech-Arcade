@@ -18,8 +18,8 @@ void arc::SceneGame::display()
         rect.display();
     });
 
-    std::for_each(_buttons.begin(), _buttons.end(), [this](Button &button) {
-        button.display();
+    std::for_each(_buttons.begin(), _buttons.end(), [this](std::pair<Button, void (SceneGame::*)()> &button) {
+        button.first.display();
     });
 
     std::for_each(_gameMap.begin(), _gameMap.end(), [this](std::shared_ptr<Entity> entity) {

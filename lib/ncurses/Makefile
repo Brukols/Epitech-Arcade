@@ -21,14 +21,12 @@ SRCS	=	src/Graphical/Graphical.cpp	\
 			src/SceneGame/init/SceneGameInit.cpp	\
 			src/SceneGame/init/SceneGameSetters.cpp	\
 			src/SceneGame/init/SceneGameInitButtons.cpp	\
-			src/SceneGame/init/SceneGameInitRects.cpp	\
 			src/SceneGame/init/SceneGameInitTexts.cpp	\
 			src/SceneGame/init/SceneGameInitMap.cpp	\
 			src/SceneGame/init/SceneGameInitTextHowToPlay.cpp	\
 			src/SceneGame/init/SceneGameInitTextStats.cpp	\
 			src/SceneGame/display/SceneGameDisplay.cpp	\
 			src/SceneGame/event/SceneGameEvent.cpp	\
-			src/SceneGame/event/SceneGameEventButtons.cpp	\
 			src/SceneEndGame/SceneEndGame.cpp	\
 			src/SceneEndGame/init/SceneEndGameInit.cpp	\
 			src/SceneEndGame/init/SceneEndGameInitButtons.cpp	\

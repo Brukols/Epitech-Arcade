@@ -36,9 +36,11 @@ namespace arc
             void initButtons();
 
             void eventButtons(const MEVENT &event);
+            void eventMenu();
+            void eventRestart();
 
         private:
-            std::vector<Button> _buttons;
+            std::vector<std::pair<Button, void (SceneEndGame::*)()>> _buttons;
             std::vector<Rectangle> _rects;
 
             std::function<void()> _eventMenu;

@@ -9,8 +9,8 @@
 
 void arc::SceneEndGame::display()
 {
-    std::for_each(_buttons.begin(), _buttons.end(), [](Button &button) {
-        button.display();
+    std::for_each(_buttons.begin(), _buttons.end(), [](std::pair<Button, void (SceneEndGame::*)()> &button) {
+        button.first.display();
     });
 
     _listScores.display();

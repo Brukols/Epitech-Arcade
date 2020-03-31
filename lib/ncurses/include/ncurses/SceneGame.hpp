@@ -47,20 +47,21 @@ namespace arc
         private:
             void initButtons();
             void initTexts();
-            void initRects();
             void initMap();
 
             void initTextHowToPlay(const std::vector<std::pair<std::string, std::string>> &info);
             void initTextStats(const std::vector<std::pair<std::string, std::string>> &info);
 
             void eventButtons(MEVENT event);
+            
+            void eventMenu();
 
         private:
 
             std::function<void()> _eventBackToMenu;
             std::map<std::pair<Event::Type, Event::Key>, std::function<void ()>> _controls;
 
-            std::vector<Button> _buttons;
+            std::vector<std::pair<Button, void (SceneGame::*)()>> _buttons;
             std::vector<Text> _texts;
             std::vector<Rectangle> _rects;
 
