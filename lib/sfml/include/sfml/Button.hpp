@@ -20,7 +20,7 @@ namespace arc
             ~Button();
 
             bool isMouseHover(const sf::Vector2i &pos) const;
-            void clickButton();
+            void click();
             void displayButton(sf::RenderWindow &window);
             
             // Implement select

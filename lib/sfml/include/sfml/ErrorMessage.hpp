@@ -20,7 +20,7 @@ namespace arc
 
             void display(sf::RenderWindow &window);
             bool isHoverButton(const sf::Vector2i &pos) const;
-            void clickButton();
+            void click();
 
         private:
             std::vector<Button> _button;

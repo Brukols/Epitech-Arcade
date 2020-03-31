@@ -45,7 +45,7 @@ void arc::Button::setActivate(bool activate)
     _activate = activate;
 }
 
-void arc::Button::clickButton()
+void arc::Button::click()
 {
     if (!_display)
         return;

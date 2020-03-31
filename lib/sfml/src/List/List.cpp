@@ -104,7 +104,7 @@ void arc::List::eventMouseButtonReleased(sf::Event &event)
                 resetButtonsList();
                 button.toggleSelect();
                 if (button.isSelect()) {
-                    button.clickButton();
+                    button.click();
                 }
             }
         } else

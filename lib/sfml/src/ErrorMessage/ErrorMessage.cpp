@@ -54,7 +54,7 @@ bool arc::ErrorMessage::isHoverButton(const sf::Vector2i &pos) const
     return (_button[0].isMouseHover(pos));
 }
 
-void arc::ErrorMessage::clickButton()
+void arc::ErrorMessage::click()
 {
     _event();
 }
