@@ -18,13 +18,6 @@ sf::RectangleShape initBackgroundGetInput()
 
 void arc::SceneMenu::initRects()
 {
-    std::vector<sf::RectangleShape (*)()> rects;
-
-    rects.push_back(initBackgroundGetInput);
-
     _rects.clear();
-
-    std::for_each(rects.begin(), rects.end(), [this](sf::RectangleShape (*fct)()) {
-        _rects.push_back(fct());
-    });
+    _rects.push_back(initBackgroundGetInput());
 }

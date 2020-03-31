@@ -39,16 +39,7 @@ static arc::Text initTextEnterUsername(const sf::Font &font)
 
 void arc::SceneMenu::initTexts()
 {
-    static std::vector<arc::Text (*)(const sf::Font &)> text = [this]() -> std::vector<arc::Text (*)(const sf::Font &)> {
-        std::vector<arc::Text (*)(const sf::Font &)> text;
-
-        text.push_back(initTextArcade);
-        return (text);
-    }();
-
-    std::for_each(text.begin(), text.end(), [this](arc::Text (*fct)(const sf::Font &)) {
-        _texts.push_back(fct(_font));
-    });
+    _texts.push_back(initTextArcade(_font));
 
     _textUsername.push_back(initTextEnterUsername(_font));
 }

@@ -7,7 +7,7 @@
 
 #include "sfml/SceneMenu.hpp"
 
-static arc::Button initButtonPlay(std::function<void()> &event, sf::Font &font)
+static arc::Button initButtonPlay(sf::Font &font)
 {
     sf::RectangleShape rect(sf::Vector2f(220, 100));
 
@@ -15,13 +15,13 @@ static arc::Button initButtonPlay(std::function<void()> &event, sf::Font &font)
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(830, 320));
-    arc::Button button(event, rect, "Play", font);
+    arc::Button button(std::function<void()>(), rect, "Play", font);
     button.setHoverColor(sf::Color(109, 107, 137, 255));
     button.setActivate(false);
     return (button);
 }
 
-static arc::Button initButtonExit(std::function<void()> &event, sf::Font &font)
+static arc::Button initButtonExit(sf::Font &font)
 {
     sf::RectangleShape rect(sf::Vector2f(220, 100));
 
@@ -29,14 +29,14 @@ static arc::Button initButtonExit(std::function<void()> &event, sf::Font &font)
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(830, 820));
-    arc::Button button(event, rect, "Exit", font);
+    arc::Button button(std::function<void()>(), rect, "Exit", font);
     button.setHoverColor(sf::Color(109, 107, 137, 255));
     button.setActivate(false);
     button.setColorUnable(sf::Color(150, 150, 150, 255));
     return (button);
 }
 
-static arc::Button initButtonEnterUsername(std::function<void()> event, sf::Font &font)
+static arc::Button initButtonEnterUsername(sf::Font &font)
 {
     sf::RectangleShape rect(sf::Vector2f(220, 80));
 
@@ -44,12 +44,12 @@ static arc::Button initButtonEnterUsername(std::function<void()> event, sf::Font
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(830, 700));
-    arc::Button button(event, rect, "Validate", font);
+    arc::Button button(std::function<void()>(), rect, "Validate", font);
     button.setHoverColor(sf::Color(109, 107, 137, 255));
     return (button);
 }
 
-static arc::Button initButtonWatchScores(std::function<void()> &event, sf::Font &font)
+static arc::Button initButtonWatchScores(sf::Font &font)
 {
     sf::RectangleShape rect(sf::Vector2f(220, 100));
 
@@ -57,12 +57,12 @@ static arc::Button initButtonWatchScores(std::function<void()> &event, sf::Font 
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(830, 490));
-    arc::Button button(event, rect, "Watch scores", font);
+    arc::Button button(std::function<void()>(), rect, "Watch scores", font);
     button.setHoverColor(sf::Color(109, 107, 137, 255));
     return (button);
 }
 
-static arc::Button initButtonHowToPlay(std::function<void()> &event, sf::Font &font)
+static arc::Button initButtonHowToPlay(sf::Font &font)
 {
     sf::RectangleShape rect(sf::Vector2f(220, 100));
 
@@ -70,7 +70,7 @@ static arc::Button initButtonHowToPlay(std::function<void()> &event, sf::Font &f
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(830, 660));
-    arc::Button button(event, rect, "How to play", font);
+    arc::Button button(std::function<void()>(), rect, "How to play", font);
     button.setHoverColor(sf::Color(109, 107, 137, 255));
     button.setActivate(false);
     button.setColorUnable(sf::Color(150, 150, 150, 255));
@@ -79,29 +79,13 @@ static arc::Button initButtonHowToPlay(std::function<void()> &event, sf::Font &f
 
 void arc::SceneMenu::initButtons()
 {
-    std::vector<std::pair<arc::Button (*)(std::function<void()> &, sf::Font &), std::function<void()>>> buttons;
-
-    buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &, sf::Font &), std::function<void()>>(initButtonPlay, [this](){
-        eventButtonPlay();
-    }));
-    buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &, sf::Font &), std::function<void()>>(initButtonExit, _eventExit));
-
-    buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &, sf::Font &), std::function<void()>>(initButtonWatchScores, [this]() {
-        eventWatchScores();
-    }));
-
-    buttons.push_back(std::pair<arc::Button (*)(std::function<void()> &, sf::Font &), std::function<void()>>(initButtonHowToPlay, [this]() {
-        eventHowToPlay();
-    }));
-
     _buttons.clear();
-
-    std::for_each(buttons.begin(), buttons.end(), [this](std::pair<arc::Button (*)(std::function<void()> &, sf::Font &), std::function<void()>> &pair) {
-        _buttons.push_back(pair.first(pair.second, _font));
-    });
+    _buttons.push_back(std::pair<Button, void (SceneMenu::*)()>(initButtonPlay(_font), &SceneMenu::eventButtonPlay));
+    _buttons.push_back(std::pair<Button, void (SceneMenu::*)()>(initButtonExit(_font), &SceneMenu::eventButtonExit));
+    _buttons.push_back(std::pair<Button, void (SceneMenu::*)()>(initButtonWatchScores(_font), &SceneMenu::eventWatchScores));
+    _buttons.push_back(std::pair<Button, void (SceneMenu::*)()>(initButtonHowToPlay(_font), &SceneMenu::eventHowToPlay));
 
     _buttonEnterUsername.clear();
-    _buttonEnterUsername.push_back(initButtonEnterUsername([this]() {
-        eventValidateUsername();
-    }, _font));
+
+    _buttonEnterUsername.push_back(std::pair<Button, void (SceneMenu::*)()>(initButtonEnterUsername(_font), &SceneMenu::eventValidateUsername));
 }

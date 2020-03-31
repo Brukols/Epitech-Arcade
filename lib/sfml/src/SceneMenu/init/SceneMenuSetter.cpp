@@ -10,13 +10,11 @@
 void arc::SceneMenu::setFunctionExit(const std::function<void()> &eventExit)
 {
     _eventExit = eventExit;
-    initButtons();
 }
 
 void arc::SceneMenu::setFunctionPlay(const std::function<void()> &eventPlay)
 {
     _eventPlay = eventPlay;
-    initButtons();
 }
 
 void arc::SceneMenu::setListGames(const std::vector<std::string> &games, const std::function<void (const std::string &)> &fct, int chosen)

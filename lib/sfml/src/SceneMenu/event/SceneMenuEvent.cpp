@@ -21,15 +21,15 @@ void arc::SceneMenu::buttonsEvent(sf::RenderWindow &window, sf::Event &event)
 
     if (event.type != sf::Event::MouseButtonReleased)
         return;
-    std::for_each(_buttons.begin(), _buttons.end(), [&window](Button &button) {
-        if (button.isMouseHover(sf::Mouse::getPosition())) {
-            button.clickButton();
+    std::for_each(_buttons.begin(), _buttons.end(), [this, &window](std::pair<Button, void (SceneMenu::*)()> &button) {
+        if (button.first.isMouseHover(sf::Mouse::getPosition())) {
+            (this->*button.second)();
         }
     });
 
-    std::for_each(_buttonEnterUsername.begin(), _buttonEnterUsername.end(), [&window](Button &button) {
-        if (button.isMouseHover(sf::Mouse::getPosition())) {
-            button.clickButton();
+    std::for_each(_buttonEnterUsername.begin(), _buttonEnterUsername.end(), [this, &window](std::pair<Button, void (SceneMenu::*)()> &button) {
+        if (button.first.isMouseHover(sf::Mouse::getPosition())) {
+            (this->*button.second)();
         }
     });
 }
@@ -75,8 +75,8 @@ void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
     _actualEventType = arc::Event::Type::NO_EVENT;
     _actualKeyPress = arc::Event::Key::NONE;
     if (_lists.size() > 1 && _lists[1].hasASelectButton()) {
-        _buttons[0].setActivate(true);
-        _buttons[2].setActivate(true);
+        _buttons[0].first.setActivate(true);
+        _buttons[2].first.setActivate(true);
     }
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
@@ -107,4 +107,9 @@ void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
             _actualKeyPress = Utility::getKey(event);
         }
     }
+}
+
+void arc::SceneMenu::eventButtonExit()
+{
+    _eventExit();
 }

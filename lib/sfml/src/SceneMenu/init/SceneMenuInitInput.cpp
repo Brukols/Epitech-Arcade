@@ -29,13 +29,7 @@ arc::Input initInputUsername(const sf::Font &font)
 
 void arc::SceneMenu::initInput()
 {
-    std::vector<arc::Input (*)(const sf::Font &)> inputs;
-
-    inputs.push_back(initInputUsername);
-
     _inputs.clear();
-    std::for_each(inputs.begin(), inputs.end(), [this](arc::Input (*fct)(const sf::Font &)) {
-        _inputs.push_back(fct(_font));
-        _inputs[0].setFocus(true);
-    });
+    _inputs.push_back(initInputUsername(_font));
+    _inputs[0].setFocus(true);
 }

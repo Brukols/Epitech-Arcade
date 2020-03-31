@@ -17,22 +17,12 @@ arc::Image initBackground()
 
 void arc::SceneMenu::initImages()
 {
-    static std::vector<arc::Image (*)()> images = [this]() -> std::vector<arc::Image (*)()> {
-        std::vector<arc::Image (*)()> images;
-
-        images.push_back(initBackground);
-        return (images);
-    }();
-
     _images.clear();
-
-    std::for_each(images.begin(), images.end(), [this](arc::Image (*image)()) {
-        try {
-            _images.push_back(image());
-        } catch(const std::exception& e) {
-            _errorMessages.push_back(ErrorMessage(e.what(), [this](){
-                _errorMessages.erase(_errorMessages.begin());
-            }, _font));
-        }
-    });
+    try {
+        _images.push_back(initBackground());
+    } catch(const std::exception& e) {
+        _errorMessages.push_back(ErrorMessage(e.what(), [this](){
+            _errorMessages.erase(_errorMessages.begin());
+        }, _font));
+    }
 }

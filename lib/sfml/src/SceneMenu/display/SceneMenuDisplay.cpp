@@ -16,8 +16,8 @@ void arc::SceneMenu::display(sf::RenderWindow &window)
     });
 
     // Display buttons
-    std::for_each(_buttons.begin(), _buttons.end(), [this, &window](arc::Button &button) {
-        button.displayButton(window);
+    std::for_each(_buttons.begin(), _buttons.end(), [this, &window](std::pair<Button, void (SceneMenu::*)()> &button) {
+        button.first.displayButton(window);
     });
 
     // Displays text
@@ -40,8 +40,8 @@ void arc::SceneMenu::display(sf::RenderWindow &window)
     });
 
     // Display Input
-    std::for_each(_buttonEnterUsername.begin(), _buttonEnterUsername.end(), [this, &window](Button &input) {
-        input.displayButton(window);
+    std::for_each(_buttonEnterUsername.begin(), _buttonEnterUsername.end(), [this, &window](std::pair<Button, void (SceneMenu::*)()> &input) {
+        input.first.displayButton(window);
     });
 
     std::for_each(_textUsername.begin(), _textUsername.end(), [this, &window](Text &text) {

@@ -68,6 +68,7 @@ namespace arc
 
             void eventWatchScores();
             void eventHowToPlay();
+            void eventButtonExit();
 
             void eventButtonPlay();
             void eventErrorMessage(sf::Event &event);
@@ -75,7 +76,7 @@ namespace arc
         private:
             SceneState _state = GET_USERNAME;
 
-            std::vector<Button> _buttons;
+            std::vector<std::pair<Button, void (SceneMenu::*)()>> _buttons;
             std::vector<Text> _texts;
             std::vector<Input> _inputs;
             std::vector<sf::RectangleShape> _rects;
@@ -89,7 +90,7 @@ namespace arc
             std::function<void()> _eventPlay;
 
             std::vector<Text> _textUsername;
-            std::vector<Button> _buttonEnterUsername;
+            std::vector<std::pair<Button, void (SceneMenu::*)()>> _buttonEnterUsername;
 
             std::string _username;
 
