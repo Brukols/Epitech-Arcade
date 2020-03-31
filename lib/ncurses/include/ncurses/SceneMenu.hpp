@@ -42,7 +42,6 @@ namespace arc
             void setHowToPlay(const std::vector<std::pair<std::string, std::string>> &info);
 
         private:
-            void initRects();
             void initTexts();
             void initButtons();
             void initInputs();
@@ -52,13 +51,16 @@ namespace arc
             void eventButtons(MEVENT event);
             void eventInputs(MEVENT event);
 
+            void eventExit();
+            void eventPlay();
+
         private:
             std::function<void()> _eventFunctionExit;
             std::function<void()> _eventFunctionPlay;
 
             std::vector<Rectangle> _rects;
             std::vector<Text> _texts;
-            std::vector<Button> _buttons;
+            std::vector<std::pair<Button, void (SceneMenu::*)()>> _buttons;
             std::vector<Input> _inputs;
             std::vector<Text> _howToPlay;
 

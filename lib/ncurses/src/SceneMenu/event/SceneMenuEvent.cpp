@@ -15,6 +15,43 @@ void arc::SceneMenu::eventShowScores()
     clear();
 }
 
+void arc::SceneMenu::eventExit()
+{
+    _eventFunctionExit();
+}
+
+void arc::SceneMenu::eventPlay()
+{
+    _eventFunctionPlay();
+}
+
+void arc::SceneMenu::eventButtons(MEVENT event)
+{
+    std::for_each(_lists.begin(), _lists.end(), [&event](List &list) {
+        list.event(event);
+    });
+
+    std::for_each(_buttons.begin(), _buttons.end(), [this, &event](std::pair<Button, void (SceneMenu::*)()> &button) {
+        if (button.first.isMouseHover(event.x, event.y))
+            (this->*button.second)();
+    });
+}
+
+void arc::SceneMenu::eventInputs(MEVENT event)
+{
+    std::for_each(_inputs.begin(), _inputs.end(), [this, &event](Input &input) {
+        if (input.isMouseHover(event.x, event.y)) {
+            input.setActivate(true);
+            return;
+        }
+        if (input.isActivate()) {
+            _username = input.getText();
+        }
+        input.setActivate(false);
+    });
+    _sceneScores.setUsername(_username);
+}
+
 void arc::SceneMenu::event(arc::Event::Type &_actualEventType, arc::Event::Key &_actualKeyPress)
 {
     if (_sceneScores.isActivate()) {

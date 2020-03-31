@@ -24,15 +24,6 @@ arc::Input initInputUsername()
 
 void arc::SceneMenu::initInputs()
 {
-    static std::vector<Input (*)()> inputs = [this]() -> std::vector<Input (*)()> {
-        std::vector<Input (*)()> inputs;
-
-        inputs.push_back(initInputUsername);
-        return (inputs);
-    }();
-
     _inputs.clear();
-    std::for_each(inputs.begin(), inputs.end(), [this](Input (*fct)()) {
-        _inputs.push_back(fct());
-    });
+    _inputs.push_back(initInputUsername());
 }

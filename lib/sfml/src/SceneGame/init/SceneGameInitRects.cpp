@@ -28,17 +28,7 @@ sf::RectangleShape initMapGame()
 
 void arc::SceneGame::initRects()
 {
-    static std::vector<sf::RectangleShape (*)()> rects = [this]() -> std::vector<sf::RectangleShape (*)()> {
-        std::vector<sf::RectangleShape (*)()> rects;
-
-        rects.push_back(initMenuSideRect);
-        rects.push_back(initMapGame);
-        return (rects);
-    }();
-
     _rects.clear();
-
-    std::for_each(rects.begin(), rects.end(), [this](sf::RectangleShape (*fct)()) {
-        _rects.push_back(fct());
-    });
+    _rects.push_back(initMenuSideRect());
+    _rects.push_back(initMapGame());
 }

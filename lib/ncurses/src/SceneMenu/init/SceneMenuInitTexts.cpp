@@ -50,18 +50,9 @@ arc::Text initTextHowToPlay()
 
 void arc::SceneMenu::initTexts()
 {
-    static std::vector<Text (*)()> texts = [this]() -> std::vector<Text (*)()> {
-        std::vector<Text (*)()> texts;
-
-        texts.push_back(initTitle);
-        texts.push_back(initTextChooseGame);
-        texts.push_back(initTextChooseGraph);
-        texts.push_back(initTextHowToPlay);
-        return (texts);
-    }();
-
     _texts.clear();
-    std::for_each(texts.begin(), texts.end(), [this](Text (*fct)()) {
-        _texts.push_back(fct());
-    });
+    _texts.push_back(initTitle());
+    _texts.push_back(initTextChooseGame());
+    _texts.push_back(initTextChooseGraph());
+    _texts.push_back(initTextHowToPlay());
 }

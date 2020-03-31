@@ -12,14 +12,11 @@ SRCS	=	src/Graphical/Graphical.cpp	\
 			src/SceneMenu/SceneMenu.cpp	\
 			src/SceneMenu/init/SceneMenuInit.cpp	\
 			src/SceneMenu/init/SceneMenuSetter.cpp	\
-			src/SceneMenu/init/SceneMenuInitRects.cpp	\
 			src/SceneMenu/init/SceneMenuInitTexts.cpp	\
 			src/SceneMenu/init/SceneMenuInitButtons.cpp	\
 			src/SceneMenu/init/SceneMenuInitInputs.cpp	\
 			src/SceneMenu/display/SceneMenuDisplay.cpp	\
 			src/SceneMenu/event/SceneMenuEvent.cpp		\
-			src/SceneMenu/event/SceneMenuEventButtons.cpp		\
-			src/SceneMenu/event/SceneMenuEventInputs.cpp	\
 			src/SceneGame/SceneGame.cpp	\
 			src/SceneGame/init/SceneGameInit.cpp	\
 			src/SceneGame/init/SceneGameSetters.cpp	\
