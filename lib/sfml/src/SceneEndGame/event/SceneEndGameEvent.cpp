@@ -8,13 +8,23 @@
 #include "sfml/SceneEndGame.hpp"
 #include "sfml/Utility.hpp"
 
+void arc::SceneEndGame::eventRestart()
+{
+    _eventRestart();
+}
+
+void arc::SceneEndGame::eventMenu()
+{
+    _eventMenu();
+}
+
 void arc::SceneEndGame::eventButtons(const sf::Event &event)
 {
     if (event.type != sf::Event::MouseButtonReleased)
         return;
-    std::for_each(_buttons.begin(), _buttons.end(), [](Button &button) {
-        if (button.isMouseHover(sf::Mouse::getPosition()))
-            button.clickButton();
+    std::for_each(_buttons.begin(), _buttons.end(), [this](std::pair<Button, void (SceneEndGame::*)()> &button) {
+        if (button.first.isMouseHover(sf::Mouse::getPosition()))
+            (this->*button.second)();
     });
 }
 

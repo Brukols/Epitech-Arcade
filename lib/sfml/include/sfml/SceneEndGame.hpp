@@ -32,11 +32,13 @@ namespace arc
             void initButtons();
 
             void eventButtons(const sf::Event &event);
+            void eventRestart();
+            void eventMenu();
 
         private:
             sf::Font _font;
 
-            std::vector<Button> _buttons;
+            std::vector<std::pair<Button, void (SceneEndGame::*)()>> _buttons;
 
             std::function<void()> _eventMenu;
             std::function<void()> _eventRestart;

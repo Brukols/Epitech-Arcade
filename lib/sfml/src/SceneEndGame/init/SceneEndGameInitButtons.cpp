@@ -7,9 +7,7 @@
 
 #include "sfml/SceneEndGame.hpp"
 
-using Pair = std::pair<arc::Button (*)(const std::function<void()> &, const sf::Font &), std::function<void()>>;
-
-static arc::Button initButtonRestart(const std::function<void()> &event, const sf::Font &font)
+static arc::Button initButtonRestart(const sf::Font &font)
 {
     sf::RectangleShape rect(sf::Vector2f(220, 80));
 
@@ -17,12 +15,12 @@ static arc::Button initButtonRestart(const std::function<void()> &event, const s
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(1230, 800));
-    arc::Button button(event, rect, "Restart", font);
+    arc::Button button(std::function<void()>(), rect, "Restart", font);
     button.setHoverColor(sf::Color(109, 107, 137, 255));
     return (button);
 }
 
-static arc::Button initButtonMenu(const std::function<void()> &event, const sf::Font &font)
+static arc::Button initButtonMenu(const sf::Font &font)
 {
     sf::RectangleShape rect(sf::Vector2f(220, 80));
 
@@ -30,25 +28,14 @@ static arc::Button initButtonMenu(const std::function<void()> &event, const sf::
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(1);
     rect.setPosition(sf::Vector2f(450, 800));
-    arc::Button button(event, rect, "Menu", font);
+    arc::Button button(std::function<void()>(), rect, "Menu", font);
     button.setHoverColor(sf::Color(109, 107, 137, 255));
     return (button);
 }
 
 void arc::SceneEndGame::initButtons()
 {
-    std::vector<Pair> buttons;
-
-    buttons.push_back(Pair(initButtonRestart, [this]() {
-        _eventRestart();
-    }));
-
-    buttons.push_back(Pair(initButtonMenu, [this]() {
-        _eventMenu();
-    }));
-
     _buttons.clear();
-    std::for_each(buttons.begin(), buttons.end(), [this](const Pair &pair) {
-        _buttons.push_back(pair.first(pair.second, _font));
-    });
+    _buttons.push_back(std::pair<Button, void (SceneEndGame::*)()>(initButtonRestart(_font), &SceneEndGame::eventRestart));
+    _buttons.push_back(std::pair<Button, void (SceneEndGame::*)()>(initButtonMenu(_font), &SceneEndGame::eventMenu));
 }
