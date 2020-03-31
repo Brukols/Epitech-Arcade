@@ -22,6 +22,7 @@ void Pacman::initPacman()
     _score = 0;
     _nbCherry = 0;
     _nbPacGum = 0;
+    _blueMode = 0;
     initEntities();
     initVisualAssets();
     initControls();

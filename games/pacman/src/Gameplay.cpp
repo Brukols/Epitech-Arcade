@@ -70,6 +70,12 @@ void Pacman::initColorMode()
     _pinky[0]->spritePath = "./assets/pacman/pinky.png";
     _inky[0]->spritePath = "./assets/pacman/inky.png";
     _clyde[0]->spritePath = "./assets/pacman/clyde.png";
+
+    _blinky[0]->backgroundColor = Color{255, 4, 5, 255}; //Red
+    _pinky[0]->backgroundColor = Color{244, 158, 250, 255}; //Pink
+    _inky[0]->backgroundColor = Color{11, 12, 231, 255}; //Blue
+    _clyde[0]->backgroundColor = Color{243, 130, 2, 255}; //Orange
+
     _blinky[0]->type = ENEMY;
     _pinky[0]->type = ENEMY;
     _inky[0]->type = ENEMY;
