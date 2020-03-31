@@ -209,6 +209,7 @@ void Pacman::initControls()
 
 void Pacman::initGameControls()
 {
+    _gameControls.clear();
     _gameControls.push_back(std::pair<std::string, std::string> ("UP ARROW", "Go up"));
     _gameControls.push_back(std::pair<std::string, std::string> ("RIGHT ARROW", "Go right"));
     _gameControls.push_back(std::pair<std::string, std::string> ("DOWN ARROW", "Go down"));
