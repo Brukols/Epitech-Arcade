@@ -74,7 +74,7 @@ try {
     std::ofstream out(_path);
     out.close();
     scoreVector.clear();
-    return (scoreVector);    
+    return (scoreVector);
 }
 
 void arc::Score::writeFile(const std::string &path, vector &scores) const
@@ -103,16 +103,23 @@ try {
 
     scoreVector = getScores();
 
-    std::for_each(scoreVector.begin(), scoreVector.end(), [&name, &score, &exist](std::pair<std::string, std::string> &pair) {
-        if (pair.first == name) {
-            if (std::stoi(pair.second) < std::stoi(score))
-                pair.second = score;
+    std::string _name = name;
+    std::string _score = score;
+    _name.erase(std::remove(_name.begin(), _name.end(), '"'), _name.end());
+    _score.erase(std::remove(_score.begin(), _score.end(), '"'), _score.end());
+
+    if (_name.empty() || _score.empty())
+        return;
+    std::for_each(scoreVector.begin(), scoreVector.end(), [&_name, &_score, &exist](std::pair<std::string, std::string> &pair) {
+        if (pair.first == _name) {
+            if (std::stoi(pair.second) < std::stoi(_score))
+                pair.second = _score;
             exist = true;
         }
     });
 
     if (!exist)
-        scoreVector.push_back(std::make_pair(name, score));
+        scoreVector.push_back(std::make_pair(_name, _score));
     sortScoreVector(scoreVector);
     writeFile(_path, scoreVector);
 } catch (const arc::FileError &e) {
