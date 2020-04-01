@@ -59,3 +59,13 @@ arc::FileError::FileError(const std::string &message, const std::string &compone
 arc::FileError::~FileError()
 {
 }
+
+
+
+arc::OpenFileError::OpenFileError(const std::string &message, const std::string &component) : ArcadeError(message, component)
+{
+}
+
+arc::OpenFileError::~OpenFileError()
+{
+}

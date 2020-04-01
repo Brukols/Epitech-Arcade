@@ -45,9 +45,6 @@ namespace arc {
 
             void functionPlay();
 
-            void insertScore(const std::string &name, const std::string &username);
-            const std::vector<std::pair<std::string, std::string>> getScores() const;
-
             void initGraphical(const std::string &usernmae, IGraphical::Scene scene);
 
             const std::vector<std::pair<std::string, std::string>> getControls() const;

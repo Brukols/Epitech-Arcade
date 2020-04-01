@@ -12,6 +12,7 @@
 #include <iostream>
 #include <algorithm>
 #include "Utils.hpp"
+#include "Score.hpp"
 
 arc::Core::Core(const std::string &libname)
 try {
@@ -105,9 +106,11 @@ void arc::Core::playArcade()
             }
             if (_game->isGameOver()) {
                 _pathScoreFile = "." + _game->getTitle();
-                if (!_graph->getUsername().empty())
-                    insertScore(_graph->getUsername(), _game->getScore());
-                _graph->setScores(getScores());
+                Score score(_pathScoreFile);
+                if (!_graph->getUsername().empty()) {
+                    score.insertScore(_graph->getUsername(), _game->getScore());
+                }
+                _graph->setScores(score.getScores());
                 _graph->setScene(arc::IGraphical::END_GAME);
             } else if (!_pause) {
                 _game->updateGame();
