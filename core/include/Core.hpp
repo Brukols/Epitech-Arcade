@@ -49,6 +49,9 @@ namespace arc {
 
             const std::vector<std::pair<std::string, std::string>> getControls() const;
 
+            void event();
+            void gameOver();
+
         private:
             std::vector<std::pair<std::string, std::unique_ptr<DLLoader<IGraphical>>>> _graphs;
             std::vector<std::pair<std::string, std::unique_ptr<DLLoader<IGame>>>> _games;
