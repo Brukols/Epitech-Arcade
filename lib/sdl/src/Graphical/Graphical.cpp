@@ -19,7 +19,7 @@ arc::Graphical::Graphical()
     }
     TTF_Init();
     IMG_Init(IMG_INIT_PNG);
-    _window = SDL_CreateWindow("Arcade", 0, 0, 1920, 1080, SDL_WINDOW_FULLSCREEN_DESKTOP);
+    _window = SDL_CreateWindow("Arcade", 0, 0, 1920, 1080, SDL_WINDOW_ALWAYS_ON_TOP);
     _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
     _scenes[MAIN_MENU] = std::unique_ptr<IScene>(new SceneMenu());
     _scenes[GAME] = std::unique_ptr<IScene>(new SceneGame());

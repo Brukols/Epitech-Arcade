@@ -27,7 +27,7 @@ namespace arc
             void setUsername(const std::string &username);
             void setScores(const std::vector<std::pair<std::string, std::string>> &scores);
             void display(sf::RenderWindow &window);
-            void event(const sf::Event &event);
+            void event(const sf::Event &event, sf::RenderWindow &window);
 
         private:
             void initTextsScores();

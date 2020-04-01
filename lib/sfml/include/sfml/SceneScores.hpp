@@ -21,7 +21,7 @@ namespace arc
 
             void init();
             void display(sf::RenderWindow &window);
-            void event(const sf::Event &event);
+            void event(const sf::Event &event, sf::RenderWindow &window);
 
             void setFont(const sf::Font &font);
             void setUsername(const std::string &username);

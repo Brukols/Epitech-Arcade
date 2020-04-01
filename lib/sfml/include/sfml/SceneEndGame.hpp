@@ -31,7 +31,7 @@ namespace arc
         private:
             void initButtons();
 
-            void eventButtons(const sf::Event &event);
+            void eventButtons(const sf::Event &event, sf::RenderWindow &window);
             void eventRestart();
             void eventMenu();
 

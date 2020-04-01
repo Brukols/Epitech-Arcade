@@ -92,15 +92,15 @@ void arc::List::resetButtonsList()
     });
 }
 
-void arc::List::eventMouseButtonReleased(sf::Event &event)
+void arc::List::eventMouseButtonReleased(sf::Event &event, sf::RenderWindow &window)
 {
     int i = 0;
     int max = 6;
-    std::for_each(_buttonsList.begin(), _buttonsList.end(), [this, &i, &max](Button &button) {
+    std::for_each(_buttonsList.begin(), _buttonsList.end(), [this, &i, &max, &window](Button &button) {
         if (i > max)
             return;
         if (i >= _begin) {
-            if (button.isMouseHover(sf::Mouse::getPosition())) {
+            if (button.isMouseHover(sf::Mouse::getPosition(window))) {
                 resetButtonsList();
                 button.toggleSelect();
                 if (button.isSelect()) {
@@ -113,8 +113,8 @@ void arc::List::eventMouseButtonReleased(sf::Event &event)
     });
 
     i = 0;
-    std::for_each(_buttons.begin(), _buttons.end(), [this, &i](Button &button) {
-        if (button.isMouseHover(sf::Mouse::getPosition())) {
+    std::for_each(_buttons.begin(), _buttons.end(), [this, &i, &window](Button &button) {
+        if (button.isMouseHover(sf::Mouse::getPosition(window))) {
             if (i == 0) {
                 functionKeyDown();
             } else if (i == 1) {
@@ -126,9 +126,9 @@ void arc::List::eventMouseButtonReleased(sf::Event &event)
     (void)event;
 }
 
-void arc::List::eventMouseWheelScrolled(sf::Event &event)
+void arc::List::eventMouseWheelScrolled(sf::Event &event, sf::RenderWindow &window)
 {
-    sf::Vector2i pos = sf::Mouse::getPosition();
+    sf::Vector2i pos = sf::Mouse::getPosition(window);
 
     if (pos.x > _bgRect.getPosition().x && pos.x < _bgRect.getPosition().x + _bgRect.getSize().x && pos.y > _bgRect.getPosition().y && pos.y < _bgRect.getPosition().y + _bgRect.getSize().y) {
         if (event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel) {
@@ -140,15 +140,15 @@ void arc::List::eventMouseWheelScrolled(sf::Event &event)
     }
 }
 
-void arc::List::event(sf::Event &event)
+void arc::List::event(sf::Event &event, sf::RenderWindow &window)
 {
     if (_activate == false)
         return;
     if (event.type == sf::Event::MouseWheelScrolled) {
-        eventMouseWheelScrolled(event);
+        eventMouseWheelScrolled(event, window);
     }
     if (event.type == sf::Event::MouseButtonReleased) {
-        eventMouseButtonReleased(event);
+        eventMouseButtonReleased(event, window);
     }
 }
 

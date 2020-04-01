@@ -24,7 +24,7 @@ namespace arc
             void display(sf::RenderWindow &window);
 
             void setPosition(const sf::Vector2f &pos);
-            void event(sf::Event &event);
+            void event(sf::Event &event, sf::RenderWindow &window);
 
             void desactivate();
             void activate();
@@ -44,8 +44,8 @@ namespace arc
             void functionKeyDown();
             void functionKeyUp();
 
-            void eventMouseWheelScrolled(sf::Event &event);
-            void eventMouseButtonReleased(sf::Event &event);
+            void eventMouseWheelScrolled(sf::Event &event, sf::RenderWindow &window);
+            void eventMouseButtonReleased(sf::Event &event, sf::RenderWindow &window);
 
         private:
             Image _arrowUp;

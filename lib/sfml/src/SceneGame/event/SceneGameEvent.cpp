@@ -8,11 +8,11 @@
 #include "sfml/SceneGame.hpp"
 #include "sfml/Utility.hpp"
 
-void arc::SceneGame::eventErrorMessage(sf::Event &event)
+void arc::SceneGame::eventErrorMessage(sf::Event &event, sf::RenderWindow &window)
 {
     if (event.type != sf::Event::MouseButtonReleased)
         return;
-    if (_errorMessages[0].isHoverButton(sf::Mouse::getPosition()))
+    if (_errorMessages[0].isHoverButton(sf::Mouse::getPosition(window)))
         _errorMessages[0].click();
 }
 
@@ -33,7 +33,7 @@ void arc::SceneGame::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
             return;
         }
         if (_errorMessages.size() != 0) {
-            eventErrorMessage(event);
+            eventErrorMessage(event, window);
             return;
         }
         if (event.type == sf::Event::KeyPressed) {
@@ -45,7 +45,7 @@ void arc::SceneGame::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
             _actualKeyPress = Utility::getKey(event);
         }
         if (_scenePause->isActivate()) {
-            _scenePause->event(_actualEventType, _actualKeyPress, event);
+            _scenePause->event(_actualEventType, _actualKeyPress, event, window);
             continue;
         }
         eventButtons(window, event);

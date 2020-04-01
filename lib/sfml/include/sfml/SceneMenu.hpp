@@ -71,7 +71,7 @@ namespace arc
             void eventButtonExit();
 
             void eventButtonPlay();
-            void eventErrorMessage(sf::Event &event);
+            void eventErrorMessage(sf::RenderWindow &window, sf::Event &event);
 
         private:
             SceneState _state = GET_USERNAME;

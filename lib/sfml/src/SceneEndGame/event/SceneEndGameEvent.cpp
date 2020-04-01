@@ -18,12 +18,12 @@ void arc::SceneEndGame::eventMenu()
     _eventMenu();
 }
 
-void arc::SceneEndGame::eventButtons(const sf::Event &event)
+void arc::SceneEndGame::eventButtons(const sf::Event &event, sf::RenderWindow &window)
 {
     if (event.type != sf::Event::MouseButtonReleased)
         return;
-    std::for_each(_buttons.begin(), _buttons.end(), [this](std::pair<Button, void (SceneEndGame::*)()> &button) {
-        if (button.first.isMouseHover(sf::Mouse::getPosition()))
+    std::for_each(_buttons.begin(), _buttons.end(), [this, &window](std::pair<Button, void (SceneEndGame::*)()> &button) {
+        if (button.first.isMouseHover(sf::Mouse::getPosition(window)))
             (this->*button.second)();
     });
 }
@@ -44,8 +44,8 @@ void arc::SceneEndGame::event(sf::RenderWindow &window, arc::Event::Type &_actua
             window.close();
             return;
         }
-        eventButtons(event);
-        _listScores.event(event);
+        eventButtons(event, window);
+        _listScores.event(event, window);
         if (event.type == sf::Event::KeyPressed) {
             _actualEventType = arc::Event::KEY_PRESSED;
             _actualKeyPress = Utility::getKey(event);

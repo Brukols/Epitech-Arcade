@@ -7,12 +7,12 @@
 
 #include "sfml/ListScores.hpp"
 
-void arc::ListScores::event(const sf::Event &event)
+void arc::ListScores::event(const sf::Event &event, sf::RenderWindow &window)
 {
     if (event.type != sf::Event::MouseWheelScrolled)
         return;
 
-    sf::Vector2i pos = sf::Mouse::getPosition();
+    sf::Vector2i pos = sf::Mouse::getPosition(window);
 
     if (pos.x > _rects[0].getPosition().x && pos.x < _rects[0].getPosition().x + _rects[0].getLocalBounds().width && pos.y > _rects[0].getPosition().y && pos.y < _rects[0].getPosition().y + _rects[0].getLocalBounds().height) {
         if (event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel) {
