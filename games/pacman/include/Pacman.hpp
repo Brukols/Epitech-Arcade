@@ -82,12 +82,16 @@ namespace arc {
             void initPacpac();
             void initCherry(); 
             void initMap();
-            bool isGameWon();
 
             void initGhostBlinky();
             void initGhostPinky();
             void initGhostInky();
             void initGhostClyde();
+
+            void reinitGhostBlinky();
+            void reinitGhostPinky();
+            void reinitGhostInky();
+            void reinitGhostClyde();
 
             void initGameControls();
             void initGameStats();
@@ -97,7 +101,6 @@ namespace arc {
             bool doYouEatSpecialPacGum();
             bool doyouEatBlueGhosts();
 
-            // bool _spacialPacGum;
             int _blueMode;
             void initBlueMode();
             void initColorMode();
@@ -118,6 +121,8 @@ namespace arc {
             bool isCollision(std::shared_ptr<Entity> _entity);
             bool isPacpacEaten() const;
             int _blueCpt;
+
+            void GhostsEaten();
 
             Orientation _blinkyDirection;
             Orientation _pinkyDirection;

@@ -55,6 +55,16 @@ void Pacman::initGhostBlinky()
     _blinky.push_back(blinkyEntity);
 }
 
+void Pacman::reinitGhostBlinky()
+{
+    _blinky[0]->spritePath = "./assets/pacman/blinky.png";
+    _blinky[0]->backgroundColor = Color{255, 4, 5, 255}; //Red
+    _blinky[0]->orientation = Orientation::UP;
+    _blinkyDirection = Orientation::UP;
+    _blinky[0]->x = 17;
+    _blinky[0]->y = 14;
+}
+
 void Pacman::initGhostPinky()
 {
     std::shared_ptr<Entity> pinkyEntity(new Entity);
@@ -67,6 +77,16 @@ void Pacman::initGhostPinky()
     pinkyEntity->y = 14;
     _entities.push_back(pinkyEntity);
     _pinky.push_back(pinkyEntity);
+}
+
+void Pacman::reinitGhostPinky()
+{
+    _pinky[0]->spritePath = "./assets/pacman/pinky.png";
+    _pinky[0]->backgroundColor = Color{244, 158, 250, 255}; //Pink
+    _pinky[0]->orientation = Orientation::UP;
+    _pinkyDirection = Orientation::UP;
+    _pinky[0]->x = 18;
+    _pinky[0]->y = 14;
 }
 
 void Pacman::initGhostInky()
@@ -83,6 +103,16 @@ void Pacman::initGhostInky()
     _inky.push_back(inkyEntity);
 }
 
+void Pacman::reinitGhostInky()
+{
+    _inky[0]->spritePath = "./assets/pacman/inky.png";
+    _inky[0]->backgroundColor = Color{11, 12, 231, 255}; //Blue
+    _inky[0]->orientation = Orientation::UP;
+    _inkyDirection = Orientation::UP;
+    _inky[0]->x = 19;
+    _inky[0]->y = 14;
+}
+
 void Pacman::initGhostClyde()
 {
     std::shared_ptr<Entity> clydeEntity(new Entity);
@@ -95,6 +125,16 @@ void Pacman::initGhostClyde()
     clydeEntity->y = 14;
     _entities.push_back(clydeEntity);
     _clyde.push_back(clydeEntity);
+}
+
+void Pacman::reinitGhostClyde()
+{
+    _clyde[0]->spritePath = "./assets/pacman/clyde.png";
+    _clyde[0]->backgroundColor = Color{243, 130, 2, 255}; //Orange
+    _clyde[0]->orientation = Orientation::UP;
+    _clydeDirection = Orientation::UP;
+    _clyde[0]->x = 20;
+    _clyde[0]->y = 14;
 }
 
 void Pacman::initMap() //init _myMap and _pacGum

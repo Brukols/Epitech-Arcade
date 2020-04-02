@@ -26,26 +26,19 @@ void Pacman::updateGame()
     if (std::chrono::duration_cast<std::chrono::milliseconds>(_end - _start).count() > 300) {
         _start = std::chrono::system_clock::now();
         if (_blueMode > 0) {
-            initBlueMode();
-            movePacman();
-            if (isGameWon() == true)
-                restart();
-            moveBlinky();
-            movePinky();
-            moveInky();
-            moveClyde();
+            _blueCpt = 0;
+             if (_blueMode == 30)
+                initBlueMode();
+            GhostsEaten();
             _blueMode--;
             if (_blueMode == 0)
                 initColorMode();
-        } else {
-            movePacman();
-            if (isGameWon() == true)
-                restart();
-            moveBlinky();
-            movePinky();
-            moveInky();
-            moveClyde();
         }
+        movePacman();
+        moveBlinky();
+        movePinky();
+        moveInky();
+        moveClyde();
     }
 }
 
@@ -60,8 +53,6 @@ void Pacman::initBlueMode()
     _pinky[0]->backgroundColor = Color{42, 82, 190, 255}; //BlueMode
     _inky[0]->backgroundColor = Color{42, 82, 190, 255}; //BlueMode
     _clyde[0]->backgroundColor = Color{42, 82, 190, 255}; //BlueMode
-
-    _blueCpt = 0;
 }
 
 void Pacman::initColorMode()
@@ -80,6 +71,24 @@ void Pacman::initColorMode()
     _pinky[0]->type = ENEMY;
     _inky[0]->type = ENEMY;
     _clyde[0]->type = ENEMY;
+}
+
+void Pacman::GhostsEaten()
+{
+    if (_blueMode != 0) {
+
+        if (_blinky[0]->x == _pacman[0]->x && _blinky[0]->y == _pacman[0]->y)
+            reinitGhostBlinky();
+
+        if (_pinky[0]->x == _pacman[0]->x && _pinky[0]->y == _pacman[0]->y)
+            reinitGhostPinky();
+
+        if (_inky[0]->x == _pacman[0]->x && _inky[0]->y == _pacman[0]->y)
+            reinitGhostInky();
+        
+        if (_clyde[0]->x == _pacman[0]->x && _clyde[0]->y == _pacman[0]->y)
+            reinitGhostClyde();
+    }
 }
 
 bool Pacman::isPacpacEaten() const
@@ -418,17 +427,13 @@ bool Pacman::doYouEatCherry()
     return true;
 }
 
-bool Pacman::isGameWon()
-{
-    // std::cout << _pacGum.size() << "-" << _nbPacGum << std::endl;
-    if (_pacGum.size() == _nbPacGum)
-        return true;
-    return false;
-}
-
 bool Pacman::isGameOver() const
 {
-     return this->isPacpacEaten();
+    if (_pacGum.size() == _nbPacGum || isPacpacEaten() == true)
+        return true;
+    return false;
+
+    // return this->isPacpacEaten();
 }
 
 bool Pacman::isCollision(std::vector<std::shared_ptr<Entity>> _entity)
