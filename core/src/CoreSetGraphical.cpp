@@ -30,6 +30,7 @@ void arc::Core::initGraphical(const std::string &username, IGraphical::Scene sce
         _graph->setControls(_game->getControls());
         _graph->setMapSize(_game->getMapHeight(), _game->getMapWidth());
         _graph->setGameStats(_game->getGameStats());
+        _graph->setGamePause(_pause);
     }
     _graph->setHowToPlay(getControls());
     _graph->setListLibraries(getNamesSharedGraphs(), [this](const std::string &name) {
