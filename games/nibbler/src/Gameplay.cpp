@@ -130,11 +130,16 @@ bool Nibbler::doYouEat()
     auto const &ptr = std::find_if(_entities.begin(), _entities.end(), [this] (std::shared_ptr<Entity> &p) {
         for (size_t i = 0; i < _apple.size(); i++) {
             if (p == _apple[i]) {
-                if ((p->x == _snake.front()->x) && (p->y == _snake.front()->y)) {
-                    _apple[i]->x = -1;
-                    _apple[i]->y = -1;
+                auto const &snake = std::find_if(_snake.begin(), _snake.end(), [this, &p, &i] (std::shared_ptr<Entity> &s) {
+                    if ((p->x == s->x) && (p->y == s->y)) {
+                        _apple[i]->x = -1;
+                        _apple[i]->y = -1;
+                        return true;
+                    }
+                    return false;
+                });
+                if (snake != _snake.end())
                     return true;
-                }
             }
         }
         return false;
