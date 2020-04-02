@@ -15,20 +15,20 @@ void arc::SceneMenu::eventHowToPlay()
 
 void arc::SceneMenu::buttonsEvent(sf::RenderWindow &window, sf::Event &event)
 {
-    std::for_each(_lists.begin(), _lists.end(), [this, &event](List &list) {
-        list.event(event);
+    std::for_each(_lists.begin(), _lists.end(), [this, &event, &window](List &list) {
+        list.event(event, window);
     });
 
     if (event.type != sf::Event::MouseButtonReleased)
         return;
     std::for_each(_buttons.begin(), _buttons.end(), [this, &window](std::pair<Button, void (SceneMenu::*)()> &button) {
-        if (button.first.isMouseHover(sf::Mouse::getPosition())) {
+        if (button.first.isMouseHover(sf::Mouse::getPosition(window))) {
             (this->*button.second)();
         }
     });
 
     std::for_each(_buttonEnterUsername.begin(), _buttonEnterUsername.end(), [this, &window](std::pair<Button, void (SceneMenu::*)()> &button) {
-        if (button.first.isMouseHover(sf::Mouse::getPosition())) {
+        if (button.first.isMouseHover(sf::Mouse::getPosition(window))) {
             (this->*button.second)();
         }
     });
@@ -56,11 +56,11 @@ bool arc::SceneMenu::inputIsFocus() const
     }) ? false : true);
 }
 
-void arc::SceneMenu::eventErrorMessage(sf::Event &event)
+void arc::SceneMenu::eventErrorMessage(sf::RenderWindow &window, sf::Event &event)
 {
     if (event.type != sf::Event::MouseButtonReleased)
         return;
-    if (_errorMessages[0].isHoverButton(sf::Mouse::getPosition()))
+    if (_errorMessages[0].isHoverButton(sf::Mouse::getPosition(window)))
         _errorMessages[0].click();
 }
 
@@ -85,13 +85,13 @@ void arc::SceneMenu::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
             return;
         }
         if (_errorMessages.size() != 0) {
-            eventErrorMessage(event);
+            eventErrorMessage(window, event);
             continue;
         }
         if (_sceneScores.isActivate()) {
-            _sceneScores.event(event);
+            _sceneScores.event(event, window);
         } else if (_sceneHowToPlay->isActivate()) {
-            _sceneHowToPlay->event(event);
+            _sceneHowToPlay->event(event, window);
         } else
             buttonsEvent(window, event);
         if (inputIsFocus()) {

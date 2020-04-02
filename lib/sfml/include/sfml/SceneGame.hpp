@@ -53,7 +53,7 @@ namespace arc
             void eventButtons(sf::RenderWindow &window, sf::Event &event);
 
             void displayGame(sf::RenderWindow &window);
-            void eventErrorMessage(sf::Event &event);
+            void eventErrorMessage(sf::Event &event, sf::RenderWindow &window);
 
             void initTextHowToPlay(const std::vector<std::pair<std::string, std::string>> &info);
             void initTextStats(const std::vector<std::pair<std::string, std::string>> &info);

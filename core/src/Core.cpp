@@ -12,6 +12,7 @@
 #include <iostream>
 #include <algorithm>
 #include "Utils.hpp"
+#include "Score.hpp"
 
 arc::Core::Core(const std::string &libname)
 try {
@@ -76,6 +77,40 @@ void arc::Core::functionPlay()
     });
 }
 
+void arc::Core::event()
+{
+    if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM0)
+        setNextGraphical();
+    else if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM1)
+        setPrevGraphical();
+    if (_graph->getScene() == arc::IGraphical::GAME) {
+        if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM9)
+            setNextGame();
+        else if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM2)
+            setPrevGame();
+        else if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::PAUSE) {
+            _pause = !_pause;
+            _graph->setGamePause(_pause);
+        } else if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::R) {
+            _game->restart();
+        } else if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::M) {
+            _graph->setScene(arc::IGraphical::MAIN_MENU);
+            _game->restart();
+        }
+    }
+}
+
+void arc::Core::gameOver()
+{
+    _pathScoreFile = "." + _game->getTitle();
+    Score score(_pathScoreFile);
+    if (!_graph->getUsername().empty()) {
+        score.insertScore(_graph->getUsername(), _game->getScore());
+    }
+    _graph->setScores(score.getScores());
+    _graph->setScene(arc::IGraphical::END_GAME);
+}
+
 void arc::Core::playArcade()
 {
     while (_graph->getEventType() != Event::QUIT && _graph->getKeyPressed() != Event::Key::ESCAPE) {
@@ -83,32 +118,11 @@ void arc::Core::playArcade()
             setGraphical(_nextGraphPath);
             _nextGraphPath = "";
         }
-        if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM0)
-            setNextGraphical();
-        if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM1)
-            setPrevGraphical();
+        event();
 
-        // if scene game
         if (_graph->getScene() == arc::IGraphical::GAME) {
-            if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM9)
-                setNextGame();
-            else if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::NUM2)
-                setPrevGame();
-            else if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::PAUSE) {
-                _pause = !_pause;
-                _graph->setGamePause(_pause);
-            } else if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::R) {
-                _game->restart();
-            } else if (_graph->getEventType() == Event::Type::KEY_PRESSED && _graph->getKeyPressed() == Event::Key::M) {
-                _graph->setScene(arc::IGraphical::MAIN_MENU);
-                _game->restart();
-            }
             if (_game->isGameOver()) {
-                _pathScoreFile = "." + _game->getTitle();
-                if (!_graph->getUsername().empty())
-                    insertScore(_graph->getUsername(), _game->getScore());
-                _graph->setScores(getScores());
-                _graph->setScene(arc::IGraphical::END_GAME);
+                gameOver();
             } else if (!_pause) {
                 _game->updateGame();
                 _graph->updateGameInfo(_game->getEntities());

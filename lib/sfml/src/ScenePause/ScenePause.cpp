@@ -55,11 +55,11 @@ void arc::ScenePause::setFunctionTogglePause(const std::function<void()> &functi
     _eventTogglePause = function;
 }
 
-void arc::ScenePause::event(const arc::Event::Type &actualEventType, const arc::Event::Key &actualKeyPress, const sf::Event &event)
+void arc::ScenePause::event(const arc::Event::Type &actualEventType, const arc::Event::Key &actualKeyPress, const sf::Event &event, sf::RenderWindow &window)
 {
     if (event.type != sf::Event::MouseButtonReleased)
         return;
-    if (_buttonPlay->isMouseHover(sf::Mouse::getPosition())) {
+    if (_buttonPlay->isMouseHover(sf::Mouse::getPosition(window))) {
         eventTogglePause();
     }
     (void)actualEventType;

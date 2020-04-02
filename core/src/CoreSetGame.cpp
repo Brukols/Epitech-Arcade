@@ -7,6 +7,7 @@
 
 #include "Core.hpp"
 #include <filesystem>
+#include "Folder.hpp"
 
 const std::vector<std::string> arc::Core::getNamesSharedGames()
 {
@@ -38,21 +39,24 @@ void arc::Core::setPrevGame()
 
 void arc::Core::initGames()
 {
+    Folder folder;
+    std::vector<std::string> names;
+    
     try {
-        for (const auto &entry : std::filesystem::directory_iterator("./games")) {
-            std::string path = entry.path();
-
-            if (path.find("./games/lib_arcade_") != 0)
-                continue;
-            if (path.substr(path.find_last_of(".") + 1) != "so")
-                continue;
-            try {
-                _games.push_back(std::pair<std::string, std::unique_ptr<DLLoader<IGame>>>(getLibName(path), new DLLoader<IGame>(path)));
-            } catch(...) {}
-        }
-    } catch(const std::exception& e) {
-        throw DirectoryError("Directory games does not exist", "initGames");
+        names = folder.getFilesFolder("./games");
+    } catch(const DirectoryError &e) {
+        throw e;
     }
+    _games.clear();
+    std::for_each(names.begin(), names.end(), [this](const std::string &name) {
+        if (name.find("./games/lib_arcade_") != 0)
+            return;
+        if (name.substr(name.find_last_of(".") + 1) != "so")
+            return;
+        try {
+            _games.push_back(std::pair<std::string, std::unique_ptr<DLLoader<IGame>>>(getLibName(name), new DLLoader<IGame>(name)));
+        } catch(...) {}
+    });
 }
 
 void arc::Core::setGame(const std::string &libname)

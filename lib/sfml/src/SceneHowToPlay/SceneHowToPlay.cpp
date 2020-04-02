@@ -37,11 +37,11 @@ void arc::SceneHowToPlay::setActivate(bool activate)
     _activate = activate;
 }
 
-void arc::SceneHowToPlay::event(const sf::Event &event)
+void arc::SceneHowToPlay::event(const sf::Event &event, sf::RenderWindow &window)
 {
     if (event.type != sf::Event::MouseButtonReleased)
         return;
-    if (_buttonOk->isMouseHover(sf::Mouse::getPosition())) {
+    if (_buttonOk->isMouseHover(sf::Mouse::getPosition(window))) {
         eventButtonOk();
     }
 }

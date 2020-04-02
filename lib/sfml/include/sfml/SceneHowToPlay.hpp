@@ -24,7 +24,7 @@ namespace arc
             bool isActivate() const;
             void setActivate(bool activate);
 
-            void event(const sf::Event &event);
+            void event(const sf::Event &event, sf::RenderWindow &window);
             void setFont(const sf::Font &font);
             void initTexts(const std::vector<std::pair<std::string, std::string>> &info);
 

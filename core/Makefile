@@ -12,7 +12,9 @@ SRCS	=	src/main.cpp	\
 			src/Core.cpp 	\
 			src/CoreSetGame.cpp	\
 			src/CoreSetGraphical.cpp	\
-			src/CoreScores.cpp	\
+			src/Folder.cpp	\
+			src/File.cpp	\
+			src/Score.cpp	\
 
 OBJS	=	$(SRCS:.cpp=.o)
 

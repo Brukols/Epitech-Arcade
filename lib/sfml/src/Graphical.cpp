@@ -13,8 +13,9 @@
 #include "sfml/SceneGame.hpp"
 #include "sfml/SceneEndGame.hpp"
 
-arc::Graphical::Graphical() : _window(sf::RenderWindow(sf::VideoMode(1920, 1080, 32), "Arcade", sf::Style::Fullscreen))
+arc::Graphical::Graphical() : _window(sf::RenderWindow(sf::VideoMode(1920, 1080, 32), "Arcade", sf::Style::Close))
 {
+    _window.setPosition(sf::Vector2i(0, 0));
     _window.setFramerateLimit(60);
     _scenes[MAIN_MENU] = std::unique_ptr<IScene>(new SceneMenu());
     _scenes[GAME] = std::unique_ptr<IScene>(new SceneGame());

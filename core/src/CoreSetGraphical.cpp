@@ -7,6 +7,8 @@
 
 #include "Core.hpp"
 #include <filesystem>
+#include "Folder.hpp"
+#include "Score.hpp"
 
 const std::vector<std::string> arc::Core::getNamesSharedGraphs()
 {
@@ -22,7 +24,8 @@ void arc::Core::initGraphical(const std::string &username, IGraphical::Scene sce
 {
     if (_indexGame != -1) {
         _pathScoreFile = "." + _game->getTitle();
-        _graph->setScores(getScores());
+        Score score(_pathScoreFile);
+        _graph->setScores(score.getScores());
         _graph->setGameTitle(_game->getTitle());
         _graph->setControls(_game->getControls());
         _graph->setMapSize(_game->getMapHeight(), _game->getMapWidth());
@@ -35,7 +38,8 @@ void arc::Core::initGraphical(const std::string &username, IGraphical::Scene sce
     _graph->setListGames(getNamesSharedGames(), [this](const std::string &name) {
         setGame(name);
         _pathScoreFile = "." + _game->getTitle();
-        _graph->setScores(getScores());
+        Score score(_pathScoreFile);
+        _graph->setScores(score.getScores());
         _graph->setHowToPlay(getControls());
     }, _indexGame);
     _graph->setFunctionPlay([this]() {
@@ -63,21 +67,24 @@ void arc::Core::initGraphical(const std::string &username, IGraphical::Scene sce
 
 void arc::Core::initGraphs()
 {
+    Folder folder;
+    std::vector<std::string> names;
+    
     try {
-        for (const auto &entry : std::filesystem::directory_iterator("./lib")) {
-            std::string path = entry.path();
-
-            if (path.find("./lib/lib_arcade_") != 0)
-                continue;
-            if (path.substr(path.find_last_of(".") + 1) != "so")
-                continue;
-            try {
-                _graphs.push_back(std::pair<std::string, std::unique_ptr<DLLoader<IGraphical>>>(getLibName(path), new DLLoader<IGraphical>(path)));
-            } catch(...) {}
-        }
-    } catch(const std::exception& e) {
-        throw DirectoryError("Directory lib does not exist", "initGraphs");
+        names = folder.getFilesFolder("./lib");
+    } catch(const DirectoryError &e) {
+        throw e;
     }
+    _graphs.clear();
+    std::for_each(names.begin(), names.end(), [this](const std::string &name) {
+        if (name.find("./lib/lib_arcade_") != 0)
+            return;
+        if (name.substr(name.find_last_of(".") + 1) != "so")
+            return;
+        try {
+            _graphs.push_back(std::pair<std::string, std::unique_ptr<DLLoader<IGraphical>>>(getLibName(name), new DLLoader<IGraphical>(name)));
+        } catch(...) {}
+    });
 }
 
 void arc::Core::setNextGraphical()

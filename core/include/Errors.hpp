@@ -34,6 +34,13 @@ namespace arc
             ~FileError();
     };
 
+    class OpenFileError : public ArcadeError
+    {
+        public:
+            OpenFileError(const std::string &message, const std::string &component);
+            ~OpenFileError();
+    };
+
 };
 
 #endif /* !ERRORS_HPP */
