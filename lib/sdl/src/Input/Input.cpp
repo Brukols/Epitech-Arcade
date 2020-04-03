@@ -74,7 +74,7 @@ void arc::Input::setSelect(bool select)
 void arc::Input::setText(const std::string &text)
 {
     _text->setText(text);
-    _cursor->setPosition(_cursor->getPosX() + _text->getWidth(), _cursor->getPosY());
+    _cursor->setPosition(_rect->getPosX() + 5 + _text->getWidth(), _cursor->getPosY());
     _cursorPosition = _text->getString().size();
 }
 
