@@ -10,6 +10,7 @@
 void arc::SceneError::display()
 {
     std::for_each(_rects.begin(), _rects.end(), [this](Rectangle &rect) {
+        rect.setSize(LINES, COLS);
         rect.display();
     });
 

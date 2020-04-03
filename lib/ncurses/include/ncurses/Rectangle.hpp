@@ -25,6 +25,7 @@ namespace arc
             void setColorsSelect(int textColor, int bgColor);
             void setSelect(bool select);
             void setColors(int textColor, int bgColor);
+            void setSize(size_t height, size_t width);
 
             void display();
 

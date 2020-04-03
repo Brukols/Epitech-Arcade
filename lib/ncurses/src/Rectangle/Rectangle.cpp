@@ -54,6 +54,12 @@ void arc::Rectangle::setSelect(bool select)
     _select = select;
 }
 
+void arc::Rectangle::setSize(size_t height, size_t width)
+{
+    _height = height;
+    _width = width;
+}
+
 const size_t &arc::Rectangle::getHeight() const
 {
     return (_height);
