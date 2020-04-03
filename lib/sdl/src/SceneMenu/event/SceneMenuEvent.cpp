@@ -78,10 +78,10 @@ void arc::SceneMenu::event(arc::Event::Type &actualEventType, arc::Event::Key &a
             actualEventType = arc::Event::Type::QUIT;
         if (_sceneScores->isActivate()) {
             _sceneScores->event(actualEventType, actualKeyPress, event);
-            return;
+            continue;
         } else if (_sceneHowToPlay->isActivate()) {
             _sceneHowToPlay->event(actualEventType, actualKeyPress, event);
-            return;
+            continue;
         }
         eventButtons(actualEventType, actualKeyPress);
         if (_listGames.event(actualEventType, actualKeyPress, event) == true) {

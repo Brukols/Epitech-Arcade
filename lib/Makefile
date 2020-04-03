@@ -5,14 +5,6 @@
 ## Makefile
 ##
 
-NAME_SFML	=	lib_arcade_sfml.so
-
-NAME_NCURSES	=	lib_arcade_ncurses.so
-
-NAME_SDL	=	lib_arcade_sdl.so
-
-RM	=	rm -f
-
 all: sfml
 
 sfml:

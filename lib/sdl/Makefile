@@ -5,7 +5,7 @@
 ## Makefile
 ##
 
-NAME	=	lib_arcade_sdl.so
+NAME	=	lib_arcade_sdl2.so
 
 SRCS	=	src/Graphical/Graphical.cpp		\
 			src/SceneMenu/SceneMenu.cpp		\
