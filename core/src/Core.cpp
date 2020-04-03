@@ -13,6 +13,8 @@
 #include <algorithm>
 #include "Utils.hpp"
 #include "Score.hpp"
+#include <chrono>
+#include <thread>
 
 arc::Core::Core(const std::string &libname)
 try {
@@ -113,7 +115,11 @@ void arc::Core::gameOver()
 
 void arc::Core::playArcade()
 {
+    auto frame = std::chrono::steady_clock::now();
+
     while (_graph->getEventType() != Event::QUIT && _graph->getKeyPressed() != Event::Key::ESCAPE) {
+        frame += std::chrono::milliseconds(1000 / 60);
+
         if (!_nextGraphPath.empty()) {
             setGraphical(_nextGraphPath);
             _nextGraphPath = "";
@@ -130,6 +136,7 @@ void arc::Core::playArcade()
             _graph->setGameStats(_game->getGameStats());
         }
         _graph->display();
+        std::this_thread::sleep_until(frame);
     }
     _graph.reset();
     _game.reset();
