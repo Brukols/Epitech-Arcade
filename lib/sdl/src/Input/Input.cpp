@@ -80,7 +80,7 @@ void arc::Input::setText(const std::string &text)
 
 void arc::Input::display(SDL_Renderer *window)
 {
-    if (std::clock() - _clock > 400000) {
+    if (std::clock() - _clock > 40000) {
         _clock = std::clock();
         _cursorDisplay = !_cursorDisplay;
     }
