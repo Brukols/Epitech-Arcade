@@ -165,7 +165,7 @@ void Pacman::initMap() //init _myMap and _pacGum
                     std::shared_ptr<Entity> pacGumEntity(new Entity);
                     pacGumEntity->type = CONSUMABLE;
                     pacGumEntity->spritePath = "./assets/pacman/pacGum.png";
-                    pacGumEntity->backgroundColor = Color{30, 17, 149, 255};
+                    pacGumEntity->backgroundColor = Color{249, 228, 183, 255};
                     pacGumEntity->orientation = Orientation::LEFT;
                     pacGumEntity->x = x;
                     pacGumEntity->y = y;
@@ -176,7 +176,7 @@ void Pacman::initMap() //init _myMap and _pacGum
                     std::shared_ptr<Entity> SpecialPacGumEntity(new Entity);
                     SpecialPacGumEntity->type = CONSUMABLE;
                     SpecialPacGumEntity->spritePath = "./assets/pacman/SpecialPacGum.png";
-                    SpecialPacGumEntity->backgroundColor = Color{30, 17, 149, 255};
+                    SpecialPacGumEntity->backgroundColor = Color{200, 173, 127, 255};
                     SpecialPacGumEntity->orientation = Orientation::LEFT;
                     SpecialPacGumEntity->x = x;
                     SpecialPacGumEntity->y = y;
@@ -200,7 +200,7 @@ void Pacman::initPacpac()
     std::shared_ptr<Entity> pacmanEntity(new Entity);
     pacmanEntity->type = PLAYER;
     pacmanEntity->spritePath = "./assets/pacman/pacpacUp.png";
-    pacmanEntity->backgroundColor = Color{250, 255, 1, 255};
+    pacmanEntity->backgroundColor = Color{250, 255, 54, 255};
     pacmanEntity->orientation = Orientation::LEFT;
     pacmanEntity->x = 20;
     pacmanEntity->y = 16;
