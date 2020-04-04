@@ -22,6 +22,10 @@ const std::vector<std::string> arc::Core::getNamesSharedGraphs()
 
 void arc::Core::initGraphical(const std::string &username, IGraphical::Scene scene)
 {
+    _graph->setFunctionTogglePause([this]() {
+        _pause = !_pause;
+        _graph->setGamePause(_pause);
+    });
     if (_indexGame != -1) {
         _pathScoreFile = "." + _game->getTitle();
         Score score(_pathScoreFile);
@@ -46,10 +50,6 @@ void arc::Core::initGraphical(const std::string &username, IGraphical::Scene sce
     _graph->setFunctionPlay([this]() {
         if (_game)
             functionPlay();
-    });
-    _graph->setFunctionTogglePause([this]() {
-        _pause = !_pause;
-        _graph->setGamePause(_pause);
     });
     _graph->setFunctionMenu([this]() {
         _graph->setScene(arc::IGraphical::MAIN_MENU);
