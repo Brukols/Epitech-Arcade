@@ -11,7 +11,7 @@
 
 arc::SceneMenu::SceneMenu()
 {
-    if (!_font.loadFromFile("resources/sfml/fonts/Raleway-Bold.ttf")) {
+    if (!_font.loadFromFile("assets/sfml/fonts/Raleway-Bold.ttf")) {
         throw FontError("Unable to load the font", "SceneMenu");
     }
     initButtons();

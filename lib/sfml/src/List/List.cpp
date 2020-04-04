@@ -9,8 +9,8 @@
 
 arc::List::List(const std::vector<std::string> &list, int chosen, const std::string &nameList,
                 const std::function<void (const std::string &)> &fct, const sf::Font &font) :
-                _arrowUp(Image("resources/sfml/textures/up-arrow.png")),
-                _arrowDown(Image("resources/sfml/textures/down-arrow.png")),
+                _arrowUp(Image("assets/sfml/textures/up-arrow.png")),
+                _arrowDown(Image("assets/sfml/textures/down-arrow.png")),
                 _begin(0)
 {
     _bgRect.setSize(sf::Vector2f(400, 600));

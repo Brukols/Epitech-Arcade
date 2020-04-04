@@ -6,9 +6,10 @@
 */
 
 #include "Pacman.hpp"
+#include "Errors.hpp"
 
 void Pacman::initPacman()
-{
+try {
     srand (time(NULL));
     _start = std::chrono::system_clock::now();
     _end = std::chrono::system_clock::now();
@@ -28,10 +29,12 @@ void Pacman::initPacman()
     initControls();
     initGameControls();
     initGameStats();
+} catch (const FileError &e) {
+    throw e;
 }
 
 void Pacman::initEntities()
-{
+try {
     initMap();
     initPacpac();
     initCherry();
@@ -39,6 +42,8 @@ void Pacman::initEntities()
     initGhostPinky();
     initGhostInky();
     initGhostClyde();
+} catch (const FileError &e) {
+    throw e;
 }
 
 void Pacman::initGhostBlinky()
@@ -139,7 +144,7 @@ void Pacman::reinitGhostClyde()
 
 void Pacman::initMap() //init _myMap and _pacGum
 {
-    std::ifstream mapFile("./games/pacman/map3.txt");
+    std::ifstream mapFile("./assets/pacman/maps/map3.txt");
     std::string readLine;
     int x = 0;
     int y = 0;
@@ -160,8 +165,7 @@ void Pacman::initMap() //init _myMap and _pacGum
                     mapEntity->y = y;
                     _entities.push_back(mapEntity);
                     _myMap.push_back(mapEntity);
-                }
-                if (readLine[x] == '0') {
+                } else if (readLine[x] == '0') {
                     std::shared_ptr<Entity> pacGumEntity(new Entity);
                     pacGumEntity->type = CONSUMABLE;
                     pacGumEntity->spritePath = "./assets/pacman/pacGum.png";
@@ -171,8 +175,7 @@ void Pacman::initMap() //init _myMap and _pacGum
                     pacGumEntity->y = y;
                     _entities.push_back(pacGumEntity);
                     _pacGum.push_back(pacGumEntity);
-                }
-                if (readLine[x] == '*') {
+                } else if (readLine[x] == '*') {
                     std::shared_ptr<Entity> SpecialPacGumEntity(new Entity);
                     SpecialPacGumEntity->type = CONSUMABLE;
                     SpecialPacGumEntity->spritePath = "./assets/pacman/SpecialPacGum.png";
@@ -182,15 +185,22 @@ void Pacman::initMap() //init _myMap and _pacGum
                     SpecialPacGumEntity->y = y;
                     _entities.push_back(SpecialPacGumEntity);
                     _SpecialPacGum.push_back(SpecialPacGumEntity);
+                } else if (readLine[x] != '#') {
+                    throw arc::FileError("Can't recognise this character " + std::string(1, readLine[x]) + " at line " + std::to_string(y), "initMap");
                 }
                 x++;
+            }
+            if (x != 40) {
+                throw FileError("Invalid line at " + std::to_string(y) + ", found " + std::to_string(x) + " but expected 40", "initMap");
             }
             y++;
         }
         mapFile.close();
     } else {
-        std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
+        throw FileError("Unable to open map3.txt", "initMap");
     }
+    if (y != 30)
+        throw FileError("Invalid number of line, exepected 30 but found " + std::to_string(y), "initMap");
     _myMap.size();
     // std::cout << _myMap.size() << std::endl;
 }

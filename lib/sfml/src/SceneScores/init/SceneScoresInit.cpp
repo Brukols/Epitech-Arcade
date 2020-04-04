@@ -31,7 +31,7 @@ void arc::SceneScores::initRects()
 
 static arc::Image initCloseImage()
 {
-    arc::Image image("resources/sfml/textures/close.png");
+    arc::Image image("assets/sfml/textures/close.png");
 
     image.setPosition(sf::Vector2f(1400, 120));
     return (image);

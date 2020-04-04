@@ -26,7 +26,7 @@ void arc::ScenePause::init()
     _buttonPlay = std::unique_ptr<Button>(new Button("Play", rect, std::function<void()>()));
     _buttonPlay->setColors(arc::MAIN_COLOR_1, arc::BACKGROUND_COLOR);
 
-    _textPause = std::unique_ptr<Text>(new Text(Utility::getText("resources/ncurses/texts/pause.txt"), arc::MAIN_COLOR_1, arc::BACKGROUND_COLOR));
+    _textPause = std::unique_ptr<Text>(new Text(Utility::getText("assets/ncurses/texts/pause.txt"), arc::MAIN_COLOR_1, arc::BACKGROUND_COLOR));
     _textPause->setPosition(105, 15);
 }
 

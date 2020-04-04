@@ -9,7 +9,8 @@ NAME_PACMAN	=	lib_arcade_pacman.so
 
 SRCS_PACMAN	=	src/Pacman.cpp	\
 				src/InitPacman.cpp	\
-				src/Gameplay.cpp
+				src/Gameplay.cpp	\
+				src/Errors.cpp		\
 
 OBJS	=	$(SRCS_PACMAN:.cpp=.o)
 

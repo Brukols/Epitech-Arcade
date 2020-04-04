@@ -10,7 +10,7 @@
 
 arc::Text initTitle()
 {
-    arc::Text text(arc::Utility::getText("resources/ncurses/texts/title.txt"), arc::MAIN_COLOR_1, arc::MAIN_COLOR_3);
+    arc::Text text(arc::Utility::getText("assets/ncurses/texts/title.txt"), arc::MAIN_COLOR_1, arc::MAIN_COLOR_3);
 
     text.setPosition(85, 5);
     return (text);
@@ -42,7 +42,7 @@ arc::Text initTextInputUsername()
 
 arc::Text initTextHowToPlay()
 {
-    arc::Text text(arc::Utility::getText("resources/ncurses/texts/howtoplay.txt"), arc::MAIN_COLOR_2, arc::BACKGROUND_COLOR);
+    arc::Text text(arc::Utility::getText("assets/ncurses/texts/howtoplay.txt"), arc::MAIN_COLOR_2, arc::BACKGROUND_COLOR);
 
     text.setPosition(101, 42);
     return (text);

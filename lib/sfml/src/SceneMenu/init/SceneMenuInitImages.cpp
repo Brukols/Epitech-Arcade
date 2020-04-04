@@ -9,7 +9,7 @@
 
 arc::Image initBackground()
 {
-    arc::Image image("resources/sfml/textures/menu_background.jpg");
+    arc::Image image("assets/sfml/textures/menu_background.jpg");
 
     image.setPosition(sf::Vector2f(0, 0));
     return (image);

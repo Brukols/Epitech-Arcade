@@ -6,10 +6,13 @@
 */
 
 #include "Pacman.hpp"
+#include "Errors.hpp"
 
 Pacman::Pacman()
-{
+try {
     initPacman();
+} catch (const FileError &e)  {
+    throw e;
 }
 
 Pacman::~Pacman()

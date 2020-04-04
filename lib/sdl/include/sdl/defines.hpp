@@ -8,6 +8,6 @@
 #ifndef DEFINES_HPP_
 #define DEFINES_HPP_
 
-#define FONT "resources/sdl/fonts/Raleway-ExtraBold.ttf"
+#define FONT "assets/sdl/fonts/Raleway-ExtraBold.ttf"
 
 #endif /* !DEFINES_HPP_ */
