@@ -27,6 +27,8 @@ try {
     throw e;
 } catch(const DirectoryError &e) {
     throw e;
+} catch(const ArcadeError &e) {
+    throw e;
 } catch(const std::exception &e) {
     throw FileError("Wrong name of file", "CoreInit");
 }

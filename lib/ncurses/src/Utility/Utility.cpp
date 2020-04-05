@@ -45,7 +45,7 @@ int arc::Utility::generateColor(const Color &color)
     }
     noColor++;
     init_color(noColor, color.r * 4, color.g * 4, color.b * 4);
-    colors[tmp] = noColor;
+    colors[std::make_tuple(color.r, color.g, color.b)] = noColor;
     return (noColor);
 }
 

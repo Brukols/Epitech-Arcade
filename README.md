@@ -20,7 +20,7 @@ make graphicals # Compile the graphics
 
 ## Usage
 
-You must to execute arcade with a graphic library. You are free to choose any library.
+You must execute arcade with a graphic library. You are free to choose any library.
 
 ```bash
 ./arcade lib/lib_arcade_sfml.so # Run arcade with the sfml library

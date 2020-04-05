@@ -34,7 +34,7 @@ void arc::SceneGame::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
         }
         if (_errorMessages.size() != 0) {
             eventErrorMessage(event, window);
-            return;
+            continue;
         }
         if (event.type == sf::Event::KeyPressed) {
             _actualEventType = arc::Event::KEY_PRESSED;
@@ -52,7 +52,7 @@ void arc::SceneGame::event(sf::RenderWindow &window, arc::Event::Type &_actualEv
         std::pair pair = std::pair<Event::Type, Event::Key>(_actualEventType, _actualKeyPress);
         if (_controls.count(pair)) {
             _controls[pair]();
-            return;
+            continue;
         }
     }
 }

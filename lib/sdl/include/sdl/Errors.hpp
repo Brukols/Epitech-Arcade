@@ -10,23 +10,10 @@
 
 #include <exception>
 #include <string>
+#include "ArcadeError.hpp"
 
 namespace arc
 {
-    class ArcadeError : public std::exception {
-
-        public:
-            ArcadeError(const std::string &message, const std::string &component = "Unknown");
-            ~ArcadeError();
-
-            const std::string &getComponent() const;
-            const char *what() const noexcept override;
-
-        private:
-            const std::string _message;
-            const std::string _component;
-    };
-
     class SpriteError : public ArcadeError {
         public:
             SpriteError(const std::string &message, const std::string &component = "Unknown");
